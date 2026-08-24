@@ -12,3 +12,4 @@ import AlgebraicComplexity.Tensor.CoppersmithWinograd
 import AlgebraicComplexity.Tensor.CoppersmithWinogradBorderRank
 import AlgebraicComplexity.Tensor.CoppersmithWinogradPartition
 import AlgebraicComplexity.Tensor.CoppersmithWinogradConstituents
+import AlgebraicComplexity.Tensor.OriginalCWNumerics
