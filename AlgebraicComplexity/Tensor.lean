@@ -6,3 +6,4 @@ import AlgebraicComplexity.Tensor.ExternalProduct
 import AlgebraicComplexity.Tensor.MatrixMultiplication
 import AlgebraicComplexity.Tensor.MonomialDegeneration
 import AlgebraicComplexity.Tensor.Coordinates
+import AlgebraicComplexity.Tensor.CoppersmithWinograd
