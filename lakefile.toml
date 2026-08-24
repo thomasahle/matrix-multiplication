@@ -1,11 +1,18 @@
 name = "RepeatedOrientationVerification"
 version = "0.1.0"
+keywords = ["math", "formal-verification"]
 defaultTargets = ["RepeatedOrientationVerification"]
 
-[[lean_lib]]
-name = "RepeatedOrientationVerification"
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
 
 [[require]]
 name = "mathlib"
-git = "https://github.com/leanprover-community/mathlib4.git"
+scope = "leanprover-community"
 rev = "v4.30.0"
+
+[[lean_lib]]
+name = "RepeatedOrientationVerification"
