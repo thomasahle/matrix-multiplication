@@ -9,3 +9,4 @@ import AlgebraicComplexity.Tensor.MonomialDegeneration
 import AlgebraicComplexity.Tensor.PolynomialDegeneration
 import AlgebraicComplexity.Tensor.Coordinates
 import AlgebraicComplexity.Tensor.CoppersmithWinograd
+import AlgebraicComplexity.Tensor.CoppersmithWinogradBorderRank
