@@ -16,10 +16,12 @@ its leading coefficient is the external product of the two leading coefficients.
 namespace AlgebraicComplexity
 namespace CoordinateTensor
 
-universe u uA uB
+universe uK uI uJ uL uI' uJ' uL' uA uB
 
 variable
-    {K I J L I' J' L' : Type u}
+    {K : Type uK}
+    {I : Type uI} {J : Type uJ} {L : Type uL}
+    {I' : Type uI'} {J' : Type uJ'} {L' : Type uL'}
     [CommSemiring K]
 
 /-- Pair the coordinates of two coordinate tensors and multiply their coefficients. -/
