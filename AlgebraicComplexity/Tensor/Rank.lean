@@ -87,27 +87,28 @@ def HasRankAtMost (r : ℕ) (T : TriTensor K X Y Z) : Prop :=
 namespace HasRankAtMost
 
 /-- The zero tensor has rank at most zero. -/
-theorem zero : HasRankAtMost 0 (0 : TriTensor K X Y Z) := by
+theorem zero : HasRankAtMost (K := K) 0 (0 : TriTensor K X Y Z) := by
   refine ⟨([] : List (PureTerm K X Y Z)), by simp, ?_⟩
   rfl
 
 /-- A pure tensor has rank at most one. -/
 theorem pure (x : X) (y : Y) (z : Z) :
-    HasRankAtMost 1 (TriTensor.pure x y z) := by
+    HasRankAtMost (K := K) 1 (TriTensor.pure (K := K) x y z) := by
   let term : PureTerm K X Y Z := ⟨x, y, z⟩
   refine ⟨[term], by simp, ?_⟩
   simp [realize, term, PureTerm.toTensor]
 
 /-- A rank bound remains true after weakening the numerical bound. -/
 theorem mono {r s : ℕ} {T : TriTensor K X Y Z}
-    (h : HasRankAtMost r T) (hrs : r ≤ s) : HasRankAtMost s T := by
+    (h : HasRankAtMost (K := K) r T) (hrs : r ≤ s) :
+    HasRankAtMost (K := K) s T := by
   rcases h with ⟨terms, hlen, hsum⟩
   exact ⟨terms, hlen.trans hrs, hsum⟩
 
 /-- Rank witnesses concatenate under addition. -/
 theorem add {r s : ℕ} {T S : TriTensor K X Y Z}
-    (hT : HasRankAtMost r T) (hS : HasRankAtMost s S) :
-    HasRankAtMost (r + s) (T + S) := by
+    (hT : HasRankAtMost (K := K) r T) (hS : HasRankAtMost (K := K) s S) :
+    HasRankAtMost (K := K) (r + s) (T + S) := by
   rcases hT with ⟨left, hleft, rfl⟩
   rcases hS with ⟨right, hright, rfl⟩
   refine ⟨left ++ right, ?_, by simp⟩
@@ -115,9 +116,9 @@ theorem add {r s : ℕ} {T S : TriTensor K X Y Z}
 
 /-- Coordinatewise linear maps do not increase a concrete rank bound. -/
 theorem map {r : ℕ} {T : TriTensor K X Y Z}
-    (hT : HasRankAtMost r T)
+    (hT : HasRankAtMost (K := K) r T)
     (f : X →ₗ[K] X') (g : Y →ₗ[K] Y') (h : Z →ₗ[K] Z') :
-    HasRankAtMost r (TriTensor.map3 f g h T) := by
+    HasRankAtMost (K := K) r (TriTensor.map3 f g h T) := by
   rcases hT with ⟨terms, hlen, hsum⟩
   refine ⟨terms.map (PureTerm.map f g h), by simpa using hlen, ?_⟩
   calc
@@ -127,7 +128,8 @@ theorem map {r : ℕ} {T : TriTensor K X Y Z}
 
 /-- Exact tensor restriction cannot increase a concrete rank bound. -/
 theorem of_restricts {r : ℕ} {T : TriTensor K X Y Z} {S : TriTensor K X' Y' Z'}
-    (hTS : Restricts T S) (hT : HasRankAtMost r T) : HasRankAtMost r S := by
+    (hTS : Restricts T S) (hT : HasRankAtMost (K := K) r T) :
+    HasRankAtMost (K := K) r S := by
   rcases hTS with ⟨f, g, h, rfl⟩
   exact hT.map f g h
 
