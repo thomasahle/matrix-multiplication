@@ -8,8 +8,8 @@ set_option linter.style.header false
 # Constructive polynomial degenerations and border-rank certificates
 
 For a coordinate tensor, a border-rank upper bound can be certified without invoking topology.
-A certificate consists of a polynomial family that is a sum of at most `r` rank-one tensors and whose
-first nonzero coefficient is the target tensor. This is the standard constructive form used by
+A certificate consists of a polynomial family that is a sum of at most `r` rank-one tensors and
+whose first nonzero coefficient is the target tensor. This is the constructive form used by
 Coppersmith--Winograd degenerations.
 -/
 
@@ -31,7 +31,8 @@ structure PolynomialPureTerm where
 namespace PolynomialPureTerm
 
 /-- Interpret a polynomial rank-one witness as a polynomial coordinate tensor. -/
-def toTensor (p : PolynomialPureTerm (K := K) (I := I) (J := J) (L := L)) :
+noncomputable def toTensor
+    (p : PolynomialPureTerm (K := K) (I := I) (J := J) (L := L)) :
     CoordinateTensor (Polynomial K) I J L :=
   fun i j k => p.x i * p.y j * p.z k
 
@@ -45,20 +46,21 @@ theorem toTensor_apply
 end PolynomialPureTerm
 
 /-- Sum a finite list of polynomial rank-one tensors. -/
-def realizePolynomial
+noncomputable def realizePolynomial
     (terms : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))) :
     CoordinateTensor (Polynomial K) I J L :=
   fun i j k => (terms.map fun p => p.toTensor i j k).sum
 
 @[simp]
 theorem realizePolynomial_nil :
-    realizePolynomial ([] : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))) = 0 := by
+    realizePolynomial
+      ([] : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))) = 0 := by
   rfl
 
 @[simp]
 theorem realizePolynomial_cons
     (p : PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))
-    (terms : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))):
+    (terms : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))) :
     realizePolynomial (p :: terms) = p.toTensor + realizePolynomial terms := by
   funext i j k
   simp [realizePolynomial]
@@ -102,7 +104,7 @@ def VanishesBelow (order : ℕ) (T : CoordinateTensor (Polynomial K) I J L) : Pr
 A constructive border-rank certificate. The polynomial family represented by `terms` vanishes below
 `order`, and its coefficient of degree `order` is exactly `T`.
 -/
-def HasBorderRankAtMost (r : ℕ) (T : CoordinateTensor K I J L) : Prop :=
+noncomputable def HasBorderRankAtMost (r : ℕ) (T : CoordinateTensor K I J L) : Prop :=
   ∃ order : ℕ,
     ∃ terms : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L)),
       terms.length ≤ r ∧
@@ -114,7 +116,7 @@ namespace HasBorderRankAtMost
 /-- A concrete polynomial family yields a border-rank certificate. -/
 theorem of_terms
     {r order : ℕ} {T : CoordinateTensor K I J L}
-    (terms : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))
+    (terms : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L)))
     (hlen : terms.length ≤ r)
     (hvanish : VanishesBelow order (realizePolynomial terms))
     (hlead : coeffTensor order (realizePolynomial terms) = T) :
