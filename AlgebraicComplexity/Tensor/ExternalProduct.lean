@@ -68,25 +68,25 @@ theorem externalProduct_zero_right (T : TriTensor K X Y Z) :
 theorem externalProduct_add_left
     (T₁ T₂ : TriTensor K X Y Z) (S : TriTensor K X' Y' Z') :
     externalProduct (T₁ + T₂) S = externalProduct T₁ S + externalProduct T₂ S := by
-  exact (externalProduct S).map_add T₁ T₂
+  simp [externalProduct]
 
 @[simp]
 theorem externalProduct_add_right
     (T : TriTensor K X Y Z) (S₁ S₂ : TriTensor K X' Y' Z') :
     externalProduct T (S₁ + S₂) = externalProduct T S₁ + externalProduct T S₂ := by
-  exact (externalProduct T).map_add S₁ S₂
+  simp [externalProduct]
 
 @[simp]
 theorem externalProduct_smul_left
     (c : K) (T : TriTensor K X Y Z) (S : TriTensor K X' Y' Z') :
     externalProduct (c • T) S = c • externalProduct T S := by
-  exact (externalProduct S).map_smul c T
+  simp [externalProduct]
 
 @[simp]
 theorem externalProduct_smul_right
     (c : K) (T : TriTensor K X Y Z) (S : TriTensor K X' Y' Z') :
     externalProduct T (c • S) = c • externalProduct T S := by
-  exact (externalProduct T).map_smul c S
+  simp [externalProduct]
 
 end TriTensor
 end AlgebraicComplexity
