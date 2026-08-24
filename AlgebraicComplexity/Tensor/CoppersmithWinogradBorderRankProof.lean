@@ -62,6 +62,7 @@ theorem cwPolynomialCurve_apply (q : ℕ) (a b c : CWIndex q) :
           (cwCurveCancellationTerm (K := K) q)) x) +
       (cwCurveCornerTerm (K := K) q).toTensor a b c = _
   rw [Fin.comp_snoc, Fin.sum_snoc]
+  simpa only [Function.comp_apply]
 
 /-- Coefficients below degree five of one middle curve term. -/
 theorem middleFactor_coeff_lt_five
@@ -100,8 +101,6 @@ theorem middleFactor_coeff_five
         (Polynomial.C y₀ + Polynomial.X ^ 2 * Polynomial.C y₁) *
         (Polynomial.C z₀ + Polynomial.X ^ 2 * Polynomial.C z₁)).coeff 5 =
       x₁ * y₁ * z₀ + x₁ * y₀ * z₁ + x₀ * y₁ * z₁ := by
-  have h := middleFactor_coeff_lt_five (K := K) x₀ x₁ y₀ y₁ z₀ z₁
-    (degree := 4) (by norm_num)
   have hexpand :
       Polynomial.X *
           (Polynomial.C x₀ + Polynomial.X ^ 2 * Polynomial.C x₁) *
@@ -210,8 +209,8 @@ theorem cornerFactor_coeff_lt_five
     ring
   rw [hexpand]
   interval_cases degree <;>
-    simp [Polynomial.coeff_add, Polynomial.coeff_sub, coeff_C3_mul_X_pow,
-      coeff_C4_mul_X_pow] <;> ring
+    simp [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_mul_X_pow',
+      coeff_C3_mul_X_pow, coeff_C4_mul_X_pow] <;> ring
 
 /-- Degree-five coefficient of the corner term. -/
 theorem cornerFactor_coeff_five
@@ -252,8 +251,8 @@ theorem cornerFactor_coeff_five
           Polynomial.X ^ 16 := by
     ring
   rw [hexpand]
-  simp [Polynomial.coeff_add, Polynomial.coeff_sub, coeff_C3_mul_X_pow,
-    coeff_C4_mul_X_pow]
+  simp [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_mul_X_pow',
+    coeff_C3_mul_X_pow, coeff_C4_mul_X_pow]
 
 end CoordinateTensor
 end AlgebraicComplexity
