@@ -3,10 +3,11 @@ import AlgebraicComplexity.Tensor.CoppersmithWinogradBorderRank
 set_option linter.style.header false
 
 /-!
-# Verification of the Coppersmith--Winograd border-rank curve
+# Verification lemmas for the Coppersmith--Winograd border-rank curve
 
-The cancellation is checked coefficient-by-coefficient through degree five. No numerical or external
-algebra system is part of the trusted proof.
+The cancellation is checked coefficient-by-coefficient through degree five.  These algebraic helper
+lemmas are public because the final `q+2` theorem is assembled in
+`CoppersmithWinogradBorderRankTheorem`.
 -/
 
 namespace AlgebraicComplexity
@@ -30,7 +31,7 @@ theorem cwPolynomialCurve_apply (q : ℕ) (a b c : CWIndex q) :
       (cwCurveCornerTerm (K := K) q).toTensor a b c := by
   simp [cwPolynomialCurve, realizePolynomialFamily, cwCurveTerms]
 
-private theorem middleFactor_coeff_lt_five
+theorem middleFactor_coeff_lt_five
     (x₀ x₁ y₀ y₁ z₀ z₁ : K) {degree : ℕ} (hdegree : degree < 5) :
     (Polynomial.X *
         (Polynomial.C x₀ + Polynomial.X ^ 2 * Polynomial.C x₁) *
@@ -55,7 +56,7 @@ private theorem middleFactor_coeff_lt_five
   rw [hexpand]
   interval_cases degree <;> simp
 
-private theorem middleFactor_coeff_five
+theorem middleFactor_coeff_five
     (x₀ x₁ y₀ y₁ z₀ z₁ : K) :
     (Polynomial.X *
         (Polynomial.C x₀ + Polynomial.X ^ 2 * Polynomial.C x₁) *
@@ -77,7 +78,7 @@ private theorem middleFactor_coeff_five
   rw [hexpand]
   simp
 
-private theorem cancellationFactor_coeff_lt_five
+theorem cancellationFactor_coeff_lt_five
     (x₀ x₁ y₀ y₁ z₀ z₁ : K) {degree : ℕ} (hdegree : degree < 5) :
     (-(Polynomial.C x₀ + Polynomial.X ^ 3 * Polynomial.C x₁) *
         (Polynomial.C y₀ + Polynomial.X ^ 3 * Polynomial.C y₁) *
@@ -100,7 +101,7 @@ private theorem cancellationFactor_coeff_lt_five
   rw [hexpand]
   interval_cases degree <;> simp
 
-private theorem cancellationFactor_coeff_five
+theorem cancellationFactor_coeff_five
     (x₀ x₁ y₀ y₁ z₀ z₁ : K) :
     (-(Polynomial.C x₀ + Polynomial.X ^ 3 * Polynomial.C x₁) *
         (Polynomial.C y₀ + Polynomial.X ^ 3 * Polynomial.C y₁) *
@@ -119,7 +120,7 @@ private theorem cancellationFactor_coeff_five
   rw [hexpand]
   simp
 
-private theorem cornerFactor_coeff_lt_five
+theorem cornerFactor_coeff_lt_five
     (q : ℕ) (x₀ x₁ y₀ y₁ z₀ z₁ : K) {degree : ℕ} (hdegree : degree < 5) :
     ((1 - Polynomial.C (q : K) * Polynomial.X) *
         (Polynomial.C x₀ + Polynomial.X ^ 5 * Polynomial.C x₁) *
@@ -149,7 +150,7 @@ private theorem cornerFactor_coeff_lt_five
   rw [hexpand]
   interval_cases degree <;> simp
 
-private theorem cornerFactor_coeff_five
+theorem cornerFactor_coeff_five
     (q : ℕ) (x₀ x₁ y₀ y₁ z₀ z₁ : K) :
     ((1 - Polynomial.C (q : K) * Polynomial.X) *
         (Polynomial.C x₀ + Polynomial.X ^ 5 * Polynomial.C x₁) *
