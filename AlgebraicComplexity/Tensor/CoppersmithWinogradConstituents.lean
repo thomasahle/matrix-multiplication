@@ -74,7 +74,7 @@ theorem cw011ProjectY_middle (q : ℕ) (i : Fin q) :
       Matrix.single 0 i 1 := by
   ext row col
   fin_cases row
-  simp [cw011ProjectY]
+  simp [cw011ProjectY, Matrix.single_apply, eq_comm]
 
 @[simp]
 theorem cw011ProjectZ_middle (q : ℕ) (i : Fin q) :
@@ -82,7 +82,7 @@ theorem cw011ProjectZ_middle (q : ℕ) (i : Fin q) :
       Matrix.single i 0 1 := by
   ext row col
   fin_cases col
-  simp [cw011ProjectZ]
+  simp [cw011ProjectZ, Matrix.single_apply, eq_comm]
 
 /-- The `(0,1,1)` constituent restricts to `⟨1,1,q⟩`. -/
 theorem cw011_restricts_matrixMultiplication (q : ℕ) :
@@ -118,7 +118,7 @@ theorem cw110ProjectX_middle (q : ℕ) (i : Fin q) :
       Matrix.single 0 i 1 := by
   ext row col
   fin_cases row
-  simp [cw110ProjectX]
+  simp [cw110ProjectX, Matrix.single_apply, eq_comm]
 
 @[simp]
 theorem cw110ProjectY_middle (q : ℕ) (i : Fin q) :
@@ -126,7 +126,7 @@ theorem cw110ProjectY_middle (q : ℕ) (i : Fin q) :
       Matrix.single i 0 1 := by
   ext row col
   fin_cases col
-  simp [cw110ProjectY]
+  simp [cw110ProjectY, Matrix.single_apply, eq_comm]
 
 @[simp]
 theorem cw110ProjectZ_zero (q : ℕ) :
@@ -171,7 +171,7 @@ theorem cw101ProjectX_middle (q : ℕ) (i : Fin q) :
       Matrix.single i 0 1 := by
   ext row col
   fin_cases col
-  simp [cw101ProjectX]
+  simp [cw101ProjectX, Matrix.single_apply, eq_comm]
 
 @[simp]
 theorem cw101ProjectY_zero (q : ℕ) :
@@ -188,7 +188,7 @@ theorem cw101ProjectZ_middle (q : ℕ) (i : Fin q) :
       Matrix.single 0 i 1 := by
   ext row col
   fin_cases row
-  simp [cw101ProjectZ]
+  simp [cw101ProjectZ, Matrix.single_apply, eq_comm]
 
 /-- The `(1,0,1)` constituent restricts to `⟨q,1,1⟩`. -/
 theorem cw101_restricts_matrixMultiplication (q : ℕ) :
