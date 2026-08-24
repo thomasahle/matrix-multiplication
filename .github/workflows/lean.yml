@@ -13,24 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Restore Lean and Mathlib caches
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.elan
-            .lake/packages
-          key: lean-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
       - name: Install Lean through elan
         run: |
-          if [ ! -x "$HOME/.elan/bin/elan" ]; then
-            curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
-              | sh -s -- -y
-          fi
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Resolve pinned dependencies
+      - name: Resolve pinned dependencies and Mathlib cache
         run: lake update
-      - name: Download Mathlib build cache
-        run: lake exe cache get
       - name: Compile every Lean theorem and reject sorryAx
         run: |
           set -o pipefail
