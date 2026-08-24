@@ -22,3 +22,19 @@ jobs:
         run: lake exe cache get
       - name: Compile every Lean theorem
         run: lake build
+
+  upstream-source:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Download Alman et al. arXiv source
+        run: |
+          mkdir -p upstream/src
+          curl -L --fail --retry 3 https://arxiv.org/e-print/2404.16349 -o upstream/source.tar
+          tar -xf upstream/source.tar -C upstream/src
+          find upstream/src -type f | sort > upstream/file-list.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alman-2024-source
+          path: upstream
+          retention-days: 7
