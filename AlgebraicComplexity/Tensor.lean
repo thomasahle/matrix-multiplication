@@ -3,6 +3,7 @@ import AlgebraicComplexity.Tensor.Restriction
 import AlgebraicComplexity.Tensor.Rank
 import AlgebraicComplexity.Tensor.DirectSum
 import AlgebraicComplexity.Tensor.ExternalProduct
+import AlgebraicComplexity.Tensor.RankProduct
 import AlgebraicComplexity.Tensor.MatrixMultiplication
 import AlgebraicComplexity.Tensor.MonomialDegeneration
 import AlgebraicComplexity.Tensor.Coordinates
