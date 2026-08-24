@@ -30,7 +30,11 @@ def basisVector (i : I) : I → K :=
 @[simp]
 theorem basisVector_apply (i i' : I) :
     basisVector (K := K) i i' = if i' = i then 1 else 0 := by
-  simp [basisVector]
+  by_cases h : i' = i
+  · subst i'
+    simp [basisVector]
+  · have h' : i ≠ i' := Ne.symm h
+    simp [basisVector, h, h']
 
 /-- Interpret a finite coordinate tensor as an abstract trilinear tensor. -/
 def toTriTensor (T : CoordinateTensor K I J L) :
@@ -64,10 +68,15 @@ theorem coordinateFilter_basisVector
     coordinateFilter (K := K) keep (basisVector (K := K) i) =
       if keep i then basisVector (K := K) i else 0 := by
   funext i'
-  by_cases hii : i' = i
+  by_cases hi : keep i <;> by_cases hEq : i' = i
   · subst i'
-    by_cases hi : keep i <;> simp [coordinateFilter, basisVector, hi]
-  · simp [coordinateFilter, basisVector, hii]
+    simp [coordinateFilter, basisVector, hi]
+  · have hNe : i ≠ i' := Ne.symm hEq
+    simp [coordinateFilter, basisVector, hi, hEq, hNe]
+  · subst i'
+    simp [coordinateFilter, basisVector, hi]
+  · have hNe : i ≠ i' := Ne.symm hEq
+    simp [coordinateFilter, basisVector, hi, hEq, hNe]
 
 /-- Standard-basis interpretation commutes with coordinate variable zeroing. -/
 theorem map3_toTriTensor_zeroOutside
