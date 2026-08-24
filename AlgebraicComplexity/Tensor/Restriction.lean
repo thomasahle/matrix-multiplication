@@ -12,13 +12,11 @@ This is the standard exact restriction preorder used in algebraic complexity.
 namespace AlgebraicComplexity
 namespace TriTensor
 
-universe uK uX uY uZ uX' uY' uZ' uX'' uY'' uZ''
+universe u
 
 variable
-    {K : Type uK} [CommSemiring K]
-    {X : Type uX} {Y : Type uY} {Z : Type uZ}
-    {X' : Type uX'} {Y' : Type uY'} {Z' : Type uZ'}
-    {X'' : Type uX''} {Y'' : Type uY''} {Z'' : Type uZ''}
+    {K X Y Z X' Y' Z' X'' Y'' Z'' : Type u}
+    [CommSemiring K]
     [AddCommMonoid X] [AddCommMonoid Y] [AddCommMonoid Z]
     [AddCommMonoid X'] [AddCommMonoid Y'] [AddCommMonoid Z']
     [AddCommMonoid X''] [AddCommMonoid Y''] [AddCommMonoid Z'']
@@ -47,8 +45,7 @@ theorem trans {T : TriTensor K X Y Z} {S : TriTensor K X' Y' Z'}
   rcases hTS with ⟨f₁, g₁, h₁, hTS⟩
   rcases hSU with ⟨f₂, g₂, h₂, hSU⟩
   refine ⟨f₂.comp f₁, g₂.comp g₁, h₂.comp h₁, ?_⟩
-  rw [map3_comp]
-  simp only [LinearMap.comp_apply, hTS, hSU]
+  rw [map3_comp, LinearMap.comp_apply, hTS, hSU]
 
 /-- Any coordinatewise image is a restriction. -/
 theorem map3 (T : TriTensor K X Y Z)
@@ -58,7 +55,7 @@ theorem map3 (T : TriTensor K X Y Z)
 
 /-- Equality implies restriction. -/
 theorem of_eq {T S : TriTensor K X Y Z} (h : T = S) : Restricts T S := by
-  subst h
+  subst S
   exact refl T
 
 /-- Every tensor restricts to zero. -/
