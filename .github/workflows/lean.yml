@@ -22,6 +22,19 @@ jobs:
         run: lake exe cache get
       - name: Compile every Lean theorem
         run: lake build
+      - name: Archive reproducible Lean source
+        uses: actions/upload-artifact@v4
+        with:
+          name: repeated-orientation-lean-project
+          path: |
+            lean-toolchain
+            lakefile.toml
+            lake-manifest.json
+            README.md
+            UPSTREAM_AUDIT.md
+            RepeatedOrientationVerification.lean
+            RepeatedOrientationVerification
+          retention-days: 30
 
   upstream-source:
     runs-on: ubuntu-latest
