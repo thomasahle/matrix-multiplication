@@ -137,17 +137,29 @@ theorem coppersmithWinogradTensor_rank_le (q : ℕ) :
   exact (coppersmithWinogradMiddle_rank_le (K := K) q).add
     (coppersmithWinogradCorners_rank_le (K := K) q)
 
+/-- The middle part of `CW_q` is cyclically symmetric. -/
+theorem cycleLeft_coppersmithWinogradMiddle (q : ℕ) :
+    cycleLeft (coppersmithWinogradMiddle K q) = coppersmithWinogradMiddle K q := by
+  classical
+  unfold coppersmithWinogradMiddle
+  simp only [map_sum, cycleLeft_pure]
+  apply Finset.sum_congr rfl
+  intro i _
+  abel
+
+/-- The corner part of `CW_q` is cyclically symmetric. -/
+theorem cycleLeft_coppersmithWinogradCorners (q : ℕ) :
+    cycleLeft (coppersmithWinogradCorners K q) = coppersmithWinogradCorners K q := by
+  unfold coppersmithWinogradCorners
+  simp only [map_add, cycleLeft_pure]
+  abel
+
 /-- `CW_q` is invariant under cyclic permutation of its three coordinate roles. -/
 theorem cycleLeft_coppersmithWinogradTensor (q : ℕ) :
     cycleLeft (coppersmithWinogradTensor K q) = coppersmithWinogradTensor K q := by
-  classical
-  unfold coppersmithWinogradTensor coppersmithWinogradMiddle coppersmithWinogradCorners
-  simp only [map_add, map_sum, cycleLeft_pure]
-  congr 1
-  · apply Finset.sum_congr rfl
-    intro i _
-    abel
-  · abel
+  unfold coppersmithWinogradTensor
+  rw [map_add, cycleLeft_coppersmithWinogradMiddle,
+    cycleLeft_coppersmithWinogradCorners]
 
 end TriTensor
 end AlgebraicComplexity
