@@ -15,10 +15,10 @@ linear projections, hence is an exact tensor restriction as well as a monomial d
 namespace AlgebraicComplexity
 namespace CoordinateTensor
 
-universe u
+universe uK uI
 
 variable
-    {K I J L : Type u}
+    {K : Type uK} {I J L : Type uI}
     [CommSemiring K]
     [Fintype I] [Fintype J] [Fintype L]
     [DecidableEq I] [DecidableEq J] [DecidableEq L]
@@ -33,8 +33,7 @@ theorem basisVector_apply (i i' : I) :
   by_cases h : i' = i
   · subst i'
     simp [basisVector]
-  · have h' : i ≠ i' := Ne.symm h
-    simp [basisVector, h, h']
+  · simp [basisVector, h]
 
 /-- Interpret a finite coordinate tensor as an abstract trilinear tensor. -/
 def toTriTensor (T : CoordinateTensor K I J L) :
@@ -71,12 +70,10 @@ theorem coordinateFilter_basisVector
   by_cases hi : keep i <;> by_cases hEq : i' = i
   · subst i'
     simp [coordinateFilter, basisVector, hi]
-  · have hNe : i ≠ i' := Ne.symm hEq
-    simp [coordinateFilter, basisVector, hi, hEq, hNe]
+  · simp [coordinateFilter, basisVector, hi, hEq]
   · subst i'
     simp [coordinateFilter, basisVector, hi]
-  · have hNe : i ≠ i' := Ne.symm hEq
-    simp [coordinateFilter, basisVector, hi, hEq, hNe]
+  · simp [coordinateFilter, basisVector, hi, hEq]
 
 /-- Standard-basis interpretation commutes with coordinate variable zeroing. -/
 theorem map3_toTriTensor_zeroOutside
