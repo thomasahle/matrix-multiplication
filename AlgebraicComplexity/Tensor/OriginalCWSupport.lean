@@ -1,4 +1,4 @@
-import AlgebraicComplexity.Tensor.OriginalCWNumerics
+import AlgebraicComplexity.Tensor.OriginalCWParameters
 import Mathlib.Tactic
 
 set_option linter.style.header false
@@ -8,8 +8,8 @@ set_option linter.style.header false
 
 The historical tensor-square analysis uses a symmetric probability distribution on the fifteen
 triples `(i,j,k)` with `i+j+k=4`, grouped into the four permutation orbits represented by
-`(4,0,0)`, `(3,1,0)`, `(2,2,0)`, and `(2,1,1)`.  The exceptional `(2,1,1)` component has its own
-four-point inner distribution.  This file encodes those finite supports and kernel-checks their
+`(4,0,0)`, `(3,1,0)`, `(2,2,0)`, and `(2,1,1)`. The exceptional `(2,1,1)` component has its own
+four-point inner distribution. This file encodes those finite supports and kernel-checks their
 normalizations and coordinate marginals.
 -/
 
@@ -57,40 +57,47 @@ def outerMarginal (coordinate : Fin 3) (value : ℕ) : ℚ :=
 /-- Every outer support point is tight of total degree four. -/
 theorem outerShape_tight :
     ∀ point : OuterPoint, ∑ coordinate : Fin 3, outerShape point coordinate = 4 := by
-  native_decide
+  intro point
+  cases point <;> decide
 
 /-- The fifteen labelled masses form a probability distribution. -/
 theorem outerMass_normalized : ∑ point : OuterPoint, outerMass point = 1 := by
-  native_decide
+  norm_num [outerMass, a1, a2, a3, a4]
 
 /-- All outer masses are strictly positive. -/
 theorem outerMass_positive : ∀ point : OuterPoint, 0 < outerMass point := by
-  native_decide
+  intro point
+  cases point <;> norm_num [outerMass, a1, a2, a3, a4]
 
 /-- The probability of coordinate value zero is `16/125`, independently of the coordinate. -/
 @[simp] theorem outerMarginal_zero (coordinate : Fin 3) :
     outerMarginal coordinate 0 = 16 / 125 := by
-  fin_cases coordinate <;> native_decide
+  fin_cases coordinate <;>
+    norm_num [outerMarginal, outerShape, outerMass, a1, a2, a3, a4]
 
 /-- The probability of coordinate value one. -/
 @[simp] theorem outerMarginal_one (coordinate : Fin 3) :
     outerMarginal coordinate 1 = 65419 / 150000 := by
-  fin_cases coordinate <;> native_decide
+  fin_cases coordinate <;>
+    norm_num [outerMarginal, outerShape, outerMass, a1, a2, a3, a4]
 
 /-- The probability of coordinate value two. -/
 @[simp] theorem outerMarginal_two (coordinate : Fin 3) :
     outerMarginal coordinate 2 = 123193 / 300000 := by
-  fin_cases coordinate <;> native_decide
+  fin_cases coordinate <;>
+    norm_num [outerMarginal, outerShape, outerMass, a1, a2, a3, a4]
 
 /-- The probability of coordinate value three. -/
 @[simp] theorem outerMarginal_three (coordinate : Fin 3) :
     outerMarginal coordinate 3 = 1 / 40 := by
-  fin_cases coordinate <;> native_decide
+  fin_cases coordinate <;>
+    norm_num [outerMarginal, outerShape, outerMass, a1, a2, a3, a4]
 
 /-- The probability of coordinate value four. -/
 @[simp] theorem outerMarginal_four (coordinate : Fin 3) :
     outerMarginal coordinate 4 = 23 / 100000 := by
-  fin_cases coordinate <;> native_decide
+  fin_cases coordinate <;>
+    norm_num [outerMarginal, outerShape, outerMass, a1, a2, a3, a4]
 
 /-- No outer coordinate value above four occurs. -/
 theorem outerMarginal_of_four_lt (coordinate : Fin 3) {value : ℕ} (h : 4 < value) :
@@ -139,26 +146,40 @@ def innerMarginal (coordinate : Fin 3) (value : ℕ) : ℚ :=
 /-- Every inner support point has total degree two. -/
 theorem innerShape_tight :
     ∀ point : InnerPoint, ∑ coordinate : Fin 3, innerShape point coordinate = 2 := by
-  native_decide
+  intro point
+  cases point <;> decide
 
 /-- The four inner masses form a probability distribution. -/
 theorem innerMass_normalized : ∑ point : InnerPoint, innerMass point = 1 := by
-  native_decide
+  norm_num [innerMass, b1, b2]
 
 /-- All inner masses are strictly positive. -/
 theorem innerMass_positive : ∀ point : InnerPoint, 0 < innerMass point := by
-  native_decide
+  intro point
+  cases point <;> norm_num [innerMass, b1, b2]
 
 /-- The first-coordinate inner marginal is `(b1, 2*b2, b1)`. -/
-@[simp] theorem innerMarginal_x_zero : innerMarginal 0 0 = b1 := by native_decide
-@[simp] theorem innerMarginal_x_one : innerMarginal 0 1 = 2 * b2 := by native_decide
-@[simp] theorem innerMarginal_x_two : innerMarginal 0 2 = b1 := by native_decide
+@[simp] theorem innerMarginal_x_zero : innerMarginal 0 0 = b1 := by
+  norm_num [innerMarginal, innerShape, innerMass, b1, b2]
+
+@[simp] theorem innerMarginal_x_one : innerMarginal 0 1 = 2 * b2 := by
+  norm_num [innerMarginal, innerShape, innerMass, b1, b2]
+
+@[simp] theorem innerMarginal_x_two : innerMarginal 0 2 = b1 := by
+  norm_num [innerMarginal, innerShape, innerMass, b1, b2]
 
 /-- The other two coordinate marginals are uniform binary distributions. -/
-@[simp] theorem innerMarginal_y_zero : innerMarginal 1 0 = 1 / 2 := by native_decide
-@[simp] theorem innerMarginal_y_one : innerMarginal 1 1 = 1 / 2 := by native_decide
-@[simp] theorem innerMarginal_z_zero : innerMarginal 2 0 = 1 / 2 := by native_decide
-@[simp] theorem innerMarginal_z_one : innerMarginal 2 1 = 1 / 2 := by native_decide
+@[simp] theorem innerMarginal_y_zero : innerMarginal 1 0 = 1 / 2 := by
+  norm_num [innerMarginal, innerShape, innerMass, b1, b2]
+
+@[simp] theorem innerMarginal_y_one : innerMarginal 1 1 = 1 / 2 := by
+  norm_num [innerMarginal, innerShape, innerMass, b1, b2]
+
+@[simp] theorem innerMarginal_z_zero : innerMarginal 2 0 = 1 / 2 := by
+  norm_num [innerMarginal, innerShape, innerMass, b1, b2]
+
+@[simp] theorem innerMarginal_z_one : innerMarginal 2 1 = 1 / 2 := by
+  norm_num [innerMarginal, innerShape, innerMass, b1, b2]
 
 /-- The inner first-coordinate marginal sums to one. -/
 theorem innerMarginal_x_normalized :
