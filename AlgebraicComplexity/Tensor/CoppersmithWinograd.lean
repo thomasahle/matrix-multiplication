@@ -36,32 +36,38 @@ abbrev CWVariableSpace (K : Type u) (q : ℕ) := Fin (q + 2) → K
 
 /-- A standard-basis variable of the Coppersmith--Winograd tensor. -/
 def cwVariable (q : ℕ) (i : Fin (q + 2)) : CWVariableSpace K q :=
-  CoordinateTensor.basisVector (K := K) i
+  CoordinateTensor.basisVector (K := K) (I := Fin (q + 2)) i
 
 /-- The `3q` middle terms of `CW_q`. -/
 def coppersmithWinogradMiddle (K : Type u) [CommSemiring K] (q : ℕ) :
     TriTensor K (CWVariableSpace K q) (CWVariableSpace K q) (CWVariableSpace K q) :=
-  ∑ i : Fin q,
-    pure (cwVariable (K := K) q (cwZero q))
+  ∑ i : Fin q, (
+    pure (K := K)
+      (cwVariable (K := K) q (cwZero q))
       (cwVariable (K := K) q (cwMiddle q i))
       (cwVariable (K := K) q (cwMiddle q i)) +
-    pure (cwVariable (K := K) q (cwMiddle q i))
-      (cwVariable (K := K) q (cwZero q))
-      (cwVariable (K := K) q (cwMiddle q i)) +
-    pure (cwVariable (K := K) q (cwMiddle q i))
+    pure (K := K)
       (cwVariable (K := K) q (cwMiddle q i))
       (cwVariable (K := K) q (cwZero q))
+      (cwVariable (K := K) q (cwMiddle q i)) +
+    pure (K := K)
+      (cwVariable (K := K) q (cwMiddle q i))
+      (cwVariable (K := K) q (cwMiddle q i))
+      (cwVariable (K := K) q (cwZero q)))
 
 /-- The three corner terms of `CW_q`. -/
 def coppersmithWinogradCorners (K : Type u) [CommSemiring K] (q : ℕ) :
     TriTensor K (CWVariableSpace K q) (CWVariableSpace K q) (CWVariableSpace K q) :=
-  pure (cwVariable (K := K) q (cwZero q))
+  pure (K := K)
+      (cwVariable (K := K) q (cwZero q))
       (cwVariable (K := K) q (cwZero q))
       (cwVariable (K := K) q (cwLast q)) +
-    pure (cwVariable (K := K) q (cwZero q))
+    pure (K := K)
+      (cwVariable (K := K) q (cwZero q))
       (cwVariable (K := K) q (cwLast q))
       (cwVariable (K := K) q (cwZero q)) +
-    pure (cwVariable (K := K) q (cwLast q))
+    pure (K := K)
+      (cwVariable (K := K) q (cwLast q))
       (cwVariable (K := K) q (cwZero q))
       (cwVariable (K := K) q (cwZero q))
 
@@ -74,18 +80,23 @@ def coppersmithWinogradTensor (K : Type u) [CommSemiring K] (q : ℕ) :
 theorem coppersmithWinogradMiddle_rank_le (q : ℕ) :
     HasRankAtMost (K := K) (q * 3) (coppersmithWinogradMiddle K q) := by
   have h :
-      HasRankAtMost (K := K) (∑ _i : Fin q, 3) (coppersmithWinogradMiddle K q) := by
+      HasRankAtMost (K := K)
+        (∑ _i : Fin q, (3 : ℕ))
+        (coppersmithWinogradMiddle K q) := by
     unfold coppersmithWinogradMiddle
     refine HasRankAtMost.fintype_sum
-      (fun _i : Fin q => 3)
+      (fun _i : Fin q => (3 : ℕ))
       (fun i : Fin q =>
-        pure (cwVariable (K := K) q (cwZero q))
+        pure (K := K)
+            (cwVariable (K := K) q (cwZero q))
             (cwVariable (K := K) q (cwMiddle q i))
             (cwVariable (K := K) q (cwMiddle q i)) +
-          pure (cwVariable (K := K) q (cwMiddle q i))
+          pure (K := K)
+            (cwVariable (K := K) q (cwMiddle q i))
             (cwVariable (K := K) q (cwZero q))
             (cwVariable (K := K) q (cwMiddle q i)) +
-          pure (cwVariable (K := K) q (cwMiddle q i))
+          pure (K := K)
+            (cwVariable (K := K) q (cwMiddle q i))
             (cwVariable (K := K) q (cwMiddle q i))
             (cwVariable (K := K) q (cwZero q))) ?_
     intro i
