@@ -30,6 +30,14 @@ theorem cwMiddle_inj (q : ℕ) (i j : Fin q) :
   · rintro rfl
     rfl
 
+/-- Evaluation of a middle standard-basis variable at another middle index. -/
+@[simp]
+theorem cwVariable_middle_apply_middle (q : ℕ) (i j : Fin q) :
+    cwVariable (K := K) q (cwMiddle q i) (cwMiddle q j) =
+      if j = i then 1 else 0 := by
+  rw [cwVariable, CoordinateTensor.basisVector_apply]
+  simp [cwMiddle_inj]
+
 /-- Read the `x₀` coordinate as a `1 × 1` matrix. -/
 def cw011ProjectX (q : ℕ) :
     CWVariableSpace K q →ₗ[K] MatrixSpace K 1 1 where
@@ -66,7 +74,7 @@ theorem cw011ProjectY_middle (q : ℕ) (i : Fin q) :
       Matrix.single 0 i 1 := by
   ext row col
   fin_cases row
-  simp [cw011ProjectY, cwVariable, CoordinateTensor.basisVector]
+  simp [cw011ProjectY]
 
 @[simp]
 theorem cw011ProjectZ_middle (q : ℕ) (i : Fin q) :
@@ -74,7 +82,7 @@ theorem cw011ProjectZ_middle (q : ℕ) (i : Fin q) :
       Matrix.single i 0 1 := by
   ext row col
   fin_cases col
-  simp [cw011ProjectZ, cwVariable, CoordinateTensor.basisVector]
+  simp [cw011ProjectZ]
 
 /-- The `(0,1,1)` constituent restricts to `⟨1,1,q⟩`. -/
 theorem cw011_restricts_matrixMultiplication (q : ℕ) :
@@ -110,7 +118,7 @@ theorem cw110ProjectX_middle (q : ℕ) (i : Fin q) :
       Matrix.single 0 i 1 := by
   ext row col
   fin_cases row
-  simp [cw110ProjectX, cwVariable, CoordinateTensor.basisVector]
+  simp [cw110ProjectX]
 
 @[simp]
 theorem cw110ProjectY_middle (q : ℕ) (i : Fin q) :
@@ -118,7 +126,7 @@ theorem cw110ProjectY_middle (q : ℕ) (i : Fin q) :
       Matrix.single i 0 1 := by
   ext row col
   fin_cases col
-  simp [cw110ProjectY, cwVariable, CoordinateTensor.basisVector]
+  simp [cw110ProjectY]
 
 @[simp]
 theorem cw110ProjectZ_zero (q : ℕ) :
@@ -163,7 +171,7 @@ theorem cw101ProjectX_middle (q : ℕ) (i : Fin q) :
       Matrix.single i 0 1 := by
   ext row col
   fin_cases col
-  simp [cw101ProjectX, cwVariable, CoordinateTensor.basisVector]
+  simp [cw101ProjectX]
 
 @[simp]
 theorem cw101ProjectY_zero (q : ℕ) :
@@ -180,7 +188,7 @@ theorem cw101ProjectZ_middle (q : ℕ) (i : Fin q) :
       Matrix.single 0 i 1 := by
   ext row col
   fin_cases row
-  simp [cw101ProjectZ, cwVariable, CoordinateTensor.basisVector]
+  simp [cw101ProjectZ]
 
 /-- The `(1,0,1)` constituent restricts to `⟨q,1,1⟩`. -/
 theorem cw101_restricts_matrixMultiplication (q : ℕ) :
