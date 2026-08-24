@@ -1,4 +1,4 @@
-import AlgebraicComplexity.Tensor.Basic
+import AlgebraicComplexity.Tensor.Rank
 import Mathlib.LinearAlgebra.Matrix.StdBasis
 
 set_option linter.style.header false
@@ -67,6 +67,24 @@ theorem matrixMultiplicationTensor_zero_middle (m p : ℕ) :
 theorem matrixMultiplicationTensor_zero_right (m n : ℕ) :
     matrixMultiplicationTensor K m n 0 = 0 := by
   simp [matrixMultiplicationTensor]
+
+/-- The schoolbook decomposition certifies rank at most `m*n*p`. -/
+theorem matrixMultiplicationTensor_rank_le (m n p : ℕ) :
+    HasRankAtMost (K := K) (m * n * p) (matrixMultiplicationTensor K m n p) := by
+  have h :
+      HasRankAtMost (K := K)
+        (∑ _i : Fin m, ∑ _j : Fin n, ∑ _k : Fin p, 1)
+        (matrixMultiplicationTensor K m n p) := by
+    unfold matrixMultiplicationTensor
+    apply HasRankAtMost.fintype_sum
+    intro i
+    apply HasRankAtMost.fintype_sum
+    intro j
+    apply HasRankAtMost.fintype_sum
+    intro k
+    exact HasRankAtMost.pure
+      (Matrix.single i j 1) (Matrix.single j k 1) (Matrix.single k i 1)
+  simpa [Nat.mul_assoc] using h
 
 /-- Cyclically rotating tensor coordinates cyclically rotates the matrix dimensions. -/
 theorem cycleLeft_matrixMultiplicationTensor (m n p : ℕ) :
