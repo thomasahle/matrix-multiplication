@@ -10,6 +10,8 @@ A small algebraic-complexity layer on top of Mathlib's module tensor product.
 We right-associate three tensor factors throughout.
 -/
 
+open scoped TensorProduct
+
 namespace AlgebraicComplexity
 
 universe u
@@ -46,8 +48,8 @@ def map3 (f : X →ₗ[K] X') (g : Y →ₗ[K] Y') (h : Z →ₗ[K] Z') :
 @[simp]
 theorem map3_pure (f : X →ₗ[K] X') (g : Y →ₗ[K] Y') (h : Z →ₗ[K] Z')
     (x : X) (y : Y) (z : Z) :
-    map3 f g h (pure x y z) = pure (f x) (g y) (h z) :=
-  rfl
+    map3 f g h (pure x y z) = pure (f x) (g y) (h z) := by
+  simp [map3, pure]
 
 @[simp]
 theorem map3_id :
@@ -64,7 +66,16 @@ theorem map3_comp
       (map3 f₂ g₂ h₂).comp (map3 f₁ g₁ h₁) := by
   apply TensorProduct.ext_threefold'
   intro x y z
-  rfl
+  simp [map3, pure]
+
+@[simp]
+theorem map3_map3
+    (f₁ : X →ₗ[K] X') (g₁ : Y →ₗ[K] Y') (h₁ : Z →ₗ[K] Z')
+    (f₂ : X' →ₗ[K] X'') (g₂ : Y' →ₗ[K] Y'') (h₂ : Z' →ₗ[K] Z'')
+    (T : TriTensor K X Y Z) :
+    map3 f₂ g₂ h₂ (map3 f₁ g₁ h₁ T) =
+      map3 (f₂.comp f₁) (g₂.comp g₁) (h₂.comp h₁) T := by
+  exact congrArg (fun F => F T) (map3_comp f₁ g₁ h₁ f₂ g₂ h₂).symm
 
 /-- Swap the first two tensor coordinates. -/
 def swapXY : TriTensor K X Y Z ≃ₗ[K] TriTensor K Y X Z :=
@@ -85,23 +96,23 @@ def cycleRight : TriTensor K X Y Z ≃ₗ[K] TriTensor K Z X Y :=
 
 @[simp]
 theorem swapXY_pure (x : X) (y : Y) (z : Z) :
-    (swapXY (K := K) (X := X) (Y := Y) (Z := Z)) (pure x y z) = pure y x z :=
-  rfl
+    (swapXY (K := K) (X := X) (Y := Y) (Z := Z)) (pure x y z) = pure y x z := by
+  simp [swapXY, pure]
 
 @[simp]
 theorem swapYZ_pure (x : X) (y : Y) (z : Z) :
-    (swapYZ (K := K) (X := X) (Y := Y) (Z := Z)) (pure x y z) = pure x z y :=
-  rfl
+    (swapYZ (K := K) (X := X) (Y := Y) (Z := Z)) (pure x y z) = pure x z y := by
+  simp [swapYZ, pure]
 
 @[simp]
 theorem cycleLeft_pure (x : X) (y : Y) (z : Z) :
-    (cycleLeft (K := K) (X := X) (Y := Y) (Z := Z)) (pure x y z) = pure y z x :=
-  rfl
+    (cycleLeft (K := K) (X := X) (Y := Y) (Z := Z)) (pure x y z) = pure y z x := by
+  simp [cycleLeft]
 
 @[simp]
 theorem cycleRight_pure (x : X) (y : Y) (z : Z) :
-    (cycleRight (K := K) (X := X) (Y := Y) (Z := Z)) (pure x y z) = pure z x y :=
-  rfl
+    (cycleRight (K := K) (X := X) (Y := Y) (Z := Z)) (pure x y z) = pure z x y := by
+  simp [cycleRight, cycleLeft, swapXY, swapYZ, pure]
 
 end TriTensor
 end AlgebraicComplexity
