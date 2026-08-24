@@ -94,8 +94,9 @@ theorem zero : HasRankAtMost 0 (0 : TriTensor K X Y Z) := by
 /-- A pure tensor has rank at most one. -/
 theorem pure (x : X) (y : Y) (z : Z) :
     HasRankAtMost 1 (TriTensor.pure x y z) := by
-  refine ⟨[⟨x, y, z⟩], by simp, ?_⟩
-  simp [realize, PureTerm.toTensor]
+  let term : PureTerm K X Y Z := ⟨x, y, z⟩
+  refine ⟨[term], by simp, ?_⟩
+  simp [realize, term, PureTerm.toTensor]
 
 /-- A rank bound remains true after weakening the numerical bound. -/
 theorem mono {r s : ℕ} {T : TriTensor K X Y Z}
