@@ -91,21 +91,18 @@ noncomputable def cwCurveCornerTerm (q : ℕ) :
   z c := cwPolynomialBasis (K := K) q (TriTensor.cwZero q) c +
     Polynomial.X ^ 5 * cwPolynomialBasis (K := K) q (TriTensor.cwLast q) c
 
-/-- The complete list of `q + 2` polynomial rank-one terms. -/
+/-- The complete `q + 2`-element polynomial rank-one family. -/
 noncomputable def cwCurveTerms (q : ℕ) :
-    List (PolynomialPureTerm (K := K) (I := CWIndex q) (J := CWIndex q) (L := CWIndex q)) :=
-  List.ofFn (cwCurveMiddleTerm (K := K) q) ++
-    [cwCurveCancellationTerm (K := K) q, cwCurveCornerTerm (K := K) q]
-
-@[simp]
-theorem cwCurveTerms_length (q : ℕ) :
-    (cwCurveTerms (K := K) q).length = q + 2 := by
-  simp [cwCurveTerms]
+    Fin (q + 2) →
+      PolynomialPureTerm (K := K) (I := CWIndex q) (J := CWIndex q) (L := CWIndex q) :=
+  Fin.snoc
+    (Fin.snoc (cwCurveMiddleTerm (K := K) q) (cwCurveCancellationTerm (K := K) q))
+    (cwCurveCornerTerm (K := K) q)
 
 /-- The polynomial tensor represented by the `q + 2` curve terms. -/
 noncomputable def cwPolynomialCurve (q : ℕ) :
     CoordinateTensor (Polynomial K) (CWIndex q) (CWIndex q) (CWIndex q) :=
-  realizePolynomial (cwCurveTerms (K := K) q)
+  realizePolynomialFamily (cwCurveTerms (K := K) q)
 
 private theorem middleFactor_expansion
     (x₀ x₁ y₀ y₁ z₀ z₁ : K) :
