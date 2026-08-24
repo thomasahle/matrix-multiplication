@@ -7,21 +7,20 @@ set_option linter.style.header false
 /-!
 # From coordinate arrays to abstract trilinear tensors
 
-For finite index types, a coefficient function can be interpreted in the standard bases of the
-three function modules. This file also proves that variable zeroing is realized by coordinatewise
-linear projections, hence is an exact tensor restriction as well as a monomial degeneration.
+Standard basis vectors and coordinate filters are universe-polymorphic. The realization of a finite
+coordinate array as an abstract `TriTensor` currently uses one common universe, matching the first
+stable algebraic-complexity layer.
 -/
 
 namespace AlgebraicComplexity
 namespace CoordinateTensor
 
-universe uK uI
+universe uK uI u
 
-variable
-    {K : Type uK} {I J L : Type uI}
-    [CommSemiring K]
-    [Fintype I] [Fintype J] [Fintype L]
-    [DecidableEq I] [DecidableEq J] [DecidableEq L]
+section Basis
+
+variable {K : Type uK} {I : Type uI}
+    [CommSemiring K] [DecidableEq I]
 
 /-- A standard basis vector in the coordinate module `I → K`. -/
 def basisVector (i : I) : I → K :=
@@ -34,15 +33,6 @@ theorem basisVector_apply (i i' : I) :
   · subst i'
     simp [basisVector]
   · simp [basisVector, h]
-
-/-- Interpret a finite coordinate tensor as an abstract trilinear tensor. -/
-def toTriTensor (T : CoordinateTensor K I J L) :
-    TriTensor K (I → K) (J → K) (L → K) :=
-  ∑ i : I, ∑ j : J, ∑ k : L,
-    T i j k • TriTensor.pure
-      (basisVector (K := K) i)
-      (basisVector (K := K) j)
-      (basisVector (K := K) k)
 
 /-- Project a coordinate module onto a chosen subset of its standard basis variables. -/
 def coordinateFilter (keep : I → Prop) [DecidablePred keep] :
@@ -74,6 +64,25 @@ theorem coordinateFilter_basisVector
   · subst i'
     simp [coordinateFilter, basisVector, hi]
   · simp [coordinateFilter, basisVector, hi, hEq]
+
+end Basis
+
+section Realization
+
+variable
+    {K I J L : Type u}
+    [CommSemiring K]
+    [Fintype I] [Fintype J] [Fintype L]
+    [DecidableEq I] [DecidableEq J] [DecidableEq L]
+
+/-- Interpret a finite coordinate tensor as an abstract trilinear tensor. -/
+def toTriTensor (T : CoordinateTensor K I J L) :
+    TriTensor K (I → K) (J → K) (L → K) :=
+  ∑ i : I, ∑ j : J, ∑ k : L,
+    T i j k • TriTensor.pure
+      (basisVector (K := K) i)
+      (basisVector (K := K) j)
+      (basisVector (K := K) k)
 
 /-- Standard-basis interpretation commutes with coordinate variable zeroing. -/
 theorem map3_toTriTensor_zeroOutside
@@ -110,5 +119,6 @@ theorem toTriTensor_restricts_zeroOutside
     coordinateFilter (K := K) keepZ,
     map3_toTriTensor_zeroOutside keepX keepY keepZ T⟩
 
+end Realization
 end CoordinateTensor
 end AlgebraicComplexity
