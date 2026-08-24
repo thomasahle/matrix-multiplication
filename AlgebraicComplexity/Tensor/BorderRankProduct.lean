@@ -8,7 +8,7 @@ set_option linter.style.header false
 /-!
 # Border rank under coordinate external products
 
-Constructive polynomial border-rank certificates multiply.  If two polynomial curves first become
+Constructive polynomial border-rank certificates multiply. If two polynomial curves first become
 nonzero in degrees `a` and `b`, their external product first becomes nonzero in degree `a+b`, and
 its leading coefficient is the external product of the two leading coefficients.
 -/
@@ -50,8 +50,12 @@ noncomputable def externalProduct
 theorem toTensor_externalProduct
     (p : PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))
     (q : PolynomialPureTerm (K := K) (I := I') (J := J') (L := L')) :
-    (p.externalProduct q).toTensor = externalProduct p.toTensor q.toTensor := by
-  rfl
+    (p.externalProduct q).toTensor =
+      CoordinateTensor.externalProduct p.toTensor q.toTensor := by
+  funext i j k
+  simp [PolynomialPureTerm.externalProduct, PolynomialPureTerm.toTensor,
+    CoordinateTensor.externalProduct]
+  ring
 
 end PolynomialPureTerm
 
@@ -77,8 +81,10 @@ theorem realize_finReindexPolynomialFamily
       realizePolynomialFintypeFamily terms := by
   classical
   funext i j k
-  simp [realizePolynomialFamily, realizePolynomialFintypeFamily,
-    finReindexPolynomialFamily]
+  exact Fintype.sum_equiv (Fintype.equivFin A).symm
+    (fun x => (terms ((Fintype.equivFin A).symm x)).toTensor i j k)
+    (fun x => (terms x).toTensor i j k)
+    (fun _ => rfl)
 
 namespace HasBorderRankAtMost
 
@@ -91,7 +97,8 @@ theorem of_fintype_family
     (hvanish : VanishesBelow order (realizePolynomialFintypeFamily terms))
     (hlead : coeffTensor order (realizePolynomialFintypeFamily terms) = T) :
     HasBorderRankAtMost r T := by
-  refine HasBorderRankAtMost.of_family (finReindexPolynomialFamily terms) hsize ?_ ?_
+  refine HasBorderRankAtMost.of_family (order := order)
+    (finReindexPolynomialFamily terms) hsize ?_ ?_
   · rw [realize_finReindexPolynomialFamily]
     exact hvanish
   · rw [realize_finReindexPolynomialFamily]
@@ -106,14 +113,22 @@ theorem realizePolynomialFintypeFamily_externalProduct
     (right : B → PolynomialPureTerm (K := K) (I := I') (J := J') (L := L')) :
     realizePolynomialFintypeFamily
         (fun p : A × B => (left p.1).externalProduct (right p.2)) =
-      externalProduct
+      CoordinateTensor.externalProduct
         (realizePolynomialFintypeFamily left)
         (realizePolynomialFintypeFamily right) := by
   classical
   funext i j k
-  simp [realizePolynomialFintypeFamily, externalProduct,
-    PolynomialPureTerm.externalProduct, PolynomialPureTerm.toTensor,
-    Finset.sum_mul, Finset.mul_sum]
+  rw [show (∑ p : A × B,
+      ((left p.1).externalProduct (right p.2)).toTensor i j k) =
+      ∑ a : A, ∑ b : B,
+        ((left a).externalProduct (right b)).toTensor i j k by
+    exact Fintype.sum_prod_type _]
+  simp only [PolynomialPureTerm.toTensor_externalProduct,
+    CoordinateTensor.externalProduct_apply]
+  rw [Finset.sum_mul]
+  apply Finset.sum_congr rfl
+  intro a _
+  rw [Finset.mul_sum]
 
 /-- A scalar polynomial product vanishes below the sum of two vanishing orders. -/
 theorem Polynomial.coeff_mul_eq_zero_of_lt_add
@@ -125,7 +140,7 @@ theorem Polynomial.coeff_mul_eq_zero_of_lt_add
   rw [Polynomial.coeff_mul]
   apply Finset.sum_eq_zero
   intro x hx
-  have hsum : x.1 + x.2 = degree := Finset.Nat.mem_antidiagonal.mp hx
+  have hsum : x.1 + x.2 = degree := Finset.mem_antidiagonal.mp hx
   by_cases hxa : x.1 < a
   · rw [hp x.1 hxa, zero_mul]
   · have hxb : x.2 < b := by omega
@@ -140,7 +155,7 @@ theorem Polynomial.coeff_mul_add_orders
   rw [Polynomial.coeff_mul]
   refine Finset.sum_eq_single (a, b) ?_ ?_
   · intro x hx hne
-    have hsum : x.1 + x.2 = a + b := Finset.Nat.mem_antidiagonal.mp hx
+    have hsum : x.1 + x.2 = a + b := Finset.mem_antidiagonal.mp hx
     by_cases hxa : x.1 < a
     · rw [hp x.1 hxa, zero_mul]
     · by_cases hxeq : x.1 = a
@@ -148,7 +163,7 @@ theorem Polynomial.coeff_mul_add_orders
         exact (hne (Prod.ext hxeq hyeq)).elim
       · have hxb : x.2 < b := by omega
         rw [hq x.2 hxb, mul_zero]
-  · simp [Finset.Nat.mem_antidiagonal]
+  · simp
 
 /-- Tensor external products add polynomial vanishing orders. -/
 theorem externalProduct_vanishesBelow
@@ -156,16 +171,16 @@ theorem externalProduct_vanishesBelow
     {T : CoordinateTensor (Polynomial K) I J L}
     {S : CoordinateTensor (Polynomial K) I' J' L'}
     (hT : VanishesBelow a T) (hS : VanishesBelow b S) :
-    VanishesBelow (a + b) (externalProduct T S) := by
+    VanishesBelow (a + b) (CoordinateTensor.externalProduct T S) := by
   intro degree hdegree
   funext i j k
   apply Polynomial.coeff_mul_eq_zero_of_lt_add
   · intro d hd
     have h := congrFun (congrFun (congrFun (hT d hd) i.1) j.1) k.1
-    exact h
+    simpa [coeffTensor] using h
   · intro d hd
     have h := congrFun (congrFun (congrFun (hS d hd) i.2) j.2) k.2
-    exact h
+    simpa [coeffTensor] using h
   · exact hdegree
 
 /-- The leading coefficient tensor of an external product is the product of leading tensors. -/
@@ -174,16 +189,16 @@ theorem coeffTensor_externalProduct_add_orders
     {T : CoordinateTensor (Polynomial K) I J L}
     {S : CoordinateTensor (Polynomial K) I' J' L'}
     (hT : VanishesBelow a T) (hS : VanishesBelow b S) :
-    coeffTensor (a + b) (externalProduct T S) =
-      externalProduct (coeffTensor a T) (coeffTensor b S) := by
+    coeffTensor (a + b) (CoordinateTensor.externalProduct T S) =
+      CoordinateTensor.externalProduct (coeffTensor a T) (coeffTensor b S) := by
   funext i j k
   apply Polynomial.coeff_mul_add_orders
   · intro d hd
     have h := congrFun (congrFun (congrFun (hT d hd) i.1) j.1) k.1
-    exact h
+    simpa [coeffTensor] using h
   · intro d hd
     have h := congrFun (congrFun (congrFun (hS d hd) i.2) j.2) k.2
-    exact h
+    simpa [coeffTensor] using h
 
 namespace HasBorderRankAtMost
 
@@ -200,7 +215,7 @@ theorem externalProduct
   let terms : Fin n × Fin m →
       PolynomialPureTerm (K := K) (I := I × I') (J := J × J') (L := L × L') :=
     fun p => (left p.1).externalProduct (right p.2)
-  refine of_fintype_family terms ?_ ?_ ?_
+  refine of_fintype_family (A := Fin n × Fin m) (order := a + b) terms ?_ ?_ ?_
   · simpa using Nat.mul_le_mul hn hm
   · rw [realizePolynomialFintypeFamily_externalProduct]
     exact externalProduct_vanishesBelow hleftVanish hrightVanish
