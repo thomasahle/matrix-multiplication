@@ -192,10 +192,12 @@ theorem innerMass_positive : ∀ point : InnerPoint, 0 < innerMass point := by
   norm_num [innerMarginal, innerSum, innerShape, innerMass, b1, b2]
 
 @[simp] theorem innerMarginal_z_zero : innerMarginal 2 0 = 1 / 2 := by
-  norm_num [innerMarginal, innerSum, innerShape, innerMass, b1, b2]
+  change (((b1 + b2) + 0) + 0 : ℚ) = 1 / 2
+  norm_num [b1, b2]
 
 @[simp] theorem innerMarginal_z_one : innerMarginal 2 1 = 1 / 2 := by
-  norm_num [innerMarginal, innerSum, innerShape, innerMass, b1, b2]
+  change (((0 + 0) + b2) + b1 : ℚ) = 1 / 2
+  norm_num [b1, b2]
 
 /-- The inner first-coordinate marginal sums to one. -/
 theorem innerMarginal_x_normalized :
