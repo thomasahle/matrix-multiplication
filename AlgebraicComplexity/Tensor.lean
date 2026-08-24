@@ -10,6 +10,8 @@ import AlgebraicComplexity.Tensor.PolynomialDegeneration
 import AlgebraicComplexity.Tensor.Coordinates
 import AlgebraicComplexity.Tensor.CoppersmithWinograd
 import AlgebraicComplexity.Tensor.CoppersmithWinogradBorderRank
+import AlgebraicComplexity.Tensor.PolynomialIdentityTest
 import AlgebraicComplexity.Tensor.CoppersmithWinogradPartition
 import AlgebraicComplexity.Tensor.CoppersmithWinogradConstituents
+import AlgebraicComplexity.Tensor.CoppersmithWinogradSquare
 import AlgebraicComplexity.Tensor.OriginalCWNumerics
