@@ -1,25 +1,27 @@
 # Lean verification of the repeated-orientation candidate
 
-This branch contains a layered Lean 4 / Mathlib verification of the proposed bound
+This branch contains a layered Lean 4 / Mathlib verification of the proposed rounded bound
 
 \[
-\omega \le 2.37071.
+\omega < 2.37071.
 \]
 
 ## What Lean currently proves
 
 `RepeatedOrientationVerification/Certificate.lean` proves, without `sorry`:
 
-- the exact rational endpoint inequality;
+- the exact rational endpoint inequality at the stronger value `2.370709`;
 - the exact integer comparison `7^462 < 2^1297`;
 - the resulting analytic bound `log₂ 7 < 1297/462`;
-- positivity of the conservative scalar feasibility margin.
+- positivity of the conservative scalar feasibility margin;
+- the implication `omega ≤ 2.370709`, and hence `omega < 2.37071`, once the two explicit
+  certificate/theorem interfaces below are supplied.
 
-The fully formal rational slack is
+The fully formal rational slack at `2.370709` is
 
 \[
-\frac{251285619532691}{23100000000000000000}
-\approx 1.0878\times 10^{-5}.
+\frac{1123045738686689}{231000000000000000000}
+\approx 4.8617\times 10^{-6}.
 \]
 
 `RepeatedOrientationVerification/Regionwise.lean` proves the abstract repeated-orientation theorem:
