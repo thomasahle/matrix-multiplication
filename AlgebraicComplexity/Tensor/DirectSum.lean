@@ -33,19 +33,21 @@ def directSum (T : TriTensor K X Y Z) (S : TriTensor K X' Y' Z') :
 theorem directSum_restricts_left (T : TriTensor K X Y Z) (S : TriTensor K X' Y' Z') :
     Restricts (directSum T S) T := by
   refine ⟨LinearMap.fst K X X', LinearMap.fst K Y Y', LinearMap.fst K Z Z', ?_⟩
-  simp [directSum, TriTensor.map3]
+  simp only [directSum, map_add, map3_map3]
+  simp
 
 /-- The direct sum restricts to its right summand. -/
 theorem directSum_restricts_right (T : TriTensor K X Y Z) (S : TriTensor K X' Y' Z') :
     Restricts (directSum T S) S := by
   refine ⟨LinearMap.snd K X X', LinearMap.snd K Y Y', LinearMap.snd K Z Z', ?_⟩
-  simp [directSum, TriTensor.map3]
+  simp only [directSum, map_add, map3_map3]
+  simp
 
 /-- Concrete rank witnesses combine additively under direct sum. -/
 theorem HasRankAtMost.directSum {r s : ℕ}
     {T : TriTensor K X Y Z} {S : TriTensor K X' Y' Z'}
-    (hT : HasRankAtMost r T) (hS : HasRankAtMost s S) :
-    HasRankAtMost (r + s) (directSum T S) := by
+    (hT : HasRankAtMost (K := K) r T) (hS : HasRankAtMost (K := K) s S) :
+    HasRankAtMost (K := K) (r + s) (directSum T S) := by
   exact (hT.map (LinearMap.inl K X X') (LinearMap.inl K Y Y') (LinearMap.inl K Z Z')).add
     (hS.map (LinearMap.inr K X X') (LinearMap.inr K Y Y') (LinearMap.inr K Z Z'))
 
