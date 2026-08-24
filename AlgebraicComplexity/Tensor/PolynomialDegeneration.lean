@@ -8,9 +8,8 @@ set_option linter.style.header false
 # Constructive polynomial degenerations and border-rank certificates
 
 For a coordinate tensor, a border-rank upper bound can be certified without invoking topology.
-A certificate consists of a polynomial family that is a sum of at most `r` rank-one tensors and
-whose first nonzero coefficient is the target tensor. This is the constructive form used by
-Coppersmith--Winograd degenerations.
+A certificate consists of a finite polynomial family of rank-one tensors whose coefficients below a
+chosen order vanish and whose coefficient at that order is the target tensor.
 -/
 
 namespace AlgebraicComplexity
@@ -45,32 +44,18 @@ theorem toTensor_apply
 
 end PolynomialPureTerm
 
-/-- Sum a finite list of polynomial rank-one tensors. -/
-noncomputable def realizePolynomial
-    (terms : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))) :
+/-- Sum a family of polynomial rank-one tensors indexed by `Fin n`. -/
+noncomputable def realizePolynomialFamily {n : ℕ}
+    (terms : Fin n → PolynomialPureTerm (K := K) (I := I) (J := J) (L := L)) :
     CoordinateTensor (Polynomial K) I J L :=
-  fun i j k => (terms.map fun p => p.toTensor i j k).sum
+  fun i j k => ∑ a : Fin n, (terms a).toTensor i j k
 
 @[simp]
-theorem realizePolynomial_nil :
-    realizePolynomial
-      ([] : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))) = 0 := by
-  rfl
-
-@[simp]
-theorem realizePolynomial_cons
-    (p : PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))
-    (terms : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))) :
-    realizePolynomial (p :: terms) = p.toTensor + realizePolynomial terms := by
+theorem realizePolynomialFamily_zero
+    (terms : Fin 0 → PolynomialPureTerm (K := K) (I := I) (J := J) (L := L)) :
+    realizePolynomialFamily terms = 0 := by
   funext i j k
-  simp [realizePolynomial]
-
-@[simp]
-theorem realizePolynomial_append
-    (left right : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))) :
-    realizePolynomial (left ++ right) = realizePolynomial left + realizePolynomial right := by
-  funext i j k
-  simp [realizePolynomial]
+  simp [realizePolynomialFamily]
 
 /-- Take one coefficient of every coordinate polynomial. -/
 def coeffTensor (degree : ℕ) (T : CoordinateTensor (Polynomial K) I J L) :
@@ -101,33 +86,34 @@ def VanishesBelow (order : ℕ) (T : CoordinateTensor (Polynomial K) I J L) : Pr
   ∀ degree < order, coeffTensor degree T = 0
 
 /--
-A constructive border-rank certificate. The polynomial family represented by `terms` vanishes below
-`order`, and its coefficient of degree `order` is exactly `T`.
+A constructive border-rank certificate. The polynomial family has at most `r` rank-one members,
+vanishes below `order`, and has target tensor `T` as its coefficient at `order`.
 -/
 noncomputable def HasBorderRankAtMost (r : ℕ) (T : CoordinateTensor K I J L) : Prop :=
-  ∃ order : ℕ,
-    ∃ terms : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L)),
-      terms.length ≤ r ∧
-      VanishesBelow order (realizePolynomial terms) ∧
-      coeffTensor order (realizePolynomial terms) = T
+  ∃ n : ℕ,
+    n ≤ r ∧
+      ∃ order : ℕ,
+        ∃ terms : Fin n → PolynomialPureTerm (K := K) (I := I) (J := J) (L := L),
+          VanishesBelow order (realizePolynomialFamily terms) ∧
+          coeffTensor order (realizePolynomialFamily terms) = T
 
 namespace HasBorderRankAtMost
 
-/-- A concrete polynomial family yields a border-rank certificate. -/
-theorem of_terms
-    {r order : ℕ} {T : CoordinateTensor K I J L}
-    (terms : List (PolynomialPureTerm (K := K) (I := I) (J := J) (L := L)))
-    (hlen : terms.length ≤ r)
-    (hvanish : VanishesBelow order (realizePolynomial terms))
-    (hlead : coeffTensor order (realizePolynomial terms) = T) :
+/-- A concrete finite polynomial family yields a border-rank certificate. -/
+theorem of_family
+    {r n order : ℕ} {T : CoordinateTensor K I J L}
+    (terms : Fin n → PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))
+    (hsize : n ≤ r)
+    (hvanish : VanishesBelow order (realizePolynomialFamily terms))
+    (hlead : coeffTensor order (realizePolynomialFamily terms) = T) :
     HasBorderRankAtMost r T :=
-  ⟨order, terms, hlen, hvanish, hlead⟩
+  ⟨n, hsize, order, terms, hvanish, hlead⟩
 
 /-- Weakening the numerical upper bound preserves a border-rank certificate. -/
 theorem mono {r s : ℕ} {T : CoordinateTensor K I J L}
     (h : HasBorderRankAtMost r T) (hrs : r ≤ s) : HasBorderRankAtMost s T := by
-  rcases h with ⟨order, terms, hlen, hvanish, hlead⟩
-  exact ⟨order, terms, hlen.trans hrs, hvanish, hlead⟩
+  rcases h with ⟨n, hn, order, terms, hvanish, hlead⟩
+  exact ⟨n, hn.trans hrs, order, terms, hvanish, hlead⟩
 
 end HasBorderRankAtMost
 end CoordinateTensor
