@@ -40,6 +40,21 @@ variable
 def pure (x : X) (y : Y) (z : Z) : TriTensor K X Y Z :=
   x ⊗ₜ[K] (y ⊗ₜ[K] z)
 
+@[simp]
+theorem pure_zero_left (y : Y) (z : Z) :
+    pure (K := K) (0 : X) y z = 0 := by
+  simp [pure]
+
+@[simp]
+theorem pure_zero_middle (x : X) (z : Z) :
+    pure (K := K) x (0 : Y) z = 0 := by
+  simp [pure]
+
+@[simp]
+theorem pure_zero_right (x : X) (y : Y) :
+    pure (K := K) x y (0 : Z) = 0 := by
+  simp [pure]
+
 /-- Apply one linear map in each coordinate of a trilinear tensor. -/
 def map3 (f : X →ₗ[K] X') (g : Y →ₗ[K] Y') (h : Z →ₗ[K] Z') :
     TriTensor K X Y Z →ₗ[K] TriTensor K X' Y' Z' :=
@@ -66,7 +81,7 @@ theorem map3_comp
       (map3 f₂ g₂ h₂).comp (map3 f₁ g₁ h₁) := by
   apply TensorProduct.ext_threefold'
   intro x y z
-  simp [map3, pure]
+  simp [map3]
 
 @[simp]
 theorem map3_map3
