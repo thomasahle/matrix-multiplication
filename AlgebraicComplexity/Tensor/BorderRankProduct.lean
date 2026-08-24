@@ -210,6 +210,14 @@ theorem externalProduct
     HasBorderRankAtMost (r * s) (CoordinateTensor.externalProduct T S) := by
   rcases hT with ⟨n, hn, a, left, hleftVanish, hleftLead⟩
   rcases hS with ⟨m, hm, b, right, hrightVanish, hrightLead⟩
+  have hleftVanish' : VanishesBelow a (realizePolynomialFintypeFamily left) := by
+    exact hleftVanish
+  have hrightVanish' : VanishesBelow b (realizePolynomialFintypeFamily right) := by
+    exact hrightVanish
+  have hleftLead' : coeffTensor a (realizePolynomialFintypeFamily left) = T := by
+    exact hleftLead
+  have hrightLead' : coeffTensor b (realizePolynomialFintypeFamily right) = S := by
+    exact hrightLead
   let terms : Fin n × Fin m →
       PolynomialPureTerm (K := K) (I := I × I') (J := J × J') (L := L × L') :=
     fun p => (left p.1).externalProduct (right p.2)
@@ -219,10 +227,10 @@ theorem externalProduct
     (T := CoordinateTensor.externalProduct T S) terms ?_ ?_ ?_
   · simpa using Nat.mul_le_mul hn hm
   · rw [realizePolynomialFintypeFamily_externalProduct]
-    exact externalProduct_vanishesBelow hleftVanish hrightVanish
+    exact externalProduct_vanishesBelow hleftVanish' hrightVanish'
   · rw [realizePolynomialFintypeFamily_externalProduct,
-      coeffTensor_externalProduct_add_orders hleftVanish hrightVanish,
-      hleftLead, hrightLead]
+      coeffTensor_externalProduct_add_orders hleftVanish' hrightVanish',
+      hleftLead', hrightLead']
 
 end HasBorderRankAtMost
 
