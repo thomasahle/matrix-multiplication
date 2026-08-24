@@ -5,8 +5,8 @@ set_option linter.style.header false
 /-!
 # Finite rank witnesses for trilinear tensors
 
-The predicate `HasRankAtMost r T` is deliberately witness-oriented: it stores a finite list of pure
-terms summing to `T`. This is convenient for machine-generated rank certificates and does not require
+The predicate `HasRankAtMost r T` is witness-oriented: it stores a finite list of pure terms
+summing to `T`. This is convenient for machine-generated rank certificates and does not require
 choosing a minimum rank.
 -/
 
@@ -70,6 +70,16 @@ theorem realize_append (left right : List (PureTerm K X Y Z)) :
     realize (left ++ right) = realize left + realize right := by
   simp [realize]
 
+/-- Realization commutes with coordinatewise linear maps. -/
+theorem map3_realize
+    (f : X →ₗ[K] X') (g : Y →ₗ[K] Y') (h : Z →ₗ[K] Z')
+    (terms : List (PureTerm K X Y Z)) :
+    TriTensor.map3 f g h (realize terms) =
+      realize (terms.map (PureTerm.map f g h)) := by
+  induction terms with
+  | nil => simp
+  | cons p terms ih => simp [ih]
+
 /-- A concrete certificate that `T` is a sum of at most `r` pure tensors. -/
 def HasRankAtMost (r : ℕ) (T : TriTensor K X Y Z) : Prop :=
   ∃ terms : List (PureTerm K X Y Z), terms.length ≤ r ∧ realize terms = T
@@ -78,7 +88,8 @@ namespace HasRankAtMost
 
 /-- The zero tensor has rank at most zero. -/
 theorem zero : HasRankAtMost 0 (0 : TriTensor K X Y Z) := by
-  exact ⟨[], by simp, by simp⟩
+  refine ⟨([] : List (PureTerm K X Y Z)), by simp, ?_⟩
+  rfl
 
 /-- A pure tensor has rank at most one. -/
 theorem pure (x : X) (y : Y) (z : Z) :
@@ -108,10 +119,10 @@ theorem map {r : ℕ} {T : TriTensor K X Y Z}
     HasRankAtMost r (TriTensor.map3 f g h T) := by
   rcases hT with ⟨terms, hlen, hsum⟩
   refine ⟨terms.map (PureTerm.map f g h), by simpa using hlen, ?_⟩
-  rw [← hsum]
-  induction terms with
-  | nil => simp
-  | cons p terms ih => simp [ih, map_add]
+  calc
+    realize (terms.map (PureTerm.map f g h)) =
+        TriTensor.map3 f g h (realize terms) := (map3_realize f g h terms).symm
+    _ = TriTensor.map3 f g h T := by rw [hsum]
 
 /-- Exact tensor restriction cannot increase a concrete rank bound. -/
 theorem of_restricts {r : ℕ} {T : TriTensor K X Y Z} {S : TriTensor K X' Y' Z'}
