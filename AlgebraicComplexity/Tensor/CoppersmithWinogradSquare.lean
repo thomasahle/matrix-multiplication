@@ -21,7 +21,7 @@ universe u
 variable {K : Type u} [CommSemiring K]
 
 /-- Coordinate space of one factor of `CW_q ⊠ CW_q`. -/
-abbrev CWSquareVariableSpace (K : Type u) (q : ℕ) :=
+abbrev CWSquareVariableSpace (K : Type u) [CommSemiring K] (q : ℕ) :=
   CWVariableSpace K q ⊗[K] CWVariableSpace K q
 
 /-- The representative component of shape `(4,0,0)`. -/
