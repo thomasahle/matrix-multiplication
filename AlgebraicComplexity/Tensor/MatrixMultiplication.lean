@@ -51,7 +51,10 @@ variable {K : Type u} [CommSemiring K]
 def matrixMultiplicationTensor (K : Type u) [CommSemiring K] (m n p : ℕ) :
     TriTensor K (MatrixSpace K m n) (MatrixSpace K n p) (MatrixSpace K p m) :=
   ∑ i : Fin m, ∑ j : Fin n, ∑ k : Fin p,
-    pure (Matrix.single i j 1) (Matrix.single j k 1) (Matrix.single k i 1)
+    pure (K := K)
+      (Matrix.single i j (1 : K))
+      (Matrix.single j k (1 : K))
+      (Matrix.single k i (1 : K))
 
 @[simp]
 theorem matrixMultiplicationTensor_zero_left (n p : ℕ) :
@@ -73,26 +76,37 @@ theorem matrixMultiplicationTensor_rank_le (m n p : ℕ) :
     HasRankAtMost (K := K) (m * n * p) (matrixMultiplicationTensor K m n p) := by
   have h :
       HasRankAtMost (K := K)
-        (∑ _i : Fin m, ∑ _j : Fin n, ∑ _k : Fin p, 1)
+        (∑ _i : Fin m, ∑ _j : Fin n, ∑ _k : Fin p, (1 : ℕ))
         (matrixMultiplicationTensor K m n p) := by
     unfold matrixMultiplicationTensor
     refine HasRankAtMost.fintype_sum
-      (fun _i : Fin m => ∑ _j : Fin n, ∑ _k : Fin p, 1)
+      (fun _i : Fin m => ∑ _j : Fin n, ∑ _k : Fin p, (1 : ℕ))
       (fun i : Fin m => ∑ j : Fin n, ∑ k : Fin p,
-        pure (Matrix.single i j 1) (Matrix.single j k 1) (Matrix.single k i 1)) ?_
+        pure (K := K)
+          (Matrix.single i j (1 : K))
+          (Matrix.single j k (1 : K))
+          (Matrix.single k i (1 : K))) ?_
     intro i
     refine HasRankAtMost.fintype_sum
-      (fun _j : Fin n => ∑ _k : Fin p, 1)
+      (fun _j : Fin n => ∑ _k : Fin p, (1 : ℕ))
       (fun j : Fin n => ∑ k : Fin p,
-        pure (Matrix.single i j 1) (Matrix.single j k 1) (Matrix.single k i 1)) ?_
+        pure (K := K)
+          (Matrix.single i j (1 : K))
+          (Matrix.single j k (1 : K))
+          (Matrix.single k i (1 : K))) ?_
     intro j
     refine HasRankAtMost.fintype_sum
-      (fun _k : Fin p => 1)
+      (fun _k : Fin p => (1 : ℕ))
       (fun k : Fin p =>
-        pure (Matrix.single i j 1) (Matrix.single j k 1) (Matrix.single k i 1)) ?_
+        pure (K := K)
+          (Matrix.single i j (1 : K))
+          (Matrix.single j k (1 : K))
+          (Matrix.single k i (1 : K))) ?_
     intro k
     exact HasRankAtMost.pure
-      (Matrix.single i j 1) (Matrix.single j k 1) (Matrix.single k i 1)
+      (Matrix.single i j (1 : K))
+      (Matrix.single j k (1 : K))
+      (Matrix.single k i (1 : K))
   simpa [Nat.mul_assoc] using h
 
 /-- Cyclically rotating tensor coordinates cyclically rotates the matrix dimensions. -/
@@ -101,7 +115,10 @@ theorem cycleLeft_matrixMultiplicationTensor (m n p : ℕ) :
       matrixMultiplicationTensor K n p m := by
   simp only [matrixMultiplicationTensor, map_sum, cycleLeft_pure]
   exact sum_cycleLeft fun i j k =>
-    pure (Matrix.single j k 1) (Matrix.single k i 1) (Matrix.single i j 1)
+    pure (K := K)
+      (Matrix.single j k (1 : K))
+      (Matrix.single k i (1 : K))
+      (Matrix.single i j (1 : K))
 
 /-- The inverse cyclic rotation gives the opposite cyclic dimension rotation. -/
 theorem cycleRight_matrixMultiplicationTensor (m n p : ℕ) :
@@ -109,7 +126,10 @@ theorem cycleRight_matrixMultiplicationTensor (m n p : ℕ) :
       matrixMultiplicationTensor K p m n := by
   simp only [matrixMultiplicationTensor, map_sum, cycleRight_pure]
   exact sum_cycleRight fun i j k =>
-    pure (Matrix.single k i 1) (Matrix.single i j 1) (Matrix.single j k 1)
+    pure (K := K)
+      (Matrix.single k i (1 : K))
+      (Matrix.single i j (1 : K))
+      (Matrix.single j k (1 : K))
 
 end TriTensor
 end AlgebraicComplexity
