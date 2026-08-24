@@ -11,6 +11,10 @@ triples `(i,j,k)` with `i+j+k=4`, grouped into the four permutation orbits repre
 `(4,0,0)`, `(3,1,0)`, `(2,2,0)`, and `(2,1,1)`. The exceptional `(2,1,1)` component has its own
 four-point inner distribution. This file encodes those finite supports and kernel-checks their
 normalizations and coordinate marginals.
+
+We use explicit exhaustive sums rather than relying on generated `Fintype` enumeration order. This
+keeps all rational reductions transparent to the kernel and gives later laser-score formulas a
+stable normal form.
 -/
 
 namespace AlgebraicComplexity
@@ -23,6 +27,13 @@ inductive OuterPoint
   | p220 | p202 | p022
   | p211 | p121 | p112
   deriving DecidableEq, Fintype, Repr
+
+/-- Exhaustive sum over the fifteen outer support points. -/
+def outerSum {M : Type*} [AddMonoid M] (f : OuterPoint → M) : M :=
+  f .p400 + f .p040 + f .p004 +
+  f .p310 + f .p301 + f .p130 + f .p031 + f .p103 + f .p013 +
+  f .p220 + f .p202 + f .p022 +
+  f .p211 + f .p121 + f .p112
 
 /-- The three coordinate values attached to one outer support point. -/
 def outerShape : OuterPoint → Fin 3 → ℕ
@@ -51,7 +62,7 @@ def outerMass : OuterPoint → ℚ
 
 /-- One coordinate marginal of the outer support distribution. -/
 def outerMarginal (coordinate : Fin 3) (value : ℕ) : ℚ :=
-  ∑ point : OuterPoint,
+  outerSum fun point =>
     if outerShape point coordinate = value then outerMass point else 0
 
 /-- Every outer support point is tight of total degree four. -/
@@ -61,9 +72,8 @@ theorem outerShape_tight :
   cases point <;> decide
 
 /-- The fifteen labelled masses form a probability distribution. -/
-theorem outerMass_normalized : ∑ point : OuterPoint, outerMass point = 1 := by
-  set_option maxRecDepth 100000 in
-    decide
+theorem outerMass_normalized : outerSum outerMass = 1 := by
+  norm_num [outerSum, outerMass, a1, a2, a3, a4]
 
 /-- All outer masses are strictly positive. -/
 theorem outerMass_positive : ∀ point : OuterPoint, 0 < outerMass point := by
@@ -74,41 +84,42 @@ theorem outerMass_positive : ∀ point : OuterPoint, 0 < outerMass point := by
 @[simp] theorem outerMarginal_zero (coordinate : Fin 3) :
     outerMarginal coordinate 0 = 16 / 125 := by
   fin_cases coordinate <;>
-    set_option maxRecDepth 100000 in decide
+    norm_num [outerMarginal, outerSum, outerShape, outerMass, a1, a2, a3, a4]
 
 /-- The probability of coordinate value one. -/
 @[simp] theorem outerMarginal_one (coordinate : Fin 3) :
     outerMarginal coordinate 1 = 65419 / 150000 := by
   fin_cases coordinate <;>
-    set_option maxRecDepth 100000 in decide
+    norm_num [outerMarginal, outerSum, outerShape, outerMass, a1, a2, a3, a4]
 
 /-- The probability of coordinate value two. -/
 @[simp] theorem outerMarginal_two (coordinate : Fin 3) :
     outerMarginal coordinate 2 = 123193 / 300000 := by
   fin_cases coordinate <;>
-    set_option maxRecDepth 100000 in decide
+    norm_num [outerMarginal, outerSum, outerShape, outerMass, a1, a2, a3, a4]
 
 /-- The probability of coordinate value three. -/
 @[simp] theorem outerMarginal_three (coordinate : Fin 3) :
     outerMarginal coordinate 3 = 1 / 40 := by
   fin_cases coordinate <;>
-    set_option maxRecDepth 100000 in decide
+    norm_num [outerMarginal, outerSum, outerShape, outerMass, a1, a2, a3, a4]
 
 /-- The probability of coordinate value four. -/
 @[simp] theorem outerMarginal_four (coordinate : Fin 3) :
     outerMarginal coordinate 4 = 23 / 100000 := by
   fin_cases coordinate <;>
-    set_option maxRecDepth 100000 in decide
+    norm_num [outerMarginal, outerSum, outerShape, outerMass, a1, a2, a3, a4]
 
 /-- No outer coordinate value above four occurs. -/
 theorem outerMarginal_of_four_lt (coordinate : Fin 3) {value : ℕ} (h : 4 < value) :
     outerMarginal coordinate value = 0 := by
-  unfold outerMarginal
-  apply Finset.sum_eq_zero
-  intro point _
-  have hshape : outerShape point coordinate ≤ 4 := by
-    fin_cases coordinate <;> cases point <;> decide
-  simp [ne_of_lt (hshape.trans_lt h)]
+  have h0 : 0 ≠ value := by omega
+  have h1 : 1 ≠ value := by omega
+  have h2 : 2 ≠ value := by omega
+  have h3 : 3 ≠ value := by omega
+  have h4 : 4 ≠ value := by omega
+  fin_cases coordinate <;>
+    simp [outerMarginal, outerSum, outerShape, h0, h1, h2, h3, h4]
 
 /-- The five displayed marginal probabilities sum to one. -/
 theorem outerMarginal_normalized (coordinate : Fin 3) :
@@ -127,6 +138,10 @@ inductive InnerPoint
   | edgeRight
   deriving DecidableEq, Fintype, Repr
 
+/-- Exhaustive sum over the four inner support points. -/
+def innerSum {M : Type*} [AddMonoid M] (f : InnerPoint → M) : M :=
+  f .edgeLeft + f .crossLeft + f .crossRight + f .edgeRight
+
 /-- The ordered constituent split represented by an inner support point. -/
 def innerShape : InnerPoint → Fin 3 → ℕ
   | .edgeLeft => ![2, 0, 0]
@@ -141,7 +156,7 @@ def innerMass : InnerPoint → ℚ
 
 /-- One coordinate marginal of the inner distribution. -/
 def innerMarginal (coordinate : Fin 3) (value : ℕ) : ℚ :=
-  ∑ point : InnerPoint,
+  innerSum fun point =>
     if innerShape point coordinate = value then innerMass point else 0
 
 /-- Every inner support point has total degree two. -/
@@ -151,8 +166,8 @@ theorem innerShape_tight :
   cases point <;> decide
 
 /-- The four inner masses form a probability distribution. -/
-theorem innerMass_normalized : ∑ point : InnerPoint, innerMass point = 1 := by
-  decide
+theorem innerMass_normalized : innerSum innerMass = 1 := by
+  norm_num [innerSum, innerMass, b1, b2]
 
 /-- All inner masses are strictly positive. -/
 theorem innerMass_positive : ∀ point : InnerPoint, 0 < innerMass point := by
@@ -160,15 +175,27 @@ theorem innerMass_positive : ∀ point : InnerPoint, 0 < innerMass point := by
   cases point <;> norm_num [innerMass, b1, b2]
 
 /-- The first-coordinate inner marginal is `(b1, 2*b2, b1)`. -/
-@[simp] theorem innerMarginal_x_zero : innerMarginal 0 0 = b1 := by decide
-@[simp] theorem innerMarginal_x_one : innerMarginal 0 1 = 2 * b2 := by decide
-@[simp] theorem innerMarginal_x_two : innerMarginal 0 2 = b1 := by decide
+@[simp] theorem innerMarginal_x_zero : innerMarginal 0 0 = b1 := by
+  norm_num [innerMarginal, innerSum, innerShape, innerMass, b1, b2]
+
+@[simp] theorem innerMarginal_x_one : innerMarginal 0 1 = 2 * b2 := by
+  norm_num [innerMarginal, innerSum, innerShape, innerMass, b1, b2]
+
+@[simp] theorem innerMarginal_x_two : innerMarginal 0 2 = b1 := by
+  norm_num [innerMarginal, innerSum, innerShape, innerMass, b1, b2]
 
 /-- The other two coordinate marginals are uniform binary distributions. -/
-@[simp] theorem innerMarginal_y_zero : innerMarginal 1 0 = 1 / 2 := by decide
-@[simp] theorem innerMarginal_y_one : innerMarginal 1 1 = 1 / 2 := by decide
-@[simp] theorem innerMarginal_z_zero : innerMarginal 2 0 = 1 / 2 := by decide
-@[simp] theorem innerMarginal_z_one : innerMarginal 2 1 = 1 / 2 := by decide
+@[simp] theorem innerMarginal_y_zero : innerMarginal 1 0 = 1 / 2 := by
+  norm_num [innerMarginal, innerSum, innerShape, innerMass, b1, b2]
+
+@[simp] theorem innerMarginal_y_one : innerMarginal 1 1 = 1 / 2 := by
+  norm_num [innerMarginal, innerSum, innerShape, innerMass, b1, b2]
+
+@[simp] theorem innerMarginal_z_zero : innerMarginal 2 0 = 1 / 2 := by
+  norm_num [innerMarginal, innerSum, innerShape, innerMass, b1, b2]
+
+@[simp] theorem innerMarginal_z_one : innerMarginal 2 1 = 1 / 2 := by
+  norm_num [innerMarginal, innerSum, innerShape, innerMass, b1, b2]
 
 /-- The inner first-coordinate marginal sums to one. -/
 theorem innerMarginal_x_normalized :
