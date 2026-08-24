@@ -20,4 +20,5 @@ import AlgebraicComplexity.Tensor.CoppersmithWinogradSquare
 import AlgebraicComplexity.Tensor.OriginalCWParameters
 import AlgebraicComplexity.Tensor.OriginalCWNumerics
 import AlgebraicComplexity.Tensor.OriginalCWSupport
+import AlgebraicComplexity.Tensor.OriginalCWScore
 import AlgebraicComplexity.Tensor.OriginalCWResult
