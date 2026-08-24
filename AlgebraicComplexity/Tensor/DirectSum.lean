@@ -34,14 +34,14 @@ theorem directSum_restricts_left (T : TriTensor K X Y Z) (S : TriTensor K X' Y' 
     Restricts (directSum T S) T := by
   refine ⟨LinearMap.fst K X X', LinearMap.fst K Y Y', LinearMap.fst K Z Z', ?_⟩
   simp only [directSum, map_add, map3_map3]
-  simp
+  simp [map3]
 
 /-- The direct sum restricts to its right summand. -/
 theorem directSum_restricts_right (T : TriTensor K X Y Z) (S : TriTensor K X' Y' Z') :
     Restricts (directSum T S) S := by
   refine ⟨LinearMap.snd K X X', LinearMap.snd K Y Y', LinearMap.snd K Z Z', ?_⟩
   simp only [directSum, map_add, map3_map3]
-  simp
+  simp [map3]
 
 /-- Concrete rank witnesses combine additively under direct sum. -/
 theorem HasRankAtMost.directSum {r s : ℕ}
