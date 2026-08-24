@@ -13,3 +13,4 @@ import AlgebraicComplexity.Tensor.CoppersmithWinogradBorderRank
 import AlgebraicComplexity.Tensor.PolynomialIdentityTest
 import AlgebraicComplexity.Tensor.CoppersmithWinogradSix
 import AlgebraicComplexity.Tensor.CoppersmithWinogradPartition
+import AlgebraicComplexity.Tensor.CoppersmithWinogradConstituents
