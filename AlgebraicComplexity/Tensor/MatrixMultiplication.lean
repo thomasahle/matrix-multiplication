@@ -16,7 +16,31 @@ for multiplying an `m × n` matrix by an `n × p` matrix.
 namespace AlgebraicComplexity
 namespace TriTensor
 
-universe u
+universe u v w x
+
+private theorem sum_cycleLeft
+    {A : Type v} {B : Type w} {C : Type x} {M : Type u}
+    [Fintype A] [Fintype B] [Fintype C] [AddCommMonoid M]
+    (f : A → B → C → M) :
+    (∑ a, ∑ b, ∑ c, f a b c) = ∑ b, ∑ c, ∑ a, f a b c := by
+  classical
+  calc
+    (∑ a, ∑ b, ∑ c, f a b c) = ∑ b, ∑ a, ∑ c, f a b c := by
+      rw [Finset.sum_comm]
+    _ = ∑ b, ∑ c, ∑ a, f a b c := by
+      apply Finset.sum_congr rfl
+      intro b _
+      rw [Finset.sum_comm]
+
+private theorem sum_cycleRight
+    {A : Type v} {B : Type w} {C : Type x} {M : Type u}
+    [Fintype A] [Fintype B] [Fintype C] [AddCommMonoid M]
+    (f : A → B → C → M) :
+    (∑ a, ∑ b, ∑ c, f a b c) = ∑ c, ∑ a, ∑ b, f a b c := by
+  calc
+    (∑ a, ∑ b, ∑ c, f a b c) = ∑ b, ∑ c, ∑ a, f a b c := sum_cycleLeft f
+    _ = ∑ c, ∑ a, ∑ b, f a b c :=
+      sum_cycleLeft (fun b c a => f a b c)
 
 /-- The `m × n` coordinate matrix space over `K`. -/
 abbrev MatrixSpace (K : Type u) (m n : ℕ) := Matrix (Fin m) (Fin n) K
@@ -49,17 +73,16 @@ theorem cycleLeft_matrixMultiplicationTensor (m n p : ℕ) :
     cycleLeft (matrixMultiplicationTensor K m n p) =
       matrixMultiplicationTensor K n p m := by
   simp only [matrixMultiplicationTensor, map_sum, cycleLeft_pure]
-  rw [Fintype.sum_comm]
-  congr with j
-  rw [Fintype.sum_comm]
+  exact sum_cycleLeft fun i j k =>
+    pure (Matrix.single j k 1) (Matrix.single k i 1) (Matrix.single i j 1)
 
 /-- The inverse cyclic rotation gives the opposite cyclic dimension rotation. -/
 theorem cycleRight_matrixMultiplicationTensor (m n p : ℕ) :
     cycleRight (matrixMultiplicationTensor K m n p) =
       matrixMultiplicationTensor K p m n := by
-  apply (cycleLeft (K := K)
-    (X := MatrixSpace K p m) (Y := MatrixSpace K m n) (Z := MatrixSpace K n p)).injective
-  simp [cycleLeft_matrixMultiplicationTensor]
+  simp only [matrixMultiplicationTensor, map_sum, cycleRight_pure]
+  exact sum_cycleRight fun i j k =>
+    pure (Matrix.single k i 1) (Matrix.single i j 1) (Matrix.single j k 1)
 
 end TriTensor
 end AlgebraicComplexity
