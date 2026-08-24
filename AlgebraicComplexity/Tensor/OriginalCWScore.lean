@@ -7,9 +7,9 @@ set_option linter.style.header false
 /-!
 # The tight-support laser score of the original Coppersmith--Winograd certificate
 
-This file reconstructs the two-level logarithmic score from the exact finite support data.  The
+This file reconstructs the two-level logarithmic score from the exact finite support data. The
 entropy contribution is the average of the three coordinate marginal entropies, while the local
-contribution is the mass-weighted logarithmic value of each constituent.  The resulting inner and
+contribution is the mass-weighted logarithmic value of each constituent. The resulting inner and
 outer scores are proved equal to the closed formulas used by the kernel-checked numerical module.
 -/
 
@@ -62,7 +62,8 @@ theorem innerLaserScore_eq_innerLogLower : innerLaserScore = innerLogLower := by
       (2 * (b1 : ℝ)) * (((rho : ℝ) / 3) * log2 6) +
       (2 * (b2 : ℝ)) * ((2 * (rho : ℝ) / 3) * log2 6) by
     simp [innerLaserScore, innerEntropyAverage, innerMarginalEntropy,
-      innerLocalAverage, innerSum, innerMass, innerLocalLog]]
+      innerLocalAverage, innerSum, innerMass, innerLocalLog]
+    ring]
   norm_num [entropyAtom, b1, b2, rho, innerLogLower]
   ring
 
