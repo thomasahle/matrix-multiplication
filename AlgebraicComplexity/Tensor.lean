@@ -1,2 +1,4 @@
 import AlgebraicComplexity.Tensor.Basic
 import AlgebraicComplexity.Tensor.Restriction
+import AlgebraicComplexity.Tensor.Rank
+import AlgebraicComplexity.Tensor.DirectSum
