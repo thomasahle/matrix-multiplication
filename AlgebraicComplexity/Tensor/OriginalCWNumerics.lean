@@ -56,58 +56,88 @@ private theorem two_pow_lt_div_pow_of_nat
   exact_mod_cast h
 
 private theorem log2_six_lower : (137 : ℝ) / 53 < log2 6 := by
-  have hnat : (2 : ℕ) ^ 137 < 6 ^ 53 := by native_decide
+  have hnat : (2 : ℕ) ^ 137 < 6 ^ 53 := by
+    set_option maxRecDepth 100000 in
+    set_option exponentiation.threshold 2000 in
+      decide
   exact log2_lower_of_pow_lt 6 137 53 (by norm_num)
     (two_pow_lt_nat_pow_of_nat 6 137 53 hnat)
 
 private theorem log2_twelve_lower : (190 : ℝ) / 53 < log2 12 := by
-  have hnat : (2 : ℕ) ^ 190 < 12 ^ 53 := by native_decide
+  have hnat : (2 : ℕ) ^ 190 < 12 ^ 53 := by
+    set_option maxRecDepth 100000 in
+    set_option exponentiation.threshold 2000 in
+      decide
   exact log2_lower_of_pow_lt 12 190 53 (by norm_num)
     (two_pow_lt_nat_pow_of_nat 12 190 53 hnat)
 
 private theorem log2_thirtyEight_lower : (509 : ℝ) / 97 < log2 38 := by
-  have hnat : (2 : ℕ) ^ 509 < 38 ^ 97 := by native_decide
+  have hnat : (2 : ℕ) ^ 509 < 38 ^ 97 := by
+    set_option maxRecDepth 100000 in
+    set_option exponentiation.threshold 2000 in
+      decide
   exact log2_lower_of_pow_lt 38 509 97 (by norm_num)
     (two_pow_lt_nat_pow_of_nat 38 509 97 hnat)
 
 private theorem log2_inv_b1_lower :
     (581 : ℝ) / 94 < log2 ((50000 : ℝ) / 689) := by
-  have hnat : (2 : ℕ) ^ 581 * 689 ^ 94 < 50000 ^ 94 := by native_decide
+  have hnat : (2 : ℕ) ^ 581 * 689 ^ 94 < 50000 ^ 94 := by
+    set_option maxRecDepth 100000 in
+    set_option exponentiation.threshold 2000 in
+      decide
   exact log2_lower_of_pow_lt ((50000 : ℝ) / 689) 581 94 (by norm_num)
     (two_pow_lt_div_pow_of_nat 50000 689 581 94 (by norm_num) hnat)
 
 private theorem log2_inv_two_b2_lower :
     (1 : ℝ) / 25 < log2 ((25000 : ℝ) / 24311) := by
-  have hnat : (2 : ℕ) ^ 1 * 24311 ^ 25 < 25000 ^ 25 := by native_decide
+  have hnat : (2 : ℕ) ^ 1 * 24311 ^ 25 < 25000 ^ 25 := by
+    set_option maxRecDepth 100000 in
+    set_option exponentiation.threshold 2000 in
+      decide
   simpa using log2_lower_of_pow_lt ((25000 : ℝ) / 24311) 1 25 (by norm_num)
     (two_pow_lt_div_pow_of_nat 25000 24311 1 25 (by norm_num) hnat)
 
 private theorem log2_inv_a1_lower :
     (1124 : ℝ) / 93 < log2 ((100000 : ℝ) / 23) := by
-  have hnat : (2 : ℕ) ^ 1124 * 23 ^ 93 < 100000 ^ 93 := by native_decide
+  have hnat : (2 : ℕ) ^ 1124 * 23 ^ 93 < 100000 ^ 93 := by
+    set_option maxRecDepth 100000 in
+    set_option exponentiation.threshold 2000 in
+      decide
   exact log2_lower_of_pow_lt ((100000 : ℝ) / 23) 1124 93 (by norm_num)
     (two_pow_lt_div_pow_of_nat 100000 23 1124 93 (by norm_num) hnat)
 
 private theorem log2_inv_two_a2_lower : (463 : ℝ) / 87 < log2 40 := by
-  have hnat : (2 : ℕ) ^ 463 < 40 ^ 87 := by native_decide
+  have hnat : (2 : ℕ) ^ 463 < 40 ^ 87 := by
+    set_option maxRecDepth 100000 in
+    set_option exponentiation.threshold 2000 in
+      decide
   exact log2_lower_of_pow_lt 40 463 87 (by norm_num)
     (two_pow_lt_nat_pow_of_nat 40 463 87 hnat)
 
 private theorem log2_inv_two_a3_a4_lower :
     (104 : ℝ) / 81 < log2 ((300000 : ℝ) / 123193) := by
-  have hnat : (2 : ℕ) ^ 104 * 123193 ^ 81 < 300000 ^ 81 := by native_decide
+  have hnat : (2 : ℕ) ^ 104 * 123193 ^ 81 < 300000 ^ 81 := by
+    set_option maxRecDepth 100000 in
+    set_option exponentiation.threshold 2000 in
+      decide
   exact log2_lower_of_pow_lt ((300000 : ℝ) / 123193) 104 81 (by norm_num)
     (two_pow_lt_div_pow_of_nat 300000 123193 104 81 (by norm_num) hnat)
 
 private theorem log2_inv_two_a2_two_a4_lower :
     (79 : ℝ) / 66 < log2 ((150000 : ℝ) / 65419) := by
-  have hnat : (2 : ℕ) ^ 79 * 65419 ^ 66 < 150000 ^ 66 := by native_decide
+  have hnat : (2 : ℕ) ^ 79 * 65419 ^ 66 < 150000 ^ 66 := by
+    set_option maxRecDepth 100000 in
+    set_option exponentiation.threshold 2000 in
+      decide
   exact log2_lower_of_pow_lt ((150000 : ℝ) / 65419) 79 66 (by norm_num)
     (two_pow_lt_div_pow_of_nat 150000 65419 79 66 (by norm_num) hnat)
 
 private theorem log2_inv_two_a1_two_a2_a3_lower :
     (86 : ℝ) / 29 < log2 ((125 : ℝ) / 16) := by
-  have hnat : (2 : ℕ) ^ 86 * 16 ^ 29 < 125 ^ 29 := by native_decide
+  have hnat : (2 : ℕ) ^ 86 * 16 ^ 29 < 125 ^ 29 := by
+    set_option maxRecDepth 100000 in
+    set_option exponentiation.threshold 2000 in
+      decide
   exact log2_lower_of_pow_lt ((125 : ℝ) / 16) 86 29 (by norm_num)
     (two_pow_lt_div_pow_of_nat 125 16 86 29 (by norm_num) hnat)
 
