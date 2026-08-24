@@ -12,13 +12,12 @@ We right-associate three tensor factors throughout.
 
 namespace AlgebraicComplexity
 
-universe uK uX uY uZ uX' uY' uZ' uX'' uY'' uZ''
-
-variable (K : Type uK) [CommSemiring K]
+universe u
 
 /-- A right-associated trilinear tensor over `K`. -/
 abbrev TriTensor
-    (X : Type uX) (Y : Type uY) (Z : Type uZ)
+    (K X Y Z : Type u)
+    [CommSemiring K]
     [AddCommMonoid X] [AddCommMonoid Y] [AddCommMonoid Z]
     [Module K X] [Module K Y] [Module K Z] :=
   X ⊗[K] (Y ⊗[K] Z)
@@ -26,10 +25,8 @@ abbrev TriTensor
 namespace TriTensor
 
 variable
-    {K : Type uK} [CommSemiring K]
-    {X : Type uX} {Y : Type uY} {Z : Type uZ}
-    {X' : Type uX'} {Y' : Type uY'} {Z' : Type uZ'}
-    {X'' : Type uX''} {Y'' : Type uY''} {Z'' : Type uZ''}
+    {K X Y Z X' Y' Z' X'' Y'' Z'' : Type u}
+    [CommSemiring K]
     [AddCommMonoid X] [AddCommMonoid Y] [AddCommMonoid Z]
     [AddCommMonoid X'] [AddCommMonoid Y'] [AddCommMonoid Z']
     [AddCommMonoid X''] [AddCommMonoid Y''] [AddCommMonoid Z'']
@@ -79,30 +76,31 @@ def swapYZ : TriTensor K X Y Z ≃ₗ[K] TriTensor K X Z Y :=
 
 /-- Cyclically rotate `X,Y,Z` to `Y,Z,X`. -/
 def cycleLeft : TriTensor K X Y Z ≃ₗ[K] TriTensor K Y Z X :=
-  swapXY ≪≫ₗ swapYZ
+  swapXY (K := K) (X := X) (Y := Y) (Z := Z) ≪≫ₗ
+    swapYZ (K := K) (X := Y) (Y := X) (Z := Z)
 
 /-- Cyclically rotate `X,Y,Z` to `Z,X,Y`. -/
 def cycleRight : TriTensor K X Y Z ≃ₗ[K] TriTensor K Z X Y :=
-  (cycleLeft (X := Z) (Y := X) (Z := Y)).symm
+  (cycleLeft (K := K) (X := Z) (Y := X) (Z := Y)).symm
 
 @[simp]
 theorem swapXY_pure (x : X) (y : Y) (z : Z) :
-    swapXY (pure x y z) = pure y x z :=
+    (swapXY (K := K) (X := X) (Y := Y) (Z := Z)) (pure x y z) = pure y x z :=
   rfl
 
 @[simp]
 theorem swapYZ_pure (x : X) (y : Y) (z : Z) :
-    swapYZ (pure x y z) = pure x z y :=
+    (swapYZ (K := K) (X := X) (Y := Y) (Z := Z)) (pure x y z) = pure x z y :=
   rfl
 
 @[simp]
 theorem cycleLeft_pure (x : X) (y : Y) (z : Z) :
-    cycleLeft (pure x y z) = pure y z x :=
+    (cycleLeft (K := K) (X := X) (Y := Y) (Z := Z)) (pure x y z) = pure y z x :=
   rfl
 
 @[simp]
 theorem cycleRight_pure (x : X) (y : Y) (z : Z) :
-    cycleRight (pure x y z) = pure z x y :=
+    (cycleRight (K := K) (X := X) (Y := Y) (Z := Z)) (pure x y z) = pure z x y :=
   rfl
 
 end TriTensor
