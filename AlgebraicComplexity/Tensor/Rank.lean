@@ -13,7 +13,7 @@ choosing a minimum rank.
 namespace AlgebraicComplexity
 namespace TriTensor
 
-universe u
+universe u v
 
 variable
     {K X Y Z X' Y' Z' : Type u}
@@ -115,10 +115,11 @@ theorem add {r s : ℕ} {T S : TriTensor K X Y Z}
   simpa using Nat.add_le_add hleft hright
 
 /-- Add rank witnesses over a finite set, with a separate bound for each summand. -/
-theorem finset_sum {ι : Type u} [DecidableEq ι]
+theorem finset_sum {ι : Type v}
     (s : Finset ι) (r : ι → ℕ) (T : ι → TriTensor K X Y Z)
     (h : ∀ i ∈ s, HasRankAtMost (K := K) (r i) (T i)) :
     HasRankAtMost (K := K) (∑ i ∈ s, r i) (∑ i ∈ s, T i) := by
+  classical
   induction s using Finset.induction_on with
   | empty => simpa using (zero (K := K) (X := X) (Y := Y) (Z := Z))
   | @insert a s ha ih =>
@@ -127,7 +128,7 @@ theorem finset_sum {ι : Type u} [DecidableEq ι]
         (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
 
 /-- Add rank witnesses over all elements of a finite type. -/
-theorem fintype_sum {ι : Type u} [Fintype ι]
+theorem fintype_sum {ι : Type v} [Fintype ι]
     (r : ι → ℕ) (T : ι → TriTensor K X Y Z)
     (h : ∀ i, HasRankAtMost (K := K) (r i) (T i)) :
     HasRankAtMost (K := K) (∑ i, r i) (∑ i, T i) := by
