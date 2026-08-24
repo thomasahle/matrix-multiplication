@@ -1,2 +1,3 @@
+import AlgebraicComplexity.Tensor
 import RepeatedOrientationVerification.Certificate
 import RepeatedOrientationVerification.Regionwise
