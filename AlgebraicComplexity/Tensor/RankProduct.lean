@@ -6,7 +6,7 @@ set_option linter.style.header false
 /-!
 # Rank under external products
 
-Concrete rank decompositions multiply under the external product of trilinear tensors.  The proof
+Concrete rank decompositions multiply under the external product of trilinear tensors. The proof
 constructs the Cartesian product of the two lists of rank-one witnesses.
 -/
 
@@ -72,7 +72,8 @@ theorem length_externalProductTerms
     (externalProductTerms left right).length = left.length * right.length := by
   induction left with
   | nil => simp
-  | cons p left ih => simp [externalProductTerms, ih, Nat.add_mul]
+  | cons p left ih =>
+      simp [externalProductTerms, ih, Nat.add_mul, Nat.add_comm]
 
 /-- Realizing all products with one fixed left witness distributes over the right realization. -/
 theorem realize_map_externalProduct_left
@@ -94,8 +95,18 @@ theorem realize_externalProductTerms
   induction left with
   | nil => simp
   | cons p left ih =>
-      simp [externalProductTerms, realize_map_externalProduct_left, ih,
-        TriTensor.externalProduct_add_left]
+      calc
+        realize (externalProductTerms (p :: left) right) =
+            realize (right.map p.externalProduct) +
+              realize (externalProductTerms left right) := by
+                rw [externalProductTerms_cons, realize_append]
+        _ = TriTensor.externalProduct p.toTensor (realize right) +
+              TriTensor.externalProduct (realize left) (realize right) := by
+                rw [realize_map_externalProduct_left, ih]
+        _ = TriTensor.externalProduct (p.toTensor + realize left) (realize right) := by
+                rw [TriTensor.externalProduct_add_left]
+        _ = TriTensor.externalProduct (realize (p :: left)) (realize right) := by
+                rw [realize_cons]
 
 /-- Tensor rank bounds multiply under the external product. -/
 theorem HasRankAtMost.externalProduct {r s : ℕ}
