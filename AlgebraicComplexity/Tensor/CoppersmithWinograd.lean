@@ -76,7 +76,18 @@ theorem coppersmithWinogradMiddle_rank_le (q : ℕ) :
   have h :
       HasRankAtMost (K := K) (∑ _i : Fin q, 3) (coppersmithWinogradMiddle K q) := by
     unfold coppersmithWinogradMiddle
-    apply HasRankAtMost.fintype_sum
+    refine HasRankAtMost.fintype_sum
+      (fun _i : Fin q => 3)
+      (fun i : Fin q =>
+        pure (cwVariable (K := K) q (cwZero q))
+            (cwVariable (K := K) q (cwMiddle q i))
+            (cwVariable (K := K) q (cwMiddle q i)) +
+          pure (cwVariable (K := K) q (cwMiddle q i))
+            (cwVariable (K := K) q (cwZero q))
+            (cwVariable (K := K) q (cwMiddle q i)) +
+          pure (cwVariable (K := K) q (cwMiddle q i))
+            (cwVariable (K := K) q (cwMiddle q i))
+            (cwVariable (K := K) q (cwZero q))) ?_
     intro i
     exact ((HasRankAtMost.pure
       (cwVariable (K := K) q (cwZero q))
