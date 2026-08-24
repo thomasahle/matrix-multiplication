@@ -12,9 +12,11 @@ private theorem coeff_three_constants_mul_X_pow
     ((Polynomial.C x * Polynomial.C y * Polynomial.C z) * Polynomial.X ^ n).coeff d =
       if n = d then x * y * z else 0 := by
   rw [← map_mul, ← map_mul]
-  simpa [mul_assoc] using Polynomial.coeff_C_mul_X_pow (R := K) (x * y * z) n d
+  rw [Polynomial.coeff_C_mul_X_pow]
+  by_cases h : n = d <;> simp [h, h.symm, mul_assoc]
 
-example (x₀ x₁ y₀ y₁ z₀ z₁ : K) :
+/-- Expansion of the middle rank-one polynomial factor used in the CW curve. -/
+theorem cw_middle_polynomial_expansion (x₀ x₁ y₀ y₁ z₀ z₁ : K) :
     Polynomial.X *
         (Polynomial.C x₀ + Polynomial.X ^ 2 * Polynomial.C x₁) *
         (Polynomial.C y₀ + Polynomial.X ^ 2 * Polynomial.C y₁) *
@@ -29,16 +31,16 @@ example (x₀ x₁ y₀ y₁ z₀ z₁ : K) :
       (Polynomial.C x₁ * Polynomial.C y₁ * Polynomial.C z₁) * Polynomial.X ^ 7 := by
   ring
 
-example (x₀ x₁ y₀ y₁ z₀ z₁ : K) :
+/-- The degree-five coefficient of a middle curve term. -/
+theorem cw_middle_polynomial_coeff_five (x₀ x₁ y₀ y₁ z₀ z₁ : K) :
     (Polynomial.X *
         (Polynomial.C x₀ + Polynomial.X ^ 2 * Polynomial.C x₁) *
         (Polynomial.C y₀ + Polynomial.X ^ 2 * Polynomial.C y₁) *
         (Polynomial.C z₀ + Polynomial.X ^ 2 * Polynomial.C z₁)).coeff 5 =
       x₁ * y₁ * z₀ + x₁ * y₀ * z₁ + x₀ * y₁ * z₁ := by
-  conv_lhs =>
-    congr
-    ring
-  simp only [Polynomial.coeff_add, Polynomial.coeff_mul_X_pow']
-  simp [← map_mul, mul_assoc]
+  rw [cw_middle_polynomial_expansion]
+  simp only [Polynomial.coeff_add]
+  simp [coeff_three_constants_mul_X_pow]
+  ring
 
 end AlgebraicComplexity.CoordinateTensor
