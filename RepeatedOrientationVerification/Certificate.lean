@@ -65,19 +65,21 @@ theorem real_feasibility :
   exact_mod_cast rational_feasibility
 
 /-- The finite integer comparison behind the logarithm estimate. -/
+set_option maxRecDepth 100000 in
 theorem seven_pow_lt_two_pow : (7 : ℕ) ^ 462 < 2 ^ 1297 := by
-  norm_num
+  decide
 
 /-- A rational upper approximation to `log₂ 7`, proved only from monotonicity of `log`. -/
 theorem log2_seven_lt :
     Real.log 7 / Real.log 2 < (1297 : ℝ) / 462 := by
   have hpReal : (7 : ℝ) ^ 462 < (2 : ℝ) ^ 1297 := by
     exact_mod_cast seven_pow_lt_two_pow
-  have hlogpow : Real.log ((7 : ℝ) ^ 462) < Real.log ((2 : ℝ) ^ 1297) :=
-    Real.strictMonoOn_log (by positivity) (by positivity) hpReal
+  have hlogpow : Real.log ((7 : ℝ) ^ 462) < Real.log ((2 : ℝ) ^ 1297) := by
+    exact Real.log_lt_log (by positivity) hpReal
   rw [Real.log_pow, Real.log_pow] at hlogpow
   have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
   rw [div_lt_iff₀ hlog2]
+  rw [div_mul_eq_mul_div, lt_div_iff₀ (by norm_num : (0 : ℝ) < 462)]
   nlinarith
 
 /-- The source-tensor cost appearing in the level-four feasibility condition. -/
