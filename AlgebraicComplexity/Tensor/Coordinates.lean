@@ -29,7 +29,7 @@ def basisVector (i : I) : I → K :=
 
 @[simp]
 theorem basisVector_apply (i i' : I) :
-    basisVector (K := K) i i' = if i = i' then 1 else 0 := by
+    basisVector (K := K) i i' = if i' = i then 1 else 0 := by
   simp [basisVector]
 
 /-- Interpret a finite coordinate tensor as an abstract trilinear tensor. -/
@@ -64,8 +64,10 @@ theorem coordinateFilter_basisVector
     coordinateFilter (K := K) keep (basisVector (K := K) i) =
       if keep i then basisVector (K := K) i else 0 := by
   funext i'
-  by_cases hi : keep i <;> by_cases hii : i = i' <;>
-    simp [coordinateFilter, basisVector, hi, hii]
+  by_cases hii : i' = i
+  · subst i'
+    by_cases hi : keep i <;> simp [coordinateFilter, basisVector, hi]
+  · simp [coordinateFilter, basisVector, hii]
 
 /-- Standard-basis interpretation commutes with coordinate variable zeroing. -/
 theorem map3_toTriTensor_zeroOutside
@@ -89,12 +91,14 @@ theorem map3_toTriTensor_zeroOutside
   by_cases hi : keepX i <;> by_cases hj : keepY j <;> by_cases hk : keepZ k <;>
     simp [zeroOutside, hi, hj, hk]
 
-/-- Variable zeroing of coordinate tensors is an exact restriction after standard-basis realization. -/
+/-- Variable zeroing is an exact restriction after standard-basis realization. -/
 theorem toTriTensor_restricts_zeroOutside
     (keepX : I → Prop) (keepY : J → Prop) (keepZ : L → Prop)
     [DecidablePred keepX] [DecidablePred keepY] [DecidablePred keepZ]
     (T : CoordinateTensor K I J L) :
-    TriTensor.Restricts (toTriTensor T) (toTriTensor (zeroOutside keepX keepY keepZ T)) := by
+    TriTensor.Restricts
+      (toTriTensor T)
+      (toTriTensor (zeroOutside keepX keepY keepZ T)) := by
   exact ⟨coordinateFilter (K := K) keepX,
     coordinateFilter (K := K) keepY,
     coordinateFilter (K := K) keepZ,
