@@ -18,8 +18,11 @@ Neither interface is hidden as an axiom.
 
 namespace RepeatedOrientationVerification
 
-/-- Claimed exponent, exactly `2.37071`. -/
-def target : ℚ := 237071 / 100000
+/-- The rounded headline appearing in the manuscript, exactly `2.37071`. -/
+def paperTarget : ℚ := 237071 / 100000
+
+/-- A slightly stronger rational endpoint used by the Lean arithmetic, exactly `2.370709`. -/
+def target : ℚ := 2370709 / 1000000
 
 /-- Values printed by the external interval checker. -/
 def reportedELower : ℚ := 8195519329847103 / 1000000000000000
@@ -41,11 +44,15 @@ integer inequality `7^462 < 2^1297` without relying on floating-point transcende
 -/
 def sourceUpper : ℚ := 5188 / 231
 
-/-- Exact rational slack against the manuscript's tighter upper bound. -/
-def manuscriptMargin : ℚ := eLower + target * mLower - manuscriptUpper
+/-- Exact rational slack at the rounded manuscript target and its tighter external log bound. -/
+def manuscriptMargin : ℚ := eLower + paperTarget * mLower - manuscriptUpper
 
-/-- Exact rational slack against the fully Lean-proved logarithm upper bound. -/
+/-- Exact rational slack at the stronger Lean target and the Lean-proved logarithm upper bound. -/
 def leanMargin : ℚ := eLower + target * mLower - sourceUpper
+
+/-- The actual Lean endpoint is strictly smaller than the rounded manuscript headline. -/
+theorem target_lt_paperTarget : target < paperTarget := by
+  norm_num [target, paperTarget]
 
 /-- The Lean bounds are conservative truncations of the externally reported endpoints. -/
 theorem eLower_lt_reported : eLower < reportedELower := by
@@ -57,11 +64,11 @@ theorem mLower_lt_reported : mLower < reportedMLower := by
 /-- Lean computes the manuscript-style arithmetic exactly. -/
 theorem manuscriptMargin_eq :
     manuscriptMargin = 4596057896661 / 100000000000000000 := by
-  norm_num [manuscriptMargin, eLower, target, mLower, manuscriptUpper]
+  norm_num [manuscriptMargin, eLower, paperTarget, mLower, manuscriptUpper]
 
 /-- Lean computes the slack used by the fully formal logarithm proof exactly. -/
 theorem leanMargin_eq :
-    leanMargin = 251285619532691 / 23100000000000000000 := by
+    leanMargin = 1123045738686689 / 231000000000000000000 := by
   norm_num [leanMargin, eLower, target, mLower, sourceUpper]
 
 /-- The fully formal scalar inequality has strictly positive rational slack. -/
@@ -148,6 +155,18 @@ theorem omega_le_target
     omega ≤ (target : ℝ) :=
   combinationLossBridge (endpoint_feasible endpoint)
 
+/-- The stronger non-strict endpoint gives the manuscript's strict rounded headline. -/
+theorem omega_lt_paperTarget
+    (omega E M : ℝ)
+    (endpoint : EndpointCertificate E M)
+    (combinationLossBridge :
+      sourceCost < E + (target : ℝ) * M → omega ≤ (target : ℝ)) :
+    omega < (paperTarget : ℝ) := by
+  have htarget : (target : ℝ) < (paperTarget : ℝ) := by
+    exact_mod_cast target_lt_paperTarget
+  exact (omega_le_target omega E M endpoint combinationLossBridge).trans_lt htarget
+
+#print axioms target_lt_paperTarget
 #print axioms eLower_lt_reported
 #print axioms manuscriptMargin_eq
 #print axioms leanMargin_pos
@@ -157,5 +176,6 @@ theorem omega_le_target
 #print axioms numericallyFeasible
 #print axioms endpoint_feasible
 #print axioms omega_le_target
+#print axioms omega_lt_paperTarget
 
 end RepeatedOrientationVerification
