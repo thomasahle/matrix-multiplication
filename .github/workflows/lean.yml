@@ -20,8 +20,14 @@ jobs:
         run: lake update
       - name: Download Mathlib build cache
         run: lake exe cache get
-      - name: Compile every Lean theorem
-        run: lake build
+      - name: Compile every Lean theorem and reject sorryAx
+        run: |
+          set -o pipefail
+          lake build 2>&1 | tee lean-build.log
+          if grep -q 'sorryAx' lean-build.log; then
+            echo 'Found a theorem depending on sorryAx.' >&2
+            exit 1
+          fi
       - name: Archive reproducible Lean source
         uses: actions/upload-artifact@v4
         with:
@@ -30,6 +36,7 @@ jobs:
             lean-toolchain
             lakefile.toml
             lake-manifest.json
+            lean-build.log
             README.md
             UPSTREAM_AUDIT.md
             RepeatedOrientationVerification.lean
