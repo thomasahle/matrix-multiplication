@@ -76,11 +76,20 @@ theorem matrixMultiplicationTensor_rank_le (m n p : ℕ) :
         (∑ _i : Fin m, ∑ _j : Fin n, ∑ _k : Fin p, 1)
         (matrixMultiplicationTensor K m n p) := by
     unfold matrixMultiplicationTensor
-    apply HasRankAtMost.fintype_sum
+    refine HasRankAtMost.fintype_sum
+      (fun _i : Fin m => ∑ _j : Fin n, ∑ _k : Fin p, 1)
+      (fun i : Fin m => ∑ j : Fin n, ∑ k : Fin p,
+        pure (Matrix.single i j 1) (Matrix.single j k 1) (Matrix.single k i 1)) ?_
     intro i
-    apply HasRankAtMost.fintype_sum
+    refine HasRankAtMost.fintype_sum
+      (fun _j : Fin n => ∑ _k : Fin p, 1)
+      (fun j : Fin n => ∑ k : Fin p,
+        pure (Matrix.single i j 1) (Matrix.single j k 1) (Matrix.single k i 1)) ?_
     intro j
-    apply HasRankAtMost.fintype_sum
+    refine HasRankAtMost.fintype_sum
+      (fun _k : Fin p => 1)
+      (fun k : Fin p =>
+        pure (Matrix.single i j 1) (Matrix.single j k 1) (Matrix.single k i 1)) ?_
     intro k
     exact HasRankAtMost.pure
       (Matrix.single i j 1) (Matrix.single j k 1) (Matrix.single k i 1)
