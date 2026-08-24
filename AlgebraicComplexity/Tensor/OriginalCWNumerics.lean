@@ -5,12 +5,23 @@ set_option linter.style.header false
 /-!
 # Exact numerical inequality for the original Coppersmith--Winograd parameters
 
-The historical tensor-square analysis uses `q = 6`.  We work at the rounded exponent `ρ = 2.376`
-and with the rational parameters printed in the classical analysis.  Every logarithmic lower bound
-below follows from an exact power inequality and monotonicity of the real logarithm.
+The historical tensor-square analysis uses `q = 6`. We work internally at `ρ = 2.3759`, strictly
+below the rounded headline `2.376`, and with the rational parameters printed in the classical
+analysis. Every logarithmic lower bound follows from an exact power inequality and monotonicity of
+the real logarithm.
 -/
 
 namespace AlgebraicComplexity.OriginalCW
+
+/-- The exponent used by the formal numerical certificate. -/
+def rho : ℚ := 23759 / 10000
+
+/-- The rounded historical headline. -/
+def roundedTarget : ℚ := 297 / 125
+
+/-- The internal endpoint is strictly below the rounded headline. -/
+theorem rho_lt_roundedTarget : rho < roundedTarget := by
+  norm_num [rho, roundedTarget]
 
 /-- Base-two logarithm, expressed through Mathlib's natural logarithm. -/
 noncomputable def log2 (x : ℝ) : ℝ :=
@@ -93,7 +104,7 @@ private theorem log2_inv_two_a1_two_a2_a3_lower :
 
 /-- The inner `(2,1,1)` logarithmic value lower bound from the published parameters. -/
 noncomputable def innerLogLower : ℝ :=
-  ((297 : ℝ) / 125 / 3) *
+  ((rho : ℝ) / 3) *
       (2 * ((689 : ℝ) / 50000) + 4 * ((24311 : ℝ) / 50000)) * log2 6 +
     (1 / 3 : ℝ) *
       (2 * ((689 : ℝ) / 50000) * log2 ((50000 : ℝ) / 689) +
@@ -101,8 +112,8 @@ noncomputable def innerLogLower : ℝ :=
 
 /-- The outer tensor-square logarithmic value lower bound. -/
 noncomputable def squareLogLower : ℝ :=
-  2 * ((1 : ℝ) / 80) * ((297 : ℝ) / 125) * log2 12 +
-  ((5127 : ℝ) / 50000) * ((297 : ℝ) / 125) * log2 38 +
+  2 * ((1 : ℝ) / 80) * (rho : ℝ) * log2 12 +
+  ((5127 : ℝ) / 50000) * (rho : ℝ) * log2 38 +
   3 * ((61669 : ℝ) / 300000) * innerLogLower +
   ((23 : ℝ) / 100000) * log2 ((100000 : ℝ) / 23) +
   2 * ((1 : ℝ) / 80) * log2 40 +
@@ -112,7 +123,7 @@ noncomputable def squareLogLower : ℝ :=
 
 /-- A completely rational lower approximation to `squareLogLower`. -/
 def squareLogRationalLower : ℚ :=
-  2177553840764452827683357 / 362897628080625000000000
+  87099721094856335363013707 / 14515905123225000000000000
 
 /-- The rational approximation has visible positive slack over six. -/
 theorem squareLogRationalLower_gt_six :
@@ -132,7 +143,7 @@ theorem squareLogLower_gt_rational :
   have ha34 := log2_inv_two_a3_a4_lower
   have ha24 := log2_inv_two_a2_two_a4_lower
   have ha123 := log2_inv_two_a1_two_a2_a3_lower
-  norm_num [squareLogLower, innerLogLower, squareLogRationalLower] at *
+  norm_num [squareLogLower, innerLogLower, squareLogRationalLower, rho] at *
   nlinarith
 
 /-- The original tensor-square logarithmic lower bound exceeds `log₂ 64 = 6`. -/
@@ -141,6 +152,7 @@ theorem squareLogLower_gt_six : 6 < squareLogLower := by
     exact_mod_cast squareLogRationalLower_gt_six
   exact hrat.trans squareLogLower_gt_rational
 
+#print axioms rho_lt_roundedTarget
 #print axioms squareLogLower_gt_six
 
 end AlgebraicComplexity.OriginalCW
