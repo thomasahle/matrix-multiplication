@@ -142,7 +142,7 @@ theorem cycleLeft_coppersmithWinogradMiddle (q : ℕ) :
     cycleLeft (coppersmithWinogradMiddle K q) = coppersmithWinogradMiddle K q := by
   classical
   unfold coppersmithWinogradMiddle
-  simp only [map_sum, cycleLeft_pure]
+  simp only [map_sum, map_add, cycleLeft_pure]
   apply Finset.sum_congr rfl
   intro i _
   abel
