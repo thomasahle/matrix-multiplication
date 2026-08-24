@@ -16,7 +16,7 @@ its leading coefficient is the external product of the two leading coefficients.
 namespace AlgebraicComplexity
 namespace CoordinateTensor
 
-universe u
+universe u uA uB
 
 variable
     {K I J L I' J' L' : Type u}
@@ -61,21 +61,21 @@ end PolynomialPureTerm
 
 /-- Sum polynomial pure tensors over an arbitrary finite index type. -/
 noncomputable def realizePolynomialFintypeFamily
-    {A : Type u} [Fintype A]
+    {A : Type uA} [Fintype A]
     (terms : A → PolynomialPureTerm (K := K) (I := I) (J := J) (L := L)) :
     CoordinateTensor (Polynomial K) I J L :=
   fun i j k => ∑ a : A, (terms a).toTensor i j k
 
 /-- Reindex an arbitrary finite family by the canonical `Fin` type of the same cardinality. -/
 noncomputable def finReindexPolynomialFamily
-    {A : Type u} [Fintype A]
+    {A : Type uA} [Fintype A]
     (terms : A → PolynomialPureTerm (K := K) (I := I) (J := J) (L := L)) :
     Fin (Fintype.card A) → PolynomialPureTerm (K := K) (I := I) (J := J) (L := L) :=
   fun i => terms ((Fintype.equivFin A).symm i)
 
 /-- Reindexing a finite family does not change its realized polynomial tensor. -/
 theorem realize_finReindexPolynomialFamily
-    {A : Type u} [Fintype A]
+    {A : Type uA} [Fintype A]
     (terms : A → PolynomialPureTerm (K := K) (I := I) (J := J) (L := L)) :
     realizePolynomialFamily (finReindexPolynomialFamily terms) =
       realizePolynomialFintypeFamily terms := by
@@ -90,7 +90,7 @@ namespace HasBorderRankAtMost
 
 /-- A polynomial family indexed by any finite type gives a border-rank certificate. -/
 theorem of_fintype_family
-    {A : Type u} [Fintype A]
+    {A : Type uA} [Fintype A]
     {r order : ℕ} {T : CoordinateTensor K I J L}
     (terms : A → PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))
     (hsize : Fintype.card A ≤ r)
@@ -108,7 +108,7 @@ end HasBorderRankAtMost
 
 /-- Realization of the Cartesian product family is the coefficientwise external product. -/
 theorem realizePolynomialFintypeFamily_externalProduct
-    {A B : Type u} [Fintype A] [Fintype B]
+    {A : Type uA} {B : Type uB} [Fintype A] [Fintype B]
     (left : A → PolynomialPureTerm (K := K) (I := I) (J := J) (L := L))
     (right : B → PolynomialPureTerm (K := K) (I := I') (J := J') (L := L')) :
     realizePolynomialFintypeFamily
@@ -118,17 +118,15 @@ theorem realizePolynomialFintypeFamily_externalProduct
         (realizePolynomialFintypeFamily right) := by
   classical
   funext i j k
-  rw [show (∑ p : A × B,
-      ((left p.1).externalProduct (right p.2)).toTensor i j k) =
-      ∑ a : A, ∑ b : B,
-        ((left a).externalProduct (right b)).toTensor i j k by
-    exact Fintype.sum_prod_type _]
-  simp only [PolynomialPureTerm.toTensor_externalProduct,
-    CoordinateTensor.externalProduct_apply]
-  rw [Finset.sum_mul]
+  simp only [realizePolynomialFintypeFamily, CoordinateTensor.externalProduct,
+    PolynomialPureTerm.externalProduct, PolynomialPureTerm.toTensor]
+  rw [Fintype.sum_prod_type, Finset.sum_mul]
   apply Finset.sum_congr rfl
   intro a _
   rw [Finset.mul_sum]
+  apply Finset.sum_congr rfl
+  intro b _
+  ring
 
 /-- A scalar polynomial product vanishes below the sum of two vanishing orders. -/
 theorem Polynomial.coeff_mul_eq_zero_of_lt_add
@@ -215,7 +213,10 @@ theorem externalProduct
   let terms : Fin n × Fin m →
       PolynomialPureTerm (K := K) (I := I × I') (J := J × J') (L := L × L') :=
     fun p => (left p.1).externalProduct (right p.2)
-  refine of_fintype_family (A := Fin n × Fin m) (order := a + b) terms ?_ ?_ ?_
+  refine HasBorderRankAtMost.of_fintype_family
+    (K := K) (I := I × I') (J := J × J') (L := L × L')
+    (A := Fin n × Fin m) (r := r * s) (order := a + b)
+    (T := CoordinateTensor.externalProduct T S) terms ?_ ?_ ?_
   · simpa using Nat.mul_le_mul hn hm
   · rw [realizePolynomialFintypeFamily_externalProduct]
     exact externalProduct_vanishesBelow hleftVanish hrightVanish
