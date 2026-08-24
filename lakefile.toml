@@ -1,0 +1,21 @@
+name = "RepeatedOrientationVerification"
+version = "0.1.0"
+keywords = ["math", "formal-verification"]
+defaultTargets = ["AlgebraicComplexity", "RepeatedOrientationVerification"]
+
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.30.0"
+
+[[lean_lib]]
+name = "AlgebraicComplexity"
+
+[[lean_lib]]
+name = "RepeatedOrientationVerification"

@@ -1,0 +1,73 @@
+name: Lean verification
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: lean-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Restore Lean and Mathlib source caches
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.elan
+            .lake/packages
+          key: lean-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+      - name: Install Lean through elan
+        run: |
+          if [ ! -x "$HOME/.elan/bin/elan" ]; then
+            curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+              | sh -s -- -y
+          fi
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve pinned dependencies
+        run: lake update
+      - name: Download the pinned Mathlib build cache
+        run: lake exe cache get
+      - name: Compile every Lean theorem and reject sorryAx
+        run: |
+          set -o pipefail
+          lake build 2>&1 | tee lean-build.log
+          if grep -q 'sorryAx' lean-build.log; then
+            echo 'Found a theorem depending on sorryAx.' >&2
+            exit 1
+          fi
+      - name: Archive reproducible Lean source
+        uses: actions/upload-artifact@v4
+        with:
+          name: repeated-orientation-lean-project
+          path: |
+            lean-toolchain
+            lakefile.toml
+            lake-manifest.json
+            lean-build.log
+            README.md
+            UPSTREAM_AUDIT.md
+            AlgebraicComplexity.lean
+            AlgebraicComplexity
+            RepeatedOrientationVerification.lean
+            RepeatedOrientationVerification
+          retention-days: 30
+
+  upstream-source:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Download Alman et al. arXiv source
+        run: |
+          mkdir -p upstream/src
+          curl -L --fail --retry 3 https://arxiv.org/e-print/2404.16349 -o upstream/source.tar
+          tar -xf upstream/source.tar -C upstream/src
+          find upstream/src -type f | sort > upstream/file-list.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alman-2024-source
+          path: upstream
+          retention-days: 7
