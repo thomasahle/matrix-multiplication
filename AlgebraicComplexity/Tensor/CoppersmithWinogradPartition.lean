@@ -117,14 +117,14 @@ def cwConstituent (q : ℕ) : CWConstituent →
   | .c020 => cw020 q
   | .c200 => cw200 q
 
-/-- The six constituent tensors sum exactly to `CW_q`. -/
+/-- The six explicit constituent tensors sum exactly to `CW_q`. -/
 theorem sum_cwConstituents (q : ℕ) :
-    ∑ s : CWConstituent, cwConstituent (K := K) q s =
+    cw002 (K := K) q + cw011 q + cw101 q + cw110 q + cw020 q + cw200 q =
       coppersmithWinogradTensor K q := by
   classical
-  simp [cwConstituent, cw002, cw011, cw101, cw110, cw020, cw200,
-    coppersmithWinogradTensor, coppersmithWinogradMiddle,
-    coppersmithWinogradCorners]
+  unfold cw002 cw011 cw101 cw110 cw020 cw200
+  unfold coppersmithWinogradTensor coppersmithWinogradMiddle coppersmithWinogradCorners
+  simp only [Finset.sum_add_distrib]
   abel
 
 /-- Cyclic rotation sends the `(0,0,2)` corner to `(0,2,0)`. -/
