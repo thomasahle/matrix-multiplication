@@ -3,3 +3,4 @@ import AlgebraicComplexity.Tensor.Restriction
 import AlgebraicComplexity.Tensor.Rank
 import AlgebraicComplexity.Tensor.DirectSum
 import AlgebraicComplexity.Tensor.MatrixMultiplication
+import AlgebraicComplexity.Tensor.MonomialDegeneration
