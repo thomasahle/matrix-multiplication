@@ -44,7 +44,7 @@ shape the scoreboard fixes — an unconditional bound on ω, or a bound explicit
 the named proof obligations it still assumes — and you wire it into `Frontier.lean`.
 
 `Frontier.lean` is in the tree. It declares `Frontier.OmegaBound`, the exact-rational
-`Frontier.frontierConstant` (currently `2375477/1000000`), the minimum improvement
+`Frontier.frontierConstant` (currently `2374631/1000000`), the minimum improvement
 `Frontier.recordDelta = 1/100000`, and the anchor theorem `Frontier.frontier`, and it is its own
 Lake target so that a record change cannot be hidden inside a library rebuild.
 
@@ -240,8 +240,8 @@ the tree is `ω < 2.374631` — Duan–Wu–Zhou's second-power (level-two) boun
 `omega_lt_2374631` in `Examples/DuanWuZhouLevelTwoOmegaBound.lean`, over any field. The classical
 Coppersmith–Winograd tensor-square bound `ω < 2.375477`
 (`coppersmithWinograd_square_omega_lt_2375477`, ten-digit directed rational atanh arithmetic) is
-just behind it, and is still the constant `Frontier.frontierConstant` carries, so that is what a
-record PR is measured against today.
+just behind it. `Frontier.frontierConstant` carries `2374631/1000000`, so that is what a record PR
+is measured against today.
 
 The Total-Weight framework in the tree is conditional: `README.md` §"The Total-Weight framework
 (conditional)" records what the tree proves and what it still assumes, and its manuscript is in

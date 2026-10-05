@@ -340,9 +340,9 @@ set; their move into the opt-in audit target is still pending.
 On a shared or memory-constrained machine, run public builds through
 `scripts/lake_build_serial.sh ...`. It adds a worktree lock, refuses to overlap a raw Lake writer,
 sets `LEAN_NUM_THREADS=1`, and lowers process priority. The package also passes `-j 1` to each Lean
-compiler. Its `-M 3000` setting is a tested allocation guard, not an expected resident-memory
-footprint; the earlier `-M 768` setting aborted during some layer-3 imports before theorem
-elaboration began.
+compiler. Its `-M 8000` setting is an allocation guard on Lean's memory footprint, not an expected
+resident-memory figure; the earlier `-M 768` and `-M 3000` settings aborted on some layer-3 imports
+and kernel checks.
 
 ### Building from scratch
 
@@ -370,15 +370,15 @@ resolving pinned dependencies, 5 s for the Mathlib cache — after which only th
 invalidated are recompiled. A pull request restores that cache from its base branch, which is why
 `main` must keep running CI: see `.github/BRANCH_PROTECTION.md`.
 
-**Memory, not CPU, is the binding constraint.** `lakefile.toml` passes `-M 3000 -j 1` to every Lean
-process: a 3 GB allocation guard, one worker each. That is a floor rather than a margin — several
-import closures here cross 2.5–3 GB before elaborating their first declaration, and
-`CoppersmithWinograd112CyclicValue` peaks at about 2.92 GB resident. Lake 5 has no `-j` option of
-its own; the number of Lean processes it runs concurrently is `LEAN_NUM_THREADS`, so that variable
-is the memory dial. CI sets `LEAN_NUM_THREADS: 2`, bounding a job at roughly 6 GB of the runner's
-16 GB; on a shared 16 GB workstation use `LEAN_NUM_THREADS=1` (or `scripts/lake_build_serial.sh`,
-which sets it for you). Leaving it unset lets Lake use every core, i.e. one `-M 3000` process per
-core.
+**Memory, not CPU, is the binding constraint.** `lakefile.toml` passes `-M 8000 -j 1` to every Lean
+process: an 8 GB guard on Lean's memory footprint, one worker each. Most modules need far less —
+several import closures cross 2.5–3 GB before elaborating their first declaration — but some
+kernel checks and generated tables need more than 3 GB, and a footprint runs well above resident
+memory. Lake 5 has no `-j` option of its own; the number of Lean processes it runs concurrently is
+`LEAN_NUM_THREADS`, so that variable is the memory dial. CI sets `LEAN_NUM_THREADS: 2` on a 16 GB
+runner; on a 16 GB workstation use at most `LEAN_NUM_THREADS=2`, or `LEAN_NUM_THREADS=1` via
+`scripts/lake_build_serial.sh` when the machine is shared. Leaving it unset lets Lake use every
+core, i.e. one `-M 8000` process per core.
 
 ## Reusable library
 

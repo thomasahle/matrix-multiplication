@@ -19,10 +19,10 @@ single `decide`.
 
 ## Why it is sharded
 
-That single `decide` does not fit the project's configured compiler budget.  Measured with raw
+That single `decide` did not fit the project's original compiler budget.  Measured with raw
 `lean -j 1`: it succeeds at `-M 12000` in `247 s` with a peak resident set of `3.42 GB` (peak memory
 footprint `5.33 GB`), and fails with `(kernel) excessive memory consumption detected` at the
-`weakLeanArgs` value `-M 3000` used by every build in this repository.  A `rfl` proof is worse — it
+original `weakLeanArgs` value `-M 3000`.  A `rfl` proof is worse — it
 had not finished after `10 min` at `-M 3000`.  That is why the committed sorted-pair twin of this
 statement (`Generated/SimplifiedExponentLevelTwoRecurrenceData.activeEdges_eq`) sits outside every
 configured build target and has never been compiled.

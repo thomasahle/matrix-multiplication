@@ -5,8 +5,8 @@
   ],
   "provenance": {
     "frontier_lean_tracked": true,
-    "generated_utc": "2026-09-05 20:27 UTC",
-    "repo_commit": "575e50d3c6994071c01fe3aa7ab3e17600134e3a"
+    "generated_utc": "2026-10-05 13:40 UTC",
+    "repo_commit": "006d17e9f9270038b125235b6b3e94ace17d23fe"
   },
   "record": {
     "class": "unconditional",

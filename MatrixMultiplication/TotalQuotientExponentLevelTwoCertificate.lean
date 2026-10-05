@@ -53,7 +53,7 @@ without editing a generated file.  The three parts of it that `branchFloorCertif
 actually consumes — `activeEdges_eq`, `activeInputs_eq_expected` and the three
 `expectedBranch{i}_normalize` — are reproduced here, with the same proof scripts, over the same
 generated chunks; the one exception is `activeEdges_eq`, whose single `decide` exceeds the
-project's `-M 3000` compiler budget and is therefore sharded in
+project's original `-M 3000` compiler budget and is therefore sharded in
 `MatrixMultiplication/TotalQuotientLevelTwoActiveEdgeShards.lean`.  The other `23` emitted modules are landed verbatim in `Generated/`.
 
 ## Fidelity of the landed generated payload
@@ -114,8 +114,8 @@ Reproduced from the emitted aggregate, with its proof scripts unchanged. -/
 
 /-- The recurrence's own active-edge list is the one the level-two checker cached; the eight-shard
 kernel reduction lives in `MatrixMultiplication/TotalQuotientLevelTwoActiveEdgeShards.lean`, which
-also records why the emitted aggregate's single `decide` does not fit the project's `-M 3000`
-compiler budget. -/
+also records why the emitted aggregate's single `decide` does not fit the project's original
+`-M 3000` compiler budget. -/
 theorem activeEdges_eq : activeEdges = MassThree.expectedActiveEdges.toList :=
   TotalQuotientLevelTwoActiveEdgeShards.activeEdges_eq
 

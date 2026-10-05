@@ -980,7 +980,7 @@ A bound is a *record* only if it is unconditional in the sense of `Frontier.lean
 hypothesis standing in for an unproved input, no paper-specific assumption, no variable carrying a
 proof obligation. It must be reached by `Frontier.frontier` as an application of a committed
 endpoint to a fingerprinted shape (`#assert_statement_fingerprint`), be covered by
-`#assert_axioms`, and improve `Frontier.frontierConstant` (today `2375477/1000000`) by at least
+`#assert_axioms`, and improve `Frontier.frontierConstant` (today `2374631/1000000`) by at least
 `Frontier.recordDelta` (`1/100000`). `scripts/check_frontier_improvement.sh` checks that in CI on
 exact rationals, so a record cannot tie, cannot regress, and cannot be claimed for shaving a final
 digit off an existing search; a pull request claiming one carries the `record-claim` label, which

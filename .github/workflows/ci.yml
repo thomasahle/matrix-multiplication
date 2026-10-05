@@ -86,9 +86,9 @@ jobs:
     env:
       # Lake 5.0 has no `-j` option: its build scheduler is Lean's task pool, so the number of
       # *concurrently elaborated modules* is `LEAN_NUM_THREADS`.  Individual Lean invocations are
-      # single-worker through the package's `weakLeanArgs` (`-j 1 -M 3000`), so two workers bound
-      # the job at roughly 6 GB against the runner's 16 GB.  Leaving it unset lets Lake use all
-      # four vCPUs, i.e. 4 x `-M 3000`.
+      # single-worker through the package's `weakLeanArgs` (`-j 1 -M 8000`); `-M` caps Lean's
+      # memory footprint, which runs well above resident memory, so two workers stay inside the
+      # runner's 16 GB.  Leaving it unset lets Lake use all four vCPUs, i.e. 4 x `-M 8000`.
       LEAN_NUM_THREADS: 2
     steps:
       - uses: actions/checkout@v4
