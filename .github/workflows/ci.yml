@@ -36,9 +36,10 @@ permissions:
   contents: read
 
 # A superseded pull-request run is wasted runner time; pushes to main always run to completion
-# because their build cache is what pull requests restore from.
+# because their build cache is what pull requests restore from.  Manual runs (the multi-hour
+# certificate check) get their own group, so they never hold up the CI of an ordinary push.
 concurrency:
-  group: ci-${{ github.event.pull_request.number || github.ref }}
+  group: ci-${{ github.event_name == 'workflow_dispatch' && 'manual-' || '' }}${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
