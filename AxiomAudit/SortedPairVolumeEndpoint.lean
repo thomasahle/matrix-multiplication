@@ -1,0 +1,12 @@
+import AxiomAudit.Command
+import MatrixMultiplication.SortedPairVolumeEndpoint
+
+/-! Focused trust audit for the exact sorted-pair certificate endpoint. -/
+
+#assert_axioms MatrixMultiplication.SortedPairVolumeEndpoint.volumeFloor_pos
+#assert_axioms MatrixMultiplication.SortedPairVolumeEndpoint.omegaTarget_nonneg
+#assert_axioms MatrixMultiplication.SortedPairVolumeEndpoint.certified_endpoint_slack
+#assert_axioms MatrixMultiplication.SortedPairVolumeEndpoint.omega_lt_2363145_of_subexponentialVolumeSequence
+#assert_axioms MatrixMultiplication.SortedPairVolumeEndpoint.omega_lt_236315_of_subexponentialVolumeSequence
+#assert_axioms MatrixMultiplication.SortedPairVolumeEndpoint.omegaTarget_eq_decimal
+#assert_axioms MatrixMultiplication.SortedPairVolumeEndpoint.legacyOmegaTarget_eq_decimal

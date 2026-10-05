@@ -1,0 +1,25 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoSixOrientationValues
+
+set_option autoImplicit false
+
+/-! # Axiom audit for the six-orientation letter weights of section 6.3 -/
+
+#assert_axioms AlgebraicComplexity.Examples.isomorphic_permute_partitionedPermute_constituent
+#assert_axioms AlgebraicComplexity.Examples.isomorphic_permute_partitionedPermute_constituent_apply
+#assert_axioms AlgebraicComplexity.Examples.isomorphic_symSix_symSixPartition_diagonal
+#assert_axioms AlgebraicComplexity.Examples.hasTauWeight_symSixPartition_diagonal
+#assert_axioms AlgebraicComplexity.Examples.hasTauWeight_power_symSixPartition_diagonal
+#assert_axioms AlgebraicComplexity.Examples.dwz63ValOf_nonneg
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_symSix_ordinary
+#assert_axioms AlgebraicComplexity.Examples.dwz63LogVal112_eq_dwz112LogValue
+#assert_axioms AlgebraicComplexity.Examples.dwz63LogVal121_eq_dwz121LogValue
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_power_symSix_112
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_power_symSix_121
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_power_symSix_orbit_of_leafShape

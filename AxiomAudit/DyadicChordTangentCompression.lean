@@ -1,0 +1,24 @@
+import AxiomAudit.Command
+import MatrixMultiplication.DyadicChordTangentCompression
+
+/-! Focused trust audit for chord/tangent log-linear compression at an arbitrary mantissa width.
+No generated certificate data is reached from here; the seam onto the total-weight quotient
+witness is audited by `AxiomAuditCertificate/TotalQuotientRetainedCompressionSeam.lean`. -/
+
+#assert_axioms MatrixMultiplication.LogLinearCompression.binWidth_pos
+#assert_axioms MatrixMultiplication.LogLinearCompression.binWidth_le
+#assert_axioms MatrixMultiplication.LogLinearCompression.binLower_le
+#assert_axioms MatrixMultiplication.LogLinearCompression.lt_binUpper
+#assert_axioms MatrixMultiplication.LogLinearCompression.binLower_pos
+#assert_axioms MatrixMultiplication.LogLinearCompression.binLower_lt_binUpper
+#assert_axioms MatrixMultiplication.LogLinearCompression.binCenter_pos
+#assert_axioms MatrixMultiplication.LogLinearCompression.two_mul_binCenter
+#assert_axioms MatrixMultiplication.LogLinearCompression.logTwo_chord_lower_ofMantissa
+#assert_axioms MatrixMultiplication.LogLinearCompression.logTwo_le_tangent_ofMantissa
+#assert_axioms MatrixMultiplication.LogLinearCompression.logTwo_two_pow_mul
+#assert_axioms MatrixMultiplication.LogLinearCompression.chordTangentValue_le_exactValue
+#assert_axioms MatrixMultiplication.LogLinearCompression.inverseLogTwoFloor_of_nonneg
+#assert_axioms MatrixMultiplication.LogLinearCompression.inverseLogTwoFloor_of_neg
+#assert_axioms MatrixMultiplication.LogLinearCompression.inverseLogTwoFloor_le
+#assert_axioms MatrixMultiplication.LogLinearCompression.chordTangentRationalValue_le_exactValue
+#assert_axioms MatrixMultiplication.LogLinearCompression.le_of_chordTangentCompression

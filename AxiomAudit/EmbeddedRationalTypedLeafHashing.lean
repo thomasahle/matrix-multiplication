@@ -1,0 +1,7 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.EmbeddedRationalTypedLeafHashing
+
+/-! Focused trust audit for marked hashing of a sparse embedded rational typed leaf. -/
+
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.localizedAmbient_restricts_embeddedMarkedLeafDirectSum
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.exists_seed_many_localizedEmbeddedMarkedLeafDirectSum

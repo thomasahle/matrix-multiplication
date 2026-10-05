@@ -1,0 +1,30 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.TotalQuotientRetainedCompressionSeam
+
+/-!
+# Certificate axiom audit for the retained-exponent compression seam
+
+These assertions reach the generated total-weight quotient scalar data, so they live in the
+opt-in certificate audit target rather than the ordinary focused one.  They cover the seam
+proposition, the re-derivation of the emitted residual endpoint from the generic directed rule,
+the four rational floors the seam supplies, and the two endpoint corollaries.
+-/
+
+#assert_axioms MatrixMultiplication.TotalQuotientRetainedCompressionSeam.retainedCompressionSeam_of_chordTangentCompression
+#assert_axioms MatrixMultiplication.TotalQuotientRetainedCompressionSeam.inverseLogCoefficient_nonneg
+#assert_axioms MatrixMultiplication.TotalQuotientRetainedCompressionSeam.inverseLogFloor_le_inverseLogTwoFloor
+#assert_axioms MatrixMultiplication.TotalQuotientRetainedCompressionSeam.inverseLogFloor_le_of_directedResidual
+#assert_axioms MatrixMultiplication.TotalQuotientRetainedCompressionSeam.le_of_seam
+#assert_axioms MatrixMultiplication.TotalQuotientRetainedCompressionSeam.acceptanceRetainedFloor_le_of_seam
+#assert_axioms MatrixMultiplication.TotalQuotientRetainedCompressionSeam.volumeOnlyRetainedLower_le_of_seam
+#assert_axioms MatrixMultiplication.TotalQuotientRetainedCompressionSeam.baseRetainedLower_le_of_seam
+#assert_axioms MatrixMultiplication.TotalQuotientRetainedCompressionSeam.retainedFloor_le_of_seam
+#assert_axioms MatrixMultiplication.TotalQuotientRetainedCompressionSeam.reconstruction_of_seam
+#assert_axioms MatrixMultiplication.TotalQuotientRetainedCompressionSeam.omega_lt_236588731_of_compressionSeam
+#assert_axioms MatrixMultiplication.TotalQuotientRetainedCompressionSeam.omega_lt_236999_of_compressionSeam

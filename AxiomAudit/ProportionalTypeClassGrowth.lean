@@ -1,0 +1,9 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Analysis.ProportionalTypeClassGrowth
+
+/-! Focused trust audit for proportional type-class growth. -/
+
+#assert_axioms AlgebraicComplexity.WordType.proportionalCounts_mem_types
+#assert_axioms AlgebraicComplexity.WordType.card_proportionalTypeClass_pos
+#assert_axioms AlgebraicComplexity.WordType.proportionalEntropyBase_pos_zeroSafe
+#assert_axioms AlgebraicComplexity.WordType.proportionalEntropyBase_pow_le_structuralZeroLoss_mul_card_typeClass

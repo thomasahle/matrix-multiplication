@@ -1,0 +1,49 @@
+# Automated pull-request review — DISABLED STUB.
+#
+# pending: choose reviewer bot
+#
+# The preferred route is GitHub Copilot code review, which is a repository/organization setting and
+# needs no workflow at all; see .github/BRANCH_PROTECTION.md section 3. This file exists for the
+# other case: a self-hosted reviewer action, pinned to an exact model, whose output lives in this
+# repository's own audit trail.
+#
+# Stored with a `.disabled` suffix on purpose. GitHub Actions only reads `*.yml` and `*.yaml` from
+# .github/workflows/, so this cannot run, cannot fail, and cannot add a phantom status check while
+# the choice of reviewer is still open. To enable:
+#
+#   1. pick the reviewer action and replace the `uses:` line below with an exact commit SHA
+#      (a tag is mutable; a review bot with pull-request write access is not the place to trust a
+#      moving reference);
+#   2. add the API key as a repository secret and reference it under `env`;
+#   3. `git mv .github/workflows/ai-review.yml.disabled .github/workflows/ai-review.yml`;
+#   4. leave it out of the required status checks. An automated reviewer advises; it does not gate.
+#      See .github/BRANCH_PROTECTION.md section 3.
+#
+# What a reviewer bot should be told to look for here, beyond ordinary code review:
+#   * a theorem statement that drifted from what the pull-request description claims;
+#   * a hypothesis added to an endpoint (a strengthened premise is how a bound quietly weakens);
+#   * a new `#assert_axioms`-covered declaration that no census closure imports;
+#   * numerical constants changed without the certificate that justifies them.
+
+name: AI review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # pending: choose reviewer bot — replace with the chosen action at a pinned commit SHA.
+      - name: Automated review pass
+        run: |
+          echo 'No reviewer action configured yet; see .github/BRANCH_PROTECTION.md section 3.'

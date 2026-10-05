@@ -1,0 +1,11 @@
+import MatrixMultiplication.SimplifiedRecursiveRegionalFamilies
+import AxiomAudit.Command
+
+open MatrixMultiplication.SimplifiedRecursiveRegionalFamilies
+
+#assert_axioms levelThreeCheckedRegionalLeafFor
+#assert_axioms levelThreeCheckedRegionalFamilyFor
+#assert_axioms levelThreeCheckedDivisionTreeFor
+#assert_axioms levelFourCheckedRegionalLeaf
+#assert_axioms levelFourCheckedRegionalFamily
+#assert_axioms levelFourCheckedDivisionTree

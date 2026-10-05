@@ -1,0 +1,10 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Analysis.ConditionalLegFiberGrowth
+
+/-! Focused trust audit for conditional type lower growth and stabilizer-quotient arithmetic. -/
+
+#assert_axioms AlgebraicComplexity.WordType.pushedTypeFiberEntropyBase_pow_le_loss_mul_card_typedFiber_of_length_eq
+#assert_axioms AlgebraicComplexity.WordType.conditionalProfileEntropyBase_eq_div
+#assert_axioms AlgebraicComplexity.WordType.conditionalProfileEntropyBase_pow_le_structuralZeroLoss_mul_card
+#assert_axioms AlgebraicComplexity.WordType.conditionalProfileEntropyBase_pow_le_structuralZeroLoss_mul_card_of_length_eq
+#assert_axioms AlgebraicComplexity.WordType.fiberCard_le_mul_div_pow_of_conditional_mul_fiber_le

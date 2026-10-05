@@ -1,0 +1,16 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.RecursiveSplitCertificateGeometry
+
+/-!
+# Axiom audit for recursive certificate-slot geometry
+
+The two involutions are the semantic core: they certify that exchanging the labelled left and
+right children is a genuine permutation of the finite certificate slots at both recursive levels.
+-/
+
+#assert_axioms AlgebraicComplexity.LevelFourReconstruction.levelThreeSplitShape_injective
+#assert_axioms AlgebraicComplexity.LevelFourReconstruction.levelThreeComplementSlot_involutive
+#assert_axioms AlgebraicComplexity.LevelFourReconstruction.levelThreeChildShape_complement
+#assert_axioms AlgebraicComplexity.LevelFourReconstruction.levelFourPairAtSlot_injective
+#assert_axioms AlgebraicComplexity.LevelFourReconstruction.levelFourComplementSlot_involutive
+#assert_axioms AlgebraicComplexity.LevelFourReconstruction.levelFourChildShape_complement

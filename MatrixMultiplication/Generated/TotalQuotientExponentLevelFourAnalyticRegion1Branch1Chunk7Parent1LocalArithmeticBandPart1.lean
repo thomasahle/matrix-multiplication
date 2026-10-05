@@ -1,0 +1,87 @@
+import MatrixMultiplication.BetaFourDenseReflection
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourAnalyticRegion1Branch1Chunk7Parent1LocalArithmeticRoutes
+
+/-! Line-budgeted dense target-band certificates, part 1, for region 1, branch 1,
+parent 31; untrusted certificate `e7987d7fa66008d497e31c976c68f025d57664a145336d358328375cc5738ca3`. -/
+
+namespace MatrixMultiplication.Generated.TotalQuotientExponentLevelFourAnalytic.Region1.Branch1.Chunk7.Parent1
+
+open MatrixMultiplication.SimplifiedExponentLevelFourRecurrence
+
+set_option maxRecDepth 1000000
+set_option maxHeartbeats 400000
+set_option Elab.async false
+
+namespace Band4
+
+/-- Untrusted dense numerators and endpoints for this bounded output interval. -/
+def raw : BetaFourRoutedContribution.RawDenseBand :=
+  { lower := 256, upper := 320, values := [545931492244739609183215681536, 0, 545931622404965793277811884032, 0, 252037213773110588435779813376, 28433931887746854644959150080, 0, 28433938666925301733219368960, 0, 16460733959872790842799292416, 60872041833952675186606080, 7194684532053260596496302080, 0, 68276122044931339623208058880, 0, 0, 0, 0, 0, 0, 0, 7194689466557300313801359360, 0, 0, 0, 0, 0, 0, 60872041833952675186606080, 16140553816067885127759298560, 0, 631659928772791928880195698688, 0, 0, 631659928772791928880195698688, 0, 0, 0, 0, 0, 0, 16140553816067885127759298560, 0, 0, 0, 106740976475074597647149957120, 0, 0, 396516127455230427231630131200, 0, 106718507614452271510968074240, 0, 0, 0, 0, 16820577149086854265731809280, 0, 658272614743392827990389817344, 0, 0, 658272614743392827990389817344, 0, 0, 0] }
+
+/-- The named bounded checker validates endpoints, width, length, and every dense value. -/
+theorem check_eq_true : raw.check partialRows = true := by
+  unfold BetaFourRoutedContribution.RawDenseBand.check
+    BetaFourRoutedContribution.RawDenseBand.IsValid raw partialRows
+  decide +kernel
+
+/-- Semantic band certificate obtained only through reflected checker soundness. -/
+def certificate : BetaFourRoutedContribution.DenseBandCertificate partialRows :=
+  raw.toCertificate partialRows check_eq_true
+
+end Band4
+
+namespace Band5
+
+/-- Untrusted dense numerators and endpoints for this bounded output interval. -/
+def raw : BetaFourRoutedContribution.RawDenseBand :=
+  { lower := 320, upper := 384, values := [0, 0, 0, 16820577149086854265731809280, 0, 0, 0, 4425175910438092605314702508032, 0, 0, 16438425741072552854659866296320, 0, 4424244415673435598926133592064, 0, 0, 0, 0, 870078315765053752135749992448, 0, 870078523207914233036512690176, 0, 109790718660076729008497098752, 0, 0, 407845159668237010866819563520, 0, 109767607832008050696995733504, 0, 0, 0, 0, 909885820407899348638692802560, 0, 909886037341609655463019806720, 0, 21354465677672809742009892864, 10020343818897162886006702080, 0, 392145755037383836888448630784, 0, 0, 392145755037383836888448630784, 0, 0, 0, 0, 0, 0, 10020343818897162886006702080, 0, 0, 0, 1204648163075841887732120944640, 0, 0, 4474967724137600535899825766400, 0, 1204394585934532778480925409280, 0, 0, 0, 0, 545931492244739609183215681536, 0] }
+
+/-- The named bounded checker validates endpoints, width, length, and every dense value. -/
+theorem check_eq_true : raw.check partialRows = true := by
+  unfold BetaFourRoutedContribution.RawDenseBand.check
+    BetaFourRoutedContribution.RawDenseBand.IsValid raw partialRows
+  decide +kernel
+
+/-- Semantic band certificate obtained only through reflected checker soundness. -/
+def certificate : BetaFourRoutedContribution.DenseBandCertificate partialRows :=
+  raw.toCertificate partialRows check_eq_true
+
+end Band5
+
+namespace Band6
+
+/-- Untrusted dense numerators and endpoints for this bounded output interval. -/
+def raw : BetaFourRoutedContribution.RawDenseBand :=
+  { lower := 384, upper := 448, values := [545931622404965793277811884032, 0, 4425175910438092605314702508032, 0, 0, 16438425741072552854659866296320, 0, 4424244415673435598926133592064, 0, 0, 0, 0, 13938313411373508146958975369216, 0, 13938316734526782909624134664192, 0, 286060863140492013835674189824, 892825461275251235851717312512, 0, 892825674141454474423088185344, 0, 517400907981947452707448029184, 976234565724680198354085347328, 10141070852859779306320035840, 526283118112483556815011840, 3534209847385884873053316317184, 16335018319875931936527482880, 976423890872228563506476089344, 16335018319875931936527482880, 17023234705099948895439421440, 10141070852859779306320035840, 506041459723541881552896000, 2088316040089165065871196946432, 8993361833196625392251699200, 2088317168700630697339816771584, 8993361833196625392251699200, 252037218495477071305425027072, 870078315765053752135749992448, 0, 870078523207914233036512690176, 0, 286060863140492013835674189824, 16905618661490974379091165184, 500017156631594954391552000, 0, 19568151448971249345730969600, 0, 0, 19568151448971249345730969600, 0, 0, 0, 0, 0, 0, 500017156631594954391552000, 0, 0, 0, 106740976475074597647149957120, 0, 0, 396516127455230427231630131200, 0] }
+
+/-- The named bounded checker validates endpoints, width, length, and every dense value. -/
+theorem check_eq_true : raw.check partialRows = true := by
+  unfold BetaFourRoutedContribution.RawDenseBand.check
+    BetaFourRoutedContribution.RawDenseBand.IsValid raw partialRows
+  decide +kernel
+
+/-- Semantic band certificate obtained only through reflected checker soundness. -/
+def certificate : BetaFourRoutedContribution.DenseBandCertificate partialRows :=
+  raw.toCertificate partialRows check_eq_true
+
+end Band6
+
+namespace Band7
+
+/-- Untrusted dense numerators and endpoints for this bounded output interval. -/
+def raw : BetaFourRoutedContribution.RawDenseBand :=
+  { lower := 448, upper := 512, values := [106718507614452271510968074240, 0, 0, 0, 0, 28433931887746854644959150080, 0, 28433938666925301733219368960, 0, 109790718660076729008497098752, 0, 0, 407845159668237010866819563520, 0, 109767607832008050696995733504, 0, 0, 0, 0, 892825461275251235851717312512, 0, 892825674141454474423088185344, 0, 16905618661490974379091165184, 28433931887746854644959150080, 0, 28433938666925301733219368960, 0, 16460733959872790842799292416, 106740976475074597647149957120, 0, 0, 396516127455230427231630131200, 0, 106718507614452271510968074240, 0, 0, 0, 0, 870078315765053752135749992448, 0, 870078523207914233036512690176, 0, 16460733959872790842799292416, 909885820407899348638692802560, 0, 909886037341609655463019806720, 0, 517400907981947452707448029184, 16460733959872790842799292416, 43347408481130732772126621696, 76090052292440843983257600, 43347422783152396717548109824, 76090052292440843983257600, 22127814580006991451140390912, 21354465677672809742009892864, 0, 0, 0, 0, 0, 0, 0, 0] }
+
+/-- The named bounded checker validates endpoints, width, length, and every dense value. -/
+theorem check_eq_true : raw.check partialRows = true := by
+  unfold BetaFourRoutedContribution.RawDenseBand.check
+    BetaFourRoutedContribution.RawDenseBand.IsValid raw partialRows
+  decide +kernel
+
+/-- Semantic band certificate obtained only through reflected checker soundness. -/
+def certificate : BetaFourRoutedContribution.DenseBandCertificate partialRows :=
+  raw.toCertificate partialRows check_eq_true
+
+end Band7
+
+end MatrixMultiplication.Generated.TotalQuotientExponentLevelFourAnalytic.Region1.Branch1.Chunk7.Parent1

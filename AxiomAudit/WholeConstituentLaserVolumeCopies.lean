@@ -1,0 +1,7 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.WholeConstituentLaserVolumeCopies
+
+/-! Focused trust audit for packaging finitely many identical intact constituents. -/
+
+#assert_axioms AlgebraicComplexity.WholeConstituentLaserVolumeStage.ofIndexedCopies
+#assert_axioms AlgebraicComplexity.WholeConstituentLaserVolumeStage.ofMatrixMultiplicationDirectSum

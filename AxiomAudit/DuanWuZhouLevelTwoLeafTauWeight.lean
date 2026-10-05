@@ -1,0 +1,34 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoLeafTauWeight
+
+set_option autoImplicit false
+
+/-! # Axiom audit for the `[DuanWuZhou2022]` level-two `(1,1,2)` leaf weight -/
+
+#assert_axioms AlgebraicComplexity.Examples.dwz112Mass_eq
+#assert_axioms AlgebraicComplexity.Examples.dwz112Stride_eq
+#assert_axioms AlgebraicComplexity.Examples.dwz63LogVal_112_atom_coefficients
+#assert_axioms AlgebraicComplexity.Examples.dwzCw112SymmetricLimitLowerTerm_pos
+#assert_axioms AlgebraicComplexity.Examples.dwz_log_cw112SymmetricMarginalEntropyBase
+#assert_axioms AlgebraicComplexity.Examples.dwz_log_cw112SymmetricDimensionVolume
+#assert_axioms AlgebraicComplexity.Examples.dwz_log_cw112SymmetricLimitLowerTerm
+#assert_axioms AlgebraicComplexity.Examples.dwz112InnerCopyBase_pos
+#assert_axioms AlgebraicComplexity.Examples.dwz112InnerCopyBase_lt
+#assert_axioms AlgebraicComplexity.Examples.log_dwz112InnerEntropyBase
+#assert_axioms AlgebraicComplexity.Examples.log_dwz112InnerCopyBase
+#assert_axioms AlgebraicComplexity.Examples.log_dwz112InnerDimensionVolume
+#assert_axioms AlgebraicComplexity.Examples.dwz112LeafTerm_pos
+#assert_axioms AlgebraicComplexity.Examples.scaled_log_dwz112LeafTerm
+#assert_axioms AlgebraicComplexity.Examples.log_dwz112LeafTerm_eq
+#assert_axioms AlgebraicComplexity.Examples.dwz112LogValue_sub_le_log_dwz112LeafTerm
+#assert_axioms AlgebraicComplexity.Examples.dwz112_exp_le_leafTerm
+#assert_axioms AlgebraicComplexity.Examples.exists_eventually_dwz112LeafHasTauWeight
+#assert_axioms AlgebraicComplexity.Examples.restricts_symThree_of_restricts
+#assert_axioms AlgebraicComplexity.Examples.exists_eventually_dwz112ConstituentHasTauWeight
+#assert_axioms AlgebraicComplexity.Examples.exists_eventually_dwz112LeafHasTauWeight_exp

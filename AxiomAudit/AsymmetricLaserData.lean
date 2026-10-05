@@ -1,0 +1,59 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.AsymmetricLaserData
+
+/-!
+# Audit of finite asymmetric-laser profile data
+
+This companion checks the finite law/profile and labelled-occurrence declarations for
+[duan2023faster], `prelim.tex:294-309,342-366` and `component_value.tex:205-225`.
+No native construction, semantic extraction check or exponent bound is asserted.
+-/
+
+set_option autoImplicit false
+
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.FiniteLaw
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.FiniteLaw.mk
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.FiniteLaw.denominator
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.FiniteLaw.counts
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.FiniteLaw.Valid
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.FiniteLaw.profile
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.FiniteLaw.profileMass_profile
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.FiniteLaw.toRational
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.FiniteLaw.toRational_isProbability
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ProfileView
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ProfileView.unrestricted
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ProfileView.orderedSplit
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ProfileView.completeWord
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.LegProfile
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.LegProfile.mk
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.LegProfile.physicalLeg
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.LegProfile.alphabet
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.LegProfile.law
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.LegProfile.Valid
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.LegProfile.countAt
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.LegProfile.countAt_eq_zero_of_not_mem
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.orderedSplitAlphabet
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.LegProfile.IsOrderedSplitFor
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ProfileDescriptor
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ProfileDescriptor.mk
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ProfileDescriptor.view
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ProfileDescriptor.legs
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ProfileDescriptor.Valid
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ChildRef
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ChildRef.mk
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ChildRef.nodeId
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ChildRef.physicalLegs
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.ChildRef.ValidBefore
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.SplitChildren
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.SplitChildren.mk
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.SplitChildren.left
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.SplitChildren.right
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.SplitChildren.ValidBefore
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.SplitChildren.occurrenceCount
+#assert_axioms AlgebraicComplexity.AsymmetricLaserData.SplitChildren.occurrenceCount_self

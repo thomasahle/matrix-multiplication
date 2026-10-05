@@ -1,0 +1,59 @@
+# Quarantined generated artifacts: the eab2c7 retained-exponent payload, whose 8.200434 comes from
+# the ARCHIVED (uncorrected) evaluator complement table and is 8.160594 — below the 8.2 floor —
+# under the corrected one, so it was refuted for endpoint use on 2026-08-28 (commit 8a8e110).
+#
+# Every module below is kernel-true *as a statement about its emitted arrays*.  What is forbidden is
+# using any of it to instantiate an `hsemantic` obligation or a retained-exponent endpoint: the
+# arithmetic is sound, the provenance is not.  Each module carries the same PROVENANCE QUARANTINE
+# block in its module docstring, and `scripts/check_artifact_provenance.sh` fails when a tracked
+# module outside this list imports one of them without being on that script's may-only-shrink
+# grandfathered-consumer allowlist.
+#
+# The list may only shrink, and only by deleting the artifact: these modules are the repository's
+# only record of the archived-table run, so deletion is deferred until the sound total-weight
+# (e7987) track is green (ROUTING VERDICT 2026-08-28, Q4 tier 3).
+#
+# Byte-for-byte reproduction of the emitted payload stays possible: the provenance block is a
+# contiguous insertion that
+#
+#   perl -0777 -pe 's{\n/-! \*\*PROVENANCE QUARANTINE.*?\n-/\n}{}s' FILE
+#
+# removes exactly, restoring the exporter's original bytes (verified on all 82 files).
+
+MatrixMultiplication.Generated.SimplifiedExponentCoarseFloors
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeActiveNodes
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeActiveNodesRegion0
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeActiveNodesRegion1
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeActiveNodesRegion2
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeActiveNodesRegion3
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeActiveNodesRegion4
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeActiveNodesRegion5
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeOrientation
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeWeights
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeWeightsRegion0
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeWeightsRegion1
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeWeightsRegion2
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeWeightsRegion3
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeWeightsRegion4
+MatrixMultiplication.Generated.SimplifiedExponentLevelThreeWeightsRegion5
+MatrixMultiplication.Generated.SimplifiedExponentRoot0X
+MatrixMultiplication.Generated.SimplifiedExponentRoot0Y
+MatrixMultiplication.Generated.SimplifiedExponentRoot0Z
+MatrixMultiplication.Generated.SimplifiedExponentRoot1X
+MatrixMultiplication.Generated.SimplifiedExponentRoot1Y
+MatrixMultiplication.Generated.SimplifiedExponentRoot1Z
+MatrixMultiplication.Generated.SimplifiedExponentRoot2X
+MatrixMultiplication.Generated.SimplifiedExponentRoot2Y
+MatrixMultiplication.Generated.SimplifiedExponentRoot2Z
+MatrixMultiplication.Generated.SimplifiedExponentRoot3X
+MatrixMultiplication.Generated.SimplifiedExponentRoot3Y
+MatrixMultiplication.Generated.SimplifiedExponentRoot3Z
+MatrixMultiplication.Generated.SimplifiedExponentRoot4X
+MatrixMultiplication.Generated.SimplifiedExponentRoot4Y
+MatrixMultiplication.Generated.SimplifiedExponentRoot4Z
+MatrixMultiplication.Generated.SimplifiedExponentRoot5X
+MatrixMultiplication.Generated.SimplifiedExponentRoot5Y
+MatrixMultiplication.Generated.SimplifiedExponentRoot5Z
+MatrixMultiplication.Generated.SimplifiedExponentScalarData
+MatrixMultiplication.Generated.SimplifiedExponentScalarNegativeData0
+MatrixMultiplication.Generated.SimplifiedExponentScalarPositiveData0

@@ -1,0 +1,26 @@
+import AlgebraicComplexity.MatrixMultiplication.ExactInterfaceRegionalFamily
+import AxiomAudit.Command
+
+open AlgebraicComplexity
+
+/-! Focused trust audit for `AlgebraicComplexity.MatrixMultiplication.ExactInterfaceRegionalFamily`:
+the finite regional datum whose leaves share one constituent index -- the leaf and family terms
+with their multiplicity, index and split laws, the binary branch division with its two child
+terms, the fold into `ExactInterfaceTermDivisionTree`, and the six-region parenthesization. -/
+
+#assert_axioms ExactInterfaceRegionalLeaf.toTerm
+#assert_axioms ExactInterfaceRegionalLeaf.toTerm_multiplicity
+#assert_axioms ExactInterfaceRegionalLeaf.toTerm_index
+#assert_axioms ExactInterfaceRegionalLeaf.toTerm_split
+#assert_axioms ExactInterfaceRegionalFamily.multiplicity
+#assert_axioms ExactInterfaceRegionalFamily.split
+#assert_axioms ExactInterfaceRegionalFamily.toTerm
+#assert_axioms ExactInterfaceRegionalFamily.toTerm_multiplicity
+#assert_axioms ExactInterfaceRegionalFamily.toTerm_index
+#assert_axioms ExactInterfaceRegionalFamily.toTerm_split
+#assert_axioms ExactInterfaceRegionalFamily.branchDivision
+#assert_axioms ExactInterfaceRegionalFamily.branchDivision_leftTerm
+#assert_axioms ExactInterfaceRegionalFamily.branchDivision_rightTerm
+#assert_axioms ExactInterfaceRegionalFamily.toDivisionTree
+#assert_axioms ExactInterfaceRegionalFamily.six
+#assert_axioms ExactInterfaceRegionalFamily.six_multiplicity

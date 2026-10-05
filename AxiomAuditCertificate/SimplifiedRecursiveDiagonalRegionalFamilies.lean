@@ -1,0 +1,18 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.SimplifiedRecursiveDiagonalRegionalFamilies
+
+/-!
+# Axiom audit for diagonal level-four semantic regional families
+-/
+
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveDiagonalRegionalFamilies.levelFourDiagonalSemanticRegionalLeaf
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveDiagonalRegionalFamilies.levelFourDiagonalSemanticRegionalLeaf_toTerm
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveDiagonalRegionalFamilies.levelFourDiagonalSemanticRegionalFamily
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveDiagonalRegionalFamilies.levelFourDiagonalSemanticDivisionTree
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveDiagonalRegionalFamilies.levelFourDiagonalSemanticRegionalFamily_multiplicity

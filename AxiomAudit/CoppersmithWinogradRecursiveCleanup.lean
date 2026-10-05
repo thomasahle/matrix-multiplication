@@ -1,0 +1,38 @@
+import AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveCleanup
+import AxiomAudit.Command
+
+open AlgebraicComplexity AlgebraicComplexity.Examples
+
+/-! Focused trust audit for `AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveCleanup`: the
+semantic adapter that runs compatibility cleanup on fine parent labels grouped by their
+labelled-child hash word -- readability of the hash group on an isolated leg, the pooled-all
+first zero-outs as genuine one-leg variable restrictions, soundness of the oriented Y and Z
+compatibility predicates on every selected recursive CW parent term, and the grouped cleanup
+support with its exact-match characterization. -/
+
+#assert_axioms cwRecursiveChildGroup
+#assert_axioms cwRecursiveChildGroup_apply
+#assert_axioms cwRecursiveFineSupportOverCoarseSupport
+#assert_axioms mem_cwRecursiveFineSupportOverCoarseSupport
+#assert_axioms cwRecursiveFineSupportOverCoarseSupport_hasGroupUniqueLegFibers
+#assert_axioms cwRecursiveChildCompatibilityModel_coarse_get_eq_group
+#assert_axioms cwRecursiveChildCompatibilityModel_hasCoarseWeights
+#assert_axioms cwRecursiveMatchesExact_isGroupLabelStable
+#assert_axioms CWRecursivePooledAllLabelMatches
+#assert_axioms cwRecursive_matchesYPooledAll_iff_labelMatches
+#assert_axioms cwRecursive_matchesZPooledAll_iff_labelMatches
+#assert_axioms cwRecursivePooledYFirstZeroOut
+#assert_axioms cwRecursivePooledZFirstZeroOut
+#assert_axioms mem_cwRecursivePooledYFirstZeroOut_support
+#assert_axioms mem_cwRecursivePooledZFirstZeroOut_support
+#assert_axioms cwRecursivePooledYFirstZeroOut_restricts
+#assert_axioms cwRecursivePooledZFirstZeroOut_restricts
+#assert_axioms CWRecursivePooledAllYProfileMatches
+#assert_axioms CWRecursivePooledAllZProfileMatches
+#assert_axioms cwRecursiveChildCompatibilityModel_passesYPooledAllZeroOut
+#assert_axioms cwRecursiveChildCompatibilityModel_passesZPooledAllZeroOut
+#assert_axioms cwRecursiveSelectedTerm_orientedYCompatibility_sound
+#assert_axioms cwRecursiveSelectedTerm_orientedZCompatibility_sound
+#assert_axioms cwRecursiveOrientedGroupedCleanupFinalSupport
+#assert_axioms mem_cwRecursiveOrientedGroupedCleanupFinalSupport_matchesExact
+#assert_axioms cwRecursiveSelectedTerm_orientedGroupedCleanup_withCoarseGroup

@@ -1,0 +1,23 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.BetaFourDenseReflection
+
+/-!
+# Enforcing audit for reflected beta-four dense-band inputs
+
+These assertions cover the two soundness boundaries used by generated dense-band clients: raw
+bounded-value validation and consecutive endpoint-layout validation.
+-/
+
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.BetaFourRoutedContribution.RawDenseBand.toCertificate
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.BetaFourRoutedContribution.RawDenseBand.toCertificate_lower
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.BetaFourRoutedContribution.RawDenseBand.toCertificate_upper
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.BetaFourRoutedContribution.RawDenseBand.toCertificate_values
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.BetaFourRoutedContribution.RawDenseBand.width_le
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.BetaFourRoutedContribution.RawDenseBand.values_length
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.BetaFourRoutedContribution.DenseBandCover.of_layoutCheck_eq_true

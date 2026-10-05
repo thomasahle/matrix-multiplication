@@ -1,0 +1,110 @@
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeData
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape0
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape1
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape2
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape3
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape4
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape5
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape6
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape7
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape8
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape9
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape10
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape11
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape12
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape13
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape14
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape15
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape16
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape17
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape18
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape19
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape20
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape21
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape22
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape23
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape24
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape25
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape26
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape27
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape28
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape29
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape30
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape31
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape32
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape33
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape34
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape35
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape36
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape37
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape38
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape39
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape40
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape41
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape42
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape43
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeShape44
+import MatrixMultiplication.TotalQuotientVolumeReconstructionBase
+import MatrixMultiplication.TotalQuotientCompleteSplitRecurrence
+
+/-! Complete exact global beta-three cache; certificate `e7987d7fa66008d497e31c976c68f025d57664a145336d358328375cc5738ca3`. -/
+
+namespace MatrixMultiplication.Generated.TotalQuotientExponentLevelFourRecurrence.BetaThree
+
+open MatrixMultiplication.SimplifiedExponentLevelFourRecurrence
+open MatrixMultiplication.SimplifiedVolumeReconstruction
+open MatrixMultiplication.Generated.TotalQuotientPrimary
+
+/-- The cached rows are exactly the complete-split recurrence from the primary tables. -/
+theorem recurrence_eq :
+    reconstructedBetaThreeRowsFor MatrixMultiplication.TotalQuotientCompleteSplitRecurrence.totalWeightSupportSlot MatrixMultiplication.TotalQuotientVolumeReconstruction.primaryTables = expectedRows := by
+  unfold reconstructedBetaThreeRowsFor
+  simp only [List.range_succ, List.flatMap_append, List.flatMap_singleton]
+  rw [Shape0.recurrence_eq,
+    Shape1.recurrence_eq,
+    Shape2.recurrence_eq,
+    Shape3.recurrence_eq,
+    Shape4.recurrence_eq,
+    Shape5.recurrence_eq,
+    Shape6.recurrence_eq,
+    Shape7.recurrence_eq,
+    Shape8.recurrence_eq,
+    Shape9.recurrence_eq,
+    Shape10.recurrence_eq,
+    Shape11.recurrence_eq,
+    Shape12.recurrence_eq,
+    Shape13.recurrence_eq,
+    Shape14.recurrence_eq,
+    Shape15.recurrence_eq,
+    Shape16.recurrence_eq,
+    Shape17.recurrence_eq,
+    Shape18.recurrence_eq,
+    Shape19.recurrence_eq,
+    Shape20.recurrence_eq,
+    Shape21.recurrence_eq,
+    Shape22.recurrence_eq,
+    Shape23.recurrence_eq,
+    Shape24.recurrence_eq,
+    Shape25.recurrence_eq,
+    Shape26.recurrence_eq,
+    Shape27.recurrence_eq,
+    Shape28.recurrence_eq,
+    Shape29.recurrence_eq,
+    Shape30.recurrence_eq,
+    Shape31.recurrence_eq,
+    Shape32.recurrence_eq,
+    Shape33.recurrence_eq,
+    Shape34.recurrence_eq,
+    Shape35.recurrence_eq,
+    Shape36.recurrence_eq,
+    Shape37.recurrence_eq,
+    Shape38.recurrence_eq,
+    Shape39.recurrence_eq,
+    Shape40.recurrence_eq,
+    Shape41.recurrence_eq,
+    Shape42.recurrence_eq,
+    Shape43.recurrence_eq,
+    Shape44.recurrence_eq]
+  rfl
+
+end MatrixMultiplication.Generated.TotalQuotientExponentLevelFourRecurrence.BetaThree

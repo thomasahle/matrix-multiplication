@@ -1,0 +1,16 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.RationalTypedLeafRelation
+
+/-!
+# Axiom audit for relation-parametric typed-leaf extraction
+
+The relation layer must remain a theorem-producing adapter: it may consume exact restrictions,
+zeroing relations, or polynomial-degeneration certificates, but it must not introduce trusted
+axioms of its own.
+-/
+
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.TypedLeafExtractionCertificate.of_restriction
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.TypedLeafExtractionCertificate.of_polynomialDegenerates
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.positivePower_constituent_matrixMultiplication_proportional_of_polynomialDegenerates
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.localizedAmbient_degenerates_markedLeafDirectSum_of_certificate
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.localizedAmbient_degenerates_markedLeafDirectSum_of_restriction

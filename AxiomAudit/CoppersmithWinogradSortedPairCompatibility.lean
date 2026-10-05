@@ -1,0 +1,29 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradSortedPairCompatibility
+
+/-!
+# Focused axiom audit for sorted-pair compatibility and repair
+
+This narrow target checks the generic feature-alphabet compatibility layer, the support-level
+Coppersmith--Winograd boundary identities, and the exact quotient-label cleanup and eight-way
+repair theorems.
+-/
+
+#assert_axioms AlgebraicComplexity.MoreAsymmetryCompatibility.cellMultiplicity_equiv_on_cell
+#assert_axioms AlgebraicComplexity.MoreAsymmetryCompatibility.FeatureCompatibilityModel.featureCompatibleY_of_passesFirstZeroOut
+#assert_axioms AlgebraicComplexity.MoreAsymmetryCompatibility.FeatureCompatibilityModel.featureCompatibleZ_of_passesFirstZeroOut
+#assert_axioms AlgebraicComplexity.MoreAsymmetryCompatibility.Tensor.Restricts.partitionedFeatureYZCompatibilityCleanup_to_indexedDirectSum
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairSplitWord_complement
+#assert_axioms AlgebraicComplexity.Examples.mappedType_equivariant
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairCoarsenedChunkSupport_yBoundary
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairCoarsenedChunkSupport_zBoundaryOfX
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairCoarsenedChunkSupport_zBoundaryOfY
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairFeatureCompatibilityModel_boundaryRelations_of_mem_support
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairFeatureYZCompatibilityCleanup_to_indexedDirectSum
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairPositivePower_indexedDirectSum_splitBoxes_to_box

@@ -1,0 +1,35 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoPlainLeafValue
+
+set_option autoImplicit false
+
+/-! # Axiom audit for the plain-partition uniform leaf value -/
+
+#assert_axioms AlgebraicComplexity.hasTauWeight_symSix_wordTensor
+#assert_axioms AlgebraicComplexity.Tensor.Isomorphic.positiveSupportWordTensor_peel3_full
+#assert_axioms AlgebraicComplexity.Tensor.Isomorphic.symSix_peel3_blocks
+#assert_axioms AlgebraicComplexity.Examples.dwz63_isomorphic_symThree_orbitCell
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_power_symSix_orbitCell
+#assert_axioms AlgebraicComplexity.Examples.dwz63SymSixCellValue_nonneg
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_symSix_cell
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_symSix_plainLeaf
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_symSix_uniformLeafSum
+#assert_axioms AlgebraicComplexity.Examples.dwz63_atom_three_le
+#assert_axioms AlgebraicComplexity.Examples.dwz63_logVal112_add_le_logVal121
+#assert_axioms AlgebraicComplexity.Examples.dwz63CellAddress_eq_dwz63Cell
+#assert_axioms AlgebraicComplexity.Examples.dwz63Cell_eq_dwz63Component
+#assert_axioms AlgebraicComplexity.Examples.dwz63AlphaAddress_dwz63Cell
+#assert_axioms AlgebraicComplexity.Examples.dwz63ValOf_dwz63Cell
+#assert_axioms AlgebraicComplexity.Examples.dwz63Cell_mem_orbit_iff
+#assert_axioms AlgebraicComplexity.Examples.dwz63_bulkWeight_eq
+#assert_axioms AlgebraicComplexity.Examples.dwz63_filter_orbitIndices
+#assert_axioms AlgebraicComplexity.Examples.dwz63_orbitFactor_le
+#assert_axioms AlgebraicComplexity.Examples.dwz63_expLogVal_pow_eq_cellProd
+#assert_axioms AlgebraicComplexity.Examples.dwz63_expLogVal_le_plainWeight
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_symSix_plainLeaf_logVal

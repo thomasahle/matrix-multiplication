@@ -1,0 +1,18 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.CoarsenedRationalTypedLeaf
+
+/-! Focused trust audit for the mapped coarse leaf in restrict-then-compose form: the coarse
+constituent of a pushed-forward type restricts to whatever the fine blocks of that type restrict
+to, with no letterwise hypothesis on the base constituents.  The letterwise theorems are audited
+as the corollaries they now are. -/
+
+#assert_axioms AlgebraicComplexity.Tensor.Restricts.coarsenedPositivePower_constituent_of_fineWord
+#assert_axioms AlgebraicComplexity.Tensor.Restricts.coarsenedPositivePower_constituent_of_mappedType
+#assert_axioms
+  AlgebraicComplexity.Tensor.Restricts.indexedDirectSum_coarsenedPositivePower_constituent_of_mappedType
+#assert_axioms
+  AlgebraicComplexity.Tensor.RationalTypedLeaf.coarsenedPositivePower_constituent_matrixMultiplication_of_mappedType_of_fineDegeneration
+#assert_axioms
+  AlgebraicComplexity.Tensor.RationalTypedLeaf.coarsenedPositivePower_constituent_matrixMultiplication_of_mappedType
+#assert_axioms
+  AlgebraicComplexity.Tensor.RationalTypedLeaf.indexedDirectSum_coarsenedPositivePower_constituent_matrixMultiplication_of_mappedType

@@ -1,0 +1,33 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.SimplifiedExponentRecurrenceGrouping
+
+/-!
+# Certificate axiom audit for level-two sufficient-statistic grouping
+
+These declarations justify replacing a long generated edge list by occurrence totals indexed by
+`(muNumerator, heavyCoordinate)`, including the independent-chunk fallback used when one closed
+reduction is too large.  The audit ensures that neither the generic grouping law nor its semantic
+branch-rate bridges acquire a compiler-trusting or project-specific axiom.
+-/
+
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.EdgeInput.key
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.EdgeInput.combine
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.inputRate_zero_occurrence
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.inputRate_combine_of_key_eq
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.insertInputByKey
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.inputBranchRate_insertInputByKey
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.groupInputs
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.inputBranchRate_groupInputs
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.inputBranchForm_groupInputs_eval
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.inputBranchRate_append
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.inputBranchRate_flatten_map_groupInputs
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.inputBranchRate_groupedChunks
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.activeBranchRateWithMassThree_eq_grouped
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.activeBranchRateWithMassThree_eq_groupedChunkFamily
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.activeBranchRateWithMassThree_eq_groupedChunks

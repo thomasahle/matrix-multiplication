@@ -1,0 +1,16 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradTightQuotientCore
+
+/-! Focused trust audit for the physical depth-one CW tight-quotient decoder. -/
+
+open AlgebraicComplexity.Examples
+
+#assert_axioms cwRawSplitAddress_injective
+#assert_axioms card_cwRawSplitSupport
+#assert_axioms cwChunkPartitionedTensor_support_image_splitWord
+#assert_axioms cwRawSplitSupport_digit_sum
+#assert_axioms cwRawSplitSupport_weight_sum
+#assert_axioms cwTotalWeightSplitSupport_isTight
+#assert_axioms cwBlockDigit_cwTightBlockOfSplitDigit
+#assert_axioms cwSplitPair_eta
+#assert_axioms cwDepthOneQuotientSupport_isTight_iff_fibers_linear

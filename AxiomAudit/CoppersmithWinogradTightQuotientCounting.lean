@@ -1,0 +1,28 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AlgebraicComplexity.Examples.CoppersmithWinogradTightQuotientCounting
+import AxiomAudit.Command
+
+/-!
+# Axiom audit for tight total-weight quotient counting
+
+Checks every public theorem in the counting module against the repository's permitted axiom set.
+-/
+
+#assert_axioms AlgebraicComplexity.Examples.cwTightQuotientKind_partition_injective
+#assert_axioms AlgebraicComplexity.Examples.CWTightSamePartition.eq_kind_partition
+#assert_axioms AlgebraicComplexity.Examples.fintypeCard_cwTightQuotientKind
+#assert_axioms AlgebraicComplexity.Examples.fintypeCard_cwTightSamePartition
+#assert_axioms AlgebraicComplexity.Examples.fintypeCard_cwDepthOneFinpartition
+#assert_axioms AlgebraicComplexity.Examples.mem_cwDepthOneTotalFiber
+#assert_axioms AlgebraicComplexity.Examples.fintypeCard_cwTotalPreservingFinpartition
+#assert_axioms AlgebraicComplexity.Examples.fintypeCard_cwTotalPreservingLegwiseFinpartition
+#assert_axioms AlgebraicComplexity.Examples.cwTightQuotientKind_sum_totalPreserving
+#assert_axioms AlgebraicComplexity.Examples.cwTightQuotientKind_discrete_totalPreserving
+#assert_axioms AlgebraicComplexity.Examples.cwTightQuotientKind_eq_sum_or_discrete_of_totalPreserving
+#assert_axioms AlgebraicComplexity.Examples.cwTotalPreservingLegwiseQuotientSupport_isTight_iff
+#assert_axioms AlgebraicComplexity.Examples.fintypeCard_cwTightTotalPreservingLegwiseFinpartition

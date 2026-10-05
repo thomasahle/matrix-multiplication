@@ -1,0 +1,32 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoPlainMarkedBranch
+
+set_option autoImplicit false
+
+/-! # Axiom audit for `hbranch` at the plain partition -/
+
+#assert_axioms AlgebraicComplexity.Examples.dwz63_subexponential_comp_of_le_self
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainMarginalWords_nonempty
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainLegCount_le_card_dwz63PlainMarginalWords
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainLegCount_mul_plainSharpDegree_le
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainLegCount_mul_retentionLoss_le
+#assert_axioms AlgebraicComplexity.Examples.card_dwz63PlainMarginalWords_le
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainSharpDegree_le
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainMarkedDegree
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainMarkedDegree_le
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainMarkedLossHash
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainMarkedLossHash_pos
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainMarkedLossHash_nonneg
+#assert_axioms AlgebraicComplexity.Examples.subexponential_dwz63PlainMarkedLossHash
+#assert_axioms AlgebraicComplexity.Examples.dwz63HashingBranch_le_exp_entropyX
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainHashingBranch_pow_le
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainBranch_pow_mul_retentionLoss_le
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainHashBranch_arith
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainHashBranch
+#assert_axioms AlgebraicComplexity.Examples.exists_behrend_dwz63_plainHashBranch

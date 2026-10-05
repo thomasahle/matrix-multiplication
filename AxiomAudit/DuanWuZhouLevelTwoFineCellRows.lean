@@ -1,0 +1,41 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoFineCellRows
+
+/-! # Axiom audit for the nine off-split zero-coordinate rows
+
+The coarse-degree fact for each of the nine cells whose zero coordinate lies off the split leg, the
+entropy and one-slice exponent of the four remaining distinct split rows, their rate bridges
+against the committed `dwz63LogVal013` / `dwz63LogVal004`, and the three row repetitions. -/
+
+set_option autoImplicit false
+
+#assert_axioms AlgebraicComplexity.Examples.dwz63_alphaTildeDegree_zero
+#assert_axioms AlgebraicComplexity.Examples.dwz63_alphaTildeDegree_one
+#assert_axioms AlgebraicComplexity.Examples.dwz63_alphaTildeDegree_two
+#assert_axioms AlgebraicComplexity.Examples.dwz63_alphaTildeDegree_three
+#assert_axioms AlgebraicComplexity.Examples.dwz63_alphaTildeDegree_four
+#assert_axioms AlgebraicComplexity.Examples.dwz63_alphaTildeDegree_five
+#assert_axioms AlgebraicComplexity.Examples.dwz63_alphaTildeDegree_nine
+#assert_axioms AlgebraicComplexity.Examples.dwz63_alphaTildeDegree_twelve
+#assert_axioms AlgebraicComplexity.Examples.dwz63_alphaTildeDegree_fourteen
+#assert_axioms AlgebraicComplexity.Examples.dwz63_middleCountSum_alphaTilde_zero
+#assert_axioms AlgebraicComplexity.Examples.dwz63_profileEntropyNats_alphaTilde_zero
+#assert_axioms AlgebraicComplexity.Examples.dwz63_tau_mul_rate_eq_alphaTilde_zero
+#assert_axioms AlgebraicComplexity.Examples.dwz63_middleCountSum_alphaTilde_one
+#assert_axioms AlgebraicComplexity.Examples.dwz63_profileEntropyNats_alphaTilde_one
+#assert_axioms AlgebraicComplexity.Examples.dwz63_tau_mul_rate_eq_alphaTilde_one
+#assert_axioms AlgebraicComplexity.Examples.dwz63_middleCountSum_alphaTilde_three
+#assert_axioms AlgebraicComplexity.Examples.dwz63_profileEntropyNats_alphaTilde_three
+#assert_axioms AlgebraicComplexity.Examples.dwz63_tau_mul_rate_eq_alphaTilde_three
+#assert_axioms AlgebraicComplexity.Examples.dwz63_middleCountSum_alphaTilde_four
+#assert_axioms AlgebraicComplexity.Examples.dwz63_profileEntropyNats_alphaTilde_four
+#assert_axioms AlgebraicComplexity.Examples.dwz63_tau_mul_rate_eq_alphaTilde_four
+#assert_axioms AlgebraicComplexity.Examples.dwz63AlphaTilde_one_eq_five
+#assert_axioms AlgebraicComplexity.Examples.dwz63AlphaTilde_three_eq_twelve
+#assert_axioms AlgebraicComplexity.Examples.dwz63AlphaTilde_four_eq_fourteen

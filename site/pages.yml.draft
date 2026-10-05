@@ -1,0 +1,61 @@
+# DRAFT — GitHub Pages deploy workflow for the omega-leaderboard site.
+#
+# This file is a draft only; to deploy, copy it to `.github/workflows/pages.yml`.
+# One-time repo setting at land time: Settings -> Pages -> Source: "GitHub Actions".
+#
+# Design notes:
+#   * Nothing generated is ever committed: the site builds from Frontier.lean,
+#     site/frontier.json, site/history.json, and notes/ on every push to main.
+#   * The extraction check runs FIRST and fails loudly if site/frontier.json has
+#     drifted from Frontier.lean — the site can never silently disagree with the
+#     Lean source of truth. Consider also adding that one-line check to ci.yml's
+#     static gates so record PRs catch it before merge:
+#         python3 site/extract_frontier.py --check
+#   * stdlib Python only; no pip, no Node, no LaTeX on the runner. Record notes are
+#     linked as note.tex sources on GitHub until the maintainers decide
+#     on committing note.pdf files is resolved (generate.py links a PDF automatically
+#     if notes/<slug>/note.pdf exists).
+
+name: Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "Frontier.lean"
+      - "notes/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check frontier extraction is fresh (fails loudly on drift)
+        run: python3 site/extract_frontier.py --check
+      - name: Generate site (validates all emitted HTML)
+        run: python3 site/generate.py --out site/_site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/_site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

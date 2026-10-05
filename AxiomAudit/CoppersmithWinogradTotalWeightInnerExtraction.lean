@@ -1,0 +1,9 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradTotalWeightInnerExtraction
+
+/-! Focused trust audit for the inner typed-leaf extraction in total-weight quotient fibers. -/
+
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightLocalizedFineTypes_restricts_markedLeafDirectSum
+#assert_axioms AlgebraicComplexity.Examples.exists_seed_many_cwTotalWeightLocalizedMarkedLeafDirectSum
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightNestedLaserVolumeStage_of_canonicalInner
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightNestedLaserVolumeStage_of_fixedCoarseType

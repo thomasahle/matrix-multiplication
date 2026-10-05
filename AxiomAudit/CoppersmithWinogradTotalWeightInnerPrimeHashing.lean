@@ -1,0 +1,11 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradTotalWeightInnerPrimeHashing
+
+/-! Focused trust audit for the canonical prime-field total-weight inner extraction. -/
+
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeight_sourceWordLegFiber_card_le_innerMaximum
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeight_card_innerTarget_legFiber_le
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeight_card_innerTarget_legwiseCompetitors_le
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeight_innerQuarterBudget_of_fieldCard
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightInnerPrimeField_quarterBudget
+#assert_axioms AlgebraicComplexity.Examples.exists_seed_many_cwTotalWeightInnerPrimeMarkedLeafDirectSum

@@ -1,0 +1,43 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.SimplifiedExponentRecurrenceRateEquivalence
+
+/-!
+# Certificate axiom audit for level-two key-mass equivalence
+
+These declarations let compact level-two certificates compose bounded grouping checks through an
+order-independent sufficient statistic.  This audit covers the finite key-mass representation,
+its equivalence and append/grouping laws, and its exact occurrence-total and retained-rate
+semantics.
+-/
+
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMass
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.keyMass
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.heavyZeroBand
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.heavyOneBand
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.heavyResidualBand
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.keyMass_insertInputByKey
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.keyMass_groupInputs
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.keyMass_append
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent.refl
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent.symm
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent.trans
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent.of_perm
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent.append
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent.groupInputs_self
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent.groupInputs_congr
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent.of_groupInputs_eq
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent.heavyBands
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent.mergeHeavyBands
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.keyMassOccurrenceTotal
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.keyMassOccurrenceTotal_keyMass
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent.occurrenceTotal_eq
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.keyMassBranchRate
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.keyMassBranchRate_keyMass
+#assert_axioms MatrixMultiplication.SimplifiedExponentRecurrence.Chunked.KeyMassEquivalent.inputBranchRate_eq

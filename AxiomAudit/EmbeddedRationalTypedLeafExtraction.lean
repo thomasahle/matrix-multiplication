@@ -1,0 +1,9 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.EmbeddedRationalTypedLeafExtraction
+
+/-! Focused trust audit for sparse-alphabet rational typed-leaf extraction. -/
+
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.embeddedWordDimension_eq_fin_prod
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.embeddedWordDimension_eq_prod_pow
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.positiveSupportWordTensor_matrixMultiplication_embedded
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.positivePower_constituent_matrixMultiplication_proportional_embedded

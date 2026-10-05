@@ -1,0 +1,17 @@
+import AlgebraicComplexity.Examples.CoppersmithWinogradTotalWeightPresentMarkedHashExtraction
+import AxiomAudit.Command
+
+open AlgebraicComplexity AlgebraicComplexity.Examples Tensor
+
+/-! Focused trust audit for
+`AlgebraicComplexity.Examples.CoppersmithWinogradTotalWeightPresentMarkedHashExtraction`: cyclic
+total-weight cleanup applied to the actually present marked hash family -- the present marked
+partition and its support, the restriction of the present modeled targets, and the two
+seed-existence theorems stated through the exact abstract = missing + present decomposition. -/
+
+#assert_axioms cwTotalWeightCyclePresentMarkedPartition
+#assert_axioms cwTotalWeightCyclePresentMarkedPartition_support
+#assert_axioms cwTotalWeightCyclePresentModeledTargets_restricts_marked
+#assert_axioms cwTotalWeightYZIsolatedSupport_cycle_presentMarkedXY_eq
+#assert_axioms exists_seed_many_cycle_presentMarkedXY_totalWeight_extraction
+#assert_axioms exists_seed_many_cycle_presentMarkedXY_totalWeight_extraction_of_modulus

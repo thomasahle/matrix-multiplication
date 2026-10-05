@@ -1,0 +1,23 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoPlainBatchedEndpointMarginVariant
+
+/-! # Axiom audit for the section 6.3 endpoint at the leaf-value margin -/
+
+set_option autoImplicit false
+
+#assert_axioms AlgebraicComplexity.Examples.dwz63RateDataMargin
+#assert_axioms AlgebraicComplexity.Examples.dwz63RateDataMargin_globalRate
+#assert_axioms AlgebraicComplexity.Examples.dwz63_rankBudget_lt_globalRateMargin_pow
+#assert_axioms AlgebraicComplexity.Examples.dwz63_globalRateMargin_lt_trueRateMargin
+#assert_axioms AlgebraicComplexity.Examples.omega_lt_2374631_of_dwzLevelTwoAssembledStageData
+#assert_axioms AlgebraicComplexity.Examples.dwzLevelTwoAssembledStage_of_countingStageAtData
+#assert_axioms AlgebraicComplexity.Examples.omega_lt_2374631_of_countingStageAtData
+#assert_axioms AlgebraicComplexity.Examples.omega_lt_2374631_of_dwz63CountingStageAtMargin
+#assert_axioms AlgebraicComplexity.Examples.omega_lt_2374631_of_plainSymSixStageMargin
+#assert_axioms AlgebraicComplexity.Examples.omega_lt_2374631_of_plainBatchedStageAndLeaf_margin

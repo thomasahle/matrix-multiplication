@@ -1,0 +1,21 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradTotalWeightCompatibilityHashing
+
+open AlgebraicComplexity AlgebraicComplexity.Examples
+
+/-! Focused trust audit for
+`AlgebraicComplexity.Examples.CoppersmithWinogradTotalWeightCompatibilityHashing`: the
+single-pass total-weight compatibility hashing specialization -- the shared-leg property of the
+isolated relation, the competitor-count bound, the isolated power-address family with its unique
+X/Y fibers and its Z-isolation against the filtered targets, and the seed-existence theorem. -/
+
+#assert_axioms cwTotalWeightHashRelation_sharesLeg
+#assert_axioms card_cwTotalWeightHashRelation_alternatives_le
+#assert_axioms card_cwTotalWeightHashIsolatedPowerAddresses
+#assert_axioms cwTotalWeightHashIsolatedTargets_subset_filteredTargets
+#assert_axioms cwTotalWeightHashIsolatedTargets_subset_relationIsolatedTargets
+#assert_axioms cwTotalWeightHashIsolatedPowerAddresses_subset_filteredPowerAddresses
+#assert_axioms cwTotalWeightHashIsolatedPowerAddresses_hasUniqueXYFibers
+#assert_axioms cwTotalWeightHashIsolatedPowerAddresses_zIsolatedAgainstFiltered
+#assert_axioms cwTotalWeightYZIsolatedSupport_hashIsolated_eq
+#assert_axioms exists_seed_many_cwTotalWeightHashIsolatedPowerAddresses

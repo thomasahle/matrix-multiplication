@@ -1,0 +1,12 @@
+# Modules whose quoted certificate or opened data namespace disagrees with the primary-table term
+# their proofs actually reference.
+#
+# Each entry is `<path>#<rule>` -- see scripts/check_certificate_table_wiring.sh for what the two
+# rules mean and why an `open` does not retarget a term defined in another module.
+#
+# The list is APPEND-BLOCKED and may only shrink.  A violation that is not listed here fails the
+# gate; an entry here that no longer violates is reported as a stale-entry notice, not a failure,
+# because shrinking the debt must never fail on the commit that shrank it.
+#
+# To retire an entry: re-export the module with the exporter's --primary-lean-family /
+# --primary-tables-term flags set to the family its header names, then delete its line.

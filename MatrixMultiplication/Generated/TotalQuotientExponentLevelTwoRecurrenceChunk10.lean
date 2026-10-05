@@ -1,0 +1,126 @@
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelTwoRecurrenceChunk9
+import MatrixMultiplication.SimplifiedExponentRecurrence
+
+/-! Exact level-two retained-rate recurrence chunk 10; certificate
+`e7987d7fa66008d497e31c976c68f025d57664a145336d358328375cc5738ca3`. -/
+
+namespace MatrixMultiplication.Generated.TotalQuotientExponentLevelTwoRecurrence.Chunk10
+
+open MatrixMultiplication.Generated.TotalQuotientPrimary
+open MatrixMultiplication.Generated.TotalQuotientExponentLevelTwoRecurrence
+open MatrixMultiplication.SignedDyadicLogForm
+open MatrixMultiplication.SimplifiedExponentRecurrence
+open MatrixMultiplication.SimplifiedExponentRecurrence.Chunked
+open MatrixMultiplication.SimplifiedVolumeReconstruction
+
+set_option maxRecDepth 1000000
+set_option maxHeartbeats 0
+set_option Elab.async false
+
+def expectedInputs : List EdgeInput :=
+  [
+    ⟨281075936, 63, 2⟩,
+    ⟨146238416, 68, 1⟩,
+    ⟨281075936, 82, 0⟩,
+    ⟨1088856, 213, 2⟩,
+    ⟨497568, 178, 1⟩,
+    ⟨1088856, 173, 0⟩,
+    ⟨1054856940, 67, 2⟩,
+    ⟨545927520, 82, 1⟩,
+    ⟨1054856940, 67, 0⟩,
+    ⟨683588, 224, 2⟩,
+    ⟨354432, 170, 1⟩,
+    ⟨683588, 217, 0⟩,
+    ⟨151847416, 100, 2⟩,
+    ⟨83054664, 41, 1⟩,
+    ⟨151847416, 78, 0⟩,
+    ⟨694664, 203, 2⟩,
+    ⟨343356, 171, 1⟩,
+    ⟨694664, 194, 0⟩,
+    ⟨685429571112, 55, 2⟩,
+    ⟨320487431440, 75, 1⟩,
+    ⟨685429571112, 78, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨1621328058584, 49, 2⟩,
+    ⟨755072147856, 87, 1⟩,
+    ⟨1621328058584, 75, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨406113886398, 77, 2⟩,
+    ⟨196182820740, 45, 1⟩,
+    ⟨406113886398, 78, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨0, 0, 2⟩,
+    ⟨0, 0, 1⟩,
+    ⟨0, 0, 0⟩,
+    ⟨640858680, 63, 2⟩,
+    ⟨334187040, 68, 1⟩,
+    ⟨640858680, 82, 0⟩,
+    ⟨1118480, 213, 2⟩,
+    ⟨513920, 178, 1⟩,
+    ⟨1118480, 173, 0⟩,
+    ⟨1664036000, 67, 2⟩,
+    ⟨861872000, 82, 1⟩,
+    ⟨1664036000, 67, 0⟩,
+    ⟨1082840, 224, 2⟩,
+    ⟨546480, 170, 1⟩,
+    ⟨1082840, 216, 0⟩,
+    ⟨1671780, 100, 2⟩,
+    ⟨828960, 41, 1⟩,
+    ⟨1671780, 79, 0⟩,
+    ⟨1106160, 203, 2⟩,
+    ⟨523600, 171, 1⟩,
+    ⟨1106160, 194, 0⟩
+  ]
+
+opaque inputs_eq :
+    edgeInputRangeWithMassThree MatrixMultiplication.TotalQuotientVolumeReconstruction.primaryTables MassThree.expectedNumerators
+        MassThree.expectedActiveEdges.toList 900 90 =
+      expectedInputs := by
+  unfold expectedInputs
+  unfold MatrixMultiplication.TotalQuotientVolumeReconstruction.primaryTables pos3AChunks pos3AlphaChunks muChunks
+  rw [Pos3AData0.data_eq_rawData,
+    Pos3AlphaData0.data_eq_rawData,
+    Pos3AlphaData1.data_eq_rawData,
+    MuData0.data_eq_rawData]
+  decide
+
+end MatrixMultiplication.Generated.TotalQuotientExponentLevelTwoRecurrence.Chunk10

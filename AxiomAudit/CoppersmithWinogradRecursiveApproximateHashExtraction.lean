@@ -1,0 +1,23 @@
+import AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveApproximateHashExtraction
+import AxiomAudit.Command
+
+open AlgebraicComplexity AlgebraicComplexity.Examples
+
+/-! Focused trust audit for
+`AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveApproximateHashExtraction`: the
+tensor-level relaxed hashing pass on an approximate recursive CW input -- the coarse- and
+relaxed-source-of-fine maps, the hash-filtered fine support with its membership and survival
+characterizations, and the two restrictions of the approximate alpha-marginal selected term onto
+the hash-filtered and relaxed-isolated fine families. -/
+
+#assert_axioms cwRecursiveApproximateCoarseSourceOfFine
+#assert_axioms cwRecursiveApproximateCoarseSourceOfFine_val
+#assert_axioms cwRecursiveApproximateRelaxedSourceOfFine
+#assert_axioms cwRecursiveCoarseAddress_approximateRelaxedSourceOfFine
+#assert_axioms CWCoarseFieldEncoding.relaxedRecursiveLegalTriple_approximateFine_legIndex
+#assert_axioms cwRecursiveApproximateOrientedHashFilteredFineSupport
+#assert_axioms mem_cwRecursiveApproximateOrientedHashFilteredFineSupport
+#assert_axioms cwRecursiveApproximateHashKeep_all_iff_relaxedSurvives
+#assert_axioms cwRecursiveApproximateAlphaMarginalSelectedTerm_restricts_hashFilteredFine
+#assert_axioms cwRecursiveApproximateRelaxedIsolatedFine_hasGroupUniqueLegFibers
+#assert_axioms cwRecursiveApproximateAlphaMarginalSelectedTerm_restricts_relaxedIsolatedFine

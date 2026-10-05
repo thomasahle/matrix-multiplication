@@ -1,0 +1,50 @@
+name = "matrix-multiplication"
+version = "0.1.0"
+defaultTargets = ["AlgebraicComplexity"]
+# Some layer-3 imports exceed Lean's smaller allocation thresholds before
+# elaborating any declaration.  The tested guard prevents false build failures;
+# `-j 1` is the actual per-compiler CPU/memory control used on shared machines.
+weakLeanArgs = ["-M", "3000", "-j", "1"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.33.0-rc1"
+
+[[require]]
+name = "cslib"
+git = "https://github.com/leanprover/cslib.git"
+rev = "v4.33.0-rc1"
+
+[[lean_lib]]
+name = "MatrixMultiplication"
+
+[[lean_lib]]
+name = "MatrixMultiplicationCertificate"
+
+[[lean_lib]]
+name = "AlgebraicComplexity"
+
+# The Duan--Wu--Zhou level-two tier.  Its own target because the umbrella is a leaf that no other
+# library imports: without a target its 130 modules are compiled only as a side effect of the
+# focused `AxiomAudit/` companions, which puts them inside the build but outside every
+# `#axiom_census` closure.  `AxiomAudit/CensusAll.lean` names it explicitly, as it does `Frontier`.
+[[lean_lib]]
+name = "AlgebraicComplexity.DuanWuZhouLevelTwo"
+
+[[lean_lib]]
+name = "AlgebraicComplexityClients"
+
+[[lean_lib]]
+name = "AxiomAudit"
+globs = ["AxiomAudit.*"]
+
+[[lean_lib]]
+name = "AxiomAuditCertificate"
+globs = ["AxiomAuditCertificate.*"]
+
+# The frontier statement kernel: the leaderboard's statement anchor plus its enforcing
+# `#assert_axioms` / `#assert_statement_fingerprint` lines.  Its own target, because CI builds it
+# on every record PR and because it must stay a leaf that no library depends on.
+[[lean_lib]]
+name = "Frontier"

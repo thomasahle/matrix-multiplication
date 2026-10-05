@@ -1,0 +1,16 @@
+import AxiomAudit.Command
+import MatrixMultiplication.SimplifiedRecursiveFiniteChecks
+
+/-!
+# Axiom audit for bounded simplified-recursion checkers
+
+The soundness adapters below are part of the compact certificate trust boundary: generated
+Boolean equalities become the semantic recursive-profile propositions only through these theorems.
+-/
+
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveFiniteChecks.levelThreeChildRowsValidFor_of_check
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveFiniteChecks.levelThreeEvaluatorRowsAgreeFor_of_check
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveFiniteChecks.levelThreeChildRowsValid_of_check
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveFiniteChecks.levelThreeEvaluatorRowsAgree_of_check
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveFiniteChecks.levelFourChildRowsValid_of_check
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveFiniteChecks.levelFourEvaluatorRowsAgree_of_check

@@ -1,0 +1,24 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.TotalQuotientExponentLevelTwoGroupedCertificate
+
+/-!
+# Certificate axiom audit for the compact level-two directed certificate
+
+These assertions cover the exact target bridges, compact normalizations, directed lower bounds,
+semantic branch-floor certificate, and both unconditional inner retained-exponent consequences.
+-/
+
+#assert_axioms MatrixMultiplication.TotalQuotientExponentLevelTwoGroupedCertificate.branch0_eq_established
+#assert_axioms MatrixMultiplication.TotalQuotientExponentLevelTwoGroupedCertificate.branch1_eq_established
+#assert_axioms MatrixMultiplication.TotalQuotientExponentLevelTwoGroupedCertificate.branch2_eq_established
+#assert_axioms MatrixMultiplication.TotalQuotientExponentLevelTwoGroupedCertificate.groupedBranch_normalize
+#assert_axioms MatrixMultiplication.TotalQuotientExponentLevelTwoGroupedCertificate.levelTwoFloor_le_target
+#assert_axioms MatrixMultiplication.TotalQuotientExponentLevelTwoGroupedCertificate.branchFloorCertified
+#assert_axioms MatrixMultiplication.TotalQuotientExponentLevelTwoGroupedCertificate.innerRetainedFloor_le_levelTwoFamilyExponent
+#assert_axioms MatrixMultiplication.TotalQuotientExponentLevelTwoGroupedCertificate.innerRetainedFloor_le_retainedExponent

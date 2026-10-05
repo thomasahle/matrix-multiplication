@@ -1,0 +1,34 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.CertifiedLevelFourOccurrenceTargets
+
+/-!
+# Axiom audit for the certified level-four occurrence targets
+
+Every public declaration of the item-12 instantiation is asserted here.  The generated data of
+certificate `e7987d7f…` and its checked child-row normalization are inside the audited closure,
+so this is a certificate-tier audit rather than an ordinary one.
+-/
+
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedTop
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedBetaThree
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedOrder
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedOrder_agreesWithOrientation
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedChildRowsValid
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedSlotProfile
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedTargetData
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedTargetData_law
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedTargetData_toCompatibilityTargets
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedOccurrenceCoarseIndex_total
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedTargetData_ofChecked
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedTargetData_ofChecked_toCompatibilityTargets
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.CertifiedDiagonalBoundaryValid
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.CertifiedDiagonalBoundaryChecked
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedDiagonalBoundaryValid_of_checked
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedDiagonalTargetData
+#assert_axioms MatrixMultiplication.CertifiedLevelFourOccurrenceTargets.certifiedDiagonalTargetData_toCompatibilityTargets

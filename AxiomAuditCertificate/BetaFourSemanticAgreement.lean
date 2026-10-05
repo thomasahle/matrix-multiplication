@@ -1,0 +1,21 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.BetaFourSemanticAgreement
+
+/-! Focused trust audit for the beta-four global-cache semantic-agreement bridge. -/
+
+#assert_axioms MatrixMultiplication.BetaFourSemanticAgreement.splitWordDepthThreeCode_eq_concat
+#assert_axioms MatrixMultiplication.BetaFourSemanticAgreement.splitWordDepthThreeCode_mem_support
+#assert_axioms MatrixMultiplication.BetaFourSemanticAgreement.splitWordDepthThreeCode_div
+#assert_axioms MatrixMultiplication.BetaFourSemanticAgreement.splitWordDepthThreeCode_mod
+#assert_axioms MatrixMultiplication.BetaFourSemanticAgreement.decodeDepthTwoPair_splitWordDepthThreeCode
+#assert_axioms MatrixMultiplication.BetaFourSemanticAgreement.fromGlobal_isSupportZero
+#assert_axioms MatrixMultiplication.BetaFourSemanticAgreement.BetaFourLocalData.fromGlobal_hasSupportGeometry
+#assert_axioms MatrixMultiplication.BetaFourSemanticAgreement.BetaFourLocalData.numeratorAt_eq_gatherNumerator
+#assert_axioms MatrixMultiplication.BetaFourSemanticAgreement.BetaFourLocalData.fromGlobal_numeratorAt_eq_gatherNumerator
+#assert_axioms MatrixMultiplication.BetaFourSemanticAgreement.levelFourEvaluatorRowsAgree_of_zeroPadding

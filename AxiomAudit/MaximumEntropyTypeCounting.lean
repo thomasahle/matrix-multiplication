@@ -1,0 +1,9 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Analysis.MaximumEntropyTypeCounting
+
+/-! Focused trust audit for maximum-entropy mapped-type counting. -/
+
+#assert_axioms AlgebraicComplexity.WordType.profileEntropyNats_le_of_mappedTypes_eq
+#assert_axioms AlgebraicComplexity.WordType.multinomial_le_exp_referenceEntropy_of_mappedTypes_eq
+#assert_axioms AlgebraicComplexity.WordType.card_words_le_typeCount_mul_exp_referenceEntropy
+#assert_axioms AlgebraicComplexity.WordType.card_words_le_typeCount_mul_structuralZeroLoss_mul_referenceTypeClass

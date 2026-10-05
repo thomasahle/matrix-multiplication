@@ -1,0 +1,168 @@
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourTopData
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeData
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourOrientation
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourWeightsRegion4
+import Mathlib.Data.List.SplitLengths
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourAnalyticRegion4Branch1Chunk10TermsParent1
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourAnalyticRegion4Branch1Chunk10Parent1
+
+/-! Independently sealed numeric certificate for level-four region 4, branch 1,
+parent chunk 10, parent 80; untrusted certificate `e7987d7fa66008d497e31c976c68f025d57664a145336d358328375cc5738ca3`. -/
+
+namespace MatrixMultiplication.Generated.TotalQuotientExponentLevelFourAnalytic.Region4.Branch1.Chunk10
+
+open MatrixMultiplication.SignedDyadicLogCertificate
+open MatrixMultiplication.SignedDyadicLogForm
+open MatrixMultiplication.SimplifiedExponentLevelFourRecurrence
+open MatrixMultiplication.Generated.TotalQuotientExponentLevelFourRecurrence
+
+set_option maxRecDepth 1000000
+set_option maxHeartbeats 400000
+set_option Elab.async false
+
+namespace Parent1
+
+/-- Constant-only raw form preceding the source-order logarithmic shards. -/
+def rawBaseForm : Form := { constantNumerator := 0, terms := [] }
+
+/-- Source-order raw logarithmic forms before independent power extraction. -/
+def rawForms : List Form := [rawBaseForm, TermShard0.rawForm]
+
+/-- All certificate shards, including the exact source constant. -/
+noncomputable def expectedCertificates : List (LowerBound 116) :=
+  [LowerBound.constant 116 0, TermShard0.certificate]
+
+/-- Compositional lower certificate assembled from the bounded numeric shards. -/
+noncomputable def expectedCertificate : LowerBound 116 :=
+  LowerBound.sum expectedCertificates
+
+/-- Raw shard term lists in their original source order. -/
+def rawTermChunks : List (List Term) := [TermShard0.rawForm.terms]
+
+/-- Bounded chunk sizes used to recover the complete source term list. -/
+def termChunkSizes : List ℕ := [38]
+
+/-- The corresponding bounded slices of the semantic raw form. -/
+def expectedRawTermChunks : List (List Term) :=
+  termChunkSizes.splitLengths expectedRaw.terms
+
+/-- Bounded source slice represented by raw shard 0. -/
+theorem rawTermChunk0_eq :
+    TermShard0.rawForm.terms = (expectedRaw.terms).take 38 := by
+  rfl
+
+/-- The semantic raw form has the serialized source constant. -/
+theorem expectedRaw_constant : expectedRaw.constantNumerator = 0 := by
+  rfl
+
+/-- The semantic raw form has exactly the serialized number of logarithmic terms. -/
+theorem expectedRaw_terms_length : expectedRaw.terms.length = 38 := by
+  rfl
+
+/-- The independently checked raw shards are exactly the bounded semantic source slices. -/
+theorem rawTermChunks_eq_expectedRawTermChunks :
+    rawTermChunks = expectedRawTermChunks := by
+  unfold rawTermChunks expectedRawTermChunks termChunkSizes
+  simp only [List.splitLengths_cons, List.splitLengths_nil]
+  rw [rawTermChunk0_eq]
+
+/-- The bounded source slices cover the complete semantic raw term list. -/
+theorem expectedRawTermChunks_flatten :
+    expectedRawTermChunks.flatten = expectedRaw.terms := by
+  unfold expectedRawTermChunks
+  apply List.flatten_splitLengths
+  rw [expectedRaw_terms_length]
+  norm_num [termChunkSizes]
+
+/-- Projecting terms from the raw form list gives precisely the explicit raw chunks. -/
+theorem rawForms_terms :
+    (rawForms.map fun form ↦ form.terms).flatten = rawTermChunks.flatten := by
+  unfold rawForms rawBaseForm rawTermChunks
+  rfl
+
+/-- The raw forms' constants sum to the semantic source constant. -/
+theorem rawForms_constant :
+    (rawForms.map fun form ↦ form.constantNumerator).sum =
+      expectedRaw.constantNumerator := by
+  rw [expectedRaw_constant]
+  norm_num [rawForms, rawBaseForm, TermShard0.rawForm_constant]
+
+/-- Ordinary list laws reassemble the bounded raw shards into the semantic source form. -/
+theorem rawForms_sum_eq_expectedRaw : Form.sum rawForms = expectedRaw := by
+  apply Form.ext
+  · rw [Form.sum_constantNumerator, rawForms_constant]
+  · rw [Form.sum_terms, rawForms_terms,
+      rawTermChunks_eq_expectedRawTermChunks, expectedRawTermChunks_flatten]
+
+/-- Every independently normalized certificate shard preserves the evaluation of its raw slice. -/
+theorem expectedCertificates_eval_rawForms : List.Forall₂
+    (fun certificate form ↦
+      Form.eval 116 certificate.form = Form.eval 116 form)
+    expectedCertificates rawForms := by
+  unfold expectedCertificates rawForms rawBaseForm
+  constructor
+  · rfl
+  constructor
+  · exact TermShard0.form_eval_rawForm
+  constructor
+
+/-- Directed rational endpoint after summing this parent's term-shard endpoints. -/
+noncomputable def lower : ℝ := 18066841 / 1000000000000
+
+/-- The serialized rational endpoint is exactly the compositional certificate endpoint. -/
+theorem lower_eq_expectedCertificate_lower : lower = expectedCertificate.lower := by
+  rw [expectedCertificate, LowerBound.sum_lower]
+  change lower = (LowerBound.constant 116 0).lower + (TermShard0.certificate.lower + (0))
+  rw [TermShard0.certificate_lower]
+  norm_num [lower, LowerBound.constant,
+    TermShard0.lower, TermShard0.positiveFloor, TermShard0.negativeCeiling, TermShard0.constantNumerator, TermShard0.bits]
+
+/-- The compositional shard checker bounds the semantic raw parent form. -/
+theorem lower_le_expectedRaw_eval : lower ≤ Form.eval 116 expectedRaw := by
+  rw [lower_eq_expectedCertificate_lower]
+  unfold expectedCertificate
+  calc
+    _ ≤ Form.eval 116 (Form.sum rawForms) :=
+      LowerBound.sum_lower_le_eval_sum_of_forall₂ expectedCertificates_eval_rawForms
+    _ = Form.eval 116 expectedRaw :=
+      congrArg (Form.eval 116) rawForms_sum_eq_expectedRaw
+
+/-- Independent power extraction and structural canonicalization preserve the parent value. -/
+theorem lower_le_expectedForm_eval : lower ≤ Form.eval 116 expectedForm := by
+  calc
+    _ ≤ Form.eval 116 expectedRaw := lower_le_expectedRaw_eval
+    _ = Form.eval 116 expectedPower := by
+      unfold expectedPower
+      exact (Form.eval_normalizePowersOfTwo 116 expectedRaw).symm
+    _ = Form.eval 116 expectedForm := by
+      unfold expectedForm
+      exact (Form.eval_structuralFastCanonical 116 expectedPower).symm
+
+/-- Exact branch value contributed by this parent. -/
+theorem rate_eq :
+    branchRateOnParentsFrom Top.expectedRows BetaThree.expectedRows
+        Orientation.order Weights.Region4.dualWeights 4 [parent] 1 =
+      Form.eval 116 expectedForm := by
+  have heval := congrArg (Form.eval 116) recurrence_structuralPowerCanonical
+  rw [Form.eval_structuralPowerCanonical, branchFormOnParentsFrom_eval] at heval
+  exact heval
+
+/-- This parent's directed endpoint is below its reconstructed branch rate. -/
+theorem lower_le_rate :
+    lower ≤ branchRateOnParentsFrom Top.expectedRows BetaThree.expectedRows
+      Orientation.order Weights.Region4.dualWeights 4 [parent] 1 := by
+  rw [rate_eq]
+  exact lower_le_expectedForm_eval
+
+/-- The parent endpoint and exact form, packaged for chunk composition. -/
+noncomputable def certificate : LowerBound 116 :=
+  { form := expectedForm
+    lower := lower
+    lower_le_eval := lower_le_expectedForm_eval }
+
+@[simp] theorem certificate_form : certificate.form = expectedForm := rfl
+@[simp] theorem certificate_lower : certificate.lower = lower := rfl
+
+end Parent1
+
+end MatrixMultiplication.Generated.TotalQuotientExponentLevelFourAnalytic.Region4.Branch1.Chunk10

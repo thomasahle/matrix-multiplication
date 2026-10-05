@@ -1,0 +1,30 @@
+# Ordinary focused audits that reach generated certificate data.
+#
+# `scripts/check_source_coverage.sh` requires generated-heavy `#assert_axioms` checks to live in
+# the opt-in `AxiomAuditCertificate` target, so that the ordinary `AxiomAudit` target stays
+# independent of the multi-thousand-entry numeral tables.  Every name here is an audit that still
+# violates that layering: pre-existing placement debt whose migration to `AxiomAuditCertificate.*`
+# is pending.
+#
+# The list is APPEND-BLOCKED and may only shrink.  A new violation that is not listed here fails
+# the gate; an entry here that no longer violates is reported as a stale-entry notice, not a
+# failure, because shrinking the debt must never fail on the commit that shrank it.
+#
+# To retire an entry: move the audit to `AxiomAuditCertificate/` (the target is a directory glob,
+# so no umbrella edit is needed), then delete its line.
+#
+# `AxiomAudit.CensusAll` is deliberately NOT listed: it is not debt.  The census must import the
+# whole ordinary closure — including whatever generated data the audit root reaches — because
+# `#axiom_census` can only see modules it imports.  That exemption stays in the checker as
+# `byDesign`, where it cannot be mistaken for a migration backlog.
+
+AxiomAudit.TotalWeightLeanEndpoint
+AxiomAudit.TotalWeightVolumeEndpoint
+AxiomAudit.VolumeTypedLeaf
+AxiomAudit.TotalQuotientExponentLevelTwoCertificate
+AxiomAudit.TotalQuotientLevelTwoActiveEdgeShards
+AxiomAudit.TotalWeightAcceptanceAssembly
+AxiomAudit.TotalWeightAcceptanceAssemblyLevelTwo
+AxiomAudit.TotalWeightAcceptanceAssemblyLevelTwoEndpoint
+AxiomAudit.TotalWeightLeanEndpointLevelFourInner
+AxiomAudit.TotalWeightLevelFourInnerGrowthDatum

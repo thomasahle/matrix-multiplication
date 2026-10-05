@@ -1,0 +1,13 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradTotalWeightOuterDepthFour
+
+/-! Axiom audit for the depth-four outer coarse cleanup and its localized outer sequence data. -/
+
+#assert_axioms AlgebraicComplexity.Examples.cwCoarsePower_restricts
+#assert_axioms AlgebraicComplexity.Examples.isCompatibilitySound_ownLabelCompatible
+#assert_axioms AlgebraicComplexity.Examples.CWTotalWeightOuterCoarseCleanup.xSupport_injOn
+#assert_axioms AlgebraicComplexity.Examples.CWTotalWeightOuterCoarseCleanup.source_restricts
+#assert_axioms AlgebraicComplexity.Examples.CWTotalWeightLocalizedOuterSequenceData.ofChunkAlignedCoarseCleanup_spec
+#assert_axioms AlgebraicComplexity.Examples.CWTotalWeightLocalizedOuterSequenceData.levelFour_align
+#assert_axioms AlgebraicComplexity.Examples.exists_cwTotalWeightLocalizedOuterSequenceData_levelFour
+#assert_axioms AlgebraicComplexity.Examples.exists_cwTotalWeightLocalizedOuterSequenceData_levelFourCPrime

@@ -1,0 +1,31 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints
+
+/-!
+# Enforcing certificate audit for level-three checkpoint composition
+
+These checks cover the singleton structural-canonical semantic bridge, the independently checked
+node/chunk composition laws, generic aligned-list serialization, structural local-row validity,
+bounded active-node range composition, and active-cover transport of local-row validity.  Any
+dependency on a placeholder or non-allowlisted axiom makes this audit module fail to elaborate.
+-/
+
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.list_eq_ofFn_getElem?_getD
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.sum_map_eq_sum_get
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.map_range_eq_ofFn
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.alignedMarginalList_eq_ofFn_marginalNumerator
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.LocalRows.isValid_of_aligned
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.activeNodesRange_append
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.activeNodes_eq_append_twoRanges
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.branchRateOnNodesFor_eq_eval_of_structuralPowerCanonical
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.checkedChunk_branchRate
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.checkedChunks_branchRate_flatten
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.checkedChunks_branchRate_sumForms
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.localRowsFor_isValid_of_nonempty_validSlots
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeCheckpoints.regionEntriesFor_valid_of_checkedCover

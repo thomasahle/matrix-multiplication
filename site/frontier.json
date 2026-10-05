@@ -1,0 +1,41 @@
+{
+  "axiom_asserts": [
+    "Frontier.frontier",
+    "Frontier.frontierConstant_eq_decimal"
+  ],
+  "provenance": {
+    "frontier_lean_tracked": true,
+    "generated_utc": "2026-09-05 20:27 UTC",
+    "repo_commit": "575e50d3c6994071c01fe3aa7ab3e17600134e3a"
+  },
+  "record": {
+    "class": "unconditional",
+    "constant": "2374631/1000000",
+    "decimal": "2.374631",
+    "endpoint_file": "AlgebraicComplexity/Examples/DuanWuZhouLevelTwoOmegaBound.lean",
+    "endpoint_theorem": "AlgebraicComplexity.Examples.omega_lt_2374631",
+    "frontier_theorem": "Frontier.frontier",
+    "shape": "Frontier.OmegaBound",
+    "shape_statement": "∀ (K : Type u) [Field K], omega K < (c : ℝ)",
+    "slug": "omega-2p374631"
+  },
+  "records": [
+    {
+      "class": "unconditional",
+      "constant": "2374631/1000000",
+      "decimal": "2.374631",
+      "endpoint_file": "AlgebraicComplexity/Examples/DuanWuZhouLevelTwoOmegaBound.lean",
+      "endpoint_theorem": "AlgebraicComplexity.Examples.omega_lt_2374631",
+      "frontier_theorem": "Frontier.frontier",
+      "shape": "Frontier.OmegaBound",
+      "shape_statement": "∀ (K : Type u) [Field K], omega K < (c : ℝ)",
+      "slug": "omega-2p374631"
+    }
+  ],
+  "schema": 1,
+  "source": "Frontier.lean (pinned-pattern extraction)",
+  "statement_fingerprints": {
+    "AlgebraicComplexity.omega": "66a867ed9bd02dd6",
+    "Frontier.OmegaBound": "0198dd02aaef14ad"
+  }
+}

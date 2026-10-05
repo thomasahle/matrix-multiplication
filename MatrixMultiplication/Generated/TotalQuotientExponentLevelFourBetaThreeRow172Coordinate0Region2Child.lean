@@ -1,0 +1,29 @@
+import MatrixMultiplication.SimplifiedExponentLevelFourRecurrence
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeRow172Coordinate0Region2ChildFirstSlots
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeRow172Coordinate0Region2ChildRemainingSlots
+import MatrixMultiplication.TotalQuotientVolumeReconstructionBase
+import MatrixMultiplication.TotalQuotientCompleteSplitRecurrence
+
+/-!
+# Assembled child scatter 172/0/2
+
+This module performs no certificate reduction.  It composes the two checked five-slot blocks.
+Certificate: `e7987d7fa66008d497e31c976c68f025d57664a145336d358328375cc5738ca3`.
+-/
+
+namespace MatrixMultiplication.Generated.TotalQuotientExponentLevelFourRecurrence.BetaThree.Row172
+
+open MatrixMultiplication.SimplifiedExponentLevelFourRecurrence
+
+/-- Assemble the complete unscaled regional child row. -/
+theorem row172Coordinate0Region2Child_eq :
+    betaThreeRegionRowByScatterFor MatrixMultiplication.TotalQuotientCompleteSplitRecurrence.totalWeightSupportSlot MatrixMultiplication.TotalQuotientVolumeReconstruction.primaryTables
+      (positiveNodeAtGlobalRow 172) 2 0 = row172Coordinate0Region2Child :=
+  betaThreeRegionRowByScatterFor_eq_of_slotHalves
+    MatrixMultiplication.TotalQuotientCompleteSplitRecurrence.totalWeightSupportSlot MatrixMultiplication.TotalQuotientVolumeReconstruction.primaryTables
+    (positiveNodeAtGlobalRow 172) 2 0
+    row172Coordinate0Region2ChildFirstSlots row172Coordinate0Region2Child
+    row172Coordinate0Region2ChildFirstSlots_eq
+    row172Coordinate0Region2ChildRemainingSlots_eq
+
+end MatrixMultiplication.Generated.TotalQuotientExponentLevelFourRecurrence.BetaThree.Row172

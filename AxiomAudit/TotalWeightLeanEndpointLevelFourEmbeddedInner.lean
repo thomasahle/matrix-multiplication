@@ -1,0 +1,7 @@
+import AxiomAudit.Command
+import MatrixMultiplication.TotalWeightLeanEndpointLevelFourEmbeddedInner
+
+/-! Focused trust audit for the sparse depth-four C′ endpoint adapter. -/
+
+#assert_axioms MatrixMultiplication.TotalWeightLeanEndpoint.omega_lt_236999_of_subexponentialVolumeSequence_acceptance_anyStride
+#assert_axioms MatrixMultiplication.TotalWeightLeanEndpoint.omega_lt_236999_of_levelFourEmbeddedCanonicalInner

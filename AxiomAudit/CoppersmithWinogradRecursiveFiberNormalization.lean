@@ -1,0 +1,35 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+import AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveFiberNormalization
+import AxiomAudit.Command
+
+/-!
+Axiom audit for the recursive CW child-word fiber normalization: the paired parent-position
+action, its commutation with the labelled-child quotient, and the tagged-type normalization of
+quotient addresses.
+-/
+
+open AlgebraicComplexity AlgebraicComplexity.Examples
+
+#assert_axioms cwRecursiveCoordinateTripleGet
+#assert_axioms cwRecursiveCoordinateTripleGet_logicalLeftTripleWord
+#assert_axioms cwRecursivePositionRelabelCoarseAddress
+#assert_axioms cwRecursivePositionRelabelCoarseAddress_left
+#assert_axioms cwRecursivePositionRelabelCoarseAddress_right
+#assert_axioms cwRecursiveLabelledChildWord_positionRelabel
+#assert_axioms cwRecursiveChildGroup_positionRelabel
+#assert_axioms cwRecursiveOccurrencePositionEquiv
+#assert_axioms cwRecursiveOccurrencePositionEquiv_castAdd
+#assert_axioms cwRecursiveOccurrencePositionEquiv_natAdd
+#assert_axioms cwRecursivePositionRelabelCoarseAddress_apply_eq_comp
+#assert_axioms cwRecursiveLabelledChildWord_positionRelabel_eq_comp
+#assert_axioms CWRecursiveTaggedLeftTriple
+#assert_axioms cwRecursiveTaggedLeftTripleWord
+#assert_axioms cwRecursivePositionPermOfSameTaggedMultiplicity
+#assert_axioms cwRecursiveTaggedLeftTripleWord_positionPermOfSameMultiplicity
+#assert_axioms partAt_comp_cwRecursivePositionPermOfSameTaggedMultiplicity
+#assert_axioms cwRecursivePositionRelabelCoarseAddress_positionPermOfSameTaggedMultiplicity_of_totals
+#assert_axioms cwRecursivePositionRelabelCoarseAddress_positionPermOfSameTaggedMultiplicity

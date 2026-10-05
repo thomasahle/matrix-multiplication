@@ -1,0 +1,36 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoCountComparisonInputs
+
+set_option autoImplicit false
+
+/-! # Axiom audit for `hupper` and `hlower` in `dwz63_hcount_of_rate`'s binder shape -/
+
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainCountDepth
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainCountDepth_succ
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainCountDepth_length
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainBlockRateAlpha
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainBlockRateX
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainBlockRateZ
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainXBase_pos
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainZBase_pos
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainBlockRateAlpha_pos
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainBlockRateX_pos
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainBlockRateZ_pos
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainBlockRatio_X
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainBlockRatio_Z
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainCountSu
+#assert_axioms AlgebraicComplexity.Examples.dwz63PlainCountSl
+#assert_axioms AlgebraicComplexity.Examples.dwz63_subexponential_comp_mul
+#assert_axioms AlgebraicComplexity.Examples.dwz63_subexponential_plainCountSu
+#assert_axioms AlgebraicComplexity.Examples.dwz63_subexponential_plainCountSl
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainCountSu_nonneg
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainCountSl_nonneg
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hupper
+#assert_axioms AlgebraicComplexity.Examples.dwz63_pow_le_of_mul_le
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hlower

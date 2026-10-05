@@ -1,0 +1,23 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AlgebraicComplexity.Examples.CoppersmithWinogradOrientedCellEncoding
+import AxiomAudit.Command
+
+/-! Enforcing axiom audit for tagged oriented CW cell encodings. -/
+
+#assert_axioms AlgebraicComplexity.Examples.cwOrientedFiniteCellEncodingEquiv
+#assert_axioms AlgebraicComplexity.Examples.cwOrientedFiniteCellEncodingEquiv_apply
+#assert_axioms AlgebraicComplexity.Examples.cwOrientedFiniteCellAddressEquivPUnit
+#assert_axioms AlgebraicComplexity.Examples.cwOrientedFiniteCellAddressEquivPUnit_apply
+#assert_axioms AlgebraicComplexity.Examples.cwOrientedFullCellTypeFamily
+#assert_axioms AlgebraicComplexity.Examples.mem_cwOrientedFullCellTypeFamily_iff
+#assert_axioms AlgebraicComplexity.Examples.card_cwOrientedFullCellTypeFamily
+#assert_axioms AlgebraicComplexity.Examples.cwOrientedFullCellTypeAddressesPUnit
+#assert_axioms AlgebraicComplexity.Examples.mem_cwOrientedFullCellTypeAddressesPUnit_iff
+#assert_axioms AlgebraicComplexity.Examples.card_cwOrientedFullCellTypeAddressesPUnit
+#assert_axioms AlgebraicComplexity.Examples.exists_partAt_address_multiplicity_eq_of_mem_types
+#assert_axioms AlgebraicComplexity.Examples.exists_address_multiplicity_eq_of_mem_types_pUnit

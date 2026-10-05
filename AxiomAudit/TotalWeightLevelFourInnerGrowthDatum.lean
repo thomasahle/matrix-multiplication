@@ -1,0 +1,7 @@
+import AxiomAudit.Command
+import MatrixMultiplication.TotalWeightLevelFourInnerGrowthDatum
+
+/-! Axiom audit for the level-four endpoint with its inner growth datum supplied. -/
+
+#assert_axioms MatrixMultiplication.TotalWeightLeanEndpoint.omega_lt_236999_of_levelFourOuter_innerLeaf
+#assert_axioms MatrixMultiplication.TotalWeightLeanEndpoint.omega_lt_236999_of_levelFourOuter_constantInnerLeaf

@@ -1,0 +1,28 @@
+import AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveHashing
+import AxiomAudit.Command
+
+open AlgebraicComplexity AlgebraicComplexity.Examples
+
+/-! Focused trust audit for `AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveHashing`: the
+finite ambient/marked hashing pair used by the recursive constituent theorem -- the logical
+left-child coordinate and triple words, the `matchesAlpha` predicate with its decidability and
+block-address invariance, the marked coarse support with its fine-witness characterization, and
+the oriented legal-triple families with their injectivity and containment. -/
+
+#assert_axioms cwRecursiveLogicalLeftCoordinateWord
+#assert_axioms cwRecursiveLogicalLeftTripleWord
+#assert_axioms CWRecursiveMatchesAlpha
+#assert_axioms cwRecursiveMatchesAlphaDecidable
+#assert_axioms multiplicity_cwRecursiveLogicalLeftCoordinateWord_eq_marginalCount
+#assert_axioms cwRecursiveLogicalLeftTripleWord_coarsenBlockAddress
+#assert_axioms cwRecursiveMatchesAlpha_coarsenBlockAddress_iff
+#assert_axioms cwRecursiveMarkedCoarseSupport
+#assert_axioms mem_cwRecursiveMarkedCoarseSupport
+#assert_axioms mem_cwRecursiveMarkedCoarseSupport_iff_exists_fine
+#assert_axioms exists_fine_with_occurrenceCount_of_mem_cwRecursiveMarkedCoarseSupport
+#assert_axioms cwRecursiveCoarsenedAlphaMarginalTerm_coarse_sum
+#assert_axioms CWCoarseFieldEncoding.recursiveOrientedLegalTriple
+#assert_axioms CWCoarseFieldEncoding.recursiveOrientedLegalTriple_injective
+#assert_axioms CWCoarseFieldEncoding.recursiveAmbientTargets
+#assert_axioms CWCoarseFieldEncoding.recursiveMarkedTargets
+#assert_axioms CWCoarseFieldEncoding.recursiveMarkedTargets_subset_ambientTargets

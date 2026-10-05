@@ -1,0 +1,42 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import MatrixMultiplication.RepeatedOrientation
+import MatrixMultiplication.EntropyDual
+import MatrixMultiplication.LogBounds
+import MatrixMultiplication.FinalCertificate
+import MatrixMultiplication.MoreAsymmetryHashing
+import AlgebraicComplexity.MatrixMultiplication.MoreAsymmetryCompatibility
+import AlgebraicComplexity.MatrixMultiplication.MoreAsymmetryCompatibilityTransport
+import AlgebraicComplexity.MatrixMultiplication.MoreAsymmetryCompatibilityAggregation
+import AlgebraicComplexity.MatrixMultiplication.InterfaceTensorRegionalDivision
+import AlgebraicComplexity.MatrixMultiplication.InterfaceTensorRegionalDivisionZero
+import AlgebraicComplexity.MatrixMultiplication.InterfaceTensorRegionalDivisionFamily
+import AlgebraicComplexity.MatrixMultiplication.LevelFourReconstruction
+import MatrixMultiplication.ParentGainCertificate
+import MatrixMultiplication.CurrentProofObligations
+import MatrixMultiplication.SimplifiedExponentLevelThreeStructuralValidity
+import AlgebraicComplexity.Examples.CoppersmithWinogradVolumeEndpoint
+import MatrixMultiplication.CW112LeafEvaluator
+import MatrixMultiplication.SimplifiedVolumeComplementInvariance
+import MatrixMultiplication.LogLinearCompressionFamily
+import MatrixMultiplication.DyadicChordTangentCompression
+import MatrixMultiplication.DyadicMantissaNormalization
+import MatrixMultiplication.Generated.TotalQuotientExponentStageFloors
+import MatrixMultiplication.TotalWeightAcceptanceFloors
+import MatrixMultiplication.TotalWeightAcceptanceAssemblyLevelTwo
+import MatrixMultiplication.TotalWeightAcceptanceAssemblyLevelTwoEndpoint
+import MatrixMultiplication.TotalQuotientExponentStageAggregation
+
+/-!
+# Repeated-orientation matrix-multiplication paper client
+
+This is the public umbrella for the paper-specific repeated-orientation development.  It exposes
+the semantic reconstruction, entropy and logarithm certificates, compatibility and repair stages,
+and the currently proved or explicitly conditional numerical endpoints.  Reusable tensor,
+combinatorial, and matrix-multiplication laws live under `AlgebraicComplexity`; this umbrella keeps
+the manuscript's generated data and indexing conventions downstream of that library boundary.
+-/

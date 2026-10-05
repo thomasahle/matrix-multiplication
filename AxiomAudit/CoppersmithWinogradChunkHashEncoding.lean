@@ -1,0 +1,10 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradChunkHashEncoding
+
+/-! Focused trust audit for the two-letter CW chunk hash encoding. -/
+
+#assert_axioms AlgebraicComplexity.Examples.cwLevelTwoChunkCode_injective
+#assert_axioms AlgebraicComplexity.Examples.cwLevelTwoChunkFieldValue_injective
+#assert_axioms AlgebraicComplexity.Examples.cwLevelTwoChunkNatCode_sum
+#assert_axioms AlgebraicComplexity.Examples.cwLevelTwoChunkSupport_nonempty
+#assert_axioms AlgebraicComplexity.Examples.cwLevelTwoChunkPartitionHashEncoding

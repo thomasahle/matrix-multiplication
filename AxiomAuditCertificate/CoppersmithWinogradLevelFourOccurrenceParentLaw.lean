@@ -1,0 +1,28 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradLevelFourOccurrenceParentLaw
+
+/-!
+# Axiom audit for the exact level-four occurrence parent law
+-/
+
+open AlgebraicComplexity.Examples
+
+#assert_axioms levelFourChildProductScale_eq_childSamples_sq
+#assert_axioms sum_levelFourActiveSlot_numerator_mul
+#assert_axioms levelFourOccurrenceIdentityModel_stateLaw_weight
+#assert_axioms levelFourOccurrenceIdentityModel_childLaw
+#assert_axioms levelFourChildShape_injective
+#assert_axioms levelFourOccurrenceStateCell_injective
+#assert_axioms levelFourOccurrenceCellJointProfile_id
+#assert_axioms levelFourOccurrenceChildMass
+#assert_axioms levelFourNormalizedChildLaw_weight
+#assert_axioms levelFourOccurrenceIdentityModel_leftChildLaw_weight_of_ne
+#assert_axioms levelFourOccurrenceIdentityModel_rightChildLaw_weight_of_ne
+#assert_axioms levelFourOccurrenceIdentityModel_parentLaw
+#assert_axioms levelFourOccurrenceProjectionModel_parentLaw

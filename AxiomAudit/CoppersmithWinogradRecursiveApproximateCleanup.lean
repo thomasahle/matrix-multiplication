@@ -1,0 +1,19 @@
+import AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveApproximateCleanup
+import AxiomAudit.Command
+
+open AlgebraicComplexity AlgebraicComplexity.Examples
+
+/-! Focused trust audit for
+`AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveApproximateCleanup`: the grouped X/Y/Z
+compatibility cleanup on an approximately selected recursive CW parent -- the pooled
+all-zero-out passes, soundness of the oriented Y and Z compatibility predicates, the
+coarse-group and exact-match forms of the cleanup, and the seeded marked-X hashing composite. -/
+
+#assert_axioms cwRecursiveApproximate_passesYPooledAllZeroOut
+#assert_axioms cwRecursiveApproximate_passesZPooledAllZeroOut
+#assert_axioms cwRecursiveApproximate_orientedYCompatibility_sound
+#assert_axioms cwRecursiveApproximate_orientedZCompatibility_sound
+#assert_axioms cwRecursiveApproximate_orientedGroupedCleanup_withCoarseGroup
+#assert_axioms cwRecursiveApproximate_orientedGroupedCleanup_finalMatchesExact
+#assert_axioms cwRecursiveApproximate_orientedMarkedXHashAndGroupedCleanup
+#assert_axioms exists_seed_many_recursiveApproximateMarkedXHashAndGroupedCleanup

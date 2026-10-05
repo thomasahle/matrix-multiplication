@@ -1,0 +1,184 @@
+name: CI
+
+# Continuous verification for the algebraic-complexity formalization.
+# Mirrors the manual checks in DESIGN.md "Trust and verification policy":
+# the hard trust scan, the reusable tensor boundary, the public build targets, and the enforcing
+# axiom audit (which fails on any axiom outside propext / Classical.choice /
+# Quot.sound in an audited dependency cone).  The `AxiomAudit.*` glob builds
+# `AxiomAudit.CensusAll`, whose `#axiom_census` walks `Environment.constants` and is the
+# *authority* for the trust policy: the static scans are pre-filters, and a mid-line `axiom`
+# evades a line-anchored regex but not a walk over what the kernel accepted.
+# The build job also carries the frontier record gate: a pull request that moves
+# `Frontier.frontierConstant` must have Lean confirm the improvement is at least
+# `Frontier.recordDelta` (`scripts/check_frontier_improvement.sh`).
+# The opt-in certificate targets (`MatrixMultiplicationCertificate`, `AxiomAuditCertificate`,
+# including `AxiomAuditCertificate.Census`) run in the `certificate` job below, which is gated so
+# that ordinary pull requests do not reconstruct multi-thousand-entry numeral tables.
+# Several static gates carry a may-only-shrink grandfather list under `scripts/`:
+# `source_coverage_grandfathered.txt`, `heavy_audit_grandfathered.txt`,
+# `copyright_headers_grandfathered.txt`, `assert_axioms_dark_grandfathered.txt`,
+# `decide_budget_grandfathered.txt`, `heartbeat_governor_grandfathered.txt` and
+# `certificate_table_wiring_grandfathered.txt`.  Each file is the authority for which entries are
+# outstanding and how many; no count is restated here, because the count that used to be
+# ("Ten focused audits still reach generated chunks transitively") described the length of one
+# list rather than the state of the tree, and drifted.  In every case the rule is the same: a NEW
+# violation outside the list fails the build, while an entry that stops violating is reported as a
+# stale-entry notice rather than a failure, so paying the debt down can never fail on the commit
+# that pays it.  The generated-heavy audits are pending a move to the opt-in audit target.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+# A superseded pull-request run is wasted runner time; pushes to main always run to completion
+# because their build cache is what pull requests restore from.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  trust-scan:
+    runs-on: ubuntu-latest
+    # Every step here is grep/awk/python only -- no Lean, no Lake, no network.  Two of them walk
+    # all ~12.9k tracked sources (the provenance quarantine, and the declaration-collision scan),
+    # which is why the cap is well above the 15 minutes that covered the original four steps.
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Hard trust scan (no sorry / admit / axiom in committed sources)
+        run: bash scripts/trust_scan.sh
+      - name: Reusable tensor import boundary
+        run: bash scripts/check_tensor_boundary.sh
+      - name: Lean source build coverage
+        run: bash scripts/check_source_coverage.sh
+      - name: Lean module documentation coverage
+        run: bash scripts/check_module_docs.sh
+      - name: CSLib copyright headers
+        run: bash scripts/check_copyright_headers.sh
+      # The four gates below read the committed tree at HEAD themselves (`git archive HEAD` /
+      # `git grep HEAD`), never the checkout's working files, so a shallow checkout is enough.
+      - name: '#assert_axioms targets resolve to real declarations'
+        run: bash scripts/check_assert_axioms_targets.sh
+      - name: Reduction memory budget for decide / decide +kernel
+        run: bash scripts/check_decide_budget.sh
+      - name: Heartbeat governor is not switched off
+        run: bash scripts/check_heartbeat_governor.sh
+      - name: Certificate header agrees with the tables the proofs use
+        run: bash scripts/check_certificate_table_wiring.sh
+      - name: Artifact provenance quarantine
+        run: bash scripts/check_artifact_provenance.sh
+      # WARN level by construction: this script prints its findings and always exits 0, so the
+      # step reports the standing collisions without blocking a pull request.  Promote it to a
+      # hard gate (exit 1 on findings) only once it reports clean; see the script's header.
+      - name: Declaration-name collisions (WARN only, never fails)
+        run: bash scripts/check_declaration_collisions.sh
+
+  build:
+    runs-on: ubuntu-latest
+    # A cold build without a usable cache compiles the whole project; the cap is deliberately
+    # close to GitHub's 360-minute job ceiling so that a genuine slowdown fails loudly instead of
+    # being truncated as a mysterious cancellation.
+    timeout-minutes: 330
+    env:
+      # Lake 5.0 has no `-j` option: its build scheduler is Lean's task pool, so the number of
+      # *concurrently elaborated modules* is `LEAN_NUM_THREADS`.  Individual Lean invocations are
+      # single-worker through the package's `weakLeanArgs` (`-j 1 -M 3000`), so two workers bound
+      # the job at roughly 6 GB against the runner's 16 GB.  Leaving it unset lets Lake use all
+      # four vCPUs, i.e. 4 x `-M 3000`.
+      LEAN_NUM_THREADS: 2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # `scripts/check_frontier_improvement.sh` compares against the base revision.
+          fetch-depth: 0
+      - uses: leanprover/lean-action@v1
+        with:
+          build-args: AlgebraicComplexity AlgebraicComplexityClients MatrixMultiplication AxiomAudit Frontier
+          # Both caches are stated rather than inherited from the action's defaults, because the
+          # whole point of this job is that a pull request must not recompile Mathlib.
+          # `use-mathlib-cache` runs `lake exe cache get` (Mathlib's own olean cache);
+          # `use-github-cache` restores and saves this repository's `.lake` directory, keyed on
+          # `lean-toolchain` + `lake-manifest.json` with a prefix fallback to the previous commit's
+          # cache.  Pull requests restore from the base branch, so main's run is what keeps them
+          # warm; see README "Building from scratch".
+          use-mathlib-cache: "true"
+          use-github-cache: "true"
+          # Independent external checks worth enabling once each has had one measured trial run
+          # (each needs a budget decision, and a red public CI is worse than a pending one):
+          #   leanchecker: "true"      # re-check every olean with the standalone kernel
+          #   axiom-audit: "true"      # leanprover-community/axiom-audit; note that it audits ONE
+          #                            # root namespace (auto-detected from the first lean_lib),
+          #                            # while AxiomAudit.CensusAll covers all six project roots.
+      # The frontier record gate needs a compiler, so it runs after the build rather than beside the
+      # other static gates: it asks Lean itself to confirm `new + Frontier.recordDelta <= old` when
+      # a pull request moves `Frontier.frontierConstant`, so that a record cannot be claimed for
+      # shaving a final digit. On a push to main there is no base revision to compare against, and
+      # the script is a no-op when the constant is unchanged.
+      - name: Frontier record must improve the bound
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: bash scripts/check_frontier_improvement.sh "$(git merge-base "$BASE_SHA" HEAD)"
+
+  certificate:
+    # The five-minute generated certificate targets.  This job always reports a status so it can be
+    # a required check, and decides internally whether the heavy build is warranted:
+    #   * every push to main (drift is caught even when the path filter would have missed it);
+    #   * a pull request touching MatrixMultiplication/Generated/**, AxiomAuditCertificate*, or
+    #     MatrixMultiplicationCertificate*;
+    #   * any pull request carrying the `record-claim` label — a PR that claims a new bound must
+    #     rebuild the certificate it claims, whatever files it happens to touch.
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      LEAN_NUM_THREADS: 2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # `git merge-base` below needs the base branch's history.
+          fetch-depth: 0
+      - name: Decide whether the generated certificate must be rebuilt
+        id: gate
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          HAS_RECORD_CLAIM_LABEL: ${{ contains(github.event.pull_request.labels.*.name, 'record-claim') }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -eu
+          reasons=''
+          add_reason() {
+            if [ -n "$reasons" ]; then reasons="$reasons; $1"; else reasons="$1"; fi
+          }
+          if [ "$EVENT_NAME" = 'push' ]; then
+            add_reason 'push to main'
+          fi
+          if [ "$HAS_RECORD_CLAIM_LABEL" = 'true' ]; then
+            add_reason 'record-claim label'
+          fi
+          if [ "$EVENT_NAME" = 'pull_request' ]; then
+            merge_base="$(git merge-base "$BASE_SHA" HEAD)"
+            changed="$(git diff --name-only "$merge_base" HEAD)"
+            if printf '%s\n' "$changed" |
+                grep -qE '^(MatrixMultiplication/Generated/|AxiomAuditCertificate|MatrixMultiplicationCertificate)'; then
+              add_reason 'generated certificate paths changed'
+            fi
+          fi
+          if [ -n "$reasons" ]; then
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+            echo "Rebuilding the certificate targets: $reasons."
+          else
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+            echo 'No generated-certificate path changed and no record-claim label: nothing to rebuild.'
+            echo 'Add the `record-claim` label to force this job on a pull request that claims a bound.'
+          fi
+      - uses: leanprover/lean-action@v1
+        if: steps.gate.outputs.run == 'true'
+        with:
+          build-args: MatrixMultiplicationCertificate AxiomAuditCertificate
+          use-mathlib-cache: "true"
+          use-github-cache: "true"

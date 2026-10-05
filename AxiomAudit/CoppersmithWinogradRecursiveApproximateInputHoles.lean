@@ -1,0 +1,18 @@
+import AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveApproximateInputHoles
+import AxiomAudit.Command
+
+open AlgebraicComplexity AlgebraicComplexity.Examples
+
+/-! Focused trust audit for
+`AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveApproximateInputHoles`: the exact
+finite separation of the two hole classes in a recursive CW target alphabet -- labels failing
+the approximate parent profile and labels lost to compatibility cleanup -- their disjointness,
+and the existence of the hole decomposition for a grouped cleanup. -/
+
+#assert_axioms mem_cwRecursiveApproximateInputTargetParts_iff
+#assert_axioms mem_cwRecursiveInputProfileHoles_iff
+#assert_axioms cwRecursiveApproximateCleanedFiberParts_parentLabelApproximatelyMatches
+#assert_axioms cwRecursiveApproximateMovedCleanedFiberParts_subset_inputTargetParts
+#assert_axioms cwRecursive_target_sdiff_moved_eq_inputProfileHoles_union_cleanupHoles
+#assert_axioms cwRecursive_inputProfileHoles_disjoint_cleanupHoles
+#assert_axioms exists_cwRecursiveApproximate_orientedGroupedCleanup_holeDecomposition

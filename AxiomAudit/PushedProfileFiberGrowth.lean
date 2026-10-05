@@ -1,0 +1,15 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Combinatorics.PushedProfileFiberGrowth
+
+/-! Focused trust audit for entropy growth inside an exact pushed type fiber. -/
+
+#assert_axioms AlgebraicComplexity.WordType.card_proportionalTypeClass_le_entropyBase_pow
+#assert_axioms AlgebraicComplexity.WordType.pushedTypeFiberEntropyBase_pos
+#assert_axioms
+  AlgebraicComplexity.WordType.pushedTypeFiberEntropyBase_eq_exp_entropyDifference
+#assert_axioms AlgebraicComplexity.WordType.pushedTypeFiberLoss_pos
+#assert_axioms AlgebraicComplexity.WordType.pushedTypeFiberLoss_subexponential
+#assert_axioms
+  AlgebraicComplexity.WordType.pushedTypeFiberEntropyBase_pow_le_loss_mul_card_typedFiber
+#assert_axioms
+  AlgebraicComplexity.WordType.pushedTypeFiberEntropyBase_pow_le_loss_mul_card_conditionalTypedFeatureFiber

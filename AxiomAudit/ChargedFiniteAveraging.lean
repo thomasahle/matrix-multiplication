@@ -1,0 +1,9 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Combinatorics.ChargedFiniteAveraging
+
+/-! Focused trust audit for division-free charged averaging over finite families. -/
+
+#assert_axioms AlgebraicComplexity.exists_mem_floor_add_charge_le_reward
+#assert_axioms AlgebraicComplexity.exists_mem_floor_add_weightedCharge_le_reward
+#assert_axioms AlgebraicComplexity.exists_seed_type_floor_add_charge_le_reward
+#assert_axioms AlgebraicComplexity.exists_seed_type_floor_add_weightedCharge_le_reward

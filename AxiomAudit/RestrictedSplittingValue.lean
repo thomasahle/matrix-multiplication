@@ -1,0 +1,25 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.RestrictedSplittingValue
+
+set_option autoImplicit false
+
+/-! # Axiom audit for the restricted-splitting value law -/
+
+#assert_axioms AlgebraicComplexity.Tensor.blockProject_comp_blockInclude
+#assert_axioms AlgebraicComplexity.Tensor.Restricts.partitionedConstituent
+#assert_axioms AlgebraicComplexity.positiveSupportWordWeight_nonneg
+#assert_axioms AlgebraicComplexity.hasTauWeight_wordTensor
+#assert_axioms AlgebraicComplexity.hasTauWeight_positivePower_constituent
+#assert_axioms AlgebraicComplexity.hasTauWeight_restrictedSplittingPower_of_wordTensor
+#assert_axioms AlgebraicComplexity.hasTauWeight_restrictedSplittingPower
+#assert_axioms AlgebraicComplexity.positiveSupportWordWeight_eq_prod
+#assert_axioms AlgebraicComplexity.positiveSupportWordWeight_eq_prod_pow
+#assert_axioms AlgebraicComplexity.prod_pow_mul
+#assert_axioms AlgebraicComplexity.hasTauWeight_restrictedSplittingPower_pow
+#assert_axioms AlgebraicComplexity.sum_multiplicity_eq_of_proportional

@@ -1,0 +1,29 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoOrbitTag
+
+set_option autoImplicit false
+
+/-! # Axiom audit for the six-raw-tag `(1,1,2)`-orbit regrouping -/
+
+#assert_axioms AlgebraicComplexity.Examples.isomorphic_permute_one
+#assert_axioms AlgebraicComplexity.Examples.isomorphic_dwz63OrbitConstituent_112
+#assert_axioms AlgebraicComplexity.Examples.isomorphic_dwz63OrbitConstituent_211
+#assert_axioms AlgebraicComplexity.Examples.isomorphic_dwz63OrbitConstituent_121
+#assert_axioms AlgebraicComplexity.Examples.isomorphic_permute_dwz63OrbitConstituent
+#assert_axioms AlgebraicComplexity.Examples.permute_symThree_eq
+#assert_axioms AlgebraicComplexity.Examples.hasTauWeight_permute_symThree_triple
+#assert_axioms AlgebraicComplexity.Examples.hasTauWeight_power_permute_symThree
+#assert_axioms AlgebraicComplexity.Examples.dwz63_rawTag_existsUnique
+#assert_axioms AlgebraicComplexity.Examples.dwz63_orbitMass_sum
+#assert_axioms AlgebraicComplexity.Examples.dwz63_orbitTag_coset_triples
+#assert_axioms AlgebraicComplexity.Examples.dwz63_orbitTriple_split
+#assert_axioms AlgebraicComplexity.Examples.dwz63_orbitTag_total
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_power_permute_symThree_112
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_power_permute_symThree_121
+#assert_axioms AlgebraicComplexity.Examples.dwz63_exp_logVal_pow_six_mul

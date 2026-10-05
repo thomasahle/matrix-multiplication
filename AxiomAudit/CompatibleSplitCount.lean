@@ -1,0 +1,32 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Combinatorics.CompatibleSplitCount
+
+/-! Focused trust audit for [DuanWuZhou2022] §6.2 (`global_value.tex`): the requirement-partition
+identity behind `def:global-compatible`, the exact typical- and compatible-block counts and their
+product closed forms (`lemma:pcomp_g`), the pair count consumed by `claim:hole_frac_low`, and the
+tiny inhabited instance in which the combination loss is strictly a loss. -/
+
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.eq_of_mappedType_reqIndex_eq
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.isCompatible_iff_mem_compatibleSet
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.mem_typicalSet_of_mem_compatibleSet
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.mem_compatibleSet_of_mem_usefulSet
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.multinomial_zType_mul_card_typicalSet
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.multinomial_reqType_mul_card_compatibleSet
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.typicalSet_nonempty
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.compatibleSet_nonempty
+#assert_axioms AlgebraicComplexity.WordType.multinomial_eq_multinomial_mappedType_fst_mul_prod
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.multinomial_eq_mul_prod_rows
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.card_compatibleSet_eq_prod
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.card_typicalSet_eq_prod
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.card_usefulSet_eq_prod
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.card_usefulSet_le_card_compatibleSet
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.card_compatibleSet_eq_of_multiplicity_eq
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.card_matchableCompatible_eq_of_mem_typicalSet
+#assert_axioms AlgebraicComplexity.CompatibleSplit.SplitRequirements.card_matchableCompatible_mul_card_typicalSet
+#assert_axioms AlgebraicComplexity.CompatibleSplit.tiny_card_usefulSet_lt_card_compatibleSet

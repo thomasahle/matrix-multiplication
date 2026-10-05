@@ -1,0 +1,101 @@
+# Known `decide` memory-boundary debt, as of the commit that generated this file.
+#
+# DESIGN.md:590 ("Reduction and elaboration budgets", DESIGN.md:580) forbids letting a single
+# reduction command become the project's memory boundary.
+# The rule went unenforced for a long time; `scripts/check_decide_budget.py` enforces it now, and
+# every line below is a place where the committed tree already breaks it.  The list exists so the
+# debt is VISIBLE rather than forgotten: a clean run prints how many entries are still here.
+#
+# The list is APPEND-BLOCKED and may only shrink.
+#   * A violation that is NOT listed here fails the build.
+#   * An entry here that no longer violates is reported as a stale-entry notice, never a failure --
+#     the commit that pays debt down must not be the commit that goes red.
+#   * An entry here that gets WORSE fails: a recorded payload may drift by the regression slack
+#     (default 25%, floor 1000 digits) but may not balloon.
+#
+# Two record types:
+#
+#   measured  <module>  <peak_mb>
+#       A module in scripts/decide_memory_budget.tsv whose measured peak exceeds the budget.
+#       Retire it by making the reduction cheaper and appending the new measurement.
+#
+#   payload   <path>::<declaration>  <digits>
+#       An un-measured `decide` / `decide +kernel` / `decide_cbv` declaration whose inlined
+#       literal payload exceeds the static threshold.  Retire it by shrinking the payload (split
+#       the reduction, or replace it by a proved checker per DESIGN.md's "untrusted producer,
+#       proved checker" architecture) -- or by MEASURING the module and appending the number to
+#       scripts/decide_memory_budget.tsv, which retires the proxy in favour of a real figure.
+#       The key is `path::name`, not `path:line`, so ordinary edits above a declaration do not
+#       churn this file.
+#
+# Do not add a line here to silence the gate on new work.  Regenerate deliberately with
+#
+#   python3 scripts/check_decide_budget.py --update
+#
+# 15 measured modules over budget, 49 un-measured declarations over the static payload threshold.
+
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge0 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge1 12231
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge10 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge11 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge12 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge13 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge2 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge3 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge4 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge5 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge6 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge7 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge8 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge9 19600
+measured MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceZeroFour1 133662
+
+payload MatrixMultiplication/Generated/LegalHybridQ20Root0DualData.lean::partitionNumerator_eq 15197
+payload MatrixMultiplication/Generated/LegalHybridQ20RootDualData.lean::partitionNumerator_eq 125285
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk0.lean::inputs_eq 28685
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk1.lean::inputs_eq 28846
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk10.lean::inputs_eq 28805
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk11.lean::inputs_eq 28754
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk12.lean::inputs_eq 28885
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk13.lean::inputs_eq 28884
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk14.lean::inputs_eq 28803
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk15.lean::inputs_eq 28897
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk16.lean::inputs_eq 28891
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk17.lean::inputs_eq 28666
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk2.lean::inputs_eq 28869
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk3.lean::inputs_eq 28666
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk4.lean::inputs_eq 28882
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk5.lean::inputs_eq 28826
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk6.lean::inputs_eq 28782
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk7.lean::inputs_eq 28738
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk8.lean::inputs_eq 28886
+payload MatrixMultiplication/Generated/SimplifiedExponentLevelTwoRecurrenceChunk9.lean::inputs_eq 28917
+payload MatrixMultiplication/Generated/SimplifiedExponentRoot0Y.lean::recurrence_normalize 125112
+payload MatrixMultiplication/Generated/SimplifiedExponentRoot0Z.lean::recurrence_normalize 178200
+payload MatrixMultiplication/Generated/SimplifiedExponentRoot1Y.lean::recurrence_normalize 416588
+payload MatrixMultiplication/Generated/SimplifiedExponentRoot1Z.lean::recurrence_normalize 577231
+payload MatrixMultiplication/Generated/SimplifiedExponentRoot4Y.lean::recurrence_normalize 132996
+payload MatrixMultiplication/Generated/SimplifiedExponentRoot4Z.lean::recurrence_normalize 186840
+payload MatrixMultiplication/Generated/SimplifiedExponentRoot5Y.lean::recurrence_normalize 114422
+payload MatrixMultiplication/Generated/SimplifiedExponentRoot5Z.lean::recurrence_normalize 151056
+payload MatrixMultiplication/Generated/SimplifiedVolumePos3DualData0.lean::checked 17965
+payload MatrixMultiplication/Generated/SimplifiedVolumePos3DualData1.lean::checked 18164
+payload MatrixMultiplication/Generated/SimplifiedVolumePos3DualData2.lean::checked 18140
+payload MatrixMultiplication/Generated/SimplifiedVolumePos4DualData0.lean::checked 17745
+payload MatrixMultiplication/Generated/SimplifiedVolumePos4DualData1.lean::checked 17731
+payload MatrixMultiplication/Generated/SimplifiedVolumePos4DualData2.lean::checked 17858
+payload MatrixMultiplication/Generated/SimplifiedVolumePrimaryData.lean::topNumeratorTotal_eq 15400
+payload MatrixMultiplication/Generated/SimplifiedVolumeRecurrenceZeroFour0.lean::recurrence_normalizes 93574
+payload MatrixMultiplication/Generated/SimplifiedVolumeRecurrenceZeroFour2.lean::recurrence_normalizes 93575
+payload MatrixMultiplication/Generated/SimplifiedVolumeRecurrenceZeroFour3.lean::recurrence_normalizes 93576
+payload MatrixMultiplication/Generated/SimplifiedVolumeRecurrenceZeroFour4.lean::recurrence_normalizes 93576
+payload MatrixMultiplication/Generated/SimplifiedVolumeRecurrenceZeroFour5.lean::recurrence_normalizes 93576
+payload MatrixMultiplication/Generated/SimplifiedVolumeTopData0.lean::checked 12233
+payload MatrixMultiplication/Generated/TotalQuotientPrimaryPos3DualData0.lean::checked 17965
+payload MatrixMultiplication/Generated/TotalQuotientPrimaryPos3DualData1.lean::checked 18164
+payload MatrixMultiplication/Generated/TotalQuotientPrimaryPos3DualData2.lean::checked 18140
+payload MatrixMultiplication/Generated/TotalQuotientPrimaryPos4DualData0.lean::checked 17747
+payload MatrixMultiplication/Generated/TotalQuotientPrimaryPos4DualData1.lean::checked 17739
+payload MatrixMultiplication/Generated/TotalQuotientPrimaryPos4DualData2.lean::checked 17859
+payload MatrixMultiplication/Generated/TotalQuotientPrimaryPrimaryData.lean::topNumeratorTotal_eq 15434
+payload MatrixMultiplication/Generated/TotalQuotientPrimaryTopData0.lean::checked 12267

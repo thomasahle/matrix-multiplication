@@ -1,0 +1,10 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradSortedPairCompatibilityContainment
+
+/-! Focused trust audit for the sorted-pair compatibility-to-coarse-containment bridge. -/
+
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairPushforwardTargets_isYWeightSupported
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairPushforwardTargets_isZWeightSupported
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairPushforwardTargets_isWeightSupported
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPair_splitWordWeight_eq_Y_of_featureCompatibleY
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPair_splitWordWeight_eq_Z_of_featureCompatibleZ

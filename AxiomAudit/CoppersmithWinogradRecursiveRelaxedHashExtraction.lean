@@ -1,0 +1,19 @@
+import AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveRelaxedHashExtraction
+import AxiomAudit.Command
+
+open AlgebraicComplexity AlgebraicComplexity.Examples
+
+/-! Focused trust audit for
+`AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveRelaxedHashExtraction`: the finite
+marked X-only affine extraction on the relaxed recursive CW family -- the isolated coarse
+support, its containments in the marked and ambient families, its exact cardinality,
+physical-`sigma X` injectivity, and the seed-existence theorem carrying the paper's count. -/
+
+#assert_axioms CWCoarseFieldEncoding.relaxedRecursiveMarkedXIsolatedSources
+#assert_axioms CWCoarseFieldEncoding.relaxedRecursiveMarkedXIsolatedCoarseSupport
+#assert_axioms CWCoarseFieldEncoding.mem_relaxedRecursiveMarkedXIsolatedCoarseSupport_iff
+#assert_axioms CWCoarseFieldEncoding.relaxedRecursiveMarkedXIsolatedCoarseSupport_subset_marked
+#assert_axioms CWCoarseFieldEncoding.relaxedRecursiveMarkedXIsolatedCoarseSupport_subset_ambient
+#assert_axioms CWCoarseFieldEncoding.card_relaxedRecursiveMarkedXIsolatedCoarseSupport
+#assert_axioms CWCoarseFieldEncoding.relaxedRecursiveX_injectiveOn_markedXIsolatedCoarseSupport
+#assert_axioms CWCoarseFieldEncoding.exists_seed_many_relaxedRecursiveMarkedXIsolatedCoarseSupport

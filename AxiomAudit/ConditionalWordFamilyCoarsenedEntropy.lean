@@ -1,0 +1,18 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Analysis.ConditionalWordFamilyCoarsenedEntropy
+
+/-!
+# Axiom audit for coarsened entropy bounds on empirical word families
+
+This focused client checks every public theorem in the integral-profile adapter.
+-/
+
+open AlgebraicComplexity
+
+#assert_axioms WordType.normalizedJointWordProbability
+#assert_axioms WordType.normalizedJointWordProbability_entropy
+#assert_axioms WordType.profileMass_mul_profileEntropyNats_le_logTwo_mul_add_of_coarsenedBounds
+#assert_axioms
+  WordType.card_words_le_conditionalFeatureEntropyLoss_mul_penaltyBase_pow_of_coarsenedBounds
+#assert_axioms
+  WordType.card_words_le_conditionalFeatureEntropyLoss_mul_penaltyBase_pow_of_coarsenedBounds_of_length_eq

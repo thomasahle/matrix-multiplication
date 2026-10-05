@@ -1,0 +1,22 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveOccurrenceConcentrationModel
+
+/-! # Axiom audit for recursive occurrence concentration models -/
+
+open AlgebraicComplexity AlgebraicComplexity.Examples
+
+#assert_axioms cwRecursiveOccurrenceStateCell
+#assert_axioms cwOrientedCoarseCellToIndex_cwRecursiveOccurrenceStateCell
+#assert_axioms cwRecursiveOccurrenceProjectionModel
+#assert_axioms cwRecursiveOccurrenceProjectionModel_stateLaw_weight
+#assert_axioms recursiveOccurrenceExactProfile_eq_cellJointProfile_stateCell
+#assert_axioms cwRecursiveOccurrenceProjectionModel_targetReference
+#assert_axioms cwRecursiveOccurrenceProjectionModel_stateReference
+#assert_axioms cwProportionalProfileMass_pos
+#assert_axioms card_cwRecursiveInputProfileHoles_le_of_occurrenceTargetData

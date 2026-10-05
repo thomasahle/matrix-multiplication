@@ -1,0 +1,8 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradTotalWeightEmbeddedInnerExtraction
+
+/-! Focused trust audit for sparse-alphabet inner extraction in a total-weight CW constituent. -/
+
+#assert_axioms AlgebraicComplexity.Examples.profileMass_cwEmbeddedChunkProfile
+#assert_axioms AlgebraicComplexity.Examples.cwChunkSupportedConstituent_restricts_canonicalDimension
+#assert_axioms AlgebraicComplexity.Examples.exists_seed_many_cwTotalWeightInnerPrimeEmbeddedMarkedLeafDirectSumAtDepth

@@ -1,0 +1,23 @@
+import AxiomAudit.Command
+import MatrixMultiplication.LogLinearRationalAccumulation
+
+/-! Focused trust audit for the rational and integral accumulation of the compression
+bookkeeping — the data-independent half of turning a compressed certificate's four `ℝ`-valued
+emitter identities into `ℚ`- and then `ℤ`-valued ones.  No generated certificate data is reached
+from here; the total-weight quotient seam that consumes these bridges is audited by
+`AxiomAuditCertificate/TotalQuotientNormalizedCompression.lean`. -/
+
+#assert_axioms MatrixMultiplication.LogLinearCompression.fiberSum_eq_fiberSumIn
+#assert_axioms MatrixMultiplication.LogLinearCompression.valuationShift_eq_valuationShiftIn
+#assert_axioms MatrixMultiplication.LogLinearCompression.chordLowerCoefficient_eq_chordLowerCoefficientIn
+#assert_axioms MatrixMultiplication.LogLinearCompression.chordUpperCoefficient_eq_chordUpperCoefficientIn
+#assert_axioms MatrixMultiplication.LogLinearCompression.tangentResidual_eq_tangentResidualIn
+#assert_axioms MatrixMultiplication.LogLinearCompression.fiberSumIn_map
+#assert_axioms MatrixMultiplication.LogLinearCompression.fiberSum_ratCast
+#assert_axioms MatrixMultiplication.LogLinearCompression.valuationShift_ratCast
+#assert_axioms MatrixMultiplication.LogLinearCompression.chordLowerCoefficient_ratCast
+#assert_axioms MatrixMultiplication.LogLinearCompression.chordUpperCoefficient_ratCast
+#assert_axioms MatrixMultiplication.LogLinearCompression.tangentResidual_ratCast
+#assert_axioms MatrixMultiplication.LogLinearCompression.fiberSumIn_div
+#assert_axioms MatrixMultiplication.LogLinearCompression.fiberSumIn_intCast
+#assert_axioms MatrixMultiplication.LogLinearCompression.fiberSum_intCast_div

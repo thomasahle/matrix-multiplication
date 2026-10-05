@@ -1,0 +1,26 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.PairedTotalWeightA5Row
+
+set_option autoImplicit false
+
+/-! Focused trust audit for the exact replacement A5 row semantic contract. -/
+
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.Row
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.levelFourChildSamples_sq_eq_dyadicScales
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.Row.occurrenceProfile_apply_eq_count32_rescale
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.Row.occurrenceProfile_eq_count32_rescale
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.Row.occurrenceProfileMass_pos
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.Row.parentMass_pos
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.Row.program
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.Row.program_stateProfile
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.Row.program_weights
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.Row.program_stateProfile_eq_count32_rescale
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.Row.checkerRetainedForm32
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.Row.semanticRetainedForm116
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5Row.Row.semanticRetainedForm116_eval_eq_checkerRetainedForm32_eval

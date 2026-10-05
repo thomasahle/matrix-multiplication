@@ -1,0 +1,26 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.PairedTotalWeightA5FrozenRowData
+
+set_option autoImplicit false
+
+/-! Focused trust audit for executable paired total-weight row construction. -/
+
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.minValidSlot
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.minValidSlot_comm
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.boundaryFactor
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.boundaryFactor_pos
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.Factors
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.weights
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.Factors.toWeights
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.count32
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.count32_eq_top
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.profileMass_count32_mul_dyadicDenominator84
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.profileMass_count32_pos
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.row
+#assert_axioms MatrixMultiplication.PairedTotalWeightA5FrozenRowData.Factors.toRow

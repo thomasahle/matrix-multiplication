@@ -1,0 +1,28 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.AsymmetricGlobalValue
+
+/-! Focused trust audit for [DuanWuZhou2022] `eq:numeric_conclusion_g`: the two-branch `min`, the
+derived assembly of hashing, compatibility cleanup and batched hole repair, and the resulting
+six-symmetrized value bound together with its strict `ω` corollary. -/
+
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.div_max_eq_min_div
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.GlobalRateData.copyRate_eq_min
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.GlobalRateData.globalRate_eq_min_mul
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.GlobalRateData.branchHashing_eq_xRate_mul_hashLoss
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.HasTauWeight.indexedDirectSum_const
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.omega_lt_three_mul_of_hasTauWeight
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.Tensor.Restricts.partitionedYZCompatibilityCleanup_to_repairedRestrictedSplittingDirectSum
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.hasTauWeight_of_repairedStage
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.globalRate_pow_le_rpow_of_repairedStage
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.le_sixValue_of_repairedStage
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.omega_lt_three_mul_of_repairedStage
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.tiny_card_availableWord_pos
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.tiny_holeBudget
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.tinyRateData_copyRate
+#assert_axioms AlgebraicComplexity.AsymmetricGlobal.tinyRateData_branches

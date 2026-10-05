@@ -1,0 +1,14 @@
+import AxiomAudit.Command
+import MatrixMultiplication.TotalWeightAcceptanceAssembly
+
+/-! Axiom audit for the S7 assembly of the volume-only `2.36999` endpoint. -/
+
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.two_rpow_le_five_pow_295
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.five_pow_294_lt_two_rpow
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.two_rpow_lt_of_floor_le
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.embeddedGrowthDatum_exponent
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.innerRetainedFloor_le_innerRate
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.omega_lt_236999_of_named_inputs
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.trivialCoarseCleanup
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.witnessOuterFloor
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.levelFour_letterBudget

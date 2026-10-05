@@ -1,0 +1,9 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.ConditionalLegFiberCounting
+
+/-! Focused trust audit for conditional leg-fiber counting under a coarse-word stabilizer. -/
+
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.mem_sourceWordsOfConditionalLegType
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.card_sourceWordLegFiber_eq_of_conditionalMultiplicity_eq
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.card_conditionalTypeClass_mul_card_sourceWordLegFiber
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.card_conditionalTypeClass_mul_card_sourceWordLegFiber_le

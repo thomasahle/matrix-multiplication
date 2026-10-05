@@ -1,0 +1,7 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Analysis.ExponentialTailAbsorption
+
+/-! # Axiom audit for strict exponential-tail absorption -/
+
+#assert_axioms AlgebraicComplexity.Growth.Subexponential.eventually_const_mul_loss_mul_exp_neg_natCast_le_one
+#assert_axioms AlgebraicComplexity.Growth.Subexponential.eventually_budget_mul_bad_le_target_of_common_exponential_bounds

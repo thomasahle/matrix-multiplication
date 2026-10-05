@@ -1,0 +1,8 @@
+import AxiomAudit.Command
+import MatrixMultiplication.TotalWeightAcceptanceAssemblyLevelTwoEndpoint
+
+/-! Axiom audit for the depth-one `2.36999` endpoint with `h2` and `h4.certificate` discharged. -/
+
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssemblyLevelTwoEndpoint.levelTwoTableInput_ofRate
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssemblyLevelTwoEndpoint.innerRetainedFloor_le_innerRate_ofRate
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssemblyLevelTwoEndpoint.omega_lt_236999_of_inner_inputs

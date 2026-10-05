@@ -1,0 +1,22 @@
+import AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveCompetitorCounting
+import AxiomAudit.Command
+
+open AlgebraicComplexity AlgebraicComplexity.Examples
+
+/-! Focused trust audit for
+`AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveCompetitorCounting`: the one-sided
+bridge from actual recursive CW quotient addresses to the abstract marginal-word family --
+injectivity of the canonical ordered left-child shape word, the ambient target equivalence and
+its inverse, and the resulting X-fiber degree bounds used to choose the hashing modulus. -/
+
+#assert_axioms cwRecursiveCoarsenedAlphaMarginalTerm_left_add_right
+#assert_axioms cwRecursiveLogicalLeftShapeWordOfCoarse
+#assert_axioms coordinate_cwRecursiveLogicalLeftShapeWordOfCoarse
+#assert_axioms coordinate_complement_cwRecursiveLogicalLeftShapeWordOfCoarse
+#assert_axioms cwRecursiveLogicalLeftShapeWordOfCoarse_injectiveOn
+#assert_axioms cwRecursiveLogicalLeftShapeWordOfCoarse_mem_marginalWords
+#assert_axioms CWCoarseFieldEncoding.recursiveAmbientTargetEquiv
+#assert_axioms CWCoarseFieldEncoding.recursiveAmbientSourceOfTarget
+#assert_axioms CWCoarseFieldEncoding.recursiveOrientedLegalTriple_recursiveAmbientSourceOfTarget
+#assert_axioms CWCoarseFieldEncoding.card_recursiveAmbient_xFiber_le_marginalWordFiber
+#assert_axioms CWCoarseFieldEncoding.card_coordinateType_mul_card_recursiveAmbient_xFiber_le

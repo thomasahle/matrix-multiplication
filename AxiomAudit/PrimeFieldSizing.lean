@@ -1,0 +1,12 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Combinatorics.PrimeFieldSizing
+
+/-! Focused trust audit for canonical prime-field sizing. -/
+
+#assert_axioms AlgebraicComplexity.PrimeFieldSizing.modulus_prime
+#assert_axioms AlgebraicComplexity.PrimeFieldSizing.requirement_lt_modulus
+#assert_axioms AlgebraicComplexity.PrimeFieldSizing.characteristicFloor_lt_modulus
+#assert_axioms AlgebraicComplexity.PrimeFieldSizing.modulus_le_two_mul_add
+#assert_axioms AlgebraicComplexity.PrimeFieldSizing.loss_subexponential
+#assert_axioms AlgebraicComplexity.PrimeFieldSizing.modulus_cast_le_loss_mul_pow
+#assert_axioms AlgebraicComplexity.PrimeFieldSizing.modulus_cast_le_sequenceLoss_mul_pow

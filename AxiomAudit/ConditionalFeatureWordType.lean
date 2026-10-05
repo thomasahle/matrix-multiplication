@@ -1,0 +1,11 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Combinatorics.ConditionalFeatureWordType
+
+/-! Focused trust audit for conditional feature-profile type counting. -/
+
+#assert_axioms AlgebraicComplexity.WordType.conditionalFeatureTypeClass_eq_biUnion_conditionalTypeClass
+#assert_axioms AlgebraicComplexity.WordType.mappedType_fst_eq_of_mem_feasibleConditionalFeatureTypes
+#assert_axioms AlgebraicComplexity.WordType.card_conditionalFeatureTypeClass_le_sum_conditionalTypeClasses
+#assert_axioms AlgebraicComplexity.WordType.card_conditionalFeatureTypeClass_le_types_mul
+#assert_axioms AlgebraicComplexity.WordType.card_conditionalFeatureTypeClass_le_succ_pow_mul
+#assert_axioms AlgebraicComplexity.WordType.conditionalFeatureTypeSelectionLoss_subexponential

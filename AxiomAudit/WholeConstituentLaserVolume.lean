@@ -1,0 +1,7 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.WholeConstituentLaserVolume
+
+/-! Focused trust audit for no-hole whole-constituent volume extraction. -/
+
+#assert_axioms AlgebraicComplexity.WholeConstituentLaserVolumeStage.polynomialDegenerates
+#assert_axioms AlgebraicComplexity.WholeConstituentLaserVolumeSequenceData.toSubexponentialLaserVolumeSequence

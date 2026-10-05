@@ -1,0 +1,32 @@
+# Code owners for the files that decide *what* CI checks.
+#
+# Statement integrity is the point: a change to a proof is reviewed by reading the proof, but a
+# change to the gates, the toolchain pin, or the axiom allowlist can make every other check
+# vacuous. Those files therefore require an explicit review from the repository owner.
+#
+# This file only assigns reviewers. It has no effect until "Require review from Code Owners" is
+# enabled on the protected branch — see .github/BRANCH_PROTECTION.md.
+
+# The gates themselves.
+/.github/                       @thomasahle
+/.github/workflows/             @thomasahle
+/.github/CODEOWNERS             @thomasahle
+/scripts/                       @thomasahle
+
+# The build contract: which targets exist, which toolchain and which dependency revisions the
+# kernel is run at. `lake-manifest.json` pins the exact Mathlib/CSLib commits.
+/lakefile.toml                  @thomasahle
+/lean-toolchain                 @thomasahle
+/lake-manifest.json             @thomasahle
+
+# The enforcing axiom audit. `AxiomAudit/Command.lean` defines `#assert_axioms` and holds the
+# allowlist `{propext, Classical.choice, Quot.sound}`; `AxiomAudit/Census.lean` and its two
+# clients are the environment-level authority that no project module postulates anything.
+# Widening any of them silently weakens every other theorem in the repository.
+/AxiomAudit.lean                @thomasahle
+/AxiomAudit/                    @thomasahle
+/AxiomAuditCertificate.lean     @thomasahle
+/AxiomAuditCertificate/         @thomasahle
+
+# The file that states the current record is a statement-integrity file by definition.
+/Frontier.lean                  @thomasahle

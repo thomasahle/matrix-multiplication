@@ -1,0 +1,27 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoAggregateHoleBudget
+
+set_option autoImplicit false
+
+/-! # Axiom audit for the aggregate Hole-Lemma budget and the second retention pass -/
+
+#assert_axioms AlgebraicComplexity.Examples.dwz63_holeBudget_of_goodSubset
+#assert_axioms AlgebraicComplexity.Examples.dwz63_holeBudget_fiber_of_goodSubset
+#assert_axioms AlgebraicComplexity.Examples.dwz63GoodCopies
+#assert_axioms AlgebraicComplexity.Examples.mem_dwz63GoodCopies
+#assert_axioms AlgebraicComplexity.Examples.card_le_two_mul_card_dwz63GoodCopies
+#assert_axioms AlgebraicComplexity.Examples.dwz63GoodBatch
+#assert_axioms AlgebraicComplexity.Examples.dwz63GoodBatch_of_mem
+#assert_axioms AlgebraicComplexity.Examples.dwz63GoodBatch_surjective
+#assert_axioms AlgebraicComplexity.Examples.le_card_dwz63GoodBatch_fiber
+#assert_axioms AlgebraicComplexity.Examples.Dwz63AggregateHoleFraction
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hbudget_of_aggregateHoleFraction
+#assert_axioms AlgebraicComplexity.Examples.dwz63GoodBatch_surjective_of_aggregateHoleFraction
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hbudget_of_aggregateHoleFraction_of_card
+#assert_axioms AlgebraicComplexity.Examples.card_eq_zero_of_dwz63AggregateHoleFraction

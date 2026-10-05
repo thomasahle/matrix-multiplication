@@ -1,0 +1,27 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.PartitionedSymmetrization
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoStageFamily
+
+set_option autoImplicit false
+
+/-! # Axiom audit for the six-symmetrized stage family -/
+
+#assert_axioms AlgebraicComplexity.Tensor.PartitionedTensor.isomorphic_symThreePartition
+#assert_axioms AlgebraicComplexity.Tensor.PartitionedTensor.isomorphic_swapSymThreePartition
+#assert_axioms AlgebraicComplexity.Tensor.PartitionedTensor.isomorphic_symSixPartition
+#assert_axioms AlgebraicComplexity.Tensor.PartitionedTensor.restricts_power_symSixPartition
+#assert_axioms AlgebraicComplexity.Tensor.PartitionedTensor.restricts_power_symSix_of_partitionedStage
+#assert_axioms
+  AlgebraicComplexity.Tensor.PartitionedTensor.restricts_power_symSix_to_repairedRestrictedSplittingDirectSum
+#assert_axioms AlgebraicComplexity.Examples.dwzLevelTwoCountingStage_of_stageFamily
+#assert_axioms AlgebraicComplexity.Examples.omega_lt_2374631_of_dwz63StageFamily
+#assert_axioms AlgebraicComplexity.Examples.dwz63_restricts_power_symSix
+#assert_axioms AlgebraicComplexity.Examples.dwz63_stage_of_partitionedStage
+#assert_axioms AlgebraicComplexity.Tensor.PartitionedTensor.card_symSixPartition_support
+#assert_axioms AlgebraicComplexity.Examples.card_dwz63SymSixPartition_support

@@ -1,0 +1,32 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.SimplifiedExponentLevelFourValidity
+
+/-!
+# Certificate axiom audit for the exact level-four recurrence and validity checker
+
+The exact recurrence is independent of any particular generated certificate.  Certificate
+clients provide concrete top and depth-three tables, then use the bounded Boolean checks in
+`SimplifiedExponentLevelFourValidity` to obtain the semantic row-validity and compatibility
+profile statements audited here.
+-/
+
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.branchFormOnParentsFrom_eval
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.branchRateOnParentsFrom_flatten
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.regionBranchRateFrom_eq_onParents
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.regionBranchFormFrom_eval
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.familyRetainedExponentOnParentsFrom_le_mathematical
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourRecurrence.familyRetainedExponentFrom_le_mathematical
+
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourValidity.localRows_isValid_of_valid
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourValidity.localRows_isValid_of_mem
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourValidity.branchRateOnParentsFrom_eq_eval_of_canonical
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourValidity.fixedParentSlotBoundaryValid_sound
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourValidity.fixedParentExactCount_supported
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourValidity.fixedParentExactCompatibilityProfiles_realizesTargets
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelFourValidity.fixedParentExactSplitAvgFamily_realizesTargets

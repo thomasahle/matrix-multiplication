@@ -1,0 +1,31 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradCompatibilityTargetCounting
+
+/-! Enforcing audit for finite and proportional CW compatibility-target counting. -/
+
+#assert_axioms
+  AlgebraicComplexity.Examples.exists_reference_card_le_fullCellTypes_mul_fixedTargetCellType
+#assert_axioms
+  AlgebraicComplexity.Examples.exists_reference_card_le_polynomial_mul_fixedTargetCellType
+#assert_axioms
+  AlgebraicComplexity.Examples.exists_reference_card_le_proportional_mul_fixedTargetCellType
+#assert_axioms AlgebraicComplexity.Examples.cwFullCellTypeSelectionLoss_subexponential
+#assert_axioms AlgebraicComplexity.Examples.card_fixedTargetCellType_sub_budgets_le_sparse
+#assert_axioms AlgebraicComplexity.Examples.card_fixedTargetCellType_le_two_mul_card_sparse
+#assert_axioms AlgebraicComplexity.Examples.card_coarseKept_le_typeLoss_mul_two_mul_sparse
+#assert_axioms
+  AlgebraicComplexity.Examples.cwFullCellTypeAndSparseSelectionLoss_subexponential
+#assert_axioms AlgebraicComplexity.Examples.fintypeCard_cwFineBlockWord
+#assert_axioms AlgebraicComplexity.Examples.card_cwExactTargetCoarseFiberParts_le_three_pow
+#assert_axioms
+  AlgebraicComplexity.Examples.card_cwExactTargetCoarseFiberParts_le_proportional_three_pow
+#assert_axioms AlgebraicComplexity.Examples.logarithmicRepairDepth_le_three_mul_width
+#assert_axioms
+  AlgebraicComplexity.Examples.sevenBranchBudget_logarithmicRepairDepth_le_targetRepairBudget
+#assert_axioms AlgebraicComplexity.Examples.exists_cwTargetCellType_maximalRepairPlans

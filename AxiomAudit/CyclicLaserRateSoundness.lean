@@ -1,0 +1,20 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.CyclicLaserRateSoundness
+
+/-!
+# Axiom audit for cyclic laser-rate soundness and the value bridge
+
+This focused audit covers the finite certificate/rate correspondence, critical-value boundedness,
+Schönhage soundness, and the rate-level numerical `omega` bound.  It deliberately does not import
+the subexponential volume-sequence client.
+-/
+
+#assert_axioms AlgebraicComplexity.CyclicDegenerationCertificate.hasCyclicLaserExtractionRate
+#assert_axioms AlgebraicComplexity.HasCyclicLaserExtractionRate.exp_sub_le_degenerationValue_of_bddAbove
+#assert_axioms AlgebraicComplexity.HasCyclicLaserExtractionRate.exp_le_degenerationValue_of_bddAbove
+#assert_axioms AlgebraicComplexity.HasCyclicLaserExtractionRate.le_log_borderRank
+#assert_axioms AlgebraicComplexity.degenerationValueValues_bddAbove_omega_div_three
+#assert_axioms AlgebraicComplexity.HasCyclicLaserExtractionRate.exp_sub_le_degenerationValue
+#assert_axioms AlgebraicComplexity.HasCyclicLaserExtractionRate.exp_le_degenerationValue
+#assert_axioms AlgebraicComplexity.HasCyclicLaserExtractionRate.le_log_of_borderRank_le
+#assert_axioms AlgebraicComplexity.HasCyclicLaserExtractionRate.omega_le_of_borderRank_le

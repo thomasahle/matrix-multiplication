@@ -1,0 +1,39 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoSupportBridge
+
+/-! Focused trust audit for the section 6.3 support bridge: the explicit bijection between
+[DuanWuZhou2022]'s fifteen level-two components and the coarsened Coppersmith--Winograd square
+support, its three coordinate lemmas, and the transports of the ambient three-marginal family,
+the marked exact type class, and their cardinalities. -/
+
+#assert_axioms AlgebraicComplexity.Examples.dwz63CellEquiv
+#assert_axioms AlgebraicComplexity.Examples.dwz63CellEquiv_X
+#assert_axioms AlgebraicComplexity.Examples.dwz63CellEquiv_Y
+#assert_axioms AlgebraicComplexity.Examples.dwz63CellEquiv_Z
+#assert_axioms AlgebraicComplexity.Examples.dwz63Cell_mem_cwSquareSupport
+#assert_axioms AlgebraicComplexity.Examples.dwz63LegIndex_comp_cellEquiv
+#assert_axioms AlgebraicComplexity.Examples.mappedType_legProj_cellEquiv
+#assert_axioms AlgebraicComplexity.Examples.dwz63PartitionHashEncoding
+#assert_axioms AlgebraicComplexity.Examples.multiplicity_supportWordAddress
+#assert_axioms AlgebraicComplexity.Examples.multiplicity_supportWordAddress_dwz63WordEquiv
+#assert_axioms AlgebraicComplexity.Examples.mem_dwz63AmbientWords_dwz63WordEquiv
+#assert_axioms AlgebraicComplexity.Examples.mem_dwz63MarkedWords_dwz63WordEquiv
+#assert_axioms AlgebraicComplexity.Examples.card_dwz63AmbientWords
+#assert_axioms AlgebraicComplexity.Examples.card_dwz63MarkedWords
+#assert_axioms AlgebraicComplexity.Examples.dwz63MarkedWords_subset_ambientWords
+#assert_axioms AlgebraicComplexity.Examples.dwz63MarkedWords_subset_ambientWords_proportional
+#assert_axioms AlgebraicComplexity.Examples.dwz63AmbientWords_reindex_mem_iff
+#assert_axioms AlgebraicComplexity.Examples.dwz63MarkedWords_nonempty
+#assert_axioms AlgebraicComplexity.Examples.mappedType_equiv
+#assert_axioms AlgebraicComplexity.Examples.mappedType_equiv_injective
+#assert_axioms AlgebraicComplexity.Examples.dwz63CellIndex_dwz63Cell
+#assert_axioms AlgebraicComplexity.Examples.dwz63Cell_injective
+#assert_axioms AlgebraicComplexity.Examples.dwz63CellEquiv_coe
+#assert_axioms AlgebraicComplexity.Examples.positiveWordEquiv_dwz63WordEquiv
+#assert_axioms AlgebraicComplexity.Examples.mem_dwz63AmbientWords

@@ -1,0 +1,36 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.SimplifiedRetainedCompressionSeam
+
+/-!
+# Certificate axiom audit for the simplified retained-exponent compression seam
+
+These assertions reach the generated `eab2c7` scalar data, so they live in the opt-in certificate
+audit target rather than the ordinary focused one.  They cover the reading of the committed
+payload as a signed log-linear form, the seam in both its raw and emitter-identity-discharged
+forms, the re-derivation of the emitted residual endpoint from the generic directed rule on its
+negative branch, the three rational floors the seam supplies, the milestone reconstruction
+predicate, and the two endpoint corollaries.
+-/
+
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.positiveArgument_pos
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.negativeArgument_pos
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.retainedExponentLowerWitness_eq_exactValue
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.retainedCompressionSeam_of_chordTangentCompression
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.retainedCompressionSeam_of_normalizedChordTangentCompression
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.inverseLogCoefficient_neg
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.inverseLogFloor_le_inverseLogTwoFloor
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.inverseLogFloor_le_of_directedResidual
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.le_of_seam
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.volumeOnlyRetainedLower_le_of_seam
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.coarseFourFamilyFloor_le_of_seam
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.retainedFloor_le_of_seam
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.volumeOnlyLevelFourReconstruction_of_seam
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.sharpReconstruction_of_seam
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.omega_lt_236999_of_compressionSeam
+#assert_axioms MatrixMultiplication.SimplifiedRetainedCompressionSeam.omega_lt_2369837225_of_compressionSeam

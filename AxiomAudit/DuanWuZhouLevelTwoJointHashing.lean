@@ -1,0 +1,53 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoJointHashing
+
+set_option autoImplicit false
+
+/-! # Axiom audit for the joint six-orientation hash of `[DuanWuZhou2022]` section 6
+
+The base-five encoding of the coarse Coppersmith--Winograd square, its six-orientation mixed-radix
+composition and the resulting field-valued hashing encoding; the retained support with its count,
+its sub-support property and its `hselect`/`hX` certificates; the Hole-Lemma budget for uniform
+batches; the two assembled stages --- with hole repair and without it; and the isolation floor at this
+instance. -/
+
+#assert_axioms AlgebraicComplexity.Examples.cwSquareNatEncoding
+#assert_axioms AlgebraicComplexity.Examples.cwSquareNatEncoding_alphabet
+#assert_axioms AlgebraicComplexity.Examples.cwSquareNatEncoding_natTarget
+#assert_axioms AlgebraicComplexity.Examples.dwz63SquareNatEncoding
+#assert_axioms AlgebraicComplexity.Examples.dwz63SymSixNatEncoding
+#assert_axioms AlgebraicComplexity.Examples.dwz63SymSixNatEncoding_alphabet
+#assert_axioms AlgebraicComplexity.Examples.dwz63SymSixNatEncoding_natTarget
+#assert_axioms AlgebraicComplexity.Examples.dwz63SymSixHashEncoding
+#assert_axioms AlgebraicComplexity.Examples.dwz63JointRetainedSupport
+#assert_axioms AlgebraicComplexity.Examples.dwz63_restricts_positivePower_jointRetained
+#assert_axioms AlgebraicComplexity.Examples.dwz63_x_injOn_jointRetained
+#assert_axioms AlgebraicComplexity.Examples.dwz63JointRetainedSupport_subset
+#assert_axioms AlgebraicComplexity.Examples.card_dwz63JointRetainedSupport
+#assert_axioms AlgebraicComplexity.Examples.exists_seed_dwz63JointRetained
+#assert_axioms AlgebraicComplexity.Examples.dwz63_holeBudget_uniformBatch
+#assert_axioms AlgebraicComplexity.Examples.relabeledUniformBatch
+#assert_axioms AlgebraicComplexity.Examples.relabeledUniformBatch_surjective
+#assert_axioms AlgebraicComplexity.Examples.relabeledUniformBatch_fiber_equiv
+#assert_axioms AlgebraicComplexity.Examples.dwz63_holeBudget_relabeledUniformBatch
+#assert_axioms AlgebraicComplexity.Examples.dwz63JointRetained
+#assert_axioms AlgebraicComplexity.Examples.dwz63JointIsolatedSupport
+#assert_axioms AlgebraicComplexity.Examples.dwz63_restricts_power_symSix_of_jointHash
+#assert_axioms AlgebraicComplexity.Examples.dwz63_restricts_power_symSix_to_isolatedDirectSum
+#assert_axioms AlgebraicComplexity.Examples.dwz63_stage_of_uniformLeaf
+#assert_axioms AlgebraicComplexity.Examples.card_dwz63JointIsolated_of_equiv
+#assert_axioms AlgebraicComplexity.Examples.dwz63JointYIsolatedSupport
+#assert_axioms
+  AlgebraicComplexity.Examples.card_dwz63JointRetainedSupport_le_card_jointIsolated_add_incidences
+#assert_axioms
+  AlgebraicComplexity.Examples.card_dwz63JointRetainedSupport_le_card_jointIsolated_add_budgets
+#assert_axioms
+  AlgebraicComplexity.Examples.card_dwz63JointRetainedSupport_le_card_jointIsolated_add_ambientBudgets
+#assert_axioms
+  AlgebraicComplexity.Examples.card_dwz63JointRetainedSupport_le_two_mul_card_jointIsolated

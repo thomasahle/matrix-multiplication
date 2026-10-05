@@ -1,0 +1,40 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoConstituentValues
+
+set_option autoImplicit false
+
+/-! # Axiom audit for section 6.3's fifteen constituent values -/
+
+#assert_axioms AlgebraicComplexity.Examples.hasTauWeight_matrixMultiplication
+#assert_axioms AlgebraicComplexity.Examples.dwz63_logVal_eq
+#assert_axioms AlgebraicComplexity.Examples.dwz63_split022_le_log_thirtyeight
+#assert_axioms AlgebraicComplexity.Examples.dwz63_val022_le_val220
+#assert_axioms AlgebraicComplexity.Examples.dwz63Val013_eq
+#assert_axioms AlgebraicComplexity.Examples.dwz63Val220_eq
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_004
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_400
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_040
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_013
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_031
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_301
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_103
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_130
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_310
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_220
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_022
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_202
+#assert_axioms AlgebraicComplexity.Examples.hasTauWeight_permute_iff
+#assert_axioms AlgebraicComplexity.Examples.dwz63Val_pos
+#assert_axioms AlgebraicComplexity.Examples.log_dwz63Val
+#assert_axioms AlgebraicComplexity.Examples.dwz63_logVal_eq_sum
+#assert_axioms AlgebraicComplexity.Examples.dwz63_sum_alpha_mul_log
+#assert_axioms AlgebraicComplexity.Examples.dwz63_exp_logVal_pow_eq_prod
+#assert_axioms AlgebraicComplexity.Examples.dwz63ValOf_dwz63Component
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_of_mem_support
+#assert_axioms AlgebraicComplexity.Examples.dwz63_hasTauWeight_component

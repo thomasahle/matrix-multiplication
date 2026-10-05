@@ -1,0 +1,40 @@
+import MatrixMultiplication.SimplifiedVolumeReconstruction
+
+/-! Exact static ordered-pair child-index table. -/
+
+namespace MatrixMultiplication.Generated.SimplifiedVolumeRecurrence.PairGeometryChunk0
+
+open MatrixMultiplication.SimplifiedVolumeReconstruction
+
+set_option maxRecDepth 1000000
+set_option maxHeartbeats 0
+set_option Elab.async false
+
+def expectedIndices : List (ℕ × ℕ) := [
+    (0, 10), (0, 11), (0, 12), (0, 13), (0, 14), (0, 15),
+    (0, 16), (0, 18), (0, 19), (0, 20), (0, 21), (0, 22),
+    (0, 23), (0, 25), (0, 26), (0, 27), (0, 28), (0, 29),
+    (0, 31), (0, 32), (0, 33), (0, 34), (0, 36), (0, 37),
+    (0, 38), (0, 40), (0, 41), (0, 43), (1, 9), (1, 10),
+    (1, 11), (1, 12), (1, 13), (1, 14), (1, 15), (1, 16),
+    (1, 17), (1, 18), (1, 19), (1, 20), (1, 21), (1, 22),
+    (1, 23), (1, 24), (1, 25), (1, 26), (1, 27), (1, 28),
+    (1, 29), (1, 30), (1, 31), (1, 32), (1, 33), (1, 34),
+    (1, 35), (1, 36), (1, 37), (1, 38), (1, 39), (1, 40),
+    (1, 41), (1, 42), (1, 43), (1, 44), (2, 9), (2, 10),
+    (2, 11), (2, 12), (2, 13), (2, 14), (2, 15), (2, 16),
+    (2, 17), (2, 18), (2, 19), (2, 20), (2, 21), (2, 22),
+    (2, 23), (2, 24), (2, 25), (2, 26), (2, 27), (2, 28),
+    (2, 29), (2, 30), (2, 31), (2, 32), (2, 33), (2, 34),
+    (2, 35), (2, 36), (2, 37), (2, 38), (2, 39), (2, 40),
+    (2, 41), (2, 42), (2, 43), (2, 44), (3, 9), (3, 10),
+    (3, 11), (3, 12), (3, 13), (3, 14), (3, 15), (3, 16),
+    (3, 17), (3, 18), (3, 19), (3, 20), (3, 21), (3, 22),
+    (3, 23), (3, 24), (3, 25), (3, 26), (3, 27)
+  ]
+
+opaque recurrence_eq :
+    computedPairShapeIndexRange 0 119 = expectedIndices := by
+  decide
+
+end MatrixMultiplication.Generated.SimplifiedVolumeRecurrence.PairGeometryChunk0

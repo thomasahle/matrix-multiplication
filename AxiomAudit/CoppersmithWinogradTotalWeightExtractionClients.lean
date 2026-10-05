@@ -1,0 +1,22 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradTotalWeightExtractionClients
+
+/-! Focused trust audit for the total-weight fixed-full-cell extraction clients. -/
+
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightCellMultiplicity_eq_of_fullCellType
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightMatchesExact_of_fullCellType
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightYPooled_of_fullCellType
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightZPooled_of_fullCellType
+#assert_axioms AlgebraicComplexity.Examples.cwFixedTargetCellTypeCoarseSupport_subset
+#assert_axioms AlgebraicComplexity.Examples.cwReference_mem_fixedTargetCellTypeCoarseSupport
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightFixedTargetCellType_passesY
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightFixedTargetCellType_passesZ
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightFixedTargetCellType_clientSupport
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightFixedTargetCellTypeYZCompatibilityCleanup_to_indexedDirectSum
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightFixedTargetCellTypeYZCompatibilityCleanup_from_fullPower

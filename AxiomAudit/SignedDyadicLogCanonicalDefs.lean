@@ -1,0 +1,44 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.SignedDyadicLogCanonicalDefs
+
+/-!
+# Axiom audit for executable dyadic-log canonicalization
+
+These checks cover the definition-only canonicalization surface consumed by generated equality and
+streaming certificate clients.  They ensure the lightweight executable layer cannot silently gain
+a placeholder or non-allowlisted axiom dependency during later optimization.
+-/
+
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.dropTrivialLogs
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.canonical
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.termLE
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.mergeRuns
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.insertRun
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.buildRuns
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.collapseRuns
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.bottomUpSort
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.fastNormalizeTerms
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.fastNormalize
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.fastCanonical
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.mergeRunsWithFuel
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.structuralMergeRuns
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.structuralInsertRun
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.structuralBuildRuns
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.structuralCollapseRuns
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.structuralBottomUpSort
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.structuralFastNormalizeTerms
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.structuralFastNormalize
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.structuralFastCanonical
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.splitTwosWithFuel
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.splitTwos
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.splitPowerTerm
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.normalizePowersOfTwo
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.powerCanonical
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.structuralPowerCanonical
+#assert_axioms MatrixMultiplication.SignedDyadicLogForm.Form.foldPowerCanonical

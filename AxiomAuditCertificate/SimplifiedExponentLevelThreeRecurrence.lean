@@ -1,0 +1,27 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.SimplifiedExponentLevelThreeRecurrence
+
+/-!
+# Axiom audit for quotient-parametric level-three exponent recurrences
+
+These assertions cover the exact-form evaluation and finite-family decomposition laws used by
+generated level-three certificate clients.  Both the quotient-parametric API and its historical
+sorted-pair specializations must remain kernel-derived.
+-/
+
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeRecurrence.regionEntriesFor_eq_onNodes
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeRecurrence.branchFormOnNodesFor_eval
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeRecurrence.branchRateOnNodesFor_flatten
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeRecurrence.regionBranchRateFor_eq_onNodes
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeRecurrence.regionBranchFormFor_eval
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeRecurrence.regionEntries_eq_onNodes
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeRecurrence.branchFormOnNodes_eval
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeRecurrence.branchRateOnNodes_flatten
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeRecurrence.regionBranchRate_eq_onNodes
+#assert_axioms MatrixMultiplication.SimplifiedExponentLevelThreeRecurrence.regionBranchForm_eval

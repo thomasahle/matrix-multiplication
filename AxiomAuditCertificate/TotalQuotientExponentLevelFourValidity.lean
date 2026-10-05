@@ -1,0 +1,38 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourBetaThreeRecurrence
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourOrientation
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourTopRecurrence
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidityData
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidityChecks
+
+/-!
+# Axiom audit for the compact e7987 level-four validity certificate
+
+The generated cache modules prove their literal arrays equal the quotient-parametric recurrence.
+The compact key certificate then proves normalization and active-slot coverage for all six
+diagonal regional families.  These assertions keep both the data provenance and the semantic
+endpoint inside the enforcing certificate audit.
+-/
+
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourRecurrence.Orientation.order_isPermutation
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourRecurrence.Top.recurrence_eq
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourRecurrence.BetaThree.recurrence_eq
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.Region0.normalizationChecked
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.Region0.childRowsValid
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.Region1.normalizationChecked
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.Region1.childRowsValid
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.Region2.normalizationChecked
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.Region2.childRowsValid
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.Region3.normalizationChecked
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.Region3.childRowsValid
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.Region4.normalizationChecked
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.Region4.childRowsValid
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.Region5.normalizationChecked
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.Region5.childRowsValid
+#assert_axioms MatrixMultiplication.Generated.TotalQuotientExponentLevelFourValidity.childRowsValid

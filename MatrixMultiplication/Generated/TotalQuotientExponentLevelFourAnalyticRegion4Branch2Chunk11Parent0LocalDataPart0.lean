@@ -1,0 +1,536 @@
+import MatrixMultiplication.Generated.TotalQuotientExponentLevelFourAnalyticRegion4Branch2Chunk11Parent0LocalDataBase
+
+/-! Line-budgeted parent-local routing slots, part 0, for region 4, branch 2,
+parent 85; untrusted certificate `e7987d7fa66008d497e31c976c68f025d57664a145336d358328375cc5738ca3`. -/
+
+namespace MatrixMultiplication.Generated.TotalQuotientExponentLevelFourAnalytic.Region4.Branch2.Chunk11.Parent0
+
+open MatrixMultiplication.SimplifiedExponentLevelFourRecurrence
+
+set_option maxRecDepth 1000000
+set_option maxHeartbeats 400000
+set_option Elab.async false
+
+namespace Slot0
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨0, 0, #[2908246507520, 137828956635136, 0, 0, 0, 0, 137792197754880, 0, 0, 0, 0, 0, 0, 0, 2945575813120, 0, 0, 0, 0], #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot0
+
+namespace Slot1
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨1, 0, #[3048252375040, 137700896145408, 0, 0, 0, 0, 137677575815168, 0, 0, 0, 0, 0, 0, 0, 3048252375040, 0, 0, 0, 0], #[281474976710656, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot1
+
+namespace Slot2
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨2, 0, #[589702365184, 19670161686528, 0, 240901880283136, 0, 0, 0, 0, 0, 0, 0, 19670178463744, 0, 0, 0, 0, 0, 0, 643053912064], #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot2
+
+namespace Slot3
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨3, 0, #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], #[281474976710656, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot3
+
+namespace Slot4
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨4, 0, #[570307903488, 19930812514304, 0, 240472249335808, 0, 0, 0, 0, 0, 0, 0, 19931282276352, 0, 0, 0, 0, 0, 0, 570324680704], #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot4
+
+namespace Slot5
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨5, 0, #[3837704273920, 0, 136899817635840, 0, 0, 136899817635840, 0, 0, 0, 0, 0, 0, 3837637165056, 0, 0, 0, 0, 0, 0], #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot5
+
+namespace Slot6
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨6, 0, #[1099511627776, 9277129359360, 9345848836096, 1168231104512, 7971459301376, 1168231104512, 9277129359360, 9277129359360, 7971459301376, 168431437479936, 7971459301376, 9277129359360, 9277129359360, 1168231104512, 7971459301376, 1168231104512, 9277129359360, 9277129359360, 1099511627776], #[140738159443968, 0, 140736817266688, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot6
+
+namespace Slot7
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨7, 1, #[2989397901312, 0, 137748342112256, 0, 0, 137748124008448, 0, 0, 0, 0, 0, 0, 2989112688640, 0, 0, 0, 0, 0, 0], #[48216628264960, 0, 0, 185040596107264, 0, 48217752338432, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]⟩
+
+/-- Nonzero left symbols, in the order used by the sparse source fold. -/
+def leftSymbols : List ℕ := [0, 2, 5, 12]
+
+/-- The serialized left-symbol support is exact. -/
+theorem leftSymbols_eq :
+    BetaFourLocalSlotData.nonzeroSymbols data.leftNumerators = leftSymbols := by
+  rfl
+
+/-- Checked inert support of this slot's left child. -/
+def leftSupport : List ℕ :=
+  MatrixMultiplication.Generated.TotalQuotientExponentLevelFourTernarySupportData.Length4.Total3.codes
+
+/-- Checked inert support of this slot's right child. -/
+def rightSupport : List ℕ :=
+  MatrixMultiplication.Generated.TotalQuotientExponentLevelFourTernarySupportData.Length4.Total2.codes
+
+/-- The semantic left support is the shared checked table. -/
+theorem routedLeftSupport_eq :
+    data.routedLeftSupport parent coordinate = leftSupport := by
+  unfold BetaFourLocalSlotData.routedLeftSupport leftSupport
+  rw [show MatrixMultiplication.BetaFourLocalGeometry.shapeCoordinate
+      (MatrixMultiplication.BetaFourLocalGeometry.pairAt parent data.slot).1 coordinate =
+        3 by rfl]
+  exact MatrixMultiplication.Generated.TotalQuotientExponentLevelFourTernarySupportData.Length4.Total3.codes_eq
+
+/-- The semantic right support is the shared checked table. -/
+theorem routedRightSupport_eq :
+    data.routedRightSupport parent coordinate = rightSupport := by
+  unfold BetaFourLocalSlotData.routedRightSupport rightSupport
+  rw [show MatrixMultiplication.BetaFourLocalGeometry.shapeCoordinate
+      (MatrixMultiplication.BetaFourLocalGeometry.pairAt parent data.slot).2 coordinate =
+        2 by rfl]
+  exact MatrixMultiplication.Generated.TotalQuotientExponentLevelFourTernarySupportData.Length4.Total2.codes_eq
+
+/-- This serialized slot has positive split weight. -/
+theorem split_ne : data.splitNumerator ≠ 0 := by
+  simp [data]
+
+namespace Left0
+
+/-- Producer-proposed routed output for left symbol 0; at most nineteen entries. -/
+def expected : List (Option BetaFourRoutedContribution) :=
+  [some { target := 86, numerator := 144138687343612283867627520 }, some { target := 89, numerator := 553159969660576438438330368 }, some { target := 91, numerator := 144142047646490401160822784 }]
+
+/-- Kernel reduction checks this bounded fixed-left routing row. -/
+theorem routed_eq :
+    data.routedContributionsForLeftFromSupports
+        ParentSupport.codes leftSupport rightSupport 0 = expected := by
+  rfl
+
+end Left0
+
+namespace Left2
+
+/-- Producer-proposed routed output for left symbol 2; at most nineteen entries. -/
+def expected : List (Option BetaFourRoutedContribution) :=
+  [some { target := 161, numerator := 6641760605741182518831349760 }, some { target := 164, numerator := 25489035337239187312905027584 }, some { target := 166, numerator := 6641915444998362886247022592 }]
+
+/-- Kernel reduction checks this bounded fixed-left routing row. -/
+theorem routed_eq :
+    data.routedContributionsForLeftFromSupports
+        ParentSupport.codes leftSupport rightSupport 2 = expected := by
+  rfl
+
+end Left2
+
+namespace Left5
+
+/-- Producer-proposed routed output for left symbol 5; at most nineteen entries. -/
+def expected : List (Option BetaFourRoutedContribution) :=
+  [some { target := 232, numerator := 6641750089510949010622382080 }, some { target := 235, numerator := 25488994979180541728650166272 }, some { target := 237, numerator := 6641904928522964673323073536 }]
+
+/-- Kernel reduction checks this bounded fixed-left routing row. -/
+theorem routed_eq :
+    data.routedContributionsForLeftFromSupports
+        ParentSupport.codes leftSupport rightSupport 5 = expected := by
+  rfl
+
+end Left5
+
+namespace Left12
+
+/-- Producer-proposed routed output for left symbol 12; at most nineteen entries. -/
+def expected : List (Option BetaFourRoutedContribution) :=
+  [some { target := 406, numerator := 144124935350230003902054400 }, some { target := 409, numerator := 553107193737732212874280960 }, some { target := 411, numerator := 144128295332508122721812480 }]
+
+/-- Kernel reduction checks this bounded fixed-left routing row. -/
+theorem routed_eq :
+    data.routedContributionsForLeftFromSupports
+        ParentSupport.codes leftSupport rightSupport 12 = expected := by
+  rfl
+
+end Left12
+
+/-- Routed output of this slot, assembled from independently checked fixed-left rows. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) :=
+  Left0.expected ++ Left2.expected ++ Left5.expected ++ Left12.expected
+
+/-- The bounded row checks compose to the exact sparse route for this slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  rw [data.routedContributions_eq_flatMap_forLeftFromSupports_of_ne parent coordinate
+    ParentSupport.codes leftSupport rightSupport ParentSupport.routedSupport_eq
+    routedLeftSupport_eq routedRightSupport_eq split_ne]
+  rw [leftSymbols_eq]
+  simp only [leftSymbols, List.flatMap_cons, List.flatMap_nil]
+  rw [Left0.routed_eq, Left2.routed_eq, Left5.routed_eq, Left12.routed_eq]
+  rfl
+
+end Slot7
+
+namespace Slot8
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨8, 0, #[50941046816768, 0, 0, 179604694237184, 0, 50929235656704, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot8
+
+namespace Slot9
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨9, 0, #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], #[50941046816768, 0, 0, 179604694237184, 0, 50929235656704, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot9
+
+namespace Slot10
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨10, 1, #[48216628264960, 0, 0, 185040596107264, 0, 48217752338432, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], #[2989397901312, 0, 137748342112256, 0, 0, 137748124008448, 0, 0, 0, 0, 0, 0, 2989112688640, 0, 0, 0, 0, 0, 0]⟩
+
+/-- Nonzero left symbols, in the order used by the sparse source fold. -/
+def leftSymbols : List ℕ := [0, 3, 5]
+
+/-- The serialized left-symbol support is exact. -/
+theorem leftSymbols_eq :
+    BetaFourLocalSlotData.nonzeroSymbols data.leftNumerators = leftSymbols := by
+  rfl
+
+/-- Checked inert support of this slot's left child. -/
+def leftSupport : List ℕ :=
+  MatrixMultiplication.Generated.TotalQuotientExponentLevelFourTernarySupportData.Length4.Total2.codes
+
+/-- Checked inert support of this slot's right child. -/
+def rightSupport : List ℕ :=
+  MatrixMultiplication.Generated.TotalQuotientExponentLevelFourTernarySupportData.Length4.Total3.codes
+
+/-- The semantic left support is the shared checked table. -/
+theorem routedLeftSupport_eq :
+    data.routedLeftSupport parent coordinate = leftSupport := by
+  unfold BetaFourLocalSlotData.routedLeftSupport leftSupport
+  rw [show MatrixMultiplication.BetaFourLocalGeometry.shapeCoordinate
+      (MatrixMultiplication.BetaFourLocalGeometry.pairAt parent data.slot).1 coordinate =
+        2 by rfl]
+  exact MatrixMultiplication.Generated.TotalQuotientExponentLevelFourTernarySupportData.Length4.Total2.codes_eq
+
+/-- The semantic right support is the shared checked table. -/
+theorem routedRightSupport_eq :
+    data.routedRightSupport parent coordinate = rightSupport := by
+  unfold BetaFourLocalSlotData.routedRightSupport rightSupport
+  rw [show MatrixMultiplication.BetaFourLocalGeometry.shapeCoordinate
+      (MatrixMultiplication.BetaFourLocalGeometry.pairAt parent data.slot).2 coordinate =
+        3 by rfl]
+  exact MatrixMultiplication.Generated.TotalQuotientExponentLevelFourTernarySupportData.Length4.Total3.codes_eq
+
+/-- This serialized slot has positive split weight. -/
+theorem split_ne : data.splitNumerator ≠ 0 := by
+  simp [data]
+
+namespace Left0
+
+/-- Producer-proposed routed output for left symbol 0; at most nineteen entries. -/
+def expected : List (Option BetaFourRoutedContribution) :=
+  [some { target := 35, numerator := 144138687343612283867627520 }, some { target := 37, numerator := 6641760605741182518831349760 }, some { target := 40, numerator := 6641750089510949010622382080 }, some { target := 47, numerator := 144124935350230003902054400 }]
+
+/-- Kernel reduction checks this bounded fixed-left routing row. -/
+theorem routed_eq :
+    data.routedContributionsForLeftFromSupports
+        ParentSupport.codes leftSupport rightSupport 0 = expected := by
+  rfl
+
+end Left0
+
+namespace Left3
+
+/-- Producer-proposed routed output for left symbol 3; at most nineteen entries. -/
+def expected : List (Option BetaFourRoutedContribution) :=
+  [some { target := 145, numerator := 553159969660576438438330368 }, some { target := 147, numerator := 25489035337239187312905027584 }, some { target := 150, numerator := 25488994979180541728650166272 }, some { target := 157, numerator := 553107193737732212874280960 }]
+
+/-- Kernel reduction checks this bounded fixed-left routing row. -/
+theorem routed_eq :
+    data.routedContributionsForLeftFromSupports
+        ParentSupport.codes leftSupport rightSupport 3 = expected := by
+  rfl
+
+end Left3
+
+namespace Left5
+
+/-- Producer-proposed routed output for left symbol 5; at most nineteen entries. -/
+def expected : List (Option BetaFourRoutedContribution) :=
+  [some { target := 216, numerator := 144142047646490401160822784 }, some { target := 218, numerator := 6641915444998362886247022592 }, some { target := 221, numerator := 6641904928522964673323073536 }, some { target := 228, numerator := 144128295332508122721812480 }]
+
+/-- Kernel reduction checks this bounded fixed-left routing row. -/
+theorem routed_eq :
+    data.routedContributionsForLeftFromSupports
+        ParentSupport.codes leftSupport rightSupport 5 = expected := by
+  rfl
+
+end Left5
+
+/-- Routed output of this slot, assembled from independently checked fixed-left rows. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) :=
+  Left0.expected ++ Left3.expected ++ Left5.expected
+
+/-- The bounded row checks compose to the exact sparse route for this slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  rw [data.routedContributions_eq_flatMap_forLeftFromSupports_of_ne parent coordinate
+    ParentSupport.codes leftSupport rightSupport ParentSupport.routedSupport_eq
+    routedLeftSupport_eq routedRightSupport_eq split_ne]
+  rw [leftSymbols_eq]
+  simp only [leftSymbols, List.flatMap_cons, List.flatMap_nil]
+  rw [Left0.routed_eq, Left3.routed_eq, Left5.routed_eq]
+  rfl
+
+end Slot10
+
+namespace Slot11
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨11, 0, #[140738159443968, 0, 140736817266688, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], #[1099511627776, 9277129359360, 9345848836096, 1168231104512, 7971459301376, 1168231104512, 9277129359360, 9277129359360, 7971459301376, 168431437479936, 7971459301376, 9277129359360, 9277129359360, 1168231104512, 7971459301376, 1168231104512, 9277129359360, 9277129359360, 1099511627776]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot11
+
+namespace Slot12
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨12, 0, #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], #[3837704273920, 0, 136899817635840, 0, 0, 136899817635840, 0, 0, 0, 0, 0, 0, 3837637165056, 0, 0, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot12
+
+namespace Slot13
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨13, 0, #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], #[570307903488, 19930812514304, 0, 240472249335808, 0, 0, 0, 0, 0, 0, 0, 19931282276352, 0, 0, 0, 0, 0, 0, 570324680704]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot13
+
+namespace Slot14
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨14, 0, #[281474976710656, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot14
+
+namespace Slot15
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨15, 0, #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], #[589702365184, 19670161686528, 0, 240901880283136, 0, 0, 0, 0, 0, 0, 0, 19670178463744, 0, 0, 0, 0, 0, 0, 643053912064]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot15
+
+namespace Slot16
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨16, 0, #[281474976710656, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], #[3048252375040, 137700896145408, 0, 0, 0, 0, 137677575815168, 0, 0, 0, 0, 0, 0, 0, 3048252375040, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot16
+
+namespace Slot17
+
+/-- Exact source data for this parent-local slot. -/
+def data : BetaFourLocalSlotData := ⟨17, 0, #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], #[2908246507520, 137828956635136, 0, 0, 0, 0, 137792197754880, 0, 0, 0, 0, 0, 0, 0, 2945575813120, 0, 0, 0, 0]⟩
+
+/-- This zero-weight slot has no routed output. -/
+def expectedRoutedContributions : List (Option BetaFourRoutedContribution) := []
+
+/-- This serialized slot has zero split weight. -/
+theorem split_eq : data.splitNumerator = 0 := by
+  simp [data]
+
+/-- Kernel reduction checks that the zero split suppresses the whole slot. -/
+theorem routedContributions_eq :
+    data.routedContributions parent coordinate = expectedRoutedContributions := by
+  exact data.routedContributions_eq_nil_of_split_eq_zero parent coordinate split_eq
+
+end Slot17
+
+end MatrixMultiplication.Generated.TotalQuotientExponentLevelFourAnalytic.Region4.Branch2.Chunk11.Parent0

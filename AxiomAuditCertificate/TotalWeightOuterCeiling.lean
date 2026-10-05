@@ -1,0 +1,45 @@
+import AxiomAudit.Command
+import MatrixMultiplication.TotalWeightOuterCeiling
+
+/-!
+# Axiom audit for the outer `X`-word ceiling on the total-weight coarse power
+
+The ceiling is a *negative* result about a retired interface, so it has to be as trustworthy as the
+positive endpoints: a project axiom hiding in the two new support lemmas would make the retirement
+unfalsifiable.  Every declaration of the kill chain is checked here — the sum law, the
+realizability witnesses, the singleton-fiber count, the survivor bound, and the three
+`OuterCountInput` refutations.
+
+It lives in `AxiomAuditCertificate` rather than `AxiomAudit` for the same reason
+`AxiomAuditCertificate/TotalWeightAcceptanceNoGo.lean` does: `OuterCountInput` is declared in
+`MatrixMultiplication/TotalWeightAcceptanceAssembly.lean`, which reaches the generated level-two
+certificate tables, and `scripts/check_source_coverage.sh` keeps the ordinary focused audits clear
+of the generated build.  Build with
+
+```text
+lake build AxiomAuditCertificate
+```
+-/
+
+#assert_axioms AlgebraicComplexity.Examples.splitWordWeight_cwChunkSplitWord_eq_sum
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightChunkCoarsening_val_eq_sum
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightCoarseSupport_weight_sum
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightCoarsePower_leg_apply
+#assert_axioms AlgebraicComplexity.Examples.exists_cwChunkSupport_of_letters
+#assert_axioms AlgebraicComplexity.Examples.exists_letters_of_mem_cwChunkSupport
+#assert_axioms AlgebraicComplexity.Examples.exists_cwTotalWeightCoarsePower_of_chunks
+#assert_axioms AlgebraicComplexity.Examples.exists_chunks_of_mem_cwTotalWeightCoarsePower
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightCoarsePower_coarse_sum
+#assert_axioms AlgebraicComplexity.Examples.exists_cwBlockSupport_xEq_yNe
+#assert_axioms AlgebraicComplexity.Examples.exists_cwTotalWeightCoarseSupport_xEq_yNe
+#assert_axioms AlgebraicComplexity.Examples.exists_cwTotalWeightCoarsePower_xEq_ne
+#assert_axioms AlgebraicComplexity.Examples.cwTotalWeightCoarsePower_digit_of_mem_uniqueLegFiberSupport
+#assert_axioms AlgebraicComplexity.Examples.card_uniqueLegFiberSupport_cwTotalWeightCoarsePower_le_one
+#assert_axioms AlgebraicComplexity.Examples.CWTotalWeightOuterCoarseCleanup.survivors_subset_uniqueLegFiberSupport
+#assert_axioms AlgebraicComplexity.Examples.CWTotalWeightOuterCoarseCleanup.card_survivors_le_one
+#assert_axioms AlgebraicComplexity.Examples.CWTotalWeightLocalizedOuterSequenceData.outerBase_le_one_of_count_le_one
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.one_lt_outerFloorCopyBase
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.false_of_outerCountInput
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.isEmpty_outerCountInput
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.isEmpty_levelTwoOuterCountInput
+#assert_axioms MatrixMultiplication.TotalWeightAcceptanceAssembly.isEmpty_levelFourOuterCountInput

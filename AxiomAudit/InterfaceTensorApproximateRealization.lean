@@ -1,0 +1,24 @@
+import AlgebraicComplexity.MatrixMultiplication.InterfaceTensorApproximateRealization
+import AxiomAudit.Command
+
+open AlgebraicComplexity
+
+/-! Focused trust audit for
+`AlgebraicComplexity.MatrixMultiplication.InterfaceTensorApproximateRealization`: the reusable
+approximate complete-split selector -- the `MatchesSequenceApproximately` predicate with its
+characterization, permutation invariance and derivation from exact consistency, its positive-
+and encoded-word forms, and the selected encoded approximate interface term with its support,
+tensor-power restriction, position relabeling, and containment of the exact selector. -/
+
+#assert_axioms CompleteSplitDistribution.MatchesSequenceApproximately
+#assert_axioms CompleteSplitDistribution.matchesSequenceApproximately_iff
+#assert_axioms CompleteSplitDistribution.matchesSequenceApproximately_comp_perm_iff
+#assert_axioms CompleteSplitDistribution.matchesSequenceApproximately_of_isConsistent
+#assert_axioms CompleteSplitDistribution.MatchesPositiveWordApproximately
+#assert_axioms CompleteSplitDistribution.MatchesEncodedPositiveWordApproximately
+#assert_axioms CompleteSplitDistribution.matchesEncodedPositiveWordApproximately_positionEquiv_iff
+#assert_axioms Tensor.PartitionedTensor.selectEncodedApproximateInterfaceTerm
+#assert_axioms Tensor.PartitionedTensor.mem_selectEncodedApproximateInterfaceTerm_support
+#assert_axioms Tensor.Restricts.power_selectEncodedApproximateInterfaceTerm
+#assert_axioms Tensor.PartitionedTensor.selectEncodedApproximateInterfaceTermPositionRelabeling
+#assert_axioms Tensor.PartitionedTensor.selectEncodedExactInterfaceTerm_support_subset_approximate

@@ -1,0 +1,17 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradTotalWeightPointMassLeaf
+
+/-! Axiom audit for point-mass marginal rigidity and the one-letter chunk leaf. -/
+
+#assert_axioms AlgebraicComplexity.WordType.isMaximumEntropyInMappedFiber_of_pointMass
+#assert_axioms AlgebraicComplexity.Examples.cwChunkCoordinate_jointly_injective
+#assert_axioms AlgebraicComplexity.Examples.cwChunkPointProfile_isMaximumEntropy
+#assert_axioms AlgebraicComplexity.Examples.cwChunkPointLeaf
+#assert_axioms AlgebraicComplexity.Examples.cwChunkPointEmbedding
+#assert_axioms AlgebraicComplexity.Examples.cwEmbeddedChunkProfile_point
+#assert_axioms AlgebraicComplexity.Examples.profileMass_cwEmbeddedChunkProfile_point
+#assert_axioms AlgebraicComplexity.Examples.cwChunkPointLeaf_maximumEntropy
+#assert_axioms AlgebraicComplexity.Examples.cwChunkPointGrowthDatum
+#assert_axioms AlgebraicComplexity.Examples.cwChunkPointGrowthDatum_exponent
+#assert_axioms AlgebraicComplexity.Examples.cwChunkPointLeaf_dimensionProduct
+#assert_axioms AlgebraicComplexity.Examples.cwChunkPointLeaf_oneTypeWitness_volume

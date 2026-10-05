@@ -1,0 +1,23 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinograd112SymmetricValue
+
+/-!
+# Axiom audit for the modern symmetric CW `(112)` finite extraction
+
+This audit covers the first complete tensor-facing symmetric extraction theorem.  It checks both
+the selected ambient partition and the final relation-parametric degeneration certificate.
+-/
+
+#assert_axioms AlgebraicComplexity.Examples.cw112SymmetricAmbientPartitionedPower
+#assert_axioms AlgebraicComplexity.Examples.cw112SymmetricAmbientPartitionedPower_support
+#assert_axioms AlgebraicComplexity.Examples.cw112SymmetricPower_restricts_ambientPartitionedPower
+#assert_axioms AlgebraicComplexity.Examples.cw112SymmetricAmbientPartitionedPower_constituent
+#assert_axioms AlgebraicComplexity.Examples.cw112SymmetricFiniteExtraction
+#assert_axioms AlgebraicComplexity.Examples.cw112SymmetricPowerFiniteExtraction
+#assert_axioms AlgebraicComplexity.Tensor.Isomorphic.power_external_positive
+#assert_axioms AlgebraicComplexity.Tensor.Isomorphic.power_permute_positive_unbundled
+#assert_axioms AlgebraicComplexity.Tensor.Isomorphic.cyclicPowerProduct_positive
+#assert_axioms AlgebraicComplexity.Tensor.Isomorphic.cyclicPowerProduct_partitioned_positive
+#assert_axioms AlgebraicComplexity.Examples.cw112CyclicPowerProductFiniteExtraction
+#assert_axioms AlgebraicComplexity.Examples.cw112SymmetricDegenerationValueCertificate
+#assert_axioms AlgebraicComplexity.Examples.cw112SymmetricDegenerationValueCertificate_mem

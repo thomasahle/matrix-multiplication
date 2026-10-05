@@ -1,0 +1,13 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.EventualWholeConstituentLaserVolumeLoss
+
+/-! Focused trust audit for
+`AlgebraicComplexity.MatrixMultiplication.EventualWholeConstituentLaserVolumeLoss`: the
+tail-native laser interface -- conversion of a whole-constituent volume-loss sequence into its
+eventual form, the induced uniform laser-volume base extraction, and the laser extraction rate
+in nats and in bits. -/
+
+#assert_axioms AlgebraicComplexity.WholeConstituentLaserVolumeLossSequenceData.toEventual
+#assert_axioms AlgebraicComplexity.EventualWholeConstituentLaserVolumeLossData.toUniformLaserVolumeBaseExtraction
+#assert_axioms AlgebraicComplexity.EventualWholeConstituentLaserVolumeLossData.hasLaserExtractionRate
+#assert_axioms AlgebraicComplexity.EventualWholeConstituentLaserVolumeLossData.hasLaserExtractionRate_bits

@@ -1,0 +1,22 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.ZeroCoordinateMerge
+
+/-! Focused trust audit for the merged zero-coordinate leaf dimension: the merged-dimension
+arithmetic (dominance of every fine address, the support-multiplicity floor, the uniform-class
+identity and the division-free uniform-sub-class pigeonhole), and the three per-leg
+`WholeConstituentLaserVolumeStage` absorptions together with the one-copy stage constructor they
+are applied to. -/
+
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.mergedDimension
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.mergedDimension_empty
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.mergedDimension_singleton
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.pow_ones_le_mergedDimension
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.mergedDimension_pos
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.card_le_mergedDimension
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.mergedDimension_le_card_mul_pow
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.mergedDimension_of_uniform
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.exists_uniform_fibre_mergedDimension_le
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.stageOfRestricts
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.mergeX
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.mergeY
+#assert_axioms AlgebraicComplexity.ZeroCoordinateMerge.mergeZ

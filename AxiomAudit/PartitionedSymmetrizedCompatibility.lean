@@ -1,0 +1,24 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.PartitionedSymmetrizedCompatibility
+
+set_option autoImplicit false
+
+/-! # Axiom audit for six-symmetrized compatibility predicates -/
+
+#assert_axioms AlgebraicComplexity.Tensor.IsCompatibilitySound.mono
+#assert_axioms AlgebraicComplexity.Tensor.isCompatibilitySound_compatibilityIsolatedSupport
+#assert_axioms AlgebraicComplexity.Tensor.isCompatibilitySound_external
+#assert_axioms AlgebraicComplexity.Tensor.isCompatibilitySound_permute
+#assert_axioms AlgebraicComplexity.Tensor.isCompatibilitySound_orientedCompatible
+#assert_axioms AlgebraicComplexity.Tensor.isCompatibilitySound_symThreeCompatible
+#assert_axioms AlgebraicComplexity.Tensor.isCompatibilitySound_swapSymThreeCompatible
+#assert_axioms AlgebraicComplexity.Tensor.isCompatibilitySound_symSixCompatible
+#assert_axioms AlgebraicComplexity.Tensor.isCompatibilitySound_positivePower
+#assert_axioms AlgebraicComplexity.Tensor.isCompatibilitySound_symSixPowerCompatible
+#assert_axioms AlgebraicComplexity.Tensor.isCompatibilitySound_symSixPowerCompatible_of_subset

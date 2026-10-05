@@ -1,0 +1,39 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.SegmentedConsecutiveBlocks
+
+/-! # Axiom audit for sorting a segmentation into consecutive blocks
+
+The canonical consecutive segmentation, its multiplicity profile, the position permutation that
+conjugates any word of that profile to it, and the committed uniformity isomorphism in the
+`segmentedLocalizedSplittingPower` spelling. -/
+
+set_option autoImplicit false
+
+#assert_axioms AlgebraicComplexity.segmentationLeft_append
+#assert_axioms AlgebraicComplexity.segmentationRight_append
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.toSegmentRegionSpec
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.label
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.specs
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.total
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.total_nil
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.total_cons
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.total_cons_succ
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.seg
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.seg_nil
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.seg_cons
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.segmentationLeft_seg
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.segmentationRight_seg
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.multiplicityProfile
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.multiplicityProfile_nil
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.multiplicityProfile_cons
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.multiplicity_seg
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.total_eq_of_multiplicityProfile
+#assert_axioms AlgebraicComplexity.SegmentRegionBlock.exists_perm_comp_eq_seg
+#assert_axioms AlgebraicComplexity.Tensor.Isomorphic.segmentedLocalizedSplittingPower_position

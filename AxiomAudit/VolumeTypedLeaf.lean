@@ -1,0 +1,32 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.CW112LeafEvaluator
+import MatrixMultiplication.SimplifiedVolumeComplementInvariance
+
+/-!
+# Focused axiom audit for volume leaves
+
+This small audit boundary keeps the generic rational typed-leaf restriction, its concrete
+Coppersmith--Winograd `112` specialization, the dyadic-`mu` evaluator bridge, and the
+complement-invariant zero-leaf semantics independently checkable.  It intentionally avoids the
+unrelated full-library audit import graph.
+-/
+
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.log_dimensionProduct_div_logTwo
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.positivePower_constituent_matrixMultiplication_proportional
+#assert_axioms AlgebraicComplexity.Examples.cw112_positivePower_constituent_matrixMultiplication_proportional
+#assert_axioms MatrixMultiplication.CW112LeafEvaluator.cw112Mu_leafL_leafG_eq_mass
+#assert_axioms MatrixMultiplication.CW112LeafEvaluator.sum_dimensionRateBits_eq_positiveEdgeValue
+#assert_axioms MatrixMultiplication.CW112LeafEvaluator.positiveLevelTwoSlot_instantiates_cw112
+
+#assert_axioms MatrixMultiplication.SimplifiedVolumeComplementInvariance.zeroLeafValue_reindex
+#assert_axioms MatrixMultiplication.SimplifiedVolumeComplementInvariance.weightedZeroLeafValue_reindex
+#assert_axioms MatrixMultiplication.SimplifiedVolumeComplementInvariance.ternaryWordWeight_complement
+#assert_axioms MatrixMultiplication.SimplifiedVolumeComplementInvariance.ternarySupportOnes_complement
+#assert_axioms MatrixMultiplication.SimplifiedVolumeComplementInvariance.zeroLeafValue_ternarySupportComplement
+#assert_axioms MatrixMultiplication.SimplifiedVolumeComplementInvariance.weightedZeroLeafValue_ternarySupportComplement

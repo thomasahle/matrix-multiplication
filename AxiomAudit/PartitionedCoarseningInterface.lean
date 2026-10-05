@@ -1,0 +1,36 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradSplitWordQuotient
+
+/-!
+# Focused axiom audit for noninjective quotient interfaces
+
+This target checks the realization, exact selection/type, repair, and CW total-complement bridges
+without importing numerical certificate data.
+-/
+
+#assert_axioms AlgebraicComplexity.Tensor.Isomorphic.partitionedCoarsen
+#assert_axioms AlgebraicComplexity.Tensor.PartitionedTensor.coarsen_select_preimage_support
+#assert_axioms AlgebraicComplexity.Tensor.PartitionedTensor.coarsen_select_preimage_realize
+#assert_axioms AlgebraicComplexity.Tensor.Isomorphic.indexedDirectSum_partitionedCoarsen
+#assert_axioms AlgebraicComplexity.Tensor.Restricts.partitionedCoarsen_trans
+#assert_axioms AlgebraicComplexity.Tensor.Restricts.power_partitionedCoarsen_positivePowerSelect
+#assert_axioms AlgebraicComplexity.Tensor.positiveWordMap_mem_positiveTypeClass
+#assert_axioms AlgebraicComplexity.Tensor.Restricts.power_selectCoarsenedPositiveTypes
+#assert_axioms AlgebraicComplexity.Tensor.Restricts.indexedDirectSum_coarsenedSplitBoxes_to_box
+#assert_axioms AlgebraicComplexity.Tensor.Restricts.power_partitionedCoarsen_selectEncodedCompleteSplitProfiles
+#assert_axioms AlgebraicComplexity.Tensor.Restricts.power_partitionedCoarsen_selectEncodedExactInterfaceTerm
+#assert_axioms AlgebraicComplexity.Examples.CWTotalPreservingSplitMap.total_chunkCoarsening
+#assert_axioms AlgebraicComplexity.Examples.CWTotalPreservingSplitMap.chunkCoarsening_isomorphic
+#assert_axioms AlgebraicComplexity.Examples.splitWordWeight_cwSortedPairSplitWord
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairSplitWord_not_injective
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairChunkCoarsening_isomorphic
+#assert_axioms AlgebraicComplexity.Examples.power_cwSortedPairChunkCoarsen_selectPositiveTypes
+#assert_axioms AlgebraicComplexity.Examples.cwSplitWordTotalCoarsening_isomorphic
+#assert_axioms AlgebraicComplexity.Examples.cwSplitWordTotalDigit_complement
+#assert_axioms AlgebraicComplexity.Examples.cwSplitWordTotalDigit_not_injective_depthOne

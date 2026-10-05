@@ -1,0 +1,7 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.PermutationStableLegFiberCounting
+
+/-! Focused trust audit for exact leg-fiber double counting. -/
+
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.card_legType_mul_card_sourceWordLegFiber
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.card_legType_mul_card_legFiber_legalTargets

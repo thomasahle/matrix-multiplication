@@ -1,0 +1,10 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.WholeConstituentFullBucketSequence
+
+/-! Focused trust audit for full-bucket finite counts and their asymptotic sequence adapter. -/
+
+#assert_axioms AlgebraicComplexity.fullBucketSequenceLoss_pos
+#assert_axioms AlgebraicComplexity.fullBucketSequenceLoss_subexponential
+#assert_axioms AlgebraicComplexity.copy_growth_of_fullBucket_hashCount
+#assert_axioms AlgebraicComplexity.FullBucketWholeConstituentSequenceData.toWholeConstituentLaserVolumeSequenceData
+#assert_axioms AlgebraicComplexity.FullBucketWholeConstituentSequenceData.toSubexponentialLaserVolumeSequence

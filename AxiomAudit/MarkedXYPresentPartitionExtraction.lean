@@ -1,0 +1,22 @@
+import AlgebraicComplexity.MatrixMultiplication.MarkedXYPresentPartitionExtraction
+import AxiomAudit.Command
+
+open AlgebraicComplexity Tensor
+
+/-! Focused trust audit for
+`AlgebraicComplexity.MatrixMultiplication.MarkedXYPresentPartitionExtraction`: the separation of
+abstract marked targets from those actually present in a tensor partition -- the present
+hash-filtered and present marked-XY isolated power-address families, the exact
+missing-plus-present cardinality identity, X and Y injectivity with unique X fibers, and the
+three restrictions chaining present modeled targets to the present marked-XY isolated family. -/
+
+#assert_axioms PartitionHashEncoding.presentHashFilteredPowerAddresses
+#assert_axioms PartitionHashEncoding.presentMarkedXYIsolatedPowerAddresses
+#assert_axioms PartitionHashEncoding.missingMarkedXYIsolatedPowerAddresses
+#assert_axioms PartitionHashEncoding.card_missing_add_card_presentMarkedXYIsolatedPowerAddresses
+#assert_axioms PartitionHashEncoding.x_injectiveOn_presentMarkedXYIsolatedPowerAddresses
+#assert_axioms PartitionHashEncoding.y_injectiveOn_presentMarkedXYIsolatedPowerAddresses
+#assert_axioms PartitionHashEncoding.presentMarkedXYIsolatedPowerAddresses_hasUniqueXFibers
+#assert_axioms Tensor.Restricts.presentModeledTargets_to_presentHashFiltered
+#assert_axioms Tensor.Restricts.presentHashFiltered_to_presentMarkedXYIsolated
+#assert_axioms Tensor.Restricts.presentModeledTargets_to_presentMarkedXYIsolated

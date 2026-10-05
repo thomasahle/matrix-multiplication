@@ -1,0 +1,11 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Analysis.FiniteProductGrowth
+
+/-! Focused trust audit for finite-product growth bounds. -/
+
+#assert_axioms AlgebraicComplexity.Growth.finset_prod_pos
+#assert_axioms AlgebraicComplexity.Growth.finset_prod_subexponential
+#assert_axioms AlgebraicComplexity.Growth.finset_prod_base_pow_le_prod_loss_mul_prod_count
+#assert_axioms AlgebraicComplexity.Growth.fintype_prod_pos
+#assert_axioms AlgebraicComplexity.Growth.fintype_prod_subexponential
+#assert_axioms AlgebraicComplexity.Growth.fintype_prod_base_pow_le_prod_loss_mul_prod_count

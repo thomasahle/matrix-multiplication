@@ -1,0 +1,33 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.RationalTypedLeafProduct
+import AlgebraicComplexity.MatrixMultiplication.CyclicTypedLeaf
+
+/-!
+# Axiom audit for compositional typed-leaf products
+
+The generic product and leg-permutation operations are the reusable foundation for cyclic typed
+leaves.  This focused audit checks the profile, distribution, dimension, and entropy laws, as well
+as the theorem identifying the named cyclic façade with an iterated generic product.
+-/
+
+#assert_axioms AlgebraicComplexity.PositiveIntegralProfile.mass_product
+#assert_axioms AlgebraicComplexity.PositiveIntegralProfile.probability_product
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.permute
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.permute_profile
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.permute_coordinate
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.permute_dimension
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.permute_dimensionProduct
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.permute_distribution
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.permute_marginal
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.IsMaximumEntropyBits.permute
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.product
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.product_profile
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.product_coordinate
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.product_dimension
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.product_distribution
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.product_coordinate_eq_productCoordinate
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.product_dimensionProduct
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.IsMaximumEntropyBits.product
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.cyclicProduct_eq_product
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.cyclicProduct_dimensionProduct
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.cyclicProduct_distribution

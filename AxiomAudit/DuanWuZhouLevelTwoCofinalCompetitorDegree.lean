@@ -1,0 +1,34 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoCofinalCompetitorDegree
+
+set_option autoImplicit false
+
+/-! # Axiom audit for the cofinal `hVdeg` at the section 6.3 instance -/
+
+#assert_axioms AlgebraicComplexity.Examples.dwz63_profileEntropyNats_mappedType_equiv
+#assert_axioms AlgebraicComplexity.Examples.dwz63_cellAddress_eq_cell
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainAlpha_eq_mappedType_cellEquiv
+#assert_axioms AlgebraicComplexity.Examples.dwz63_plainRateAlpha_eq_exp_entropyNats_dwz63Alpha
+#assert_axioms AlgebraicComplexity.Examples.dwz63_card_typedWordMapFiber_le_pushedBase
+#assert_axioms AlgebraicComplexity.Examples.dwz63_pushedTypeFiberEntropyBase_zIndex_pow
+#assert_axioms AlgebraicComplexity.Examples.dwz63AssemblyBlocks
+#assert_axioms AlgebraicComplexity.Examples.dwz63AssemblyBlocks_eq
+#assert_axioms AlgebraicComplexity.Examples.dwz63_assemblyBlocks_pos
+#assert_axioms AlgebraicComplexity.Examples.dwz63_assemblyDepth_succ
+#assert_axioms AlgebraicComplexity.Examples.dwz63AssemblyRateCompat
+#assert_axioms AlgebraicComplexity.Examples.dwz63AssemblyRateCompat_pos
+#assert_axioms AlgebraicComplexity.Examples.dwz63AssemblyRateCompat_le_one
+#assert_axioms AlgebraicComplexity.Examples.dwz63_assemblyRatio_lt_one
+#assert_axioms AlgebraicComplexity.Examples.dwz63_assemblyRatio_nonneg
+#assert_axioms AlgebraicComplexity.Examples.dwz63AssemblySlack
+#assert_axioms AlgebraicComplexity.Examples.dwz63_subexponential_assemblySlack
+#assert_axioms AlgebraicComplexity.Examples.dwz63_group_pow_split
+#assert_axioms AlgebraicComplexity.Examples.dwz63_assembly_hupper
+#assert_axioms AlgebraicComplexity.Examples.dwz63_assembly_hbrick
+#assert_axioms AlgebraicComplexity.Examples.dwz63_cofinal_plainCompetitorBound_le_sharpDegree

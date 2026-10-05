@@ -1,0 +1,8 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.NestedLaserVolume
+
+/-! Focused trust audit for nested outer/inner laser-volume assembly. -/
+
+#assert_axioms AlgebraicComplexity.NestedLaserVolumeStage.polynomialDegenerates
+#assert_axioms AlgebraicComplexity.NestedLaserVolumeStage.ofDependentInnerFamilies
+#assert_axioms AlgebraicComplexity.NestedLaserVolumeSequenceData.toSubexponentialLaserVolumeSequence

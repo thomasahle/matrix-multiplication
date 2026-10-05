@@ -1,0 +1,64 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import MatrixMultiplication.LevelFourA5CategoricalConditionalIntegerDual
+import AxiomAudit.Command
+
+set_option autoImplicit false
+
+/-!
+# Axiom audit for the concrete level-four A5 categorical integer dual adapter
+
+## References
+
+- [alman2025more] Josh Alman et al., *More Asymmetry Yields Faster Matrix Multiplication*.
+- [dupont2026improving] Emilien Dupont et al., *Improving the Matrix Multiplication Exponent with
+  Modern Optimization and AlphaEvolve*.
+-/
+
+open MatrixMultiplication.LevelFourA5CategoricalConditionalIntegerDual
+
+#assert_axioms LevelFourA5Coordinate
+#assert_axioms levelFourA5Coordinate
+#assert_axioms levelFourA5Boundary
+#assert_axioms levelFourA5BoundaryOrbitRelevant
+#assert_axioms LevelFourA5BoundaryCategory
+#assert_axioms levelFourA5BoundaryCategory
+#assert_axioms levelFourA5BoundaryOrbitRelevant_complement_iff
+#assert_axioms levelFourA5BoundaryCategory_complement
+#assert_axioms CategoricalIntegerWeights
+#assert_axioms categoricalProductWeight
+#assert_axioms categoricalProductWeight_pos
+#assert_axioms log_categoricalProductWeight
+#assert_axioms categoricalFixedMomentNats
+#assert_axioms expectation_log_categoricalProductWeight
+#assert_axioms channelStateLaw
+#assert_axioms integerWeightExpectationNats_eq_channelStateLaw_expectation
+#assert_axioms integerWeightExpectationNats_eq_categoricalFixedMoment
+#assert_axioms fixedCoordinateGraphProfile
+#assert_axioms fixedCoordinateGraphProfile_zero_off_graph
+#assert_axioms mappedType_snd_fixedCoordinateGraphProfile
+#assert_axioms profileMass_fixedCoordinateGraphProfile
+#assert_axioms Program
+#assert_axioms Program.graphProfile
+#assert_axioms Program.graphProfileMass_pos
+#assert_axioms Program.graphParent
+#assert_axioms Program.graphRows
+#assert_axioms Program.stateLaw
+#assert_axioms Program.channelStateLaw_graphParent_graphRows
+#assert_axioms Program.rowPartition
+#assert_axioms Program.rowPartition_eq_sum_filter
+#assert_axioms Program.restrictedIntegerFiberPartition_eq_rowPartition
+#assert_axioms Program.fixedMomentNats
+#assert_axioms Program.SameCategoricalMarginals
+#assert_axioms Program.categoricalFixedMomentNats_eq_of_sameCategoricalMarginals
+#assert_axioms Program.FeasibleRows
+#assert_axioms Program.categoricalDualBits
+#assert_axioms Program.conditionalEntropyBits_le_categoricalDualBits_of_feasibleRows
+#assert_axioms Program.graphRows_feasible
+#assert_axioms Program.graphConditionalEntropyBits_le_categoricalDualBits
+#assert_axioms sum_mass_mul_graphConditionalEntropyBits_le_categoricalDualBits
+#assert_axioms sum_mass_mul_conditionalEntropyBits_le_categoricalDualBits_of_feasibleRows

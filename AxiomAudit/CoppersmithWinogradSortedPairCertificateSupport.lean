@@ -1,0 +1,25 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradSortedPairCertificateSupport
+
+/-! Focused trust audit for the certificate-defined sorted-pair seed endpoint. -/
+
+#assert_axioms AlgebraicComplexity.Examples.mem_cwSortedPairCertificateTargets
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairCertificateTargets_subset_upstream
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairSelectedAddressSupport_mono
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairSelectedAddressSupport_injOn_of_subset
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairCertificateProfiles_of_mem_selectedAddressSupport
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairCertificateTargets_passesY
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairCertificateTargets_passesZ
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairCertificateTargets_jointProfiles
+#assert_axioms AlgebraicComplexity.Examples.proportionalCounts_mem_types_of_profileMass_mul_eq
+#assert_axioms AlgebraicComplexity.Examples.residualHalfDensity_of_scaled_count
+#assert_axioms AlgebraicComplexity.Examples.fullBucket_hashCount_cancel
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairCertificateHashSelected_to_matrixMultiplicationDirectSum
+#assert_axioms AlgebraicComplexity.Examples.cwSortedPairCertificateWholeStage_precompose
+#assert_axioms AlgebraicComplexity.Examples.exists_seed_cwSortedPairCertificate_to_matrixMultiplicationDirectSum

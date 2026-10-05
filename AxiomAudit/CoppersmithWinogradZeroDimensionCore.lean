@@ -1,0 +1,28 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AlgebraicComplexity.Examples.CoppersmithWinogradZeroDimensionCore
+import AxiomAudit.Command
+
+/-! Axiom audit for finite zero-coordinate CW dimension data. -/
+
+open AlgebraicComplexity
+open AlgebraicComplexity.Examples
+
+#assert_axioms cwBaseConstituentDimension_X_eq_one_of_z_eq_zero
+#assert_axioms cwBaseConstituentDimension_Z_eq_one_of_z_eq_zero
+#assert_axioms cwBaseConstituentDimension_Y_eq_pow_middleIndicator_of_z_eq_zero
+#assert_axioms positiveSupportWord_letter_z_eq_zero_of_address_z_eq_const
+#assert_axioms positiveWordProduct_cwBaseDimension_X_eq_one_of_z_eq_const
+#assert_axioms positiveWordProduct_cwBaseDimension_Z_eq_one_of_z_eq_const
+#assert_axioms positiveWordProduct_cwBaseDimension_Y_eq_pow_middleCount_of_z_eq_const
+#assert_axioms splitWordMiddleCount_cwChunkSplitWord
+#assert_axioms splitWordMiddleCount_cwChunkSplitWord_positiveSupportWordBlockAddress
+#assert_axioms cwChunkConstituentDimension_zeroZ
+#assert_axioms cwSelectedExactInterfaceSupportedWord
+#assert_axioms positiveSupportWordBlockAddress_cwSelectedExactInterfaceSupportedWord
+#assert_axioms cwZeroInterfaceQExponent
+#assert_axioms cwSelectedExactInterfaceConstituentDimension

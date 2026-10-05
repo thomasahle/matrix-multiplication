@@ -1,0 +1,23 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradLevelFourOccurrenceExactTargetGrowth
+
+/-!
+# Axiom audit for exact level-four occurrence target growth
+-/
+
+open AlgebraicComplexity.Examples
+
+#assert_axioms card_cwRecursiveExactTargetFiberParts_eq_card_conditionalTypeClass
+#assert_axioms card_cwRecursiveExactTargetFiberParts_eq_card_conditionalTypeClass_of_joint_eq
+#assert_axioms cwProportionalOccurrenceLaw_cellJointProfile
+#assert_axioms levelFourOccurrenceExactTargetLoss_pos
+#assert_axioms levelFourOccurrenceExactTargetLoss_subexponential
+#assert_axioms levelFourOccurrenceScaledExactProfile_eq_proportionalJointProfile
+#assert_axioms exp_referenceConditionalEntropy_le_exactTargetLoss_mul_card
+#assert_axioms eventually_budget_mul_card_levelFourOccurrenceInputProfileHoles_le_exactTarget

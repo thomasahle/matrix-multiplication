@@ -1,0 +1,9 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Analysis.MaximumEntropyTypeCountingGrowth
+
+/-! Focused trust audit for the proportional maximum-entropy counting loss. -/
+
+#assert_axioms AlgebraicComplexity.WordType.maximumEntropyMappedFiberLoss_pos
+#assert_axioms AlgebraicComplexity.WordType.typeCount_mul_structuralZeroLoss_le_maximumEntropyMappedFiberLoss
+#assert_axioms AlgebraicComplexity.WordType.maximumEntropyMappedFiberLoss_subexponential
+#assert_axioms AlgebraicComplexity.WordType.card_words_le_maximumEntropyMappedFiberLoss_mul_referenceTypeClass

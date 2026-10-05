@@ -1,0 +1,2269 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import MatrixMultiplication.SignedDyadicLogCertificate
+import MatrixMultiplication.SignedDyadicLogCanonical
+import MatrixMultiplication.RationalDyadicLog
+
+/-!
+# Bounded directed term shards, root orientation 4, branch 1
+
+Certificate `e7987d7fa66008d497e31c976c68f025d57664a145336d358328375cc5738ca3`.
+Every proof below checks at most 64 signed terms.  The untrusted producer supplies integer
+arrays and rational endpoints only; the direction of every logarithm bound is proved by the
+committed generic checkers of `SignedDyadicLogCertificate` and `RationalDyadicLog`.
+-/
+
+namespace MatrixMultiplication.Generated.TotalQuotientOuterFloorRoot.Region4.Branch1
+
+open scoped BigOperators
+
+open MatrixMultiplication.DyadicEntropy
+open MatrixMultiplication.DyadicLogLinear
+open MatrixMultiplication.SignedDyadicLogCertificate
+open MatrixMultiplication.SignedDyadicLogForm
+
+set_option maxRecDepth 100000
+set_option maxHeartbeats 400000
+set_option Elab.async false
+
+namespace TermShard0
+
+/-! Directed signed-log shard 0.  The untrusted producer supplies only integer arrays and
+rational endpoints; the committed generic checker proves the direction of every logarithm. -/
+
+def bits : ℕ := 116
+def constantNumerator : ℤ := (-1050162440014123420388488525119488)
+def positiveArguments : Array ℕ := #[]
+def positiveCoefficients : Array ℕ := #[]
+def positiveScales : Array ℕ := #[]
+def negativeArguments : Array ℕ := #[
+    3003159, 10770893, 750791, 562950842613811, 562949953421261, 3003159,
+    562949953421261, 562949064228915, 10770893, 750791, 231485, 4078561,
+    16314253, 462965, 25303138395349, 2883935384378917, 809966549026619, 25303138395349,
+    25303107541803, 231485, 25303107541803, 2883931889983963, 809965561362629, 2883935384378917,
+    2883931889983963, 4078561, 809966549026619, 809965561362629, 16314253, 462965,
+    32016385680835, 617311003880811, 2469244418176403, 64031966054715, 756732727887609, 1345488390391063,
+    756964857638617, 32016385680835, 32016342211133, 32016342211133, 617310128034453, 2469240914791021,
+    64031879116485, 1345488390391063, 9569004667338667, 2691802668004903, 617311003880811, 617310128034453,
+    756964857638617, 2691802668004903, 2957801011355, 2469244418176403, 2469240914791021, 64031966054715,
+    64031879116485, 6043595080633, 199652798839961, 2403143975560207, 99827364110889, 6257303426893,
+    7813868796787, 296053305946065, 592106751838343, 15627546681585
+  ]
+def negativeCoefficients : Array ℕ := #[
+    14182017404328320850318065664, 50864104093775281544681750528, 14182041016160735198544134144, 316913150627933245004192940032, 316912650057028639926551314432, 14182017404328320850318065664,
+    316912650057028639926551314432, 316912149486238876639407636480, 50864104093775281544681750528, 14182041016160735198544134144, 2186314010574159644584837120, 77041839058957212209668685824,
+    77041881560255558036475609088, 2186290398741745296358768640, 227910409297195692995492446208, 811755645153092422002175639552, 227985315523677994251204952064, 227910409297195692995492446208,
+    227910131393159155678577688576, 2186314010574159644584837120, 227910131393159155678577688576, 811754661568354127018331209728, 227985037520979411047624474624, 811755645153092422002175639552,
+    811754661568354127018331209728, 77041839058957212209668685824, 227985315523677994251204952064, 227985037520979411047624474624, 77041881560255558036475609088, 2186290398741745296358768640,
+    18023622827744823734718955520, 695030401762331807437830488064, 695030515099120359434897850368, 18023396153988420180419543040, 213001326958355927442080661504, 757442626699564972202478534656,
+    213066665674614754618221002752, 18023622827744823734718955520, 18023598356478107596405866496, 18023598356478107596405866496, 695029415646998926786320924672, 695029528983801552532223819776,
+    18023371683052155664764764160, 757442626699564972202478534656, 2693435365883309858569219735552, 757675093286361756641020346368, 695030401762331807437830488064, 695029415646998926786320924672,
+    213066665674614754618221002752, 757675093286361756641020346368, 213132024521191267329407713280, 695030515099120359434897850368, 695029528983801552532223819776, 18023396153988420180419543040,
+    18023371683052155664764764160, 1701120784569808845430325248, 56197266903695309728347324416, 676424894553162536975746465792, 56197809976397315766503866368, 1761274336356215153710071808,
+    17595268300765939566091698176, 666652779170250890878774149120, 666652936735679070556789932032, 17595053352975309326033879040
+  ]
+def negativeScales : Array ℕ := #[
+    21, 23, 19, 49, 48, 21,
+    48, 48, 23, 19, 17, 21,
+    23, 18, 44, 51, 49, 44,
+    44, 17, 44, 51, 49, 51,
+    51, 21, 49, 49, 23, 18,
+    44, 49, 51, 45, 49, 50,
+    49, 44, 44, 44, 49, 51,
+    45, 50, 53, 51, 49, 49,
+    49, 51, 41, 51, 51, 45,
+    45, 42, 47, 51, 46, 42,
+    42, 48, 49, 43
+  ]
+def logBoundDenominator : ℕ := 1000000000000000
+def positiveLogLowerNumerators : Array ℕ := #[]
+def negativeLogUpperNumerators : Array ℕ := #[
+    21518049428648296, 23360634530924052, 19518051830608765, 49000002278768455, 49000000023676264, 21518049428648296,
+    49000000023676264, 48999997744903742, 23360634530924052, 19518051830608765, 17820559186710184, 21959628811138170,
+    23959629607022701, 18820543605756134, 44524381569704998, 51356960264144230, 49524855655495097, 44524381569704998,
+    44524379810544366, 17820559186710184, 44524379810544366, 51356958516064383, 49524853896288114, 51356960264144230,
+    51356958516064383, 21959628811138170, 49524855655495097, 49524853896288114, 23959629607022701, 18820543605756134,
+    44863875687469352, 49132990836781844, 51132991072038329, 45863857543327212, 49426777169932418, 50257051365981445,
+    49427219652560982, 44863875687469352, 44863873728673336, 44863873728673336, 49132988789871801, 51132989025128649,
+    45863855584533012, 50257051365981445, 53087290291995230, 51257494075336833, 49132990836781844, 49132988789871801,
+    49427219652560982, 51257494075336833, 41427662135781801, 51132991072038329, 51132989025128649, 45863857543327212,
+    45863855584533012, 42458544142180260, 47504486625008570, 51093844508151257, 46504500566692064, 42508678203027972,
+    42829174171138488, 48072850292453374, 49072850633438730, 43829156546740411
+  ]
+
+abbrev PositiveTerm := Fin 0
+abbrev NegativeTerm := Fin 64
+def positiveArgument (term : PositiveTerm) : ℕ := positiveArguments[term.val]?.getD 0
+def positiveCoefficient (term : PositiveTerm) : ℕ := positiveCoefficients[term.val]?.getD 0
+def positiveScale (term : PositiveTerm) : ℕ := positiveScales[term.val]?.getD 0
+def negativeArgument (term : NegativeTerm) : ℕ := negativeArguments[term.val]?.getD 0
+def negativeCoefficient (term : NegativeTerm) : ℕ := negativeCoefficients[term.val]?.getD 0
+def negativeScale (term : NegativeTerm) : ℕ := negativeScales[term.val]?.getD 0
+def positiveLogLowerNumerator (term : PositiveTerm) : ℕ :=
+  positiveLogLowerNumerators[term.val]?.getD 0
+def negativeLogUpperNumerator (term : NegativeTerm) : ℕ :=
+  negativeLogUpperNumerators[term.val]?.getD 0
+
+noncomputable def positiveLogLower (term : PositiveTerm) : ℝ :=
+  (positiveLogLowerNumerator term : ℝ) / logBoundDenominator
+noncomputable def negativeLogUpper (term : NegativeTerm) : ℝ :=
+  (negativeLogUpperNumerator term : ℝ) / logBoundDenominator
+def positiveLogLowerRat (term : PositiveTerm) : ℚ :=
+  positiveLogLowerNumerator term / logBoundDenominator
+def negativeLogUpperRat (term : NegativeTerm) : ℚ :=
+  negativeLogUpperNumerator term / logBoundDenominator
+
+theorem positiveScales_valid :
+    ∀ term, 2 ^ positiveScale term ≤ positiveArgument term := by decide
+
+theorem negativeScales_valid :
+    ∀ term, 2 ^ negativeScale term ≤ negativeArgument term := by decide
+
+noncomputable def positiveExact : ℝ := Form.natLogSum bits positiveArgument positiveCoefficient
+noncomputable def negativeExact : ℝ := Form.natLogSum bits negativeArgument negativeCoefficient
+noncomputable def positiveRationalLower : ℝ :=
+  ∑ term, mass bits (positiveCoefficient term) * positiveLogLower term
+noncomputable def negativeRationalUpper : ℝ :=
+  ∑ term, mass bits (negativeCoefficient term) * negativeLogUpper term
+noncomputable def positiveFloor : ℝ := 0 / 1
+noncomputable def negativeCeiling : ℝ := 12689313423 / 1000000000000
+
+theorem positiveLogLowerRat_le_fastRat :
+    ∀ term, positiveLogLowerRat term ≤
+      MatrixMultiplication.RationalDyadicLog.numeratorLogLower
+        (positiveArgument term) (positiveScale term) 8 := by decide +kernel
+
+theorem negativeFastRat_le_logUpperRat :
+    ∀ term, MatrixMultiplication.RationalDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpperRat term := by decide +kernel
+
+theorem positiveLogLower_le_fast (term : PositiveTerm) :
+    positiveLogLower term ≤ MatrixMultiplication.FastDyadicLog.numeratorLogLower
+      (positiveArgument term) (positiveScale term) 8 := by
+  simpa [positiveLogLower, positiveLogLowerRat] using
+    MatrixMultiplication.RationalDyadicLog.cast_le_fastLower
+      (positiveLogLowerRat_le_fastRat term)
+
+theorem negativeFast_le_logUpper (term : NegativeTerm) :
+    MatrixMultiplication.FastDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpper term := by
+  simpa [negativeLogUpper, negativeLogUpperRat] using
+    MatrixMultiplication.RationalDyadicLog.fastUpper_le_cast
+      (negativeFastRat_le_logUpperRat term)
+
+theorem positiveFloor_le_rationalLower : positiveFloor ≤ positiveRationalLower := by
+  norm_num [positiveRationalLower, positiveFloor, bits, positiveLogLower, logBoundDenominator,
+    positiveLogLowerNumerator, positiveLogLowerNumerators, positiveCoefficient,
+    positiveCoefficients, Fin.sum_univ_succ, mass]
+
+theorem negativeRationalUpper_le_ceiling : negativeRationalUpper ≤ negativeCeiling := by
+  norm_num [negativeRationalUpper, negativeCeiling, bits, negativeLogUpper, logBoundDenominator,
+    negativeLogUpperNumerator, negativeLogUpperNumerators, negativeCoefficient,
+    negativeCoefficients, Fin.sum_univ_succ, mass]
+
+theorem positiveFloor_le_exact : positiveFloor ≤ positiveExact :=
+  positiveFloor_le_rationalLower.trans
+    (weightedLowerWithScale_le_natLogSum 8 bits
+      positiveArgument positiveCoefficient positiveScale positiveLogLower
+      positiveScales_valid positiveLogLower_le_fast)
+
+theorem negativeExact_le_ceiling : negativeExact ≤ negativeCeiling :=
+  (natLogSum_le_weightedUpperWithScale 8 bits
+    negativeArgument negativeCoefficient negativeScale negativeLogUpper
+    negativeScales_valid negativeFast_le_logUpper).trans
+      negativeRationalUpper_le_ceiling
+
+/-- Sign-separated exact form used by the directed arithmetic checker. -/
+def signedForm : Form :=
+  SignedDyadicLogCertificate.Form.ofSignedFamilies constantNumerator
+    positiveArgument positiveCoefficient negativeArgument negativeCoefficient
+
+/-- Exact source-order form before this shard's bounded power-of-two normalization. -/
+def rawForm : Form := { constantNumerator := 0, terms := [
+    { argument := 14182017404328320850318065664, coefficient := (-14182017404328320850318065664) }, { argument := 50864104093775281544681750528, coefficient := (-50864104093775281544681750528) },
+    { argument := 14182041016160735198544134144, coefficient := (-14182041016160735198544134144) }, { argument := 316913150627933245004192940032, coefficient := (-316913150627933245004192940032) },
+    { argument := 316912650057028639926551314432, coefficient := (-316912650057028639926551314432) }, { argument := 14182017404328320850318065664, coefficient := (-14182017404328320850318065664) },
+    { argument := 316912650057028639926551314432, coefficient := (-316912650057028639926551314432) }, { argument := 316912149486238876639407636480, coefficient := (-316912149486238876639407636480) },
+    { argument := 50864104093775281544681750528, coefficient := (-50864104093775281544681750528) }, { argument := 14182041016160735198544134144, coefficient := (-14182041016160735198544134144) },
+    { argument := 2186314010574159644584837120, coefficient := (-2186314010574159644584837120) }, { argument := 77041839058957212209668685824, coefficient := (-77041839058957212209668685824) },
+    { argument := 77041881560255558036475609088, coefficient := (-77041881560255558036475609088) }, { argument := 2186290398741745296358768640, coefficient := (-2186290398741745296358768640) },
+    { argument := 227910409297195692995492446208, coefficient := (-227910409297195692995492446208) }, { argument := 811755645153092422002175639552, coefficient := (-811755645153092422002175639552) },
+    { argument := 227985315523677994251204952064, coefficient := (-227985315523677994251204952064) }, { argument := 227910409297195692995492446208, coefficient := (-227910409297195692995492446208) },
+    { argument := 227910131393159155678577688576, coefficient := (-227910131393159155678577688576) }, { argument := 2186314010574159644584837120, coefficient := (-2186314010574159644584837120) },
+    { argument := 227910131393159155678577688576, coefficient := (-227910131393159155678577688576) }, { argument := 811754661568354127018331209728, coefficient := (-811754661568354127018331209728) },
+    { argument := 227985037520979411047624474624, coefficient := (-227985037520979411047624474624) }, { argument := 811755645153092422002175639552, coefficient := (-811755645153092422002175639552) },
+    { argument := 811754661568354127018331209728, coefficient := (-811754661568354127018331209728) }, { argument := 77041839058957212209668685824, coefficient := (-77041839058957212209668685824) },
+    { argument := 227985315523677994251204952064, coefficient := (-227985315523677994251204952064) }, { argument := 227985037520979411047624474624, coefficient := (-227985037520979411047624474624) },
+    { argument := 77041881560255558036475609088, coefficient := (-77041881560255558036475609088) }, { argument := 2186290398741745296358768640, coefficient := (-2186290398741745296358768640) },
+    { argument := 18023622827744823734718955520, coefficient := (-18023622827744823734718955520) }, { argument := 695030401762331807437830488064, coefficient := (-695030401762331807437830488064) },
+    { argument := 695030515099120359434897850368, coefficient := (-695030515099120359434897850368) }, { argument := 18023396153988420180419543040, coefficient := (-18023396153988420180419543040) },
+    { argument := 213001326958355927442080661504, coefficient := (-213001326958355927442080661504) }, { argument := 757442626699564972202478534656, coefficient := (-757442626699564972202478534656) },
+    { argument := 213066665674614754618221002752, coefficient := (-213066665674614754618221002752) }, { argument := 18023622827744823734718955520, coefficient := (-18023622827744823734718955520) },
+    { argument := 18023598356478107596405866496, coefficient := (-18023598356478107596405866496) }, { argument := 18023598356478107596405866496, coefficient := (-18023598356478107596405866496) },
+    { argument := 695029415646998926786320924672, coefficient := (-695029415646998926786320924672) }, { argument := 695029528983801552532223819776, coefficient := (-695029528983801552532223819776) },
+    { argument := 18023371683052155664764764160, coefficient := (-18023371683052155664764764160) }, { argument := 757442626699564972202478534656, coefficient := (-757442626699564972202478534656) },
+    { argument := 2693435365883309858569219735552, coefficient := (-2693435365883309858569219735552) }, { argument := 757675093286361756641020346368, coefficient := (-757675093286361756641020346368) },
+    { argument := 695030401762331807437830488064, coefficient := (-695030401762331807437830488064) }, { argument := 695029415646998926786320924672, coefficient := (-695029415646998926786320924672) },
+    { argument := 213066665674614754618221002752, coefficient := (-213066665674614754618221002752) }, { argument := 757675093286361756641020346368, coefficient := (-757675093286361756641020346368) },
+    { argument := 213132024521191267329407713280, coefficient := (-213132024521191267329407713280) }, { argument := 695030515099120359434897850368, coefficient := (-695030515099120359434897850368) },
+    { argument := 695029528983801552532223819776, coefficient := (-695029528983801552532223819776) }, { argument := 18023396153988420180419543040, coefficient := (-18023396153988420180419543040) },
+    { argument := 18023371683052155664764764160, coefficient := (-18023371683052155664764764160) }, { argument := 1701120784569808845430325248, coefficient := (-1701120784569808845430325248) },
+    { argument := 56197266903695309728347324416, coefficient := (-56197266903695309728347324416) }, { argument := 676424894553162536975746465792, coefficient := (-676424894553162536975746465792) },
+    { argument := 56197809976397315766503866368, coefficient := (-56197809976397315766503866368) }, { argument := 1761274336356215153710071808, coefficient := (-1761274336356215153710071808) },
+    { argument := 17595268300765939566091698176, coefficient := (-17595268300765939566091698176) }, { argument := 666652779170250890878774149120, coefficient := (-666652779170250890878774149120) },
+    { argument := 666652936735679070556789932032, coefficient := (-666652936735679070556789932032) }, { argument := 17595053352975309326033879040, coefficient := (-17595053352975309326033879040) }] }
+
+/-- Raw term shards carry no independent rational constant. -/
+@[simp] theorem rawForm_constant : rawForm.constantNumerator = 0 := rfl
+
+/-- Exact source-order form after bounded power-of-two normalization. -/
+def form : Form := Form.normalizePowersOfTwo rawForm
+
+theorem form_eval_rawForm : Form.eval bits form = Form.eval bits rawForm := by
+  unfold form
+  exact Form.eval_normalizePowersOfTwo bits rawForm
+
+theorem signedForm_constant : signedForm.constantNumerator = form.constantNumerator := by rfl
+
+theorem signedForm_terms_perm : signedForm.terms.Perm form.terms := by decide +kernel
+
+noncomputable def lower : ℝ :=
+  (constantNumerator : ℝ) / (2 : ℝ) ^ bits + positiveFloor - negativeCeiling
+
+noncomputable def signedCertificate : LowerBound bits :=
+  LowerBound.ofSignedFamilies bits constantNumerator positiveArgument positiveCoefficient
+    negativeArgument negativeCoefficient positiveFloor negativeCeiling
+      positiveFloor_le_exact negativeExact_le_ceiling
+
+noncomputable def certificate : LowerBound bits :=
+  LowerBound.reorder signedCertificate form signedForm_constant signedForm_terms_perm
+
+@[simp] theorem certificate_form : certificate.form = form := rfl
+
+@[simp] theorem certificate_lower : certificate.lower = lower := by
+  simp [certificate, LowerBound.reorder, signedCertificate, LowerBound.ofSignedFamilies, lower,
+    constantNumerator, bits]
+
+end TermShard0
+
+namespace TermShard1
+
+/-! Directed signed-log shard 1.  The untrusted producer supplies only integer arrays and
+rational endpoints; the committed generic checker proves the direction of every logarithm. -/
+
+def bits : ℕ := 116
+def constantNumerator : ℤ := (-863966935581089218621464672993280)
+def positiveArguments : Array ℕ := #[]
+def positiveCoefficients : Array ℕ := #[]
+def positiveScales : Array ℕ := #[]
+def negativeArguments : Array ℕ := #[
+    7813868796787, 111170066691471, 31265099832485, 6043595080633, 6043583740999, 6043583740999,
+    199652424598375, 2403139479018481, 99827176988119, 6257291749555, 111170066691471, 131653650658631,
+    8425835626204407, 222337416279595, 296053305946065, 131653650658631, 296144759924215, 199652798839961,
+    199652424598375, 31265099832485, 296144759924215, 2369158639341805, 62529435780625, 592106751838343,
+    8425835626204407, 2369158639341805, 2403143975560207, 2403139479018481, 15627546681585, 222337416279595,
+    62529435780625, 99827364110889, 99827176988119, 6257303426893, 6257291749555, 5956499237595,
+    275529869203403, 137734894994663, 1498457136355, 2756497003525, 21472370421361, 819862407,
+    253819157275195, 357375921, 27028431, 813856089, 813856089, 357375921,
+    1822917513, 357375921, 21472559512457, 813856089, 27028431, 357375921,
+    27028431, 51053703, 813856089, 2851203089191, 2475465425901, 46794796755009,
+    187179232970681, 4950870593385, 2756497003525, 19660007621633
+  ]
+def negativeCoefficients : Array ℕ := #[
+    17595268300765939566091698176, 62583183865807748088780029952, 17600686494410100363828920320, 1701120784569808845430325248, 1701117592746592788067385344, 1701117592746592788067385344,
+    56197161564053606219382784000, 676423628889184932632813633536, 56197704635642660199625392128, 1761271049477773561251758080, 62583183865807748088780029952, 2371661328192704107540228603904,
+    2371661886653701074195151060992, 62582419069206430818311864320, 666652779170250890878774149120, 2371661328192704107540228603904, 666858715221209835620343480320, 56197266903695309728347324416,
+    56197161564053606219382784000, 17600686494410100363828920320, 666858715221209835620343480320, 666858872832584020171769774080, 17600471480081881854115840000, 666652936735679070556789932032,
+    2371661886653701074195151060992, 666858872832584020171769774080, 676424894553162536975746465792, 676423628889184932632813633536, 17595053352975309326033879040, 62582419069206430818311864320,
+    17600471480081881854115840000, 56197809976397315766503866368, 56197704635642660199625392128, 1761274336356215153710071808, 1761271049477773561251758080, 1676605484179092844912312320,
+    77554763517117953271941562368, 77537852721734835180830457856, 1687112750229759628693995520, 1551769859740384849874124800, 48351479714201329891989782528, 945236999849031150424031232,
+    571549931062030760423047823360, 824052769099155361908129792, 124646637342729382473498624, 938312186663323962508836864, 938312186663323962508836864, 824052769099155361908129792,
+    16813446414897052258091925504, 824052769099155361908129792, 48351905509496072231333134336, 938312186663323962508836864, 124646637342729382473498624, 824052769099155361908129792,
+    124646637342729382473498624, 941774593256177556466434048, 938312186663323962508836864, 1605084646254774333936238592, 1393563146207036222170202112, 52686257307184156950046703616,
+    52686270241140888164668276736, 1393546184970514526172610560, 1551769859740384849874124800, 5533800187430468132167221248
+  ]
+def negativeScales : Array ℕ := #[
+    42, 46, 44, 42, 42, 42,
+    47, 51, 46, 42, 46, 46,
+    52, 47, 48, 46, 48, 47,
+    47, 44, 48, 51, 45, 49,
+    52, 51, 51, 51, 43, 47,
+    45, 46, 46, 42, 42, 42,
+    47, 46, 40, 41, 44, 29,
+    47, 28, 24, 29, 29, 28,
+    30, 28, 44, 29, 24, 28,
+    24, 25, 29, 41, 41, 45,
+    47, 42, 41, 44
+  ]
+def logBoundDenominator : ℕ := 1000000000000000
+def positiveLogLowerNumerators : Array ℕ := #[]
+def negativeLogUpperNumerators : Array ℕ := #[
+    42829174171138488, 46659761713192228, 44829618358624603, 42458544142180260, 42458541435240290, 42458541435240290,
+    47504483920728994, 51093841808710614, 46504497862410049, 42508675510677579, 46659761713192228, 46903740859900993,
+    52903741199615975, 47659744082657338, 48072850292453374, 46903740859900993, 48073295887295369, 47504486625008570,
+    47504483920728994, 44829618358624603, 48073295887295369, 51073296228274823, 45829600734198022, 49072850633438730,
+    52903741199615975, 51073296228274823, 51093844508151257, 51093841808710614, 43829156546740411, 47659744082657338,
+    45829600734198022, 46504500566692064, 46504497862410049, 42508678203027972, 42508675510677579, 42437601815573478,
+    47969202067448989, 46968887453805887, 40446614954530222, 41325973171783532, 44287546698433977, 29610806569575263,
+    47850794292437443, 28412867191955761, 24687974430144528, 29600198470007364, 29600198470007364, 28412867191955761,
+    30763602135205353, 28412867191955761, 44287559403113523, 29600198470007364, 24687974430144528, 28412867191955761,
+    24687974430144528, 25605512269904727, 29600198470007364, 41374707943737449, 41170836938390960, 45411413354945365,
+    47411413709112731, 42170819379056962, 41325973171783532, 44160329114506677
+  ]
+
+abbrev PositiveTerm := Fin 0
+abbrev NegativeTerm := Fin 64
+def positiveArgument (term : PositiveTerm) : ℕ := positiveArguments[term.val]?.getD 0
+def positiveCoefficient (term : PositiveTerm) : ℕ := positiveCoefficients[term.val]?.getD 0
+def positiveScale (term : PositiveTerm) : ℕ := positiveScales[term.val]?.getD 0
+def negativeArgument (term : NegativeTerm) : ℕ := negativeArguments[term.val]?.getD 0
+def negativeCoefficient (term : NegativeTerm) : ℕ := negativeCoefficients[term.val]?.getD 0
+def negativeScale (term : NegativeTerm) : ℕ := negativeScales[term.val]?.getD 0
+def positiveLogLowerNumerator (term : PositiveTerm) : ℕ :=
+  positiveLogLowerNumerators[term.val]?.getD 0
+def negativeLogUpperNumerator (term : NegativeTerm) : ℕ :=
+  negativeLogUpperNumerators[term.val]?.getD 0
+
+noncomputable def positiveLogLower (term : PositiveTerm) : ℝ :=
+  (positiveLogLowerNumerator term : ℝ) / logBoundDenominator
+noncomputable def negativeLogUpper (term : NegativeTerm) : ℝ :=
+  (negativeLogUpperNumerator term : ℝ) / logBoundDenominator
+def positiveLogLowerRat (term : PositiveTerm) : ℚ :=
+  positiveLogLowerNumerator term / logBoundDenominator
+def negativeLogUpperRat (term : NegativeTerm) : ℚ :=
+  negativeLogUpperNumerator term / logBoundDenominator
+
+theorem positiveScales_valid :
+    ∀ term, 2 ^ positiveScale term ≤ positiveArgument term := by decide
+
+theorem negativeScales_valid :
+    ∀ term, 2 ^ negativeScale term ≤ negativeArgument term := by decide
+
+noncomputable def positiveExact : ℝ := Form.natLogSum bits positiveArgument positiveCoefficient
+noncomputable def negativeExact : ℝ := Form.natLogSum bits negativeArgument negativeCoefficient
+noncomputable def positiveRationalLower : ℝ :=
+  ∑ term, mass bits (positiveCoefficient term) * positiveLogLower term
+noncomputable def negativeRationalUpper : ℝ :=
+  ∑ term, mass bits (negativeCoefficient term) * negativeLogUpper term
+noncomputable def positiveFloor : ℝ := 0 / 1
+noncomputable def negativeCeiling : ℝ := 10258862689 / 1000000000000
+
+theorem positiveLogLowerRat_le_fastRat :
+    ∀ term, positiveLogLowerRat term ≤
+      MatrixMultiplication.RationalDyadicLog.numeratorLogLower
+        (positiveArgument term) (positiveScale term) 8 := by decide +kernel
+
+theorem negativeFastRat_le_logUpperRat :
+    ∀ term, MatrixMultiplication.RationalDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpperRat term := by decide +kernel
+
+theorem positiveLogLower_le_fast (term : PositiveTerm) :
+    positiveLogLower term ≤ MatrixMultiplication.FastDyadicLog.numeratorLogLower
+      (positiveArgument term) (positiveScale term) 8 := by
+  simpa [positiveLogLower, positiveLogLowerRat] using
+    MatrixMultiplication.RationalDyadicLog.cast_le_fastLower
+      (positiveLogLowerRat_le_fastRat term)
+
+theorem negativeFast_le_logUpper (term : NegativeTerm) :
+    MatrixMultiplication.FastDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpper term := by
+  simpa [negativeLogUpper, negativeLogUpperRat] using
+    MatrixMultiplication.RationalDyadicLog.fastUpper_le_cast
+      (negativeFastRat_le_logUpperRat term)
+
+theorem positiveFloor_le_rationalLower : positiveFloor ≤ positiveRationalLower := by
+  norm_num [positiveRationalLower, positiveFloor, bits, positiveLogLower, logBoundDenominator,
+    positiveLogLowerNumerator, positiveLogLowerNumerators, positiveCoefficient,
+    positiveCoefficients, Fin.sum_univ_succ, mass]
+
+theorem negativeRationalUpper_le_ceiling : negativeRationalUpper ≤ negativeCeiling := by
+  norm_num [negativeRationalUpper, negativeCeiling, bits, negativeLogUpper, logBoundDenominator,
+    negativeLogUpperNumerator, negativeLogUpperNumerators, negativeCoefficient,
+    negativeCoefficients, Fin.sum_univ_succ, mass]
+
+theorem positiveFloor_le_exact : positiveFloor ≤ positiveExact :=
+  positiveFloor_le_rationalLower.trans
+    (weightedLowerWithScale_le_natLogSum 8 bits
+      positiveArgument positiveCoefficient positiveScale positiveLogLower
+      positiveScales_valid positiveLogLower_le_fast)
+
+theorem negativeExact_le_ceiling : negativeExact ≤ negativeCeiling :=
+  (natLogSum_le_weightedUpperWithScale 8 bits
+    negativeArgument negativeCoefficient negativeScale negativeLogUpper
+    negativeScales_valid negativeFast_le_logUpper).trans
+      negativeRationalUpper_le_ceiling
+
+/-- Sign-separated exact form used by the directed arithmetic checker. -/
+def signedForm : Form :=
+  SignedDyadicLogCertificate.Form.ofSignedFamilies constantNumerator
+    positiveArgument positiveCoefficient negativeArgument negativeCoefficient
+
+/-- Exact source-order form before this shard's bounded power-of-two normalization. -/
+def rawForm : Form := { constantNumerator := 0, terms := [
+    { argument := 17595268300765939566091698176, coefficient := (-17595268300765939566091698176) }, { argument := 62583183865807748088780029952, coefficient := (-62583183865807748088780029952) },
+    { argument := 17600686494410100363828920320, coefficient := (-17600686494410100363828920320) }, { argument := 1701120784569808845430325248, coefficient := (-1701120784569808845430325248) },
+    { argument := 1701117592746592788067385344, coefficient := (-1701117592746592788067385344) }, { argument := 1701117592746592788067385344, coefficient := (-1701117592746592788067385344) },
+    { argument := 56197161564053606219382784000, coefficient := (-56197161564053606219382784000) }, { argument := 676423628889184932632813633536, coefficient := (-676423628889184932632813633536) },
+    { argument := 56197704635642660199625392128, coefficient := (-56197704635642660199625392128) }, { argument := 1761271049477773561251758080, coefficient := (-1761271049477773561251758080) },
+    { argument := 62583183865807748088780029952, coefficient := (-62583183865807748088780029952) }, { argument := 2371661328192704107540228603904, coefficient := (-2371661328192704107540228603904) },
+    { argument := 2371661886653701074195151060992, coefficient := (-2371661886653701074195151060992) }, { argument := 62582419069206430818311864320, coefficient := (-62582419069206430818311864320) },
+    { argument := 666652779170250890878774149120, coefficient := (-666652779170250890878774149120) }, { argument := 2371661328192704107540228603904, coefficient := (-2371661328192704107540228603904) },
+    { argument := 666858715221209835620343480320, coefficient := (-666858715221209835620343480320) }, { argument := 56197266903695309728347324416, coefficient := (-56197266903695309728347324416) },
+    { argument := 56197161564053606219382784000, coefficient := (-56197161564053606219382784000) }, { argument := 17600686494410100363828920320, coefficient := (-17600686494410100363828920320) },
+    { argument := 666858715221209835620343480320, coefficient := (-666858715221209835620343480320) }, { argument := 666858872832584020171769774080, coefficient := (-666858872832584020171769774080) },
+    { argument := 17600471480081881854115840000, coefficient := (-17600471480081881854115840000) }, { argument := 666652936735679070556789932032, coefficient := (-666652936735679070556789932032) },
+    { argument := 2371661886653701074195151060992, coefficient := (-2371661886653701074195151060992) }, { argument := 666858872832584020171769774080, coefficient := (-666858872832584020171769774080) },
+    { argument := 676424894553162536975746465792, coefficient := (-676424894553162536975746465792) }, { argument := 676423628889184932632813633536, coefficient := (-676423628889184932632813633536) },
+    { argument := 17595053352975309326033879040, coefficient := (-17595053352975309326033879040) }, { argument := 62582419069206430818311864320, coefficient := (-62582419069206430818311864320) },
+    { argument := 17600471480081881854115840000, coefficient := (-17600471480081881854115840000) }, { argument := 56197809976397315766503866368, coefficient := (-56197809976397315766503866368) },
+    { argument := 56197704635642660199625392128, coefficient := (-56197704635642660199625392128) }, { argument := 1761274336356215153710071808, coefficient := (-1761274336356215153710071808) },
+    { argument := 1761271049477773561251758080, coefficient := (-1761271049477773561251758080) }, { argument := 1676605484179092844912312320, coefficient := (-1676605484179092844912312320) },
+    { argument := 77554763517117953271941562368, coefficient := (-77554763517117953271941562368) }, { argument := 77537852721734835180830457856, coefficient := (-77537852721734835180830457856) },
+    { argument := 1687112750229759628693995520, coefficient := (-1687112750229759628693995520) }, { argument := 1551769859740384849874124800, coefficient := (-1551769859740384849874124800) },
+    { argument := 48351479714201329891989782528, coefficient := (-48351479714201329891989782528) }, { argument := 945236999849031150424031232, coefficient := (-945236999849031150424031232) },
+    { argument := 571549931062030760423047823360, coefficient := (-571549931062030760423047823360) }, { argument := 824052769099155361908129792, coefficient := (-824052769099155361908129792) },
+    { argument := 124646637342729382473498624, coefficient := (-124646637342729382473498624) }, { argument := 938312186663323962508836864, coefficient := (-938312186663323962508836864) },
+    { argument := 938312186663323962508836864, coefficient := (-938312186663323962508836864) }, { argument := 824052769099155361908129792, coefficient := (-824052769099155361908129792) },
+    { argument := 16813446414897052258091925504, coefficient := (-16813446414897052258091925504) }, { argument := 824052769099155361908129792, coefficient := (-824052769099155361908129792) },
+    { argument := 48351905509496072231333134336, coefficient := (-48351905509496072231333134336) }, { argument := 938312186663323962508836864, coefficient := (-938312186663323962508836864) },
+    { argument := 124646637342729382473498624, coefficient := (-124646637342729382473498624) }, { argument := 824052769099155361908129792, coefficient := (-824052769099155361908129792) },
+    { argument := 124646637342729382473498624, coefficient := (-124646637342729382473498624) }, { argument := 941774593256177556466434048, coefficient := (-941774593256177556466434048) },
+    { argument := 938312186663323962508836864, coefficient := (-938312186663323962508836864) }, { argument := 1605084646254774333936238592, coefficient := (-1605084646254774333936238592) },
+    { argument := 1393563146207036222170202112, coefficient := (-1393563146207036222170202112) }, { argument := 52686257307184156950046703616, coefficient := (-52686257307184156950046703616) },
+    { argument := 52686270241140888164668276736, coefficient := (-52686270241140888164668276736) }, { argument := 1393546184970514526172610560, coefficient := (-1393546184970514526172610560) },
+    { argument := 1551769859740384849874124800, coefficient := (-1551769859740384849874124800) }, { argument := 5533800187430468132167221248, coefficient := (-5533800187430468132167221248) }] }
+
+/-- Raw term shards carry no independent rational constant. -/
+@[simp] theorem rawForm_constant : rawForm.constantNumerator = 0 := rfl
+
+/-- Exact source-order form after bounded power-of-two normalization. -/
+def form : Form := Form.normalizePowersOfTwo rawForm
+
+theorem form_eval_rawForm : Form.eval bits form = Form.eval bits rawForm := by
+  unfold form
+  exact Form.eval_normalizePowersOfTwo bits rawForm
+
+theorem signedForm_constant : signedForm.constantNumerator = form.constantNumerator := by rfl
+
+theorem signedForm_terms_perm : signedForm.terms.Perm form.terms := by decide +kernel
+
+noncomputable def lower : ℝ :=
+  (constantNumerator : ℝ) / (2 : ℝ) ^ bits + positiveFloor - negativeCeiling
+
+noncomputable def signedCertificate : LowerBound bits :=
+  LowerBound.ofSignedFamilies bits constantNumerator positiveArgument positiveCoefficient
+    negativeArgument negativeCoefficient positiveFloor negativeCeiling
+      positiveFloor_le_exact negativeExact_le_ceiling
+
+noncomputable def certificate : LowerBound bits :=
+  LowerBound.reorder signedCertificate form signedForm_constant signedForm_terms_perm
+
+@[simp] theorem certificate_form : certificate.form = form := rfl
+
+@[simp] theorem certificate_lower : certificate.lower = lower := by
+  simp [certificate, LowerBound.reorder, signedCertificate, LowerBound.ofSignedFamilies, lower,
+    constantNumerator, bits]
+
+end TermShard1
+
+namespace TermShard2
+
+/-! Directed signed-log shard 2.  The untrusted producer supplies only integer arrays and
+rational endpoints; the committed generic checker proves the direction of every logarithm. -/
+
+def bits : ℕ := 116
+def constantNumerator : ℤ := (-731729067935394630774744357535744)
+def positiveArguments : Array ℕ := #[]
+def positiveCoefficients : Array ℕ := #[]
+def positiveScales : Array ℕ := #[]
+def negativeArguments : Array ℕ := #[
+    5514590032885, 5956498527525, 275529836357685, 137734878575385, 1498456957725, 19660007621633,
+    306183140259361, 2940453789, 3618826593439551, 1281736267, 96938037, 2918912003,
+    2918912003, 1281736267, 6537932051, 1281736267, 76546459592245, 2918912003,
+    96938037, 1281736267, 96938037, 183105181, 2918912003, 20334094036887,
+    46794796755009, 3539889074182949, 7079779872411553, 187176906856721, 21472370421361, 306183140259361,
+    85915848708123, 819862407, 2940453789, 204965943, 5956499237595, 5956498527525,
+    5514590032885, 85915848708123, 204965943, 1015594251020245, 89344129, 6757119,
+    203464361, 203464361, 89344129, 455730137, 89344129, 10739575664417,
+    203464361, 6757119, 89344129, 6757119, 12763447, 203464361,
+    5704063076891, 187179232970681, 7079779872411553, 7079781596457723, 187176952806827, 253819157275195,
+    3618826593439551, 1015594251020245, 357375921, 1281736267
+  ]
+def negativeCoefficients : Array ℕ := #[
+    1552219101075121080169922560, 1676605284312156131976806400, 77554754271870244177166991360, 77537843478503049869257605120, 1687112549110259269396070400, 5533800187430468132167221248,
+    172365784547398313948984901632, 3390112406640784145922392064, 2037218262216600413526307110912, 2955482610917606691316957184, 447047789886696810451304448, 3365276418313745434230652928,
+    3365276418313745434230652928, 2955482610917606691316957184, 60301779658049991987542622208, 2955482610917606691316957184, 172367303448082655592851701760, 3365276418313745434230652928,
+    447047789886696810451304448, 2955482610917606691316957184, 447047789886696810451304448, 3377694412477264790076522496, 3365276418313745434230652928, 5723538645465057371589967872,
+    52686257307184156950046703616, 1992780389427902398573563609088, 1992780874703612987806232608768, 52685615498268170832865918976, 48351479714201329891989782528, 172365784547398313948984901632,
+    48366323028390331619135717376, 945236999849031150424031232, 3390112406640784145922392064, 945238573586884938770153472, 1676605484179092844912312320, 1676605284312156131976806400,
+    1552219101075121080169922560, 48366323028390331619135717376, 945238573586884938770153472, 571728736306799169884326461440, 824054141075745844056031232, 124646844868600211705954304,
+    938313748871962704786489344, 938313748871962704786489344, 824054141075745844056031232, 16813474407831184112336502784, 824054141075745844056031232, 48366748960385648197822840832,
+    938313748871962704786489344, 124646844868600211705954304, 824054141075745844056031232, 124646844868600211705954304, 941776161229423821778321408, 938313748871962704786489344,
+    1605551021724007029587050496, 52686270241140888164668276736, 1992780874703612987806232608768, 1992781359979468536651907596288, 52685628432073187035040448512, 571549931062030760423047823360,
+    2037218262216600413526307110912, 571728736306799169884326461440, 824052769099155361908129792, 2955482610917606691316957184
+  ]
+def negativeScales : Array ℕ := #[
+    42, 42, 47, 46, 40, 44,
+    48, 31, 51, 30, 26, 31,
+    31, 30, 32, 30, 46, 31,
+    26, 30, 26, 27, 31, 44,
+    45, 51, 52, 47, 44, 48,
+    46, 29, 31, 27, 42, 42,
+    42, 46, 27, 49, 26, 22,
+    27, 27, 26, 28, 26, 43,
+    27, 22, 26, 22, 23, 27,
+    42, 47, 52, 52, 47, 47,
+    51, 49, 28, 30
+  ]
+def logBoundDenominator : ℕ := 1000000000000000
+def positiveLogLowerNumerators : Array ℕ := #[]
+def negativeLogUpperNumerators : Array ℕ := #[
+    42326390775234120, 42437601643590827, 47969201895466297, 46968887281823196, 40446614782547571, 44160329114506677,
+    48121388172547924, 31453391671843956, 51684443401814557, 30255452294231994, 26530559532367093, 31442783572277958,
+    31442783572277958, 30255452294231994, 32606187237186437, 30255452294231994, 46121400885632691, 31442783572277958,
+    26530559532367093, 30255452294231994, 26530559532367093, 27448097372174434, 31442783572277958, 44208965948082670,
+    45411413354945365, 51652625576117890, 52652625927438477, 47411395780340005, 44287546698433977, 48121388172547924,
+    46287989520237858, 29610806569575263, 31453391671843956, 27610808971535733, 42437601815573478, 42437601643590827,
+    42326390775234120, 46287989520237858, 27610808971535733, 49851245558533913, 26412869593916230, 22687976832105000,
+    27600200871967833, 27600200871967833, 26412869593916230, 28763604537165837, 26412869593916230, 43288002225095975,
+    27600200871967833, 22687976832105000, 26412869593916230, 22687976832105000, 23605514671865197, 27600200871967833,
+    42375127074184480, 47411413709112731, 52652625927438477, 52652626278759083, 47411396134507531, 47850794292437443,
+    51684443401814557, 49851245558533913, 28412867191955761, 30255452294231994
+  ]
+
+abbrev PositiveTerm := Fin 0
+abbrev NegativeTerm := Fin 64
+def positiveArgument (term : PositiveTerm) : ℕ := positiveArguments[term.val]?.getD 0
+def positiveCoefficient (term : PositiveTerm) : ℕ := positiveCoefficients[term.val]?.getD 0
+def positiveScale (term : PositiveTerm) : ℕ := positiveScales[term.val]?.getD 0
+def negativeArgument (term : NegativeTerm) : ℕ := negativeArguments[term.val]?.getD 0
+def negativeCoefficient (term : NegativeTerm) : ℕ := negativeCoefficients[term.val]?.getD 0
+def negativeScale (term : NegativeTerm) : ℕ := negativeScales[term.val]?.getD 0
+def positiveLogLowerNumerator (term : PositiveTerm) : ℕ :=
+  positiveLogLowerNumerators[term.val]?.getD 0
+def negativeLogUpperNumerator (term : NegativeTerm) : ℕ :=
+  negativeLogUpperNumerators[term.val]?.getD 0
+
+noncomputable def positiveLogLower (term : PositiveTerm) : ℝ :=
+  (positiveLogLowerNumerator term : ℝ) / logBoundDenominator
+noncomputable def negativeLogUpper (term : NegativeTerm) : ℝ :=
+  (negativeLogUpperNumerator term : ℝ) / logBoundDenominator
+def positiveLogLowerRat (term : PositiveTerm) : ℚ :=
+  positiveLogLowerNumerator term / logBoundDenominator
+def negativeLogUpperRat (term : NegativeTerm) : ℚ :=
+  negativeLogUpperNumerator term / logBoundDenominator
+
+theorem positiveScales_valid :
+    ∀ term, 2 ^ positiveScale term ≤ positiveArgument term := by decide
+
+theorem negativeScales_valid :
+    ∀ term, 2 ^ negativeScale term ≤ negativeArgument term := by decide
+
+noncomputable def positiveExact : ℝ := Form.natLogSum bits positiveArgument positiveCoefficient
+noncomputable def negativeExact : ℝ := Form.natLogSum bits negativeArgument negativeCoefficient
+noncomputable def positiveRationalLower : ℝ :=
+  ∑ term, mass bits (positiveCoefficient term) * positiveLogLower term
+noncomputable def negativeRationalUpper : ℝ :=
+  ∑ term, mass bits (negativeCoefficient term) * negativeLogUpper term
+noncomputable def positiveFloor : ℝ := 0 / 1
+noncomputable def negativeCeiling : ℝ := 9245784461 / 1000000000000
+
+theorem positiveLogLowerRat_le_fastRat :
+    ∀ term, positiveLogLowerRat term ≤
+      MatrixMultiplication.RationalDyadicLog.numeratorLogLower
+        (positiveArgument term) (positiveScale term) 8 := by decide +kernel
+
+theorem negativeFastRat_le_logUpperRat :
+    ∀ term, MatrixMultiplication.RationalDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpperRat term := by decide +kernel
+
+theorem positiveLogLower_le_fast (term : PositiveTerm) :
+    positiveLogLower term ≤ MatrixMultiplication.FastDyadicLog.numeratorLogLower
+      (positiveArgument term) (positiveScale term) 8 := by
+  simpa [positiveLogLower, positiveLogLowerRat] using
+    MatrixMultiplication.RationalDyadicLog.cast_le_fastLower
+      (positiveLogLowerRat_le_fastRat term)
+
+theorem negativeFast_le_logUpper (term : NegativeTerm) :
+    MatrixMultiplication.FastDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpper term := by
+  simpa [negativeLogUpper, negativeLogUpperRat] using
+    MatrixMultiplication.RationalDyadicLog.fastUpper_le_cast
+      (negativeFastRat_le_logUpperRat term)
+
+theorem positiveFloor_le_rationalLower : positiveFloor ≤ positiveRationalLower := by
+  norm_num [positiveRationalLower, positiveFloor, bits, positiveLogLower, logBoundDenominator,
+    positiveLogLowerNumerator, positiveLogLowerNumerators, positiveCoefficient,
+    positiveCoefficients, Fin.sum_univ_succ, mass]
+
+theorem negativeRationalUpper_le_ceiling : negativeRationalUpper ≤ negativeCeiling := by
+  norm_num [negativeRationalUpper, negativeCeiling, bits, negativeLogUpper, logBoundDenominator,
+    negativeLogUpperNumerator, negativeLogUpperNumerators, negativeCoefficient,
+    negativeCoefficients, Fin.sum_univ_succ, mass]
+
+theorem positiveFloor_le_exact : positiveFloor ≤ positiveExact :=
+  positiveFloor_le_rationalLower.trans
+    (weightedLowerWithScale_le_natLogSum 8 bits
+      positiveArgument positiveCoefficient positiveScale positiveLogLower
+      positiveScales_valid positiveLogLower_le_fast)
+
+theorem negativeExact_le_ceiling : negativeExact ≤ negativeCeiling :=
+  (natLogSum_le_weightedUpperWithScale 8 bits
+    negativeArgument negativeCoefficient negativeScale negativeLogUpper
+    negativeScales_valid negativeFast_le_logUpper).trans
+      negativeRationalUpper_le_ceiling
+
+/-- Sign-separated exact form used by the directed arithmetic checker. -/
+def signedForm : Form :=
+  SignedDyadicLogCertificate.Form.ofSignedFamilies constantNumerator
+    positiveArgument positiveCoefficient negativeArgument negativeCoefficient
+
+/-- Exact source-order form before this shard's bounded power-of-two normalization. -/
+def rawForm : Form := { constantNumerator := 0, terms := [
+    { argument := 1552219101075121080169922560, coefficient := (-1552219101075121080169922560) }, { argument := 1676605284312156131976806400, coefficient := (-1676605284312156131976806400) },
+    { argument := 77554754271870244177166991360, coefficient := (-77554754271870244177166991360) }, { argument := 77537843478503049869257605120, coefficient := (-77537843478503049869257605120) },
+    { argument := 1687112549110259269396070400, coefficient := (-1687112549110259269396070400) }, { argument := 5533800187430468132167221248, coefficient := (-5533800187430468132167221248) },
+    { argument := 172365784547398313948984901632, coefficient := (-172365784547398313948984901632) }, { argument := 3390112406640784145922392064, coefficient := (-3390112406640784145922392064) },
+    { argument := 2037218262216600413526307110912, coefficient := (-2037218262216600413526307110912) }, { argument := 2955482610917606691316957184, coefficient := (-2955482610917606691316957184) },
+    { argument := 447047789886696810451304448, coefficient := (-447047789886696810451304448) }, { argument := 3365276418313745434230652928, coefficient := (-3365276418313745434230652928) },
+    { argument := 3365276418313745434230652928, coefficient := (-3365276418313745434230652928) }, { argument := 2955482610917606691316957184, coefficient := (-2955482610917606691316957184) },
+    { argument := 60301779658049991987542622208, coefficient := (-60301779658049991987542622208) }, { argument := 2955482610917606691316957184, coefficient := (-2955482610917606691316957184) },
+    { argument := 172367303448082655592851701760, coefficient := (-172367303448082655592851701760) }, { argument := 3365276418313745434230652928, coefficient := (-3365276418313745434230652928) },
+    { argument := 447047789886696810451304448, coefficient := (-447047789886696810451304448) }, { argument := 2955482610917606691316957184, coefficient := (-2955482610917606691316957184) },
+    { argument := 447047789886696810451304448, coefficient := (-447047789886696810451304448) }, { argument := 3377694412477264790076522496, coefficient := (-3377694412477264790076522496) },
+    { argument := 3365276418313745434230652928, coefficient := (-3365276418313745434230652928) }, { argument := 5723538645465057371589967872, coefficient := (-5723538645465057371589967872) },
+    { argument := 52686257307184156950046703616, coefficient := (-52686257307184156950046703616) }, { argument := 1992780389427902398573563609088, coefficient := (-1992780389427902398573563609088) },
+    { argument := 1992780874703612987806232608768, coefficient := (-1992780874703612987806232608768) }, { argument := 52685615498268170832865918976, coefficient := (-52685615498268170832865918976) },
+    { argument := 48351479714201329891989782528, coefficient := (-48351479714201329891989782528) }, { argument := 172365784547398313948984901632, coefficient := (-172365784547398313948984901632) },
+    { argument := 48366323028390331619135717376, coefficient := (-48366323028390331619135717376) }, { argument := 945236999849031150424031232, coefficient := (-945236999849031150424031232) },
+    { argument := 3390112406640784145922392064, coefficient := (-3390112406640784145922392064) }, { argument := 945238573586884938770153472, coefficient := (-945238573586884938770153472) },
+    { argument := 1676605484179092844912312320, coefficient := (-1676605484179092844912312320) }, { argument := 1676605284312156131976806400, coefficient := (-1676605284312156131976806400) },
+    { argument := 1552219101075121080169922560, coefficient := (-1552219101075121080169922560) }, { argument := 48366323028390331619135717376, coefficient := (-48366323028390331619135717376) },
+    { argument := 945238573586884938770153472, coefficient := (-945238573586884938770153472) }, { argument := 571728736306799169884326461440, coefficient := (-571728736306799169884326461440) },
+    { argument := 824054141075745844056031232, coefficient := (-824054141075745844056031232) }, { argument := 124646844868600211705954304, coefficient := (-124646844868600211705954304) },
+    { argument := 938313748871962704786489344, coefficient := (-938313748871962704786489344) }, { argument := 938313748871962704786489344, coefficient := (-938313748871962704786489344) },
+    { argument := 824054141075745844056031232, coefficient := (-824054141075745844056031232) }, { argument := 16813474407831184112336502784, coefficient := (-16813474407831184112336502784) },
+    { argument := 824054141075745844056031232, coefficient := (-824054141075745844056031232) }, { argument := 48366748960385648197822840832, coefficient := (-48366748960385648197822840832) },
+    { argument := 938313748871962704786489344, coefficient := (-938313748871962704786489344) }, { argument := 124646844868600211705954304, coefficient := (-124646844868600211705954304) },
+    { argument := 824054141075745844056031232, coefficient := (-824054141075745844056031232) }, { argument := 124646844868600211705954304, coefficient := (-124646844868600211705954304) },
+    { argument := 941776161229423821778321408, coefficient := (-941776161229423821778321408) }, { argument := 938313748871962704786489344, coefficient := (-938313748871962704786489344) },
+    { argument := 1605551021724007029587050496, coefficient := (-1605551021724007029587050496) }, { argument := 52686270241140888164668276736, coefficient := (-52686270241140888164668276736) },
+    { argument := 1992780874703612987806232608768, coefficient := (-1992780874703612987806232608768) }, { argument := 1992781359979468536651907596288, coefficient := (-1992781359979468536651907596288) },
+    { argument := 52685628432073187035040448512, coefficient := (-52685628432073187035040448512) }, { argument := 571549931062030760423047823360, coefficient := (-571549931062030760423047823360) },
+    { argument := 2037218262216600413526307110912, coefficient := (-2037218262216600413526307110912) }, { argument := 571728736306799169884326461440, coefficient := (-571728736306799169884326461440) },
+    { argument := 824052769099155361908129792, coefficient := (-824052769099155361908129792) }, { argument := 2955482610917606691316957184, coefficient := (-2955482610917606691316957184) }] }
+
+/-- Raw term shards carry no independent rational constant. -/
+@[simp] theorem rawForm_constant : rawForm.constantNumerator = 0 := rfl
+
+/-- Exact source-order form after bounded power-of-two normalization. -/
+def form : Form := Form.normalizePowersOfTwo rawForm
+
+theorem form_eval_rawForm : Form.eval bits form = Form.eval bits rawForm := by
+  unfold form
+  exact Form.eval_normalizePowersOfTwo bits rawForm
+
+theorem signedForm_constant : signedForm.constantNumerator = form.constantNumerator := by rfl
+
+theorem signedForm_terms_perm : signedForm.terms.Perm form.terms := by decide +kernel
+
+noncomputable def lower : ℝ :=
+  (constantNumerator : ℝ) / (2 : ℝ) ^ bits + positiveFloor - negativeCeiling
+
+noncomputable def signedCertificate : LowerBound bits :=
+  LowerBound.ofSignedFamilies bits constantNumerator positiveArgument positiveCoefficient
+    negativeArgument negativeCoefficient positiveFloor negativeCeiling
+      positiveFloor_le_exact negativeExact_le_ceiling
+
+noncomputable def certificate : LowerBound bits :=
+  LowerBound.reorder signedCertificate form signedForm_constant signedForm_terms_perm
+
+@[simp] theorem certificate_form : certificate.form = form := rfl
+
+@[simp] theorem certificate_lower : certificate.lower = lower := by
+  simp [certificate, LowerBound.reorder, signedCertificate, LowerBound.ofSignedFamilies, lower,
+    constantNumerator, bits]
+
+end TermShard2
+
+namespace TermShard3
+
+/-! Directed signed-log shard 3.  The untrusted producer supplies only integer arrays and
+rational endpoints; the committed generic checker proves the direction of every logarithm. -/
+
+def bits : ℕ := 116
+def constantNumerator : ℤ := (-49945911109410002316376940740608)
+def positiveArguments : Array ℕ := #[]
+def positiveCoefficients : Array ℕ := #[]
+def positiveScales : Array ℕ := #[]
+def negativeArguments : Array ℕ := #[
+    89344129, 275529869203403, 275529836357685, 27028431, 96938037, 6757119,
+    813856089, 2918912003, 203464361, 813856089, 2918912003, 203464361,
+    357375921, 1281736267, 89344129, 1822917513, 6537932051, 455730137,
+    357375921, 1281736267, 89344129, 4950870593385, 187176906856721, 187176952806827,
+    4950810335707, 21472559512457, 76546459592245, 10739575664417, 137734894994663, 137734878575385,
+    813856089, 2918912003, 203464361, 27028431, 96938037, 6757119,
+    357375921, 1281736267, 89344129, 27028431, 96938037, 6757119,
+    51053703, 183105181, 12763447, 813856089, 2918912003, 203464361,
+    2851203089191, 20334094036887, 5704063076891, 1498457136355, 1498456957725, 3227158444185,
+    149278713646569, 74623081731549, 811845751665, 233808556321, 865453131253, 63195405,
+    10051802057893, 27546715, 2083365, 62732435
+  ]
+def negativeCoefficients : Array ℕ := #[
+    824054141075745844056031232, 77554763517117953271941562368, 77554754271870244177166991360, 124646637342729382473498624, 447047789886696810451304448, 124646844868600211705954304,
+    938312186663323962508836864, 3365276418313745434230652928, 938313748871962704786489344, 938312186663323962508836864, 3365276418313745434230652928, 938313748871962704786489344,
+    824052769099155361908129792, 2955482610917606691316957184, 824054141075745844056031232, 16813446414897052258091925504, 60301779658049991987542622208, 16813474407831184112336502784,
+    824052769099155361908129792, 2955482610917606691316957184, 824054141075745844056031232, 1393546184970514526172610560, 52685615498268170832865918976, 52685628432073187035040448512,
+    1393529223942002837964193792, 48351905509496072231333134336, 172367303448082655592851701760, 48366748960385648197822840832, 77537852721734835180830457856, 77537843478503049869257605120,
+    938312186663323962508836864, 3365276418313745434230652928, 938313748871962704786489344, 124646637342729382473498624, 447047789886696810451304448, 124646844868600211705954304,
+    824052769099155361908129792, 2955482610917606691316957184, 824054141075745844056031232, 124646637342729382473498624, 447047789886696810451304448, 124646844868600211705954304,
+    941774593256177556466434048, 3377694412477264790076522496, 941776161229423821778321408, 938312186663323962508836864, 3365276418313745434230652928, 938313748871962704786489344,
+    1605084646254774333936238592, 5723538645465057371589967872, 1605551021724007029587050496, 1687112750229759628693995520, 1687112549110259269396070400, 908364347918569725870735360,
+    42018222447064695282560139264, 42009060384930267977679372288, 914057056170203558140968960, 131622515890411153393713152, 3897654399417639765947711488, 145718682833678120842690560,
+    45269292002328899661152124928, 127036800419104002785935360, 19215650483561950001233920, 144651146695702456953733120
+  ]
+def negativeScales : Array ℕ := #[
+    26, 47, 47, 24, 26, 22,
+    29, 31, 27, 29, 31, 27,
+    28, 30, 26, 30, 32, 28,
+    28, 30, 26, 42, 47, 47,
+    42, 44, 46, 43, 46, 46,
+    29, 31, 27, 24, 26, 22,
+    28, 30, 26, 24, 26, 22,
+    25, 27, 23, 29, 31, 27,
+    41, 44, 42, 40, 40, 41,
+    47, 46, 39, 37, 39, 25,
+    43, 24, 20, 25
+  ]
+def logBoundDenominator : ℕ := 1000000000000000
+def positiveLogLowerNumerators : Array ℕ := #[]
+def negativeLogUpperNumerators : Array ℕ := #[
+    26412869593916230, 47969202067448989, 47969201895466297, 24687974430144528, 26530559532367093, 22687976832105000,
+    29600198470007364, 31442783572277958, 27600200871967833, 29600198470007364, 31442783572277958, 27600200871967833,
+    28412867191955761, 30255452294231994, 26412869593916230, 30763602135205353, 32606187237186437, 28763604537165837,
+    28412867191955761, 30255452294231994, 26412869593916230, 42170819379056962, 47411395780340005, 47411396134507531,
+    42170801819724592, 44287559403113523, 46121400885632691, 43288002225095975, 46968887453805887, 46968887281823196,
+    29600198470007364, 31442783572277958, 27600200871967833, 24687974430144528, 26530559532367093, 22687976832105000,
+    28412867191955761, 30255452294231994, 26412869593916230, 24687974430144528, 26530559532367093, 22687976832105000,
+    25605512269904727, 27448097372174434, 23605514671865197, 29600198470007364, 31442783572277958, 27600200871967833,
+    41374707943737449, 44208965948082670, 42375127074184480, 40446614954530222, 40446614782547571, 41553401550384932,
+    47085001787894517, 46084687174325863, 39562414689342120, 37766536770940868, 39654664736121249, 25913316332187876,
+    43192519400305846, 24715376949144841, 20990484207502528, 25902708231671805
+  ]
+
+abbrev PositiveTerm := Fin 0
+abbrev NegativeTerm := Fin 64
+def positiveArgument (term : PositiveTerm) : ℕ := positiveArguments[term.val]?.getD 0
+def positiveCoefficient (term : PositiveTerm) : ℕ := positiveCoefficients[term.val]?.getD 0
+def positiveScale (term : PositiveTerm) : ℕ := positiveScales[term.val]?.getD 0
+def negativeArgument (term : NegativeTerm) : ℕ := negativeArguments[term.val]?.getD 0
+def negativeCoefficient (term : NegativeTerm) : ℕ := negativeCoefficients[term.val]?.getD 0
+def negativeScale (term : NegativeTerm) : ℕ := negativeScales[term.val]?.getD 0
+def positiveLogLowerNumerator (term : PositiveTerm) : ℕ :=
+  positiveLogLowerNumerators[term.val]?.getD 0
+def negativeLogUpperNumerator (term : NegativeTerm) : ℕ :=
+  negativeLogUpperNumerators[term.val]?.getD 0
+
+noncomputable def positiveLogLower (term : PositiveTerm) : ℝ :=
+  (positiveLogLowerNumerator term : ℝ) / logBoundDenominator
+noncomputable def negativeLogUpper (term : NegativeTerm) : ℝ :=
+  (negativeLogUpperNumerator term : ℝ) / logBoundDenominator
+def positiveLogLowerRat (term : PositiveTerm) : ℚ :=
+  positiveLogLowerNumerator term / logBoundDenominator
+def negativeLogUpperRat (term : NegativeTerm) : ℚ :=
+  negativeLogUpperNumerator term / logBoundDenominator
+
+theorem positiveScales_valid :
+    ∀ term, 2 ^ positiveScale term ≤ positiveArgument term := by decide
+
+theorem negativeScales_valid :
+    ∀ term, 2 ^ negativeScale term ≤ negativeArgument term := by decide
+
+noncomputable def positiveExact : ℝ := Form.natLogSum bits positiveArgument positiveCoefficient
+noncomputable def negativeExact : ℝ := Form.natLogSum bits negativeArgument negativeCoefficient
+noncomputable def positiveRationalLower : ℝ :=
+  ∑ term, mass bits (positiveCoefficient term) * positiveLogLower term
+noncomputable def negativeRationalUpper : ℝ :=
+  ∑ term, mass bits (negativeCoefficient term) * negativeLogUpper term
+noncomputable def positiveFloor : ℝ := 0 / 1
+noncomputable def negativeCeiling : ℝ := 516191789 / 1000000000000
+
+theorem positiveLogLowerRat_le_fastRat :
+    ∀ term, positiveLogLowerRat term ≤
+      MatrixMultiplication.RationalDyadicLog.numeratorLogLower
+        (positiveArgument term) (positiveScale term) 8 := by decide +kernel
+
+theorem negativeFastRat_le_logUpperRat :
+    ∀ term, MatrixMultiplication.RationalDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpperRat term := by decide +kernel
+
+theorem positiveLogLower_le_fast (term : PositiveTerm) :
+    positiveLogLower term ≤ MatrixMultiplication.FastDyadicLog.numeratorLogLower
+      (positiveArgument term) (positiveScale term) 8 := by
+  simpa [positiveLogLower, positiveLogLowerRat] using
+    MatrixMultiplication.RationalDyadicLog.cast_le_fastLower
+      (positiveLogLowerRat_le_fastRat term)
+
+theorem negativeFast_le_logUpper (term : NegativeTerm) :
+    MatrixMultiplication.FastDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpper term := by
+  simpa [negativeLogUpper, negativeLogUpperRat] using
+    MatrixMultiplication.RationalDyadicLog.fastUpper_le_cast
+      (negativeFastRat_le_logUpperRat term)
+
+theorem positiveFloor_le_rationalLower : positiveFloor ≤ positiveRationalLower := by
+  norm_num [positiveRationalLower, positiveFloor, bits, positiveLogLower, logBoundDenominator,
+    positiveLogLowerNumerator, positiveLogLowerNumerators, positiveCoefficient,
+    positiveCoefficients, Fin.sum_univ_succ, mass]
+
+theorem negativeRationalUpper_le_ceiling : negativeRationalUpper ≤ negativeCeiling := by
+  norm_num [negativeRationalUpper, negativeCeiling, bits, negativeLogUpper, logBoundDenominator,
+    negativeLogUpperNumerator, negativeLogUpperNumerators, negativeCoefficient,
+    negativeCoefficients, Fin.sum_univ_succ, mass]
+
+theorem positiveFloor_le_exact : positiveFloor ≤ positiveExact :=
+  positiveFloor_le_rationalLower.trans
+    (weightedLowerWithScale_le_natLogSum 8 bits
+      positiveArgument positiveCoefficient positiveScale positiveLogLower
+      positiveScales_valid positiveLogLower_le_fast)
+
+theorem negativeExact_le_ceiling : negativeExact ≤ negativeCeiling :=
+  (natLogSum_le_weightedUpperWithScale 8 bits
+    negativeArgument negativeCoefficient negativeScale negativeLogUpper
+    negativeScales_valid negativeFast_le_logUpper).trans
+      negativeRationalUpper_le_ceiling
+
+/-- Sign-separated exact form used by the directed arithmetic checker. -/
+def signedForm : Form :=
+  SignedDyadicLogCertificate.Form.ofSignedFamilies constantNumerator
+    positiveArgument positiveCoefficient negativeArgument negativeCoefficient
+
+/-- Exact source-order form before this shard's bounded power-of-two normalization. -/
+def rawForm : Form := { constantNumerator := 0, terms := [
+    { argument := 824054141075745844056031232, coefficient := (-824054141075745844056031232) }, { argument := 77554763517117953271941562368, coefficient := (-77554763517117953271941562368) },
+    { argument := 77554754271870244177166991360, coefficient := (-77554754271870244177166991360) }, { argument := 124646637342729382473498624, coefficient := (-124646637342729382473498624) },
+    { argument := 447047789886696810451304448, coefficient := (-447047789886696810451304448) }, { argument := 124646844868600211705954304, coefficient := (-124646844868600211705954304) },
+    { argument := 938312186663323962508836864, coefficient := (-938312186663323962508836864) }, { argument := 3365276418313745434230652928, coefficient := (-3365276418313745434230652928) },
+    { argument := 938313748871962704786489344, coefficient := (-938313748871962704786489344) }, { argument := 938312186663323962508836864, coefficient := (-938312186663323962508836864) },
+    { argument := 3365276418313745434230652928, coefficient := (-3365276418313745434230652928) }, { argument := 938313748871962704786489344, coefficient := (-938313748871962704786489344) },
+    { argument := 824052769099155361908129792, coefficient := (-824052769099155361908129792) }, { argument := 2955482610917606691316957184, coefficient := (-2955482610917606691316957184) },
+    { argument := 824054141075745844056031232, coefficient := (-824054141075745844056031232) }, { argument := 16813446414897052258091925504, coefficient := (-16813446414897052258091925504) },
+    { argument := 60301779658049991987542622208, coefficient := (-60301779658049991987542622208) }, { argument := 16813474407831184112336502784, coefficient := (-16813474407831184112336502784) },
+    { argument := 824052769099155361908129792, coefficient := (-824052769099155361908129792) }, { argument := 2955482610917606691316957184, coefficient := (-2955482610917606691316957184) },
+    { argument := 824054141075745844056031232, coefficient := (-824054141075745844056031232) }, { argument := 1393546184970514526172610560, coefficient := (-1393546184970514526172610560) },
+    { argument := 52685615498268170832865918976, coefficient := (-52685615498268170832865918976) }, { argument := 52685628432073187035040448512, coefficient := (-52685628432073187035040448512) },
+    { argument := 1393529223942002837964193792, coefficient := (-1393529223942002837964193792) }, { argument := 48351905509496072231333134336, coefficient := (-48351905509496072231333134336) },
+    { argument := 172367303448082655592851701760, coefficient := (-172367303448082655592851701760) }, { argument := 48366748960385648197822840832, coefficient := (-48366748960385648197822840832) },
+    { argument := 77537852721734835180830457856, coefficient := (-77537852721734835180830457856) }, { argument := 77537843478503049869257605120, coefficient := (-77537843478503049869257605120) },
+    { argument := 938312186663323962508836864, coefficient := (-938312186663323962508836864) }, { argument := 3365276418313745434230652928, coefficient := (-3365276418313745434230652928) },
+    { argument := 938313748871962704786489344, coefficient := (-938313748871962704786489344) }, { argument := 124646637342729382473498624, coefficient := (-124646637342729382473498624) },
+    { argument := 447047789886696810451304448, coefficient := (-447047789886696810451304448) }, { argument := 124646844868600211705954304, coefficient := (-124646844868600211705954304) },
+    { argument := 824052769099155361908129792, coefficient := (-824052769099155361908129792) }, { argument := 2955482610917606691316957184, coefficient := (-2955482610917606691316957184) },
+    { argument := 824054141075745844056031232, coefficient := (-824054141075745844056031232) }, { argument := 124646637342729382473498624, coefficient := (-124646637342729382473498624) },
+    { argument := 447047789886696810451304448, coefficient := (-447047789886696810451304448) }, { argument := 124646844868600211705954304, coefficient := (-124646844868600211705954304) },
+    { argument := 941774593256177556466434048, coefficient := (-941774593256177556466434048) }, { argument := 3377694412477264790076522496, coefficient := (-3377694412477264790076522496) },
+    { argument := 941776161229423821778321408, coefficient := (-941776161229423821778321408) }, { argument := 938312186663323962508836864, coefficient := (-938312186663323962508836864) },
+    { argument := 3365276418313745434230652928, coefficient := (-3365276418313745434230652928) }, { argument := 938313748871962704786489344, coefficient := (-938313748871962704786489344) },
+    { argument := 1605084646254774333936238592, coefficient := (-1605084646254774333936238592) }, { argument := 5723538645465057371589967872, coefficient := (-5723538645465057371589967872) },
+    { argument := 1605551021724007029587050496, coefficient := (-1605551021724007029587050496) }, { argument := 1687112750229759628693995520, coefficient := (-1687112750229759628693995520) },
+    { argument := 1687112549110259269396070400, coefficient := (-1687112549110259269396070400) }, { argument := 908364347918569725870735360, coefficient := (-908364347918569725870735360) },
+    { argument := 42018222447064695282560139264, coefficient := (-42018222447064695282560139264) }, { argument := 42009060384930267977679372288, coefficient := (-42009060384930267977679372288) },
+    { argument := 914057056170203558140968960, coefficient := (-914057056170203558140968960) }, { argument := 131622515890411153393713152, coefficient := (-131622515890411153393713152) },
+    { argument := 3897654399417639765947711488, coefficient := (-3897654399417639765947711488) }, { argument := 145718682833678120842690560, coefficient := (-145718682833678120842690560) },
+    { argument := 45269292002328899661152124928, coefficient := (-45269292002328899661152124928) }, { argument := 127036800419104002785935360, coefficient := (-127036800419104002785935360) },
+    { argument := 19215650483561950001233920, coefficient := (-19215650483561950001233920) }, { argument := 144651146695702456953733120, coefficient := (-144651146695702456953733120) }] }
+
+/-- Raw term shards carry no independent rational constant. -/
+@[simp] theorem rawForm_constant : rawForm.constantNumerator = 0 := rfl
+
+/-- Exact source-order form after bounded power-of-two normalization. -/
+def form : Form := Form.normalizePowersOfTwo rawForm
+
+theorem form_eval_rawForm : Form.eval bits form = Form.eval bits rawForm := by
+  unfold form
+  exact Form.eval_normalizePowersOfTwo bits rawForm
+
+theorem signedForm_constant : signedForm.constantNumerator = form.constantNumerator := by rfl
+
+theorem signedForm_terms_perm : signedForm.terms.Perm form.terms := by decide +kernel
+
+noncomputable def lower : ℝ :=
+  (constantNumerator : ℝ) / (2 : ℝ) ^ bits + positiveFloor - negativeCeiling
+
+noncomputable def signedCertificate : LowerBound bits :=
+  LowerBound.ofSignedFamilies bits constantNumerator positiveArgument positiveCoefficient
+    negativeArgument negativeCoefficient positiveFloor negativeCeiling
+      positiveFloor_le_exact negativeExact_le_ceiling
+
+noncomputable def certificate : LowerBound bits :=
+  LowerBound.reorder signedCertificate form signedForm_constant signedForm_terms_perm
+
+@[simp] theorem certificate_form : certificate.form = form := rfl
+
+@[simp] theorem certificate_lower : certificate.lower = lower := by
+  simp [certificate, LowerBound.reorder, signedCertificate, LowerBound.ofSignedFamilies, lower,
+    constantNumerator, bits]
+
+end TermShard3
+
+namespace TermShard4
+
+/-! Directed signed-log shard 4.  The untrusted producer supplies only integer arrays and
+rational endpoints; the committed generic checker proves the direction of every logarithm. -/
+
+def bits : ℕ := 116
+def constantNumerator : ℤ := (-252742897415662131422325668577280)
+def positiveArguments : Array ℕ := #[]
+def positiveCoefficients : Array ℕ := #[]
+def positiveScales : Array ℕ := #[]
+def negativeArguments : Array ℕ := #[
+    62732435, 27546715, 140511395, 27546715, 1730920822435, 62732435,
+    2083365, 27546715, 2083365, 3935245, 62732435, 241146253187,
+    233808556321, 2192886716717, 17543098609961, 467611493165, 11414024830455, 527978707488167,
+    263931790936307, 2871389096095, 2192886716717, 130788581327075, 1113447153, 1522845259199301,
+    485348759, 36707049, 1105290031, 1105290031, 485348759, 2475686527,
+    485348759, 65394844431829, 1105290031, 36707049, 485348759, 36707049,
+    69335537, 1105290031, 1131288881013, 865453131253, 130788581327075, 32697153451051,
+    3461770434205, 63195405, 1113447153, 4453791069, 126389445, 3227158444185,
+    11414024830455, 201769585815, 201769585815, 9333258575431, 4665611730451, 50758518335,
+    17543098609961, 32697153451051, 4453791069, 190355702670347, 1941396107, 146828277,
+    4421162563, 4421162563, 1941396107, 9902751571
+  ]
+def negativeCoefficients : Array ℕ := #[
+    144651146695702456953733120, 127036800419104002785935360, 2591977743004911922388664320, 127036800419104002785935360, 3897687185463049236386938880, 144651146695702456953733120,
+    19215650483561950001233920, 127036800419104002785935360, 19215650483561950001233920, 145184914764690288898211840, 144651146695702456953733120, 135753271999345560433721344,
+    131622515890411153393713152, 4937941900136195810777890816, 4937943272671514121696444416, 131620934148253452326666240, 3212762373327170423991828480, 148612794393954062957702807552,
+    148580389413997482346528374784, 3232896715802286832777953280, 4937941900136195810777890816, 147254851532232695307095244800, 5134868667747880598935437312, 1714571335468224594853257805824,
+    4476552171882767701636022272, 677125538604116122936541184, 5097250582269874147661185024, 5097250582269874147661185024, 4476552171882767701636022272, 91336711540599663693884555264,
+    4476552171882767701636022272, 147256098507568319805198958592, 5097250582269874147661185024, 677125538604116122936541184, 4476552171882767701636022272, 677125538604116122936541184,
+    5116059625008877373298311168, 5097250582269874147661185024, 5094872182978532187410792448, 3897654399417639765947711488, 147254851532232695307095244800, 147254888098229210922977591296,
+    3897607009381959535081553920, 145718682833678120842690560, 5134868667747880598935437312, 5134871500476017417958457344, 145717109095824332496568320, 908364347918569725870735360,
+    3212762373327170423991828480, 908689431491133315471114240, 908689431491133315471114240, 42033259842463537933399883776, 42024094501429077250924347392, 914384177037537956216176640,
+    4937943272671514121696444416, 147254888098229210922977591296, 5134871500476017417958457344, 1714571743228047359154243764224, 4476554641440630569502244864, 677125912150683615554961408,
+    5097253394245423883760959488, 5097253394245423883760959488, 4476554641440630569502244864, 91336761927881101031524794368
+  ]
+def negativeScales : Array ℕ := #[
+    25, 24, 27, 24, 40, 25,
+    20, 24, 20, 21, 25, 37,
+    37, 40, 43, 38, 43, 48,
+    47, 41, 40, 46, 30, 50,
+    28, 25, 30, 30, 28, 31,
+    28, 45, 30, 25, 28, 25,
+    26, 30, 40, 39, 46, 44,
+    41, 25, 30, 32, 26, 41,
+    43, 37, 37, 43, 42, 35,
+    43, 44, 32, 47, 30, 27,
+    32, 32, 30, 33
+  ]
+def logBoundDenominator : ℕ := 1000000000000000
+def positiveLogLowerNumerators : Array ℕ := #[]
+def negativeLogUpperNumerators : Array ℕ := #[
+    25902708231671805, 24715376949144841, 27066111891989076, 24715376949144841, 40654676871642094, 25902708231671805,
+    20990484207502528, 24715376949144841, 20990484207502528, 21908022032023369, 25902708231671805, 37811117438951263,
+    37766536770940868, 40995968445977101, 43995968846984316, 38766519433593388, 43375872840153631, 48907473082655431,
+    47907158469058955, 41384885979110365, 40995968445977101, 46894229922263980, 30052385939804719, 50435690776082722,
+    28854446564077912, 25129553800327178, 30041777840238738, 30041777840238738, 28854446564077912, 31205181505140548,
+    28854446564077912, 45894242139162947, 30041777840238738, 25129553800327178, 28854446564077912, 25129553800327178,
+    26047091640135205, 30041777840238738, 40041104515357515, 39654664736121249, 46894229922263980, 44894230280510778,
+    41654647194857160, 25913316332187876, 30052385939804719, 32052386735689087, 26913300751232606, 41553401550384932,
+    43375872840153631, 37553917766765924, 37553917766765924, 43085518004275485, 42085203390706831, 35562930905723118,
+    43995968846984316, 44894230280510778, 32052386735689087, 47435691119184809, 30854447359962310, 27129554596211547,
+    32041778636123106, 32041778636123106, 30854447359962310, 33205182301024917
+  ]
+
+abbrev PositiveTerm := Fin 0
+abbrev NegativeTerm := Fin 64
+def positiveArgument (term : PositiveTerm) : ℕ := positiveArguments[term.val]?.getD 0
+def positiveCoefficient (term : PositiveTerm) : ℕ := positiveCoefficients[term.val]?.getD 0
+def positiveScale (term : PositiveTerm) : ℕ := positiveScales[term.val]?.getD 0
+def negativeArgument (term : NegativeTerm) : ℕ := negativeArguments[term.val]?.getD 0
+def negativeCoefficient (term : NegativeTerm) : ℕ := negativeCoefficients[term.val]?.getD 0
+def negativeScale (term : NegativeTerm) : ℕ := negativeScales[term.val]?.getD 0
+def positiveLogLowerNumerator (term : PositiveTerm) : ℕ :=
+  positiveLogLowerNumerators[term.val]?.getD 0
+def negativeLogUpperNumerator (term : NegativeTerm) : ℕ :=
+  negativeLogUpperNumerators[term.val]?.getD 0
+
+noncomputable def positiveLogLower (term : PositiveTerm) : ℝ :=
+  (positiveLogLowerNumerator term : ℝ) / logBoundDenominator
+noncomputable def negativeLogUpper (term : NegativeTerm) : ℝ :=
+  (negativeLogUpperNumerator term : ℝ) / logBoundDenominator
+def positiveLogLowerRat (term : PositiveTerm) : ℚ :=
+  positiveLogLowerNumerator term / logBoundDenominator
+def negativeLogUpperRat (term : NegativeTerm) : ℚ :=
+  negativeLogUpperNumerator term / logBoundDenominator
+
+theorem positiveScales_valid :
+    ∀ term, 2 ^ positiveScale term ≤ positiveArgument term := by decide
+
+theorem negativeScales_valid :
+    ∀ term, 2 ^ negativeScale term ≤ negativeArgument term := by decide
+
+noncomputable def positiveExact : ℝ := Form.natLogSum bits positiveArgument positiveCoefficient
+noncomputable def negativeExact : ℝ := Form.natLogSum bits negativeArgument negativeCoefficient
+noncomputable def positiveRationalLower : ℝ :=
+  ∑ term, mass bits (positiveCoefficient term) * positiveLogLower term
+noncomputable def negativeRationalUpper : ℝ :=
+  ∑ term, mass bits (negativeCoefficient term) * negativeLogUpper term
+noncomputable def positiveFloor : ℝ := 0 / 1
+noncomputable def negativeCeiling : ℝ := 2771019777 / 1000000000000
+
+theorem positiveLogLowerRat_le_fastRat :
+    ∀ term, positiveLogLowerRat term ≤
+      MatrixMultiplication.RationalDyadicLog.numeratorLogLower
+        (positiveArgument term) (positiveScale term) 8 := by decide +kernel
+
+theorem negativeFastRat_le_logUpperRat :
+    ∀ term, MatrixMultiplication.RationalDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpperRat term := by decide +kernel
+
+theorem positiveLogLower_le_fast (term : PositiveTerm) :
+    positiveLogLower term ≤ MatrixMultiplication.FastDyadicLog.numeratorLogLower
+      (positiveArgument term) (positiveScale term) 8 := by
+  simpa [positiveLogLower, positiveLogLowerRat] using
+    MatrixMultiplication.RationalDyadicLog.cast_le_fastLower
+      (positiveLogLowerRat_le_fastRat term)
+
+theorem negativeFast_le_logUpper (term : NegativeTerm) :
+    MatrixMultiplication.FastDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpper term := by
+  simpa [negativeLogUpper, negativeLogUpperRat] using
+    MatrixMultiplication.RationalDyadicLog.fastUpper_le_cast
+      (negativeFastRat_le_logUpperRat term)
+
+theorem positiveFloor_le_rationalLower : positiveFloor ≤ positiveRationalLower := by
+  norm_num [positiveRationalLower, positiveFloor, bits, positiveLogLower, logBoundDenominator,
+    positiveLogLowerNumerator, positiveLogLowerNumerators, positiveCoefficient,
+    positiveCoefficients, Fin.sum_univ_succ, mass]
+
+theorem negativeRationalUpper_le_ceiling : negativeRationalUpper ≤ negativeCeiling := by
+  norm_num [negativeRationalUpper, negativeCeiling, bits, negativeLogUpper, logBoundDenominator,
+    negativeLogUpperNumerator, negativeLogUpperNumerators, negativeCoefficient,
+    negativeCoefficients, Fin.sum_univ_succ, mass]
+
+theorem positiveFloor_le_exact : positiveFloor ≤ positiveExact :=
+  positiveFloor_le_rationalLower.trans
+    (weightedLowerWithScale_le_natLogSum 8 bits
+      positiveArgument positiveCoefficient positiveScale positiveLogLower
+      positiveScales_valid positiveLogLower_le_fast)
+
+theorem negativeExact_le_ceiling : negativeExact ≤ negativeCeiling :=
+  (natLogSum_le_weightedUpperWithScale 8 bits
+    negativeArgument negativeCoefficient negativeScale negativeLogUpper
+    negativeScales_valid negativeFast_le_logUpper).trans
+      negativeRationalUpper_le_ceiling
+
+/-- Sign-separated exact form used by the directed arithmetic checker. -/
+def signedForm : Form :=
+  SignedDyadicLogCertificate.Form.ofSignedFamilies constantNumerator
+    positiveArgument positiveCoefficient negativeArgument negativeCoefficient
+
+/-- Exact source-order form before this shard's bounded power-of-two normalization. -/
+def rawForm : Form := { constantNumerator := 0, terms := [
+    { argument := 144651146695702456953733120, coefficient := (-144651146695702456953733120) }, { argument := 127036800419104002785935360, coefficient := (-127036800419104002785935360) },
+    { argument := 2591977743004911922388664320, coefficient := (-2591977743004911922388664320) }, { argument := 127036800419104002785935360, coefficient := (-127036800419104002785935360) },
+    { argument := 3897687185463049236386938880, coefficient := (-3897687185463049236386938880) }, { argument := 144651146695702456953733120, coefficient := (-144651146695702456953733120) },
+    { argument := 19215650483561950001233920, coefficient := (-19215650483561950001233920) }, { argument := 127036800419104002785935360, coefficient := (-127036800419104002785935360) },
+    { argument := 19215650483561950001233920, coefficient := (-19215650483561950001233920) }, { argument := 145184914764690288898211840, coefficient := (-145184914764690288898211840) },
+    { argument := 144651146695702456953733120, coefficient := (-144651146695702456953733120) }, { argument := 135753271999345560433721344, coefficient := (-135753271999345560433721344) },
+    { argument := 131622515890411153393713152, coefficient := (-131622515890411153393713152) }, { argument := 4937941900136195810777890816, coefficient := (-4937941900136195810777890816) },
+    { argument := 4937943272671514121696444416, coefficient := (-4937943272671514121696444416) }, { argument := 131620934148253452326666240, coefficient := (-131620934148253452326666240) },
+    { argument := 3212762373327170423991828480, coefficient := (-3212762373327170423991828480) }, { argument := 148612794393954062957702807552, coefficient := (-148612794393954062957702807552) },
+    { argument := 148580389413997482346528374784, coefficient := (-148580389413997482346528374784) }, { argument := 3232896715802286832777953280, coefficient := (-3232896715802286832777953280) },
+    { argument := 4937941900136195810777890816, coefficient := (-4937941900136195810777890816) }, { argument := 147254851532232695307095244800, coefficient := (-147254851532232695307095244800) },
+    { argument := 5134868667747880598935437312, coefficient := (-5134868667747880598935437312) }, { argument := 1714571335468224594853257805824, coefficient := (-1714571335468224594853257805824) },
+    { argument := 4476552171882767701636022272, coefficient := (-4476552171882767701636022272) }, { argument := 677125538604116122936541184, coefficient := (-677125538604116122936541184) },
+    { argument := 5097250582269874147661185024, coefficient := (-5097250582269874147661185024) }, { argument := 5097250582269874147661185024, coefficient := (-5097250582269874147661185024) },
+    { argument := 4476552171882767701636022272, coefficient := (-4476552171882767701636022272) }, { argument := 91336711540599663693884555264, coefficient := (-91336711540599663693884555264) },
+    { argument := 4476552171882767701636022272, coefficient := (-4476552171882767701636022272) }, { argument := 147256098507568319805198958592, coefficient := (-147256098507568319805198958592) },
+    { argument := 5097250582269874147661185024, coefficient := (-5097250582269874147661185024) }, { argument := 677125538604116122936541184, coefficient := (-677125538604116122936541184) },
+    { argument := 4476552171882767701636022272, coefficient := (-4476552171882767701636022272) }, { argument := 677125538604116122936541184, coefficient := (-677125538604116122936541184) },
+    { argument := 5116059625008877373298311168, coefficient := (-5116059625008877373298311168) }, { argument := 5097250582269874147661185024, coefficient := (-5097250582269874147661185024) },
+    { argument := 5094872182978532187410792448, coefficient := (-5094872182978532187410792448) }, { argument := 3897654399417639765947711488, coefficient := (-3897654399417639765947711488) },
+    { argument := 147254851532232695307095244800, coefficient := (-147254851532232695307095244800) }, { argument := 147254888098229210922977591296, coefficient := (-147254888098229210922977591296) },
+    { argument := 3897607009381959535081553920, coefficient := (-3897607009381959535081553920) }, { argument := 145718682833678120842690560, coefficient := (-145718682833678120842690560) },
+    { argument := 5134868667747880598935437312, coefficient := (-5134868667747880598935437312) }, { argument := 5134871500476017417958457344, coefficient := (-5134871500476017417958457344) },
+    { argument := 145717109095824332496568320, coefficient := (-145717109095824332496568320) }, { argument := 908364347918569725870735360, coefficient := (-908364347918569725870735360) },
+    { argument := 3212762373327170423991828480, coefficient := (-3212762373327170423991828480) }, { argument := 908689431491133315471114240, coefficient := (-908689431491133315471114240) },
+    { argument := 908689431491133315471114240, coefficient := (-908689431491133315471114240) }, { argument := 42033259842463537933399883776, coefficient := (-42033259842463537933399883776) },
+    { argument := 42024094501429077250924347392, coefficient := (-42024094501429077250924347392) }, { argument := 914384177037537956216176640, coefficient := (-914384177037537956216176640) },
+    { argument := 4937943272671514121696444416, coefficient := (-4937943272671514121696444416) }, { argument := 147254888098229210922977591296, coefficient := (-147254888098229210922977591296) },
+    { argument := 5134871500476017417958457344, coefficient := (-5134871500476017417958457344) }, { argument := 1714571743228047359154243764224, coefficient := (-1714571743228047359154243764224) },
+    { argument := 4476554641440630569502244864, coefficient := (-4476554641440630569502244864) }, { argument := 677125912150683615554961408, coefficient := (-677125912150683615554961408) },
+    { argument := 5097253394245423883760959488, coefficient := (-5097253394245423883760959488) }, { argument := 5097253394245423883760959488, coefficient := (-5097253394245423883760959488) },
+    { argument := 4476554641440630569502244864, coefficient := (-4476554641440630569502244864) }, { argument := 91336761927881101031524794368, coefficient := (-91336761927881101031524794368) }] }
+
+/-- Raw term shards carry no independent rational constant. -/
+@[simp] theorem rawForm_constant : rawForm.constantNumerator = 0 := rfl
+
+/-- Exact source-order form after bounded power-of-two normalization. -/
+def form : Form := Form.normalizePowersOfTwo rawForm
+
+theorem form_eval_rawForm : Form.eval bits form = Form.eval bits rawForm := by
+  unfold form
+  exact Form.eval_normalizePowersOfTwo bits rawForm
+
+theorem signedForm_constant : signedForm.constantNumerator = form.constantNumerator := by rfl
+
+theorem signedForm_terms_perm : signedForm.terms.Perm form.terms := by decide +kernel
+
+noncomputable def lower : ℝ :=
+  (constantNumerator : ℝ) / (2 : ℝ) ^ bits + positiveFloor - negativeCeiling
+
+noncomputable def signedCertificate : LowerBound bits :=
+  LowerBound.ofSignedFamilies bits constantNumerator positiveArgument positiveCoefficient
+    negativeArgument negativeCoefficient positiveFloor negativeCeiling
+      positiveFloor_le_exact negativeExact_le_ceiling
+
+noncomputable def certificate : LowerBound bits :=
+  LowerBound.reorder signedCertificate form signedForm_constant signedForm_terms_perm
+
+@[simp] theorem certificate_form : certificate.form = form := rfl
+
+@[simp] theorem certificate_lower : certificate.lower = lower := by
+  simp [certificate, LowerBound.reorder, signedCertificate, LowerBound.ofSignedFamilies, lower,
+    constantNumerator, bits]
+
+end TermShard4
+
+namespace TermShard5
+
+/-! Directed signed-log shard 5.  The untrusted producer supplies only integer arrays and
+rational endpoints; the committed generic checker proves the direction of every logarithm. -/
+
+def bits : ℕ := 116
+def constantNumerator : ℤ := (-219945209954445270954973169975296)
+def positiveArguments : Array ℕ := #[]
+def positiveCoefficients : Array ℕ := #[]
+def positiveScales : Array ℕ := #[]
+def negativeArguments : Array ℕ := #[
+    1941396107, 130789721341031, 4421162563, 146828277, 1941396107, 146828277,
+    277342301, 4421162563, 18100627097899, 10051802057893, 1522845259199301, 190355702670347,
+    40206717336015, 27546715, 485348759, 1941396107, 55092835, 149278713646569,
+    527978707488167, 9333258575431, 2083365, 36707049, 146828277, 4166685,
+    62732435, 1105290031, 4421162563, 125463515, 62732435, 1105290031,
+    4421162563, 125463515, 27546715, 485348759, 1941396107, 55092835,
+    140511395, 2475686527, 9902751571, 281019755, 27546715, 485348759,
+    1941396107, 55092835, 467611493165, 3461770434205, 126389445, 40206717336015,
+    55092835, 4166685, 125463515, 125463515, 55092835, 281019755,
+    55092835, 3461799553705, 125463515, 4166685, 55092835, 4166685,
+    7870405, 125463515, 482286706815, 1730920822435
+  ]
+def negativeCoefficients : Array ℕ := #[
+    4476554641440630569502244864, 147256135073839554998350905344, 5097253394245423883760959488, 677125912150683615554961408, 4476554641440630569502244864, 677125912150683615554961408,
+    5116062447360720650859708416, 5097253394245423883760959488, 5094873590829389926308511744, 45269292002328899661152124928, 1714571335468224594853257805824, 1714571743228047359154243764224,
+    45268739303067003903132303360, 127036800419104002785935360, 4476552171882767701636022272, 4476554641440630569502244864, 127035428442513520638033920, 42018222447064695282560139264,
+    148612794393954062957702807552, 42033259842463537933399883776, 19215650483561950001233920, 677125538604116122936541184, 677125912150683615554961408, 19215442957691120768778240,
+    144651146695702456953733120, 5097250582269874147661185024, 5097253394245423883760959488, 144649584487063714676080640, 144651146695702456953733120, 5097250582269874147661185024,
+    5097253394245423883760959488, 144649584487063714676080640, 127036800419104002785935360, 4476552171882767701636022272, 4476554641440630569502244864, 127035428442513520638033920,
+    2591977743004911922388664320, 91336711540599663693884555264, 91336761927881101031524794368, 2591949750070780068144087040, 127036800419104002785935360, 4476552171882767701636022272,
+    4476554641440630569502244864, 127035428442513520638033920, 131620934148253452326666240, 3897607009381959535081553920, 145717109095824332496568320, 45268739303067003903132303360,
+    127035428442513520638033920, 19215442957691120768778240, 144649584487063714676080640, 144649584487063714676080640, 127035428442513520638033920, 2591949750070780068144087040,
+    127035428442513520638033920, 3897639795024296838871121920, 144649584487063714676080640, 19215442957691120768778240, 127035428442513520638033920, 19215442957691120768778240,
+    145183346791444023586324480, 144649584487063714676080640, 135751639568611103358320640, 3897687185463049236386938880
+  ]
+def negativeScales : Array ℕ := #[
+    30, 46, 32, 27, 30, 27,
+    28, 32, 44, 43, 50, 47,
+    45, 24, 28, 30, 25, 47,
+    48, 43, 20, 25, 27, 21,
+    25, 30, 32, 26, 25, 30,
+    32, 26, 24, 28, 30, 25,
+    27, 31, 33, 28, 24, 28,
+    30, 25, 38, 41, 26, 45,
+    25, 21, 26, 26, 25, 28,
+    25, 41, 26, 21, 25, 21,
+    22, 26, 38, 40
+  ]
+def logBoundDenominator : ℕ := 1000000000000000
+def positiveLogLowerNumerators : Array ℕ := #[]
+def negativeLogUpperNumerators : Array ℕ := #[
+    30854447359962310, 46894242497409403, 32041778636123106, 27129554596211547, 30854447359962310, 27129554596211547,
+    28047092436019574, 32041778636123106, 44041104914013085, 43192519400305846, 50435690776082722, 47435691119184809,
+    45192501786128185, 24715376949144841, 28854446564077912, 30854447359962310, 25715361368191055, 47085001787894517,
+    48907473082655431, 43085518004275485, 20990484207502528, 25129553800327178, 27129554596211547, 21990468626543676,
+    25902708231671805, 30041777840238738, 32041778636123106, 26902692650716781, 25902708231671805, 30041777840238738,
+    32041778636123106, 26902692650716781, 24715376949144841, 28854446564077912, 30854447359962310, 25715361368191055,
+    27066111891989076, 31205181505140548, 33205182301024917, 28066096311035328, 24715376949144841, 28854446564077912,
+    30854447359962310, 25715361368191055, 38766519433593388, 41654647194857160, 26913300751232606, 45192501786128185,
+    25715361368191055, 21990468626543676, 26902692650716781, 26902692650716781, 25715361368191055, 28066096311035328,
+    25715361368191055, 41654659330376362, 26902692650716781, 21990468626543676, 25715361368191055, 21990468626543676,
+    22908006451068227, 26902692650716781, 38811100090463901, 40654676871642094
+  ]
+
+abbrev PositiveTerm := Fin 0
+abbrev NegativeTerm := Fin 64
+def positiveArgument (term : PositiveTerm) : ℕ := positiveArguments[term.val]?.getD 0
+def positiveCoefficient (term : PositiveTerm) : ℕ := positiveCoefficients[term.val]?.getD 0
+def positiveScale (term : PositiveTerm) : ℕ := positiveScales[term.val]?.getD 0
+def negativeArgument (term : NegativeTerm) : ℕ := negativeArguments[term.val]?.getD 0
+def negativeCoefficient (term : NegativeTerm) : ℕ := negativeCoefficients[term.val]?.getD 0
+def negativeScale (term : NegativeTerm) : ℕ := negativeScales[term.val]?.getD 0
+def positiveLogLowerNumerator (term : PositiveTerm) : ℕ :=
+  positiveLogLowerNumerators[term.val]?.getD 0
+def negativeLogUpperNumerator (term : NegativeTerm) : ℕ :=
+  negativeLogUpperNumerators[term.val]?.getD 0
+
+noncomputable def positiveLogLower (term : PositiveTerm) : ℝ :=
+  (positiveLogLowerNumerator term : ℝ) / logBoundDenominator
+noncomputable def negativeLogUpper (term : NegativeTerm) : ℝ :=
+  (negativeLogUpperNumerator term : ℝ) / logBoundDenominator
+def positiveLogLowerRat (term : PositiveTerm) : ℚ :=
+  positiveLogLowerNumerator term / logBoundDenominator
+def negativeLogUpperRat (term : NegativeTerm) : ℚ :=
+  negativeLogUpperNumerator term / logBoundDenominator
+
+theorem positiveScales_valid :
+    ∀ term, 2 ^ positiveScale term ≤ positiveArgument term := by decide
+
+theorem negativeScales_valid :
+    ∀ term, 2 ^ negativeScale term ≤ negativeArgument term := by decide
+
+noncomputable def positiveExact : ℝ := Form.natLogSum bits positiveArgument positiveCoefficient
+noncomputable def negativeExact : ℝ := Form.natLogSum bits negativeArgument negativeCoefficient
+noncomputable def positiveRationalLower : ℝ :=
+  ∑ term, mass bits (positiveCoefficient term) * positiveLogLower term
+noncomputable def negativeRationalUpper : ℝ :=
+  ∑ term, mass bits (negativeCoefficient term) * negativeLogUpper term
+noncomputable def positiveFloor : ℝ := 0 / 1
+noncomputable def negativeCeiling : ℝ := 2418967441 / 1000000000000
+
+theorem positiveLogLowerRat_le_fastRat :
+    ∀ term, positiveLogLowerRat term ≤
+      MatrixMultiplication.RationalDyadicLog.numeratorLogLower
+        (positiveArgument term) (positiveScale term) 8 := by decide +kernel
+
+theorem negativeFastRat_le_logUpperRat :
+    ∀ term, MatrixMultiplication.RationalDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpperRat term := by decide +kernel
+
+theorem positiveLogLower_le_fast (term : PositiveTerm) :
+    positiveLogLower term ≤ MatrixMultiplication.FastDyadicLog.numeratorLogLower
+      (positiveArgument term) (positiveScale term) 8 := by
+  simpa [positiveLogLower, positiveLogLowerRat] using
+    MatrixMultiplication.RationalDyadicLog.cast_le_fastLower
+      (positiveLogLowerRat_le_fastRat term)
+
+theorem negativeFast_le_logUpper (term : NegativeTerm) :
+    MatrixMultiplication.FastDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpper term := by
+  simpa [negativeLogUpper, negativeLogUpperRat] using
+    MatrixMultiplication.RationalDyadicLog.fastUpper_le_cast
+      (negativeFastRat_le_logUpperRat term)
+
+theorem positiveFloor_le_rationalLower : positiveFloor ≤ positiveRationalLower := by
+  norm_num [positiveRationalLower, positiveFloor, bits, positiveLogLower, logBoundDenominator,
+    positiveLogLowerNumerator, positiveLogLowerNumerators, positiveCoefficient,
+    positiveCoefficients, Fin.sum_univ_succ, mass]
+
+theorem negativeRationalUpper_le_ceiling : negativeRationalUpper ≤ negativeCeiling := by
+  norm_num [negativeRationalUpper, negativeCeiling, bits, negativeLogUpper, logBoundDenominator,
+    negativeLogUpperNumerator, negativeLogUpperNumerators, negativeCoefficient,
+    negativeCoefficients, Fin.sum_univ_succ, mass]
+
+theorem positiveFloor_le_exact : positiveFloor ≤ positiveExact :=
+  positiveFloor_le_rationalLower.trans
+    (weightedLowerWithScale_le_natLogSum 8 bits
+      positiveArgument positiveCoefficient positiveScale positiveLogLower
+      positiveScales_valid positiveLogLower_le_fast)
+
+theorem negativeExact_le_ceiling : negativeExact ≤ negativeCeiling :=
+  (natLogSum_le_weightedUpperWithScale 8 bits
+    negativeArgument negativeCoefficient negativeScale negativeLogUpper
+    negativeScales_valid negativeFast_le_logUpper).trans
+      negativeRationalUpper_le_ceiling
+
+/-- Sign-separated exact form used by the directed arithmetic checker. -/
+def signedForm : Form :=
+  SignedDyadicLogCertificate.Form.ofSignedFamilies constantNumerator
+    positiveArgument positiveCoefficient negativeArgument negativeCoefficient
+
+/-- Exact source-order form before this shard's bounded power-of-two normalization. -/
+def rawForm : Form := { constantNumerator := 0, terms := [
+    { argument := 4476554641440630569502244864, coefficient := (-4476554641440630569502244864) }, { argument := 147256135073839554998350905344, coefficient := (-147256135073839554998350905344) },
+    { argument := 5097253394245423883760959488, coefficient := (-5097253394245423883760959488) }, { argument := 677125912150683615554961408, coefficient := (-677125912150683615554961408) },
+    { argument := 4476554641440630569502244864, coefficient := (-4476554641440630569502244864) }, { argument := 677125912150683615554961408, coefficient := (-677125912150683615554961408) },
+    { argument := 5116062447360720650859708416, coefficient := (-5116062447360720650859708416) }, { argument := 5097253394245423883760959488, coefficient := (-5097253394245423883760959488) },
+    { argument := 5094873590829389926308511744, coefficient := (-5094873590829389926308511744) }, { argument := 45269292002328899661152124928, coefficient := (-45269292002328899661152124928) },
+    { argument := 1714571335468224594853257805824, coefficient := (-1714571335468224594853257805824) }, { argument := 1714571743228047359154243764224, coefficient := (-1714571743228047359154243764224) },
+    { argument := 45268739303067003903132303360, coefficient := (-45268739303067003903132303360) }, { argument := 127036800419104002785935360, coefficient := (-127036800419104002785935360) },
+    { argument := 4476552171882767701636022272, coefficient := (-4476552171882767701636022272) }, { argument := 4476554641440630569502244864, coefficient := (-4476554641440630569502244864) },
+    { argument := 127035428442513520638033920, coefficient := (-127035428442513520638033920) }, { argument := 42018222447064695282560139264, coefficient := (-42018222447064695282560139264) },
+    { argument := 148612794393954062957702807552, coefficient := (-148612794393954062957702807552) }, { argument := 42033259842463537933399883776, coefficient := (-42033259842463537933399883776) },
+    { argument := 19215650483561950001233920, coefficient := (-19215650483561950001233920) }, { argument := 677125538604116122936541184, coefficient := (-677125538604116122936541184) },
+    { argument := 677125912150683615554961408, coefficient := (-677125912150683615554961408) }, { argument := 19215442957691120768778240, coefficient := (-19215442957691120768778240) },
+    { argument := 144651146695702456953733120, coefficient := (-144651146695702456953733120) }, { argument := 5097250582269874147661185024, coefficient := (-5097250582269874147661185024) },
+    { argument := 5097253394245423883760959488, coefficient := (-5097253394245423883760959488) }, { argument := 144649584487063714676080640, coefficient := (-144649584487063714676080640) },
+    { argument := 144651146695702456953733120, coefficient := (-144651146695702456953733120) }, { argument := 5097250582269874147661185024, coefficient := (-5097250582269874147661185024) },
+    { argument := 5097253394245423883760959488, coefficient := (-5097253394245423883760959488) }, { argument := 144649584487063714676080640, coefficient := (-144649584487063714676080640) },
+    { argument := 127036800419104002785935360, coefficient := (-127036800419104002785935360) }, { argument := 4476552171882767701636022272, coefficient := (-4476552171882767701636022272) },
+    { argument := 4476554641440630569502244864, coefficient := (-4476554641440630569502244864) }, { argument := 127035428442513520638033920, coefficient := (-127035428442513520638033920) },
+    { argument := 2591977743004911922388664320, coefficient := (-2591977743004911922388664320) }, { argument := 91336711540599663693884555264, coefficient := (-91336711540599663693884555264) },
+    { argument := 91336761927881101031524794368, coefficient := (-91336761927881101031524794368) }, { argument := 2591949750070780068144087040, coefficient := (-2591949750070780068144087040) },
+    { argument := 127036800419104002785935360, coefficient := (-127036800419104002785935360) }, { argument := 4476552171882767701636022272, coefficient := (-4476552171882767701636022272) },
+    { argument := 4476554641440630569502244864, coefficient := (-4476554641440630569502244864) }, { argument := 127035428442513520638033920, coefficient := (-127035428442513520638033920) },
+    { argument := 131620934148253452326666240, coefficient := (-131620934148253452326666240) }, { argument := 3897607009381959535081553920, coefficient := (-3897607009381959535081553920) },
+    { argument := 145717109095824332496568320, coefficient := (-145717109095824332496568320) }, { argument := 45268739303067003903132303360, coefficient := (-45268739303067003903132303360) },
+    { argument := 127035428442513520638033920, coefficient := (-127035428442513520638033920) }, { argument := 19215442957691120768778240, coefficient := (-19215442957691120768778240) },
+    { argument := 144649584487063714676080640, coefficient := (-144649584487063714676080640) }, { argument := 144649584487063714676080640, coefficient := (-144649584487063714676080640) },
+    { argument := 127035428442513520638033920, coefficient := (-127035428442513520638033920) }, { argument := 2591949750070780068144087040, coefficient := (-2591949750070780068144087040) },
+    { argument := 127035428442513520638033920, coefficient := (-127035428442513520638033920) }, { argument := 3897639795024296838871121920, coefficient := (-3897639795024296838871121920) },
+    { argument := 144649584487063714676080640, coefficient := (-144649584487063714676080640) }, { argument := 19215442957691120768778240, coefficient := (-19215442957691120768778240) },
+    { argument := 127035428442513520638033920, coefficient := (-127035428442513520638033920) }, { argument := 19215442957691120768778240, coefficient := (-19215442957691120768778240) },
+    { argument := 145183346791444023586324480, coefficient := (-145183346791444023586324480) }, { argument := 144649584487063714676080640, coefficient := (-144649584487063714676080640) },
+    { argument := 135751639568611103358320640, coefficient := (-135751639568611103358320640) }, { argument := 3897687185463049236386938880, coefficient := (-3897687185463049236386938880) }] }
+
+/-- Raw term shards carry no independent rational constant. -/
+@[simp] theorem rawForm_constant : rawForm.constantNumerator = 0 := rfl
+
+/-- Exact source-order form after bounded power-of-two normalization. -/
+def form : Form := Form.normalizePowersOfTwo rawForm
+
+theorem form_eval_rawForm : Form.eval bits form = Form.eval bits rawForm := by
+  unfold form
+  exact Form.eval_normalizePowersOfTwo bits rawForm
+
+theorem signedForm_constant : signedForm.constantNumerator = form.constantNumerator := by rfl
+
+theorem signedForm_terms_perm : signedForm.terms.Perm form.terms := by decide +kernel
+
+noncomputable def lower : ℝ :=
+  (constantNumerator : ℝ) / (2 : ℝ) ^ bits + positiveFloor - negativeCeiling
+
+noncomputable def signedCertificate : LowerBound bits :=
+  LowerBound.ofSignedFamilies bits constantNumerator positiveArgument positiveCoefficient
+    negativeArgument negativeCoefficient positiveFloor negativeCeiling
+      positiveFloor_le_exact negativeExact_le_ceiling
+
+noncomputable def certificate : LowerBound bits :=
+  LowerBound.reorder signedCertificate form signedForm_constant signedForm_terms_perm
+
+@[simp] theorem certificate_form : certificate.form = form := rfl
+
+@[simp] theorem certificate_lower : certificate.lower = lower := by
+  simp [certificate, LowerBound.reorder, signedCertificate, LowerBound.ofSignedFamilies, lower,
+    constantNumerator, bits]
+
+end TermShard5
+
+namespace TermShard6
+
+/-! Directed signed-log shard 6.  The untrusted producer supplies only integer arrays and
+rational endpoints; the committed generic checker proves the direction of every logarithm. -/
+
+def bits : ℕ := 116
+def constantNumerator : ℤ := (-68900558600422984834535250722816)
+def positiveArguments : Array ℕ := #[]
+def positiveCoefficients : Array ℕ := #[]
+def positiveScales : Array ℕ := #[]
+def negativeArguments : Array ℕ := #[
+    65394844431829, 130789721341031, 3461799553705, 74623081731549, 263931790936307, 4665611730451,
+    62732435, 1105290031, 4421162563, 125463515, 2083365, 36707049,
+    146828277, 4166685, 27546715, 485348759, 1941396107, 55092835,
+    2083365, 36707049, 146828277, 4166685, 3935245, 69335537,
+    277342301, 7870405, 62732435, 1105290031, 4421162563, 125463515,
+    241146253187, 1131288881013, 18100627097899, 482286706815, 811845751665, 2871389096095,
+    50758518335, 143655326805, 6645066477157, 3321808761097, 36138903245, 32336218945,
+    534456138137, 6440390195975, 133615248841, 33595022647, 1453211155215, 67221208892991,
+    33603275663211, 365579602935, 534456138137, 35334226544669, 425791477117051, 17667273808083,
+    69408329257, 143655326805, 1453211155215, 11625688886685, 287306748225, 11625688886685,
+    537769654721069, 268826197096049, 2924636734165, 6440390195975
+  ]
+def negativeCoefficients : Array ℕ := #[
+    147256098507568319805198958592, 147256135073839554998350905344, 3897639795024296838871121920, 42009060384930267977679372288, 148580389413997482346528374784, 42024094501429077250924347392,
+    144651146695702456953733120, 5097250582269874147661185024, 5097253394245423883760959488, 144649584487063714676080640, 19215650483561950001233920, 677125538604116122936541184,
+    677125912150683615554961408, 19215442957691120768778240, 127036800419104002785935360, 4476552171882767701636022272, 4476554641440630569502244864, 127035428442513520638033920,
+    19215650483561950001233920, 677125538604116122936541184, 677125912150683615554961408, 19215442957691120768778240, 145184914764690288898211840, 5116059625008877373298311168,
+    5116062447360720650859708416, 145183346791444023586324480, 144651146695702456953733120, 5097250582269874147661185024, 5097253394245423883760959488, 144649584487063714676080640,
+    135753271999345560433721344, 5094872182978532187410792448, 5094873590829389926308511744, 135751639568611103358320640, 914057056170203558140968960, 3232896715802286832777953280,
+    914384177037537956216176640, 80870759533598103211868160, 3740839863797054971244969984, 3740024174668124542392598528, 81377575593880204355829760, 9101836474454548330577920,
+    300872058069958442031775744, 3625617360839200713421619200, 300874792445671848770797568, 9456158217158285886226432, 3272340608558461012483768320, 151368705660934269762187296768,
+    151335699755265116442414022656, 3292848327104639771628011520, 300872058069958442031775744, 9945700593749749802272292864, 119849646105117747377870995456, 9945790967341890332730064896,
+    312587325778233895495401472, 80870759533598103211868160, 3272340608558461012483768320, 3272340508624992656016015360, 80869660265446182066585600, 3272340508624992656016015360,
+    151368701038310415214800011264, 151335695133649223786627596288, 3292848226544889591979048960, 3625617360839200713421619200
+  ]
+def negativeScales : Array ℕ := #[
+    45, 46, 41, 46, 47, 42,
+    25, 30, 32, 26, 20, 25,
+    27, 21, 24, 28, 30, 25,
+    20, 25, 27, 21, 21, 26,
+    28, 22, 25, 30, 32, 26,
+    37, 40, 44, 38, 39, 41,
+    35, 37, 42, 41, 35, 34,
+    38, 42, 36, 34, 40, 45,
+    44, 38, 38, 45, 48, 44,
+    36, 37, 40, 43, 38, 43,
+    48, 47, 41, 42
+  ]
+def logBoundDenominator : ℕ := 1000000000000000
+def positiveLogLowerNumerators : Array ℕ := #[]
+def negativeLogUpperNumerators : Array ℕ := #[
+    45894242139162947, 46894242497409403, 41654659330376362, 46084687174325863, 47907158469058955, 42085203390706831,
+    25902708231671805, 30041777840238738, 32041778636123106, 26902692650716781, 20990484207502528, 25129553800327178,
+    27129554596211547, 21990468626543676, 24715376949144841, 28854446564077912, 30854447359962310, 25715361368191055,
+    20990484207502528, 25129553800327178, 27129554596211547, 21990468626543676, 21908022032023369, 26047091640135205,
+    28047092436019574, 22908006451068227, 25902708231671805, 30041777840238738, 32041778636123106, 26902692650716781,
+    37811117438951263, 40041104515357515, 44041104914013085, 38811100090463901, 39562414689342120, 41384885979110365,
+    35562930905723118, 37063820533413008, 42595420770929046, 41595106157360348, 35072833672369741, 34912431949516143,
+    38959280609335644, 42550285236422016, 36959293720733173, 34967528465659497, 40402381484047554, 45933981729491879,
+    44933667115880383, 38411394623004289, 38959280609335644, 45006131562734071, 48597140400707877, 44006144672010750,
+    36014389750823016, 37063820533413008, 40402381484047554, 43402381439989328, 38063800922870221, 43402381439989328,
+    48933981685433647, 47933667071822151, 41411394578946064, 42550285236422016
+  ]
+
+abbrev PositiveTerm := Fin 0
+abbrev NegativeTerm := Fin 64
+def positiveArgument (term : PositiveTerm) : ℕ := positiveArguments[term.val]?.getD 0
+def positiveCoefficient (term : PositiveTerm) : ℕ := positiveCoefficients[term.val]?.getD 0
+def positiveScale (term : PositiveTerm) : ℕ := positiveScales[term.val]?.getD 0
+def negativeArgument (term : NegativeTerm) : ℕ := negativeArguments[term.val]?.getD 0
+def negativeCoefficient (term : NegativeTerm) : ℕ := negativeCoefficients[term.val]?.getD 0
+def negativeScale (term : NegativeTerm) : ℕ := negativeScales[term.val]?.getD 0
+def positiveLogLowerNumerator (term : PositiveTerm) : ℕ :=
+  positiveLogLowerNumerators[term.val]?.getD 0
+def negativeLogUpperNumerator (term : NegativeTerm) : ℕ :=
+  negativeLogUpperNumerators[term.val]?.getD 0
+
+noncomputable def positiveLogLower (term : PositiveTerm) : ℝ :=
+  (positiveLogLowerNumerator term : ℝ) / logBoundDenominator
+noncomputable def negativeLogUpper (term : NegativeTerm) : ℝ :=
+  (negativeLogUpperNumerator term : ℝ) / logBoundDenominator
+def positiveLogLowerRat (term : PositiveTerm) : ℚ :=
+  positiveLogLowerNumerator term / logBoundDenominator
+def negativeLogUpperRat (term : NegativeTerm) : ℚ :=
+  negativeLogUpperNumerator term / logBoundDenominator
+
+theorem positiveScales_valid :
+    ∀ term, 2 ^ positiveScale term ≤ positiveArgument term := by decide
+
+theorem negativeScales_valid :
+    ∀ term, 2 ^ negativeScale term ≤ negativeArgument term := by decide
+
+noncomputable def positiveExact : ℝ := Form.natLogSum bits positiveArgument positiveCoefficient
+noncomputable def negativeExact : ℝ := Form.natLogSum bits negativeArgument negativeCoefficient
+noncomputable def positiveRationalLower : ℝ :=
+  ∑ term, mass bits (positiveCoefficient term) * positiveLogLower term
+noncomputable def negativeRationalUpper : ℝ :=
+  ∑ term, mass bits (negativeCoefficient term) * negativeLogUpper term
+noncomputable def positiveFloor : ℝ := 0 / 1
+noncomputable def negativeCeiling : ℝ := 152111103 / 200000000000
+
+theorem positiveLogLowerRat_le_fastRat :
+    ∀ term, positiveLogLowerRat term ≤
+      MatrixMultiplication.RationalDyadicLog.numeratorLogLower
+        (positiveArgument term) (positiveScale term) 8 := by decide +kernel
+
+theorem negativeFastRat_le_logUpperRat :
+    ∀ term, MatrixMultiplication.RationalDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpperRat term := by decide +kernel
+
+theorem positiveLogLower_le_fast (term : PositiveTerm) :
+    positiveLogLower term ≤ MatrixMultiplication.FastDyadicLog.numeratorLogLower
+      (positiveArgument term) (positiveScale term) 8 := by
+  simpa [positiveLogLower, positiveLogLowerRat] using
+    MatrixMultiplication.RationalDyadicLog.cast_le_fastLower
+      (positiveLogLowerRat_le_fastRat term)
+
+theorem negativeFast_le_logUpper (term : NegativeTerm) :
+    MatrixMultiplication.FastDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpper term := by
+  simpa [negativeLogUpper, negativeLogUpperRat] using
+    MatrixMultiplication.RationalDyadicLog.fastUpper_le_cast
+      (negativeFastRat_le_logUpperRat term)
+
+theorem positiveFloor_le_rationalLower : positiveFloor ≤ positiveRationalLower := by
+  norm_num [positiveRationalLower, positiveFloor, bits, positiveLogLower, logBoundDenominator,
+    positiveLogLowerNumerator, positiveLogLowerNumerators, positiveCoefficient,
+    positiveCoefficients, Fin.sum_univ_succ, mass]
+
+theorem negativeRationalUpper_le_ceiling : negativeRationalUpper ≤ negativeCeiling := by
+  norm_num [negativeRationalUpper, negativeCeiling, bits, negativeLogUpper, logBoundDenominator,
+    negativeLogUpperNumerator, negativeLogUpperNumerators, negativeCoefficient,
+    negativeCoefficients, Fin.sum_univ_succ, mass]
+
+theorem positiveFloor_le_exact : positiveFloor ≤ positiveExact :=
+  positiveFloor_le_rationalLower.trans
+    (weightedLowerWithScale_le_natLogSum 8 bits
+      positiveArgument positiveCoefficient positiveScale positiveLogLower
+      positiveScales_valid positiveLogLower_le_fast)
+
+theorem negativeExact_le_ceiling : negativeExact ≤ negativeCeiling :=
+  (natLogSum_le_weightedUpperWithScale 8 bits
+    negativeArgument negativeCoefficient negativeScale negativeLogUpper
+    negativeScales_valid negativeFast_le_logUpper).trans
+      negativeRationalUpper_le_ceiling
+
+/-- Sign-separated exact form used by the directed arithmetic checker. -/
+def signedForm : Form :=
+  SignedDyadicLogCertificate.Form.ofSignedFamilies constantNumerator
+    positiveArgument positiveCoefficient negativeArgument negativeCoefficient
+
+/-- Exact source-order form before this shard's bounded power-of-two normalization. -/
+def rawForm : Form := { constantNumerator := 0, terms := [
+    { argument := 147256098507568319805198958592, coefficient := (-147256098507568319805198958592) }, { argument := 147256135073839554998350905344, coefficient := (-147256135073839554998350905344) },
+    { argument := 3897639795024296838871121920, coefficient := (-3897639795024296838871121920) }, { argument := 42009060384930267977679372288, coefficient := (-42009060384930267977679372288) },
+    { argument := 148580389413997482346528374784, coefficient := (-148580389413997482346528374784) }, { argument := 42024094501429077250924347392, coefficient := (-42024094501429077250924347392) },
+    { argument := 144651146695702456953733120, coefficient := (-144651146695702456953733120) }, { argument := 5097250582269874147661185024, coefficient := (-5097250582269874147661185024) },
+    { argument := 5097253394245423883760959488, coefficient := (-5097253394245423883760959488) }, { argument := 144649584487063714676080640, coefficient := (-144649584487063714676080640) },
+    { argument := 19215650483561950001233920, coefficient := (-19215650483561950001233920) }, { argument := 677125538604116122936541184, coefficient := (-677125538604116122936541184) },
+    { argument := 677125912150683615554961408, coefficient := (-677125912150683615554961408) }, { argument := 19215442957691120768778240, coefficient := (-19215442957691120768778240) },
+    { argument := 127036800419104002785935360, coefficient := (-127036800419104002785935360) }, { argument := 4476552171882767701636022272, coefficient := (-4476552171882767701636022272) },
+    { argument := 4476554641440630569502244864, coefficient := (-4476554641440630569502244864) }, { argument := 127035428442513520638033920, coefficient := (-127035428442513520638033920) },
+    { argument := 19215650483561950001233920, coefficient := (-19215650483561950001233920) }, { argument := 677125538604116122936541184, coefficient := (-677125538604116122936541184) },
+    { argument := 677125912150683615554961408, coefficient := (-677125912150683615554961408) }, { argument := 19215442957691120768778240, coefficient := (-19215442957691120768778240) },
+    { argument := 145184914764690288898211840, coefficient := (-145184914764690288898211840) }, { argument := 5116059625008877373298311168, coefficient := (-5116059625008877373298311168) },
+    { argument := 5116062447360720650859708416, coefficient := (-5116062447360720650859708416) }, { argument := 145183346791444023586324480, coefficient := (-145183346791444023586324480) },
+    { argument := 144651146695702456953733120, coefficient := (-144651146695702456953733120) }, { argument := 5097250582269874147661185024, coefficient := (-5097250582269874147661185024) },
+    { argument := 5097253394245423883760959488, coefficient := (-5097253394245423883760959488) }, { argument := 144649584487063714676080640, coefficient := (-144649584487063714676080640) },
+    { argument := 135753271999345560433721344, coefficient := (-135753271999345560433721344) }, { argument := 5094872182978532187410792448, coefficient := (-5094872182978532187410792448) },
+    { argument := 5094873590829389926308511744, coefficient := (-5094873590829389926308511744) }, { argument := 135751639568611103358320640, coefficient := (-135751639568611103358320640) },
+    { argument := 914057056170203558140968960, coefficient := (-914057056170203558140968960) }, { argument := 3232896715802286832777953280, coefficient := (-3232896715802286832777953280) },
+    { argument := 914384177037537956216176640, coefficient := (-914384177037537956216176640) }, { argument := 80870759533598103211868160, coefficient := (-80870759533598103211868160) },
+    { argument := 3740839863797054971244969984, coefficient := (-3740839863797054971244969984) }, { argument := 3740024174668124542392598528, coefficient := (-3740024174668124542392598528) },
+    { argument := 81377575593880204355829760, coefficient := (-81377575593880204355829760) }, { argument := 9101836474454548330577920, coefficient := (-9101836474454548330577920) },
+    { argument := 300872058069958442031775744, coefficient := (-300872058069958442031775744) }, { argument := 3625617360839200713421619200, coefficient := (-3625617360839200713421619200) },
+    { argument := 300874792445671848770797568, coefficient := (-300874792445671848770797568) }, { argument := 9456158217158285886226432, coefficient := (-9456158217158285886226432) },
+    { argument := 3272340608558461012483768320, coefficient := (-3272340608558461012483768320) }, { argument := 151368705660934269762187296768, coefficient := (-151368705660934269762187296768) },
+    { argument := 151335699755265116442414022656, coefficient := (-151335699755265116442414022656) }, { argument := 3292848327104639771628011520, coefficient := (-3292848327104639771628011520) },
+    { argument := 300872058069958442031775744, coefficient := (-300872058069958442031775744) }, { argument := 9945700593749749802272292864, coefficient := (-9945700593749749802272292864) },
+    { argument := 119849646105117747377870995456, coefficient := (-119849646105117747377870995456) }, { argument := 9945790967341890332730064896, coefficient := (-9945790967341890332730064896) },
+    { argument := 312587325778233895495401472, coefficient := (-312587325778233895495401472) }, { argument := 80870759533598103211868160, coefficient := (-80870759533598103211868160) },
+    { argument := 3272340608558461012483768320, coefficient := (-3272340608558461012483768320) }, { argument := 3272340508624992656016015360, coefficient := (-3272340508624992656016015360) },
+    { argument := 80869660265446182066585600, coefficient := (-80869660265446182066585600) }, { argument := 3272340508624992656016015360, coefficient := (-3272340508624992656016015360) },
+    { argument := 151368701038310415214800011264, coefficient := (-151368701038310415214800011264) }, { argument := 151335695133649223786627596288, coefficient := (-151335695133649223786627596288) },
+    { argument := 3292848226544889591979048960, coefficient := (-3292848226544889591979048960) }, { argument := 3625617360839200713421619200, coefficient := (-3625617360839200713421619200) }] }
+
+/-- Raw term shards carry no independent rational constant. -/
+@[simp] theorem rawForm_constant : rawForm.constantNumerator = 0 := rfl
+
+/-- Exact source-order form after bounded power-of-two normalization. -/
+def form : Form := Form.normalizePowersOfTwo rawForm
+
+theorem form_eval_rawForm : Form.eval bits form = Form.eval bits rawForm := by
+  unfold form
+  exact Form.eval_normalizePowersOfTwo bits rawForm
+
+theorem signedForm_constant : signedForm.constantNumerator = form.constantNumerator := by rfl
+
+theorem signedForm_terms_perm : signedForm.terms.Perm form.terms := by decide +kernel
+
+noncomputable def lower : ℝ :=
+  (constantNumerator : ℝ) / (2 : ℝ) ^ bits + positiveFloor - negativeCeiling
+
+noncomputable def signedCertificate : LowerBound bits :=
+  LowerBound.ofSignedFamilies bits constantNumerator positiveArgument positiveCoefficient
+    negativeArgument negativeCoefficient positiveFloor negativeCeiling
+      positiveFloor_le_exact negativeExact_le_ceiling
+
+noncomputable def certificate : LowerBound bits :=
+  LowerBound.reorder signedCertificate form signedForm_constant signedForm_terms_perm
+
+@[simp] theorem certificate_form : certificate.form = form := rfl
+
+@[simp] theorem certificate_lower : certificate.lower = lower := by
+  simp [certificate, LowerBound.reorder, signedCertificate, LowerBound.ofSignedFamilies, lower,
+    constantNumerator, bits]
+
+end TermShard6
+
+namespace TermShard7
+
+/-! Directed signed-log shard 7.  The untrusted producer supplies only integer arrays and
+rational endpoints; the committed generic checker proves the direction of every logarithm. -/
+
+def bits : ℕ := 116
+def constantNumerator : ℤ := (-167068792193929737386069778759680)
+def positiveArguments : Array ℕ := #[]
+def positiveCoefficients : Array ℕ := #[]
+def positiveScales : Array ℕ := #[]
+def negativeArguments : Array ℕ := #[
+    425791477117051, 5130983686869805, 212897672510581, 418204419179, 6645066477157, 67221208892991,
+    537769654721069, 13289952302865, 287306748225, 13289952302865, 6643527216165, 72276824025,
+    133615248841, 17667273808083, 212897672510581, 8833717172657, 277635837977, 3321808761097,
+    33603275663211, 268826197096049, 6643527216165, 33595022647, 69408329257, 418204419179,
+    277635837977, 34904502901, 36138903245, 365579602935, 2924636734165, 72276824025,
+    38471237565, 1779564578381, 889588272401, 9678084085, 634790153775, 29363497091935,
+    14678547194635, 159692093975, 38471237565, 634790153775, 7626124462305, 39674806215,
+    39602379075, 7626124462305, 352761746759857, 176342413577797, 1918479322745, 1779564578381,
+    29363497091935, 352761746759857, 1835238070391, 1831887807155, 39674806215, 1835238070391,
+    917418948611, 9980861935, 889588272401, 14678547194635, 176342413577797, 917418948611,
+    915744182255, 39602379075, 1831887807155, 915744182255
+  ]
+def negativeCoefficients : Array ℕ := #[
+    119849646105117747377870995456, 1444243513764434220475828142080, 119850734823337310153470902272, 3766850532758478221442285568, 3740839863797054971244969984, 151368705660934269762187296768,
+    151368701038310415214800011264, 3740789014934654949984829440, 80869660265446182066585600, 3740789014934654949984829440, 3739973336893305328741908480, 81376469436628228217241600,
+    300874792445671848770797568, 9945790967341890332730064896, 119850734823337310153470902272, 9945881341768604169134931968, 312590164114478150501531648, 3740024174668124542392598528,
+    151335699755265116442414022656, 151335695133649223786627596288, 3739973336893305328741908480, 9456158217158285886226432, 312587325778233895495401472, 3766850532758478221442285568,
+    312590164114478150501531648, 9824744141155999789613056, 81377575593880204355829760, 3292848327104639771628011520, 3292848226544889591979048960, 81376469436628228217241600,
+    10828690697638489242992640, 500902898254900338869927936, 500793676512288361374810112, 10896553969716581934039040, 357355087499943731842252800, 16530179320191638615852318720,
+    16526574919024606355642122240, 359594627459912114687180800, 10828690697638489242992640, 357355087499943731842252800, 4293126410839727771127644160, 357358884971741277616865280,
+    11147078727822195503923200, 4293126410839727771127644160, 198587208907282157487609872384, 198543907019645115885659619328, 4320031381516191765637365760, 500902898254900338869927936,
+    16530179320191638615852318720, 198587208907282157487609872384, 16530354979898111416569167872, 515630577855488314761543680, 357358884971741277616865280, 16530354979898111416569167872,
+    16526750540428527275526324224, 359598448730418941347758080, 500793676512288361374810112, 16526574919024606355642122240, 198543907019645115885659619328, 16526750540428527275526324224,
+    515518144746289696929218560, 11147078727822195503923200, 515630577855488314761543680, 515518144746289696929218560
+  ]
+def negativeScales : Array ℕ := #[
+    48, 52, 47, 38, 42, 45,
+    48, 43, 38, 43, 42, 36,
+    36, 44, 47, 43, 38, 41,
+    44, 47, 42, 34, 36, 38,
+    38, 35, 35, 38, 41, 36,
+    35, 40, 39, 33, 39, 44,
+    43, 37, 35, 39, 42, 35,
+    35, 42, 48, 47, 40, 40,
+    44, 48, 40, 40, 35, 40,
+    39, 33, 39, 43, 47, 39,
+    39, 35, 40, 39
+  ]
+def logBoundDenominator : ℕ := 1000000000000000
+def positiveLogLowerNumerators : Array ℕ := #[]
+def negativeLogUpperNumerators : Array ℕ := #[
+    48597140400707877, 52188156862032233, 47597153506138669, 38605417350778598, 42595420770929046, 45933981729491879,
+    48933981685433647, 43595401160386256, 38063800922870221, 43595401160386256, 42595086546817559, 36072814061826954,
+    36959293720733173, 44006144672010750, 47597153506138669, 43006157781289368, 38014402850634478, 41595106157360348,
+    44933667115880383, 47933667071822151, 42595086546817559, 34967528465659497, 36014389750823016, 38605417350778598,
+    38014402850634478, 35022694114073355, 35072833672369741, 38411394623004289, 41411394578946064, 36072814061826954,
+    35163061188702345, 40694661426277215, 39694346812708087, 33172074327659078, 39207488794476384, 44739089032164282,
+    43738774418594397, 37216501933433117, 35163061188702345, 39207488794476384, 42794087216007941, 35207504125347030,
+    35204868050304945, 42794087216007941, 48325687452946610, 47325372839377956, 40803100355080379, 40694661426277215,
+    44739089032164282, 48325687452946610, 40739104363034988, 40736468287982829, 35207504125347030, 40739104363034988,
+    39738789749465102, 33216517264303763, 39694346812708087, 43738774418594397, 47325372839377956, 39738789749465102,
+    39736153674413009, 35204868050304945, 40736468287982829, 39736153674413009
+  ]
+
+abbrev PositiveTerm := Fin 0
+abbrev NegativeTerm := Fin 64
+def positiveArgument (term : PositiveTerm) : ℕ := positiveArguments[term.val]?.getD 0
+def positiveCoefficient (term : PositiveTerm) : ℕ := positiveCoefficients[term.val]?.getD 0
+def positiveScale (term : PositiveTerm) : ℕ := positiveScales[term.val]?.getD 0
+def negativeArgument (term : NegativeTerm) : ℕ := negativeArguments[term.val]?.getD 0
+def negativeCoefficient (term : NegativeTerm) : ℕ := negativeCoefficients[term.val]?.getD 0
+def negativeScale (term : NegativeTerm) : ℕ := negativeScales[term.val]?.getD 0
+def positiveLogLowerNumerator (term : PositiveTerm) : ℕ :=
+  positiveLogLowerNumerators[term.val]?.getD 0
+def negativeLogUpperNumerator (term : NegativeTerm) : ℕ :=
+  negativeLogUpperNumerators[term.val]?.getD 0
+
+noncomputable def positiveLogLower (term : PositiveTerm) : ℝ :=
+  (positiveLogLowerNumerator term : ℝ) / logBoundDenominator
+noncomputable def negativeLogUpper (term : NegativeTerm) : ℝ :=
+  (negativeLogUpperNumerator term : ℝ) / logBoundDenominator
+def positiveLogLowerRat (term : PositiveTerm) : ℚ :=
+  positiveLogLowerNumerator term / logBoundDenominator
+def negativeLogUpperRat (term : NegativeTerm) : ℚ :=
+  negativeLogUpperNumerator term / logBoundDenominator
+
+theorem positiveScales_valid :
+    ∀ term, 2 ^ positiveScale term ≤ positiveArgument term := by decide
+
+theorem negativeScales_valid :
+    ∀ term, 2 ^ negativeScale term ≤ negativeArgument term := by decide
+
+noncomputable def positiveExact : ℝ := Form.natLogSum bits positiveArgument positiveCoefficient
+noncomputable def negativeExact : ℝ := Form.natLogSum bits negativeArgument negativeCoefficient
+noncomputable def positiveRationalLower : ℝ :=
+  ∑ term, mass bits (positiveCoefficient term) * positiveLogLower term
+noncomputable def negativeRationalUpper : ℝ :=
+  ∑ term, mass bits (negativeCoefficient term) * negativeLogUpper term
+noncomputable def positiveFloor : ℝ := 0 / 1
+noncomputable def negativeCeiling : ℝ := 25250191 / 12500000000
+
+theorem positiveLogLowerRat_le_fastRat :
+    ∀ term, positiveLogLowerRat term ≤
+      MatrixMultiplication.RationalDyadicLog.numeratorLogLower
+        (positiveArgument term) (positiveScale term) 8 := by decide +kernel
+
+theorem negativeFastRat_le_logUpperRat :
+    ∀ term, MatrixMultiplication.RationalDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpperRat term := by decide +kernel
+
+theorem positiveLogLower_le_fast (term : PositiveTerm) :
+    positiveLogLower term ≤ MatrixMultiplication.FastDyadicLog.numeratorLogLower
+      (positiveArgument term) (positiveScale term) 8 := by
+  simpa [positiveLogLower, positiveLogLowerRat] using
+    MatrixMultiplication.RationalDyadicLog.cast_le_fastLower
+      (positiveLogLowerRat_le_fastRat term)
+
+theorem negativeFast_le_logUpper (term : NegativeTerm) :
+    MatrixMultiplication.FastDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpper term := by
+  simpa [negativeLogUpper, negativeLogUpperRat] using
+    MatrixMultiplication.RationalDyadicLog.fastUpper_le_cast
+      (negativeFastRat_le_logUpperRat term)
+
+theorem positiveFloor_le_rationalLower : positiveFloor ≤ positiveRationalLower := by
+  norm_num [positiveRationalLower, positiveFloor, bits, positiveLogLower, logBoundDenominator,
+    positiveLogLowerNumerator, positiveLogLowerNumerators, positiveCoefficient,
+    positiveCoefficients, Fin.sum_univ_succ, mass]
+
+theorem negativeRationalUpper_le_ceiling : negativeRationalUpper ≤ negativeCeiling := by
+  norm_num [negativeRationalUpper, negativeCeiling, bits, negativeLogUpper, logBoundDenominator,
+    negativeLogUpperNumerator, negativeLogUpperNumerators, negativeCoefficient,
+    negativeCoefficients, Fin.sum_univ_succ, mass]
+
+theorem positiveFloor_le_exact : positiveFloor ≤ positiveExact :=
+  positiveFloor_le_rationalLower.trans
+    (weightedLowerWithScale_le_natLogSum 8 bits
+      positiveArgument positiveCoefficient positiveScale positiveLogLower
+      positiveScales_valid positiveLogLower_le_fast)
+
+theorem negativeExact_le_ceiling : negativeExact ≤ negativeCeiling :=
+  (natLogSum_le_weightedUpperWithScale 8 bits
+    negativeArgument negativeCoefficient negativeScale negativeLogUpper
+    negativeScales_valid negativeFast_le_logUpper).trans
+      negativeRationalUpper_le_ceiling
+
+/-- Sign-separated exact form used by the directed arithmetic checker. -/
+def signedForm : Form :=
+  SignedDyadicLogCertificate.Form.ofSignedFamilies constantNumerator
+    positiveArgument positiveCoefficient negativeArgument negativeCoefficient
+
+/-- Exact source-order form before this shard's bounded power-of-two normalization. -/
+def rawForm : Form := { constantNumerator := 0, terms := [
+    { argument := 119849646105117747377870995456, coefficient := (-119849646105117747377870995456) }, { argument := 1444243513764434220475828142080, coefficient := (-1444243513764434220475828142080) },
+    { argument := 119850734823337310153470902272, coefficient := (-119850734823337310153470902272) }, { argument := 3766850532758478221442285568, coefficient := (-3766850532758478221442285568) },
+    { argument := 3740839863797054971244969984, coefficient := (-3740839863797054971244969984) }, { argument := 151368705660934269762187296768, coefficient := (-151368705660934269762187296768) },
+    { argument := 151368701038310415214800011264, coefficient := (-151368701038310415214800011264) }, { argument := 3740789014934654949984829440, coefficient := (-3740789014934654949984829440) },
+    { argument := 80869660265446182066585600, coefficient := (-80869660265446182066585600) }, { argument := 3740789014934654949984829440, coefficient := (-3740789014934654949984829440) },
+    { argument := 3739973336893305328741908480, coefficient := (-3739973336893305328741908480) }, { argument := 81376469436628228217241600, coefficient := (-81376469436628228217241600) },
+    { argument := 300874792445671848770797568, coefficient := (-300874792445671848770797568) }, { argument := 9945790967341890332730064896, coefficient := (-9945790967341890332730064896) },
+    { argument := 119850734823337310153470902272, coefficient := (-119850734823337310153470902272) }, { argument := 9945881341768604169134931968, coefficient := (-9945881341768604169134931968) },
+    { argument := 312590164114478150501531648, coefficient := (-312590164114478150501531648) }, { argument := 3740024174668124542392598528, coefficient := (-3740024174668124542392598528) },
+    { argument := 151335699755265116442414022656, coefficient := (-151335699755265116442414022656) }, { argument := 151335695133649223786627596288, coefficient := (-151335695133649223786627596288) },
+    { argument := 3739973336893305328741908480, coefficient := (-3739973336893305328741908480) }, { argument := 9456158217158285886226432, coefficient := (-9456158217158285886226432) },
+    { argument := 312587325778233895495401472, coefficient := (-312587325778233895495401472) }, { argument := 3766850532758478221442285568, coefficient := (-3766850532758478221442285568) },
+    { argument := 312590164114478150501531648, coefficient := (-312590164114478150501531648) }, { argument := 9824744141155999789613056, coefficient := (-9824744141155999789613056) },
+    { argument := 81377575593880204355829760, coefficient := (-81377575593880204355829760) }, { argument := 3292848327104639771628011520, coefficient := (-3292848327104639771628011520) },
+    { argument := 3292848226544889591979048960, coefficient := (-3292848226544889591979048960) }, { argument := 81376469436628228217241600, coefficient := (-81376469436628228217241600) },
+    { argument := 10828690697638489242992640, coefficient := (-10828690697638489242992640) }, { argument := 500902898254900338869927936, coefficient := (-500902898254900338869927936) },
+    { argument := 500793676512288361374810112, coefficient := (-500793676512288361374810112) }, { argument := 10896553969716581934039040, coefficient := (-10896553969716581934039040) },
+    { argument := 357355087499943731842252800, coefficient := (-357355087499943731842252800) }, { argument := 16530179320191638615852318720, coefficient := (-16530179320191638615852318720) },
+    { argument := 16526574919024606355642122240, coefficient := (-16526574919024606355642122240) }, { argument := 359594627459912114687180800, coefficient := (-359594627459912114687180800) },
+    { argument := 10828690697638489242992640, coefficient := (-10828690697638489242992640) }, { argument := 357355087499943731842252800, coefficient := (-357355087499943731842252800) },
+    { argument := 4293126410839727771127644160, coefficient := (-4293126410839727771127644160) }, { argument := 357358884971741277616865280, coefficient := (-357358884971741277616865280) },
+    { argument := 11147078727822195503923200, coefficient := (-11147078727822195503923200) }, { argument := 4293126410839727771127644160, coefficient := (-4293126410839727771127644160) },
+    { argument := 198587208907282157487609872384, coefficient := (-198587208907282157487609872384) }, { argument := 198543907019645115885659619328, coefficient := (-198543907019645115885659619328) },
+    { argument := 4320031381516191765637365760, coefficient := (-4320031381516191765637365760) }, { argument := 500902898254900338869927936, coefficient := (-500902898254900338869927936) },
+    { argument := 16530179320191638615852318720, coefficient := (-16530179320191638615852318720) }, { argument := 198587208907282157487609872384, coefficient := (-198587208907282157487609872384) },
+    { argument := 16530354979898111416569167872, coefficient := (-16530354979898111416569167872) }, { argument := 515630577855488314761543680, coefficient := (-515630577855488314761543680) },
+    { argument := 357358884971741277616865280, coefficient := (-357358884971741277616865280) }, { argument := 16530354979898111416569167872, coefficient := (-16530354979898111416569167872) },
+    { argument := 16526750540428527275526324224, coefficient := (-16526750540428527275526324224) }, { argument := 359598448730418941347758080, coefficient := (-359598448730418941347758080) },
+    { argument := 500793676512288361374810112, coefficient := (-500793676512288361374810112) }, { argument := 16526574919024606355642122240, coefficient := (-16526574919024606355642122240) },
+    { argument := 198543907019645115885659619328, coefficient := (-198543907019645115885659619328) }, { argument := 16526750540428527275526324224, coefficient := (-16526750540428527275526324224) },
+    { argument := 515518144746289696929218560, coefficient := (-515518144746289696929218560) }, { argument := 11147078727822195503923200, coefficient := (-11147078727822195503923200) },
+    { argument := 515630577855488314761543680, coefficient := (-515630577855488314761543680) }, { argument := 515518144746289696929218560, coefficient := (-515518144746289696929218560) }] }
+
+/-- Raw term shards carry no independent rational constant. -/
+@[simp] theorem rawForm_constant : rawForm.constantNumerator = 0 := rfl
+
+/-- Exact source-order form after bounded power-of-two normalization. -/
+def form : Form := Form.normalizePowersOfTwo rawForm
+
+theorem form_eval_rawForm : Form.eval bits form = Form.eval bits rawForm := by
+  unfold form
+  exact Form.eval_normalizePowersOfTwo bits rawForm
+
+theorem signedForm_constant : signedForm.constantNumerator = form.constantNumerator := by rfl
+
+theorem signedForm_terms_perm : signedForm.terms.Perm form.terms := by decide +kernel
+
+noncomputable def lower : ℝ :=
+  (constantNumerator : ℝ) / (2 : ℝ) ^ bits + positiveFloor - negativeCeiling
+
+noncomputable def signedCertificate : LowerBound bits :=
+  LowerBound.ofSignedFamilies bits constantNumerator positiveArgument positiveCoefficient
+    negativeArgument negativeCoefficient positiveFloor negativeCeiling
+      positiveFloor_le_exact negativeExact_le_ceiling
+
+noncomputable def certificate : LowerBound bits :=
+  LowerBound.reorder signedCertificate form signedForm_constant signedForm_terms_perm
+
+@[simp] theorem certificate_form : certificate.form = form := rfl
+
+@[simp] theorem certificate_lower : certificate.lower = lower := by
+  simp [certificate, LowerBound.reorder, signedCertificate, LowerBound.ofSignedFamilies, lower,
+    constantNumerator, bits]
+
+end TermShard7
+
+namespace TermShard8
+
+/-! Directed signed-log shard 8.  The untrusted producer supplies only integer arrays and
+rational endpoints; the committed generic checker proves the direction of every logarithm. -/
+
+def bits : ℕ := 116
+def constantNumerator : ℤ := (6906369137776023807887991505944576)
+def positiveArguments : Array ℕ := #[
+    431, 3003159, 10770893, 750791, 562950842613811, 562949953421261,
+    3003159, 562949953421261, 562949064228915, 10770893, 750791, 231485,
+    4078561, 16314253, 462965, 25303138395349, 2883935384378917, 809966549026619,
+    25303138395349, 25303107541803, 231485, 25303107541803, 2883931889983963, 809965561362629,
+    2883935384378917, 2883931889983963, 4078561, 809966549026619, 809965561362629, 16314253,
+    462965, 32016385680835, 617311003880811, 2469244418176403, 64031966054715, 756732727887609,
+    1345488390391063, 756964857638617, 32016385680835, 32016342211133, 32016342211133, 617310128034453,
+    2469240914791021, 64031879116485, 1345488390391063, 2392251166834667, 2691802668004903, 617311003880811,
+    617310128034453, 756964857638617, 2691802668004903, 2957801011355, 2469244418176403, 2469240914791021,
+    64031966054715, 64031879116485
+  ]
+def positiveCoefficients : Array ℕ := #[
+    68294676087295859005634885189632, 14182017404328320850318065664, 50864104093775281544681750528, 14182041016160735198544134144, 316913150627933245004192940032, 316912650057028639926551314432,
+    14182017404328320850318065664, 316912650057028639926551314432, 316912149486238876639407636480, 50864104093775281544681750528, 14182041016160735198544134144, 2186314010574159644584837120,
+    77041839058957212209668685824, 77041881560255558036475609088, 2186290398741745296358768640, 227910409297195692995492446208, 811755645153092422002175639552, 227985315523677994251204952064,
+    227910409297195692995492446208, 227910131393159155678577688576, 2186314010574159644584837120, 227910131393159155678577688576, 811754661568354127018331209728, 227985037520979411047624474624,
+    811755645153092422002175639552, 811754661568354127018331209728, 77041839058957212209668685824, 227985315523677994251204952064, 227985037520979411047624474624, 77041881560255558036475609088,
+    2186290398741745296358768640, 18023622827744823734718955520, 695030401762331807437830488064, 695030515099120359434897850368, 18023396153988420180419543040, 213001326958355927442080661504,
+    757442626699564972202478534656, 213066665674614754618221002752, 18023622827744823734718955520, 18023598356478107596405866496, 18023598356478107596405866496, 695029415646998926786320924672,
+    695029528983801552532223819776, 18023371683052155664764764160, 757442626699564972202478534656, 2693435365883310140044196446208, 757675093286361756641020346368, 695030401762331807437830488064,
+    695029415646998926786320924672, 213066665674614754618221002752, 757675093286361756641020346368, 213132024521191267329407713280, 695030515099120359434897850368, 695029528983801552532223819776,
+    18023396153988420180419543040, 18023371683052155664764764160
+  ]
+def positiveScales : Array ℕ := #[
+    8, 21, 23, 19, 49, 48,
+    21, 48, 48, 23, 19, 17,
+    21, 23, 18, 44, 51, 49,
+    44, 44, 17, 44, 51, 49,
+    51, 51, 21, 49, 49, 23,
+    18, 44, 49, 51, 45, 49,
+    50, 49, 44, 44, 44, 49,
+    51, 45, 50, 51, 51, 49,
+    49, 49, 51, 41, 51, 51,
+    45, 45
+  ]
+def negativeArguments : Array ℕ := #[
+    9962641675, 9678084085, 159692093975, 1918479322745, 9980861935, 9962641675,
+    9, 17
+  ]
+def negativeCoefficients : Array ℕ := #[
+    11216937333788943528755200, 10896553969716581934039040, 359594627459912114687180800, 4320031381516191765637365760, 359598448730418941347758080, 11216937333788943528755200,
+    1426106925256758076683791106048, 5387515050969974956360988622848
+  ]
+def negativeScales : Array ℕ := #[
+    33, 33, 37, 40, 33, 33,
+    3, 4
+  ]
+def logBoundDenominator : ℕ := 1000000000000000
+def positiveLogLowerNumerators : Array ℕ := #[
+    8751544059074671, 21518049428647774, 23360634530924049, 19518051830608243, 49000002278768454, 48999999998540287,
+    21518049428647774, 48999999998540287, 48999997719768678, 23360634530924049, 19518051830608243, 17820559185672901,
+    21959628798128645, 23959629594013004, 18820543604719171, 44524381569704359, 51356960264144227, 49524855655494449,
+    44524381569704359, 44524379810543727, 17820559185672901, 44524379810543727, 51356958516064380, 49524853896287466,
+    51356960264144227, 51356958516064380, 21959628798128645, 49524855655494449, 49524853896287466, 23959629594013004,
+    18820543604719171, 44863875685077902, 49132990836781843, 51132991072038328, 45863857540936575, 49426777169932396,
+    50257051365981444, 49427219652560960, 44863875685077902, 44863873726281974, 44863873726281974, 49132988789871799,
+    51132989025128648, 45863855582142463, 50257051365981444, 51087290291995229, 51257494075336832, 49132990836781843,
+    49132988789871799, 49427219652560960, 51257494075336832, 41427662135781779, 51132991072038328, 51132989025128648,
+    45863857540936575, 45863855582142463
+  ]
+def negativeLogUpperNumerators : Array ℕ := #[
+    33213881189261678, 33172074327659078, 37216501933433117, 40803100355080379, 33216517264303763, 33213881189261678,
+    3169925001442313, 4087462841250340
+  ]
+
+abbrev PositiveTerm := Fin 56
+abbrev NegativeTerm := Fin 8
+def positiveArgument (term : PositiveTerm) : ℕ := positiveArguments[term.val]?.getD 0
+def positiveCoefficient (term : PositiveTerm) : ℕ := positiveCoefficients[term.val]?.getD 0
+def positiveScale (term : PositiveTerm) : ℕ := positiveScales[term.val]?.getD 0
+def negativeArgument (term : NegativeTerm) : ℕ := negativeArguments[term.val]?.getD 0
+def negativeCoefficient (term : NegativeTerm) : ℕ := negativeCoefficients[term.val]?.getD 0
+def negativeScale (term : NegativeTerm) : ℕ := negativeScales[term.val]?.getD 0
+def positiveLogLowerNumerator (term : PositiveTerm) : ℕ :=
+  positiveLogLowerNumerators[term.val]?.getD 0
+def negativeLogUpperNumerator (term : NegativeTerm) : ℕ :=
+  negativeLogUpperNumerators[term.val]?.getD 0
+
+noncomputable def positiveLogLower (term : PositiveTerm) : ℝ :=
+  (positiveLogLowerNumerator term : ℝ) / logBoundDenominator
+noncomputable def negativeLogUpper (term : NegativeTerm) : ℝ :=
+  (negativeLogUpperNumerator term : ℝ) / logBoundDenominator
+def positiveLogLowerRat (term : PositiveTerm) : ℚ :=
+  positiveLogLowerNumerator term / logBoundDenominator
+def negativeLogUpperRat (term : NegativeTerm) : ℚ :=
+  negativeLogUpperNumerator term / logBoundDenominator
+
+theorem positiveScales_valid :
+    ∀ term, 2 ^ positiveScale term ≤ positiveArgument term := by decide
+
+theorem negativeScales_valid :
+    ∀ term, 2 ^ negativeScale term ≤ negativeArgument term := by decide
+
+noncomputable def positiveExact : ℝ := Form.natLogSum bits positiveArgument positiveCoefficient
+noncomputable def negativeExact : ℝ := Form.natLogSum bits negativeArgument negativeCoefficient
+noncomputable def positiveRationalLower : ℝ :=
+  ∑ term, mass bits (positiveCoefficient term) * positiveLogLower term
+noncomputable def negativeRationalUpper : ℝ :=
+  ∑ term, mass bits (negativeCoefficient term) * negativeLogUpper term
+noncomputable def positiveFloor : ℝ := 18539547727 / 1000000000000
+noncomputable def negativeCeiling : ℝ := 64385341 / 200000000000
+
+theorem positiveLogLowerRat_le_fastRat :
+    ∀ term, positiveLogLowerRat term ≤
+      MatrixMultiplication.RationalDyadicLog.numeratorLogLower
+        (positiveArgument term) (positiveScale term) 8 := by decide +kernel
+
+theorem negativeFastRat_le_logUpperRat :
+    ∀ term, MatrixMultiplication.RationalDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpperRat term := by decide +kernel
+
+theorem positiveLogLower_le_fast (term : PositiveTerm) :
+    positiveLogLower term ≤ MatrixMultiplication.FastDyadicLog.numeratorLogLower
+      (positiveArgument term) (positiveScale term) 8 := by
+  simpa [positiveLogLower, positiveLogLowerRat] using
+    MatrixMultiplication.RationalDyadicLog.cast_le_fastLower
+      (positiveLogLowerRat_le_fastRat term)
+
+theorem negativeFast_le_logUpper (term : NegativeTerm) :
+    MatrixMultiplication.FastDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpper term := by
+  simpa [negativeLogUpper, negativeLogUpperRat] using
+    MatrixMultiplication.RationalDyadicLog.fastUpper_le_cast
+      (negativeFastRat_le_logUpperRat term)
+
+theorem positiveFloor_le_rationalLower : positiveFloor ≤ positiveRationalLower := by
+  norm_num [positiveRationalLower, positiveFloor, bits, positiveLogLower, logBoundDenominator,
+    positiveLogLowerNumerator, positiveLogLowerNumerators, positiveCoefficient,
+    positiveCoefficients, Fin.sum_univ_succ, mass]
+
+theorem negativeRationalUpper_le_ceiling : negativeRationalUpper ≤ negativeCeiling := by
+  norm_num [negativeRationalUpper, negativeCeiling, bits, negativeLogUpper, logBoundDenominator,
+    negativeLogUpperNumerator, negativeLogUpperNumerators, negativeCoefficient,
+    negativeCoefficients, Fin.sum_univ_succ, mass]
+
+theorem positiveFloor_le_exact : positiveFloor ≤ positiveExact :=
+  positiveFloor_le_rationalLower.trans
+    (weightedLowerWithScale_le_natLogSum 8 bits
+      positiveArgument positiveCoefficient positiveScale positiveLogLower
+      positiveScales_valid positiveLogLower_le_fast)
+
+theorem negativeExact_le_ceiling : negativeExact ≤ negativeCeiling :=
+  (natLogSum_le_weightedUpperWithScale 8 bits
+    negativeArgument negativeCoefficient negativeScale negativeLogUpper
+    negativeScales_valid negativeFast_le_logUpper).trans
+      negativeRationalUpper_le_ceiling
+
+/-- Sign-separated exact form used by the directed arithmetic checker. -/
+def signedForm : Form :=
+  SignedDyadicLogCertificate.Form.ofSignedFamilies constantNumerator
+    positiveArgument positiveCoefficient negativeArgument negativeCoefficient
+
+/-- Exact source-order form before this shard's bounded power-of-two normalization. -/
+def rawForm : Form := { constantNumerator := 0, terms := [
+    { argument := 11216937333788943528755200, coefficient := (-11216937333788943528755200) }, { argument := 10896553969716581934039040, coefficient := (-10896553969716581934039040) },
+    { argument := 359594627459912114687180800, coefficient := (-359594627459912114687180800) }, { argument := 4320031381516191765637365760, coefficient := (-4320031381516191765637365760) },
+    { argument := 359598448730418941347758080, coefficient := (-359598448730418941347758080) }, { argument := 11216937333788943528755200, coefficient := (-11216937333788943528755200) },
+    { argument := 68294676087295859005634885189632, coefficient := (68294676087295859005634885189632) }, { argument := 14182017404328320850318065664, coefficient := (14182017404328320850318065664) },
+    { argument := 50864104093775281544681750528, coefficient := (50864104093775281544681750528) }, { argument := 14182041016160735198544134144, coefficient := (14182041016160735198544134144) },
+    { argument := 316913150627933245004192940032, coefficient := (316913150627933245004192940032) }, { argument := 316912650057028639926551314432, coefficient := (316912650057028639926551314432) },
+    { argument := 14182017404328320850318065664, coefficient := (14182017404328320850318065664) }, { argument := 316912650057028639926551314432, coefficient := (316912650057028639926551314432) },
+    { argument := 316912149486238876639407636480, coefficient := (316912149486238876639407636480) }, { argument := 50864104093775281544681750528, coefficient := (50864104093775281544681750528) },
+    { argument := 14182041016160735198544134144, coefficient := (14182041016160735198544134144) }, { argument := 1426106925256758076683791106048, coefficient := (-1426106925256758076683791106048) },
+    { argument := 2186314010574159644584837120, coefficient := (2186314010574159644584837120) }, { argument := 77041839058957212209668685824, coefficient := (77041839058957212209668685824) },
+    { argument := 77041881560255558036475609088, coefficient := (77041881560255558036475609088) }, { argument := 2186290398741745296358768640, coefficient := (2186290398741745296358768640) },
+    { argument := 227910409297195692995492446208, coefficient := (227910409297195692995492446208) }, { argument := 811755645153092422002175639552, coefficient := (811755645153092422002175639552) },
+    { argument := 227985315523677994251204952064, coefficient := (227985315523677994251204952064) }, { argument := 227910409297195692995492446208, coefficient := (227910409297195692995492446208) },
+    { argument := 227910131393159155678577688576, coefficient := (227910131393159155678577688576) }, { argument := 2186314010574159644584837120, coefficient := (2186314010574159644584837120) },
+    { argument := 227910131393159155678577688576, coefficient := (227910131393159155678577688576) }, { argument := 811754661568354127018331209728, coefficient := (811754661568354127018331209728) },
+    { argument := 227985037520979411047624474624, coefficient := (227985037520979411047624474624) }, { argument := 811755645153092422002175639552, coefficient := (811755645153092422002175639552) },
+    { argument := 811754661568354127018331209728, coefficient := (811754661568354127018331209728) }, { argument := 77041839058957212209668685824, coefficient := (77041839058957212209668685824) },
+    { argument := 227985315523677994251204952064, coefficient := (227985315523677994251204952064) }, { argument := 227985037520979411047624474624, coefficient := (227985037520979411047624474624) },
+    { argument := 77041881560255558036475609088, coefficient := (77041881560255558036475609088) }, { argument := 2186290398741745296358768640, coefficient := (2186290398741745296358768640) },
+    { argument := 5387515050969974956360988622848, coefficient := (-5387515050969974956360988622848) }, { argument := 18023622827744823734718955520, coefficient := (18023622827744823734718955520) },
+    { argument := 695030401762331807437830488064, coefficient := (695030401762331807437830488064) }, { argument := 695030515099120359434897850368, coefficient := (695030515099120359434897850368) },
+    { argument := 18023396153988420180419543040, coefficient := (18023396153988420180419543040) }, { argument := 213001326958355927442080661504, coefficient := (213001326958355927442080661504) },
+    { argument := 757442626699564972202478534656, coefficient := (757442626699564972202478534656) }, { argument := 213066665674614754618221002752, coefficient := (213066665674614754618221002752) },
+    { argument := 18023622827744823734718955520, coefficient := (18023622827744823734718955520) }, { argument := 18023598356478107596405866496, coefficient := (18023598356478107596405866496) },
+    { argument := 18023598356478107596405866496, coefficient := (18023598356478107596405866496) }, { argument := 695029415646998926786320924672, coefficient := (695029415646998926786320924672) },
+    { argument := 695029528983801552532223819776, coefficient := (695029528983801552532223819776) }, { argument := 18023371683052155664764764160, coefficient := (18023371683052155664764764160) },
+    { argument := 757442626699564972202478534656, coefficient := (757442626699564972202478534656) }, { argument := 2693435365883310140044196446208, coefficient := (2693435365883310140044196446208) },
+    { argument := 757675093286361756641020346368, coefficient := (757675093286361756641020346368) }, { argument := 695030401762331807437830488064, coefficient := (695030401762331807437830488064) },
+    { argument := 695029415646998926786320924672, coefficient := (695029415646998926786320924672) }, { argument := 213066665674614754618221002752, coefficient := (213066665674614754618221002752) },
+    { argument := 757675093286361756641020346368, coefficient := (757675093286361756641020346368) }, { argument := 213132024521191267329407713280, coefficient := (213132024521191267329407713280) },
+    { argument := 695030515099120359434897850368, coefficient := (695030515099120359434897850368) }, { argument := 695029528983801552532223819776, coefficient := (695029528983801552532223819776) },
+    { argument := 18023396153988420180419543040, coefficient := (18023396153988420180419543040) }, { argument := 18023371683052155664764764160, coefficient := (18023371683052155664764764160) }] }
+
+/-- Raw term shards carry no independent rational constant. -/
+@[simp] theorem rawForm_constant : rawForm.constantNumerator = 0 := rfl
+
+/-- Exact source-order form after bounded power-of-two normalization. -/
+def form : Form := Form.normalizePowersOfTwo rawForm
+
+theorem form_eval_rawForm : Form.eval bits form = Form.eval bits rawForm := by
+  unfold form
+  exact Form.eval_normalizePowersOfTwo bits rawForm
+
+theorem signedForm_constant : signedForm.constantNumerator = form.constantNumerator := by rfl
+
+theorem signedForm_terms_perm : signedForm.terms.Perm form.terms := by decide +kernel
+
+noncomputable def lower : ℝ :=
+  (constantNumerator : ℝ) / (2 : ℝ) ^ bits + positiveFloor - negativeCeiling
+
+noncomputable def signedCertificate : LowerBound bits :=
+  LowerBound.ofSignedFamilies bits constantNumerator positiveArgument positiveCoefficient
+    negativeArgument negativeCoefficient positiveFloor negativeCeiling
+      positiveFloor_le_exact negativeExact_le_ceiling
+
+noncomputable def certificate : LowerBound bits :=
+  LowerBound.reorder signedCertificate form signedForm_constant signedForm_terms_perm
+
+@[simp] theorem certificate_form : certificate.form = form := rfl
+
+@[simp] theorem certificate_lower : certificate.lower = lower := by
+  simp [certificate, LowerBound.reorder, signedCertificate, LowerBound.ofSignedFamilies, lower,
+    constantNumerator, bits]
+
+end TermShard8
+
+namespace TermShard9
+
+/-! Directed signed-log shard 9.  The untrusted producer supplies only integer arrays and
+rational endpoints; the committed generic checker proves the direction of every logarithm. -/
+
+def bits : ℕ := 116
+def constantNumerator : ℤ := (-1443901533365994718542729278652416)
+def positiveArguments : Array ℕ := #[
+    6043595080633, 199652798839961, 2403143975560207, 99827364110889, 6257303426893, 7813868796787,
+    296053305946065, 592106751838343, 15627546681585, 7813868796787, 111170066691471, 31265099832485,
+    6043595080633, 6043583740999, 6043583740999, 199652424598375, 2403139479018481, 99827176988119,
+    6257291749555, 111170066691471, 131653650658631, 8425835626204407, 222337416279595, 296053305946065,
+    131653650658631, 296144759924215, 199652798839961, 199652424598375, 31265099832485, 296144759924215,
+    2369158639341805, 62529435780625, 592106751838343, 8425835626204407, 2369158639341805, 2403143975560207,
+    2403139479018481, 15627546681585, 222337416279595, 62529435780625, 99827364110889, 99827176988119,
+    6257303426893, 6257291749555, 5956499237595, 275529869203403, 137734894994663, 1498457136355,
+    2756497003525, 21472370421361, 819862407, 253819157275195, 357375921, 27028431,
+    813856089, 813856089, 357375921, 1822917513, 357375921, 21472559512457,
+    813856089, 27028431
+  ]
+def positiveCoefficients : Array ℕ := #[
+    1701120784569808845430325248, 56197266903695309728347324416, 676424894553162536975746465792, 56197809976397315766503866368, 1761274336356215153710071808, 17595268300765939566091698176,
+    666652779170250890878774149120, 666652936735679070556789932032, 17595053352975309326033879040, 17595268300765939566091698176, 62583183865807748088780029952, 17600686494410100363828920320,
+    1701120784569808845430325248, 1701117592746592788067385344, 1701117592746592788067385344, 56197161564053606219382784000, 676423628889184932632813633536, 56197704635642660199625392128,
+    1761271049477773561251758080, 62583183865807748088780029952, 2371661328192704107540228603904, 2371661886653701074195151060992, 62582419069206430818311864320, 666652779170250890878774149120,
+    2371661328192704107540228603904, 666858715221209835620343480320, 56197266903695309728347324416, 56197161564053606219382784000, 17600686494410100363828920320, 666858715221209835620343480320,
+    666858872832584020171769774080, 17600471480081881854115840000, 666652936735679070556789932032, 2371661886653701074195151060992, 666858872832584020171769774080, 676424894553162536975746465792,
+    676423628889184932632813633536, 17595053352975309326033879040, 62582419069206430818311864320, 17600471480081881854115840000, 56197809976397315766503866368, 56197704635642660199625392128,
+    1761274336356215153710071808, 1761271049477773561251758080, 1676605484179092844912312320, 77554763517117953271941562368, 77537852721734835180830457856, 1687112750229759628693995520,
+    1551769859740384849874124800, 48351479714201329891989782528, 945236999849031150424031232, 571549931062030760423047823360, 824052769099155361908129792, 124646637342729382473498624,
+    938312186663323962508836864, 938312186663323962508836864, 824052769099155361908129792, 16813446414897052258091925504, 824052769099155361908129792, 48351905509496072231333134336,
+    938312186663323962508836864, 124646637342729382473498624
+  ]
+def positiveScales : Array ℕ := #[
+    42, 47, 51, 46, 42, 42,
+    48, 49, 43, 42, 46, 44,
+    42, 42, 42, 47, 51, 46,
+    42, 46, 46, 52, 47, 48,
+    46, 48, 47, 47, 44, 48,
+    51, 45, 49, 52, 51, 51,
+    51, 43, 47, 45, 46, 46,
+    42, 42, 42, 47, 46, 40,
+    41, 44, 29, 47, 28, 24,
+    29, 29, 28, 30, 28, 44,
+    29, 24
+  ]
+def negativeArguments : Array ℕ := #[
+    43628621390151681, 29
+  ]
+def negativeCoefficients : Array ℕ := #[
+    12280365189710972608474289012736, 18380933703309326321702196477952
+  ]
+def negativeScales : Array ℕ := #[
+    55, 4
+  ]
+def logBoundDenominator : ℕ := 1000000000000000
+def positiveLogLowerNumerators : Array ℕ := #[
+    42458544142180190, 47504486625008235, 51093844508151256, 46504500566691728, 42508678203027587, 42829174169909119,
+    48072850292453373, 49072850633438729, 43829156545511467, 42829174169909119, 46659761713163273, 44829618357384482,
+    42458544142180190, 42458541435240221, 42458541435240221, 47504483920728658, 51093841808710613, 46504497862409713,
+    42508675510677194, 46659761713163273, 46903740854942505, 52903741194657456, 47659744082628396, 48072850292453373,
+    46903740854942505, 48073295887295368, 47504486625008235, 47504483920728658, 44829618357384482, 48073295887295368,
+    51073296228274822, 45829600732958330, 49072850633438729, 52903741194657456, 51073296228274822, 51093844508151256,
+    51093841808710613, 43829156545511467, 47659744082628396, 45829600732958330, 46504500566691728, 46504497862409713,
+    42508678203027587, 42508675510677194, 42437601815573445, 47969202052198223, 46968887438634155, 40446614954530177,
+    41325973171783531, 44287546698433975, 29610806569567184, 47850794290570040, 28412867191955748, 24687974430086738,
+    29600198470001323, 29600198470001323, 28412867191955748, 30763602134884769, 28412867191955748, 44287559403113522,
+    29600198470001323, 24687974430086738
+  ]
+def negativeLogUpperNumerators : Array ℕ := #[
+    55276124405274238, 4857980997143165
+  ]
+
+abbrev PositiveTerm := Fin 62
+abbrev NegativeTerm := Fin 2
+def positiveArgument (term : PositiveTerm) : ℕ := positiveArguments[term.val]?.getD 0
+def positiveCoefficient (term : PositiveTerm) : ℕ := positiveCoefficients[term.val]?.getD 0
+def positiveScale (term : PositiveTerm) : ℕ := positiveScales[term.val]?.getD 0
+def negativeArgument (term : NegativeTerm) : ℕ := negativeArguments[term.val]?.getD 0
+def negativeCoefficient (term : NegativeTerm) : ℕ := negativeCoefficients[term.val]?.getD 0
+def negativeScale (term : NegativeTerm) : ℕ := negativeScales[term.val]?.getD 0
+def positiveLogLowerNumerator (term : PositiveTerm) : ℕ :=
+  positiveLogLowerNumerators[term.val]?.getD 0
+def negativeLogUpperNumerator (term : NegativeTerm) : ℕ :=
+  negativeLogUpperNumerators[term.val]?.getD 0
+
+noncomputable def positiveLogLower (term : PositiveTerm) : ℝ :=
+  (positiveLogLowerNumerator term : ℝ) / logBoundDenominator
+noncomputable def negativeLogUpper (term : NegativeTerm) : ℝ :=
+  (negativeLogUpperNumerator term : ℝ) / logBoundDenominator
+def positiveLogLowerRat (term : PositiveTerm) : ℚ :=
+  positiveLogLowerNumerator term / logBoundDenominator
+def negativeLogUpperRat (term : NegativeTerm) : ℚ :=
+  negativeLogUpperNumerator term / logBoundDenominator
+
+theorem positiveScales_valid :
+    ∀ term, 2 ^ positiveScale term ≤ positiveArgument term := by decide
+
+theorem negativeScales_valid :
+    ∀ term, 2 ^ negativeScale term ≤ negativeArgument term := by decide
+
+noncomputable def positiveExact : ℝ := Form.natLogSum bits positiveArgument positiveCoefficient
+noncomputable def negativeExact : ℝ := Form.natLogSum bits negativeArgument negativeCoefficient
+noncomputable def positiveRationalLower : ℝ :=
+  ∑ term, mass bits (positiveCoefficient term) * positiveLogLower term
+noncomputable def negativeRationalUpper : ℝ :=
+  ∑ term, mass bits (negativeCoefficient term) * negativeLogUpper term
+noncomputable def positiveFloor : ℝ := 35851321 / 3125000000
+noncomputable def negativeCeiling : ℝ := 9245730281 / 1000000000000
+
+theorem positiveLogLowerRat_le_fastRat :
+    ∀ term, positiveLogLowerRat term ≤
+      MatrixMultiplication.RationalDyadicLog.numeratorLogLower
+        (positiveArgument term) (positiveScale term) 8 := by decide +kernel
+
+theorem negativeFastRat_le_logUpperRat :
+    ∀ term, MatrixMultiplication.RationalDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpperRat term := by decide +kernel
+
+theorem positiveLogLower_le_fast (term : PositiveTerm) :
+    positiveLogLower term ≤ MatrixMultiplication.FastDyadicLog.numeratorLogLower
+      (positiveArgument term) (positiveScale term) 8 := by
+  simpa [positiveLogLower, positiveLogLowerRat] using
+    MatrixMultiplication.RationalDyadicLog.cast_le_fastLower
+      (positiveLogLowerRat_le_fastRat term)
+
+theorem negativeFast_le_logUpper (term : NegativeTerm) :
+    MatrixMultiplication.FastDyadicLog.numeratorLogUpper
+        (negativeArgument term) (negativeScale term) 8 ≤
+      negativeLogUpper term := by
+  simpa [negativeLogUpper, negativeLogUpperRat] using
+    MatrixMultiplication.RationalDyadicLog.fastUpper_le_cast
+      (negativeFastRat_le_logUpperRat term)
+
+theorem positiveFloor_le_rationalLower : positiveFloor ≤ positiveRationalLower := by
+  norm_num [positiveRationalLower, positiveFloor, bits, positiveLogLower, logBoundDenominator,
+    positiveLogLowerNumerator, positiveLogLowerNumerators, positiveCoefficient,
+    positiveCoefficients, Fin.sum_univ_succ, mass]
+
+theorem negativeRationalUpper_le_ceiling : negativeRationalUpper ≤ negativeCeiling := by
+  norm_num [negativeRationalUpper, negativeCeiling, bits, negativeLogUpper, logBoundDenominator,
+    negativeLogUpperNumerator, negativeLogUpperNumerators, negativeCoefficient,
+    negativeCoefficients, Fin.sum_univ_succ, mass]
+
+theorem positiveFloor_le_exact : positiveFloor ≤ positiveExact :=
+  positiveFloor_le_rationalLower.trans
+    (weightedLowerWithScale_le_natLogSum 8 bits
+      positiveArgument positiveCoefficient positiveScale positiveLogLower
+      positiveScales_valid positiveLogLower_le_fast)
+
+theorem negativeExact_le_ceiling : negativeExact ≤ negativeCeiling :=
+  (natLogSum_le_weightedUpperWithScale 8 bits
+    negativeArgument negativeCoefficient negativeScale negativeLogUpper
+    negativeScales_valid negativeFast_le_logUpper).trans
+      negativeRationalUpper_le_ceiling
+
+/-- Sign-separated exact form used by the directed arithmetic checker. -/
+def signedForm : Form :=
+  SignedDyadicLogCertificate.Form.ofSignedFamilies constantNumerator
+    positiveArgument positiveCoefficient negativeArgument negativeCoefficient
+
+/-- Exact source-order form before this shard's bounded power-of-two normalization. -/
+def rawForm : Form := { constantNumerator := 0, terms := [
+    { argument := 12280365189710972608474289012736, coefficient := (-12280365189710972608474289012736) }, { argument := 1701120784569808845430325248, coefficient := (1701120784569808845430325248) },
+    { argument := 56197266903695309728347324416, coefficient := (56197266903695309728347324416) }, { argument := 676424894553162536975746465792, coefficient := (676424894553162536975746465792) },
+    { argument := 56197809976397315766503866368, coefficient := (56197809976397315766503866368) }, { argument := 1761274336356215153710071808, coefficient := (1761274336356215153710071808) },
+    { argument := 17595268300765939566091698176, coefficient := (17595268300765939566091698176) }, { argument := 666652779170250890878774149120, coefficient := (666652779170250890878774149120) },
+    { argument := 666652936735679070556789932032, coefficient := (666652936735679070556789932032) }, { argument := 17595053352975309326033879040, coefficient := (17595053352975309326033879040) },
+    { argument := 17595268300765939566091698176, coefficient := (17595268300765939566091698176) }, { argument := 62583183865807748088780029952, coefficient := (62583183865807748088780029952) },
+    { argument := 17600686494410100363828920320, coefficient := (17600686494410100363828920320) }, { argument := 1701120784569808845430325248, coefficient := (1701120784569808845430325248) },
+    { argument := 1701117592746592788067385344, coefficient := (1701117592746592788067385344) }, { argument := 1701117592746592788067385344, coefficient := (1701117592746592788067385344) },
+    { argument := 56197161564053606219382784000, coefficient := (56197161564053606219382784000) }, { argument := 676423628889184932632813633536, coefficient := (676423628889184932632813633536) },
+    { argument := 56197704635642660199625392128, coefficient := (56197704635642660199625392128) }, { argument := 1761271049477773561251758080, coefficient := (1761271049477773561251758080) },
+    { argument := 62583183865807748088780029952, coefficient := (62583183865807748088780029952) }, { argument := 2371661328192704107540228603904, coefficient := (2371661328192704107540228603904) },
+    { argument := 2371661886653701074195151060992, coefficient := (2371661886653701074195151060992) }, { argument := 62582419069206430818311864320, coefficient := (62582419069206430818311864320) },
+    { argument := 666652779170250890878774149120, coefficient := (666652779170250890878774149120) }, { argument := 2371661328192704107540228603904, coefficient := (2371661328192704107540228603904) },
+    { argument := 666858715221209835620343480320, coefficient := (666858715221209835620343480320) }, { argument := 56197266903695309728347324416, coefficient := (56197266903695309728347324416) },
+    { argument := 56197161564053606219382784000, coefficient := (56197161564053606219382784000) }, { argument := 17600686494410100363828920320, coefficient := (17600686494410100363828920320) },
+    { argument := 666858715221209835620343480320, coefficient := (666858715221209835620343480320) }, { argument := 666858872832584020171769774080, coefficient := (666858872832584020171769774080) },
+    { argument := 17600471480081881854115840000, coefficient := (17600471480081881854115840000) }, { argument := 666652936735679070556789932032, coefficient := (666652936735679070556789932032) },
+    { argument := 2371661886653701074195151060992, coefficient := (2371661886653701074195151060992) }, { argument := 666858872832584020171769774080, coefficient := (666858872832584020171769774080) },
+    { argument := 676424894553162536975746465792, coefficient := (676424894553162536975746465792) }, { argument := 676423628889184932632813633536, coefficient := (676423628889184932632813633536) },
+    { argument := 17595053352975309326033879040, coefficient := (17595053352975309326033879040) }, { argument := 62582419069206430818311864320, coefficient := (62582419069206430818311864320) },
+    { argument := 17600471480081881854115840000, coefficient := (17600471480081881854115840000) }, { argument := 56197809976397315766503866368, coefficient := (56197809976397315766503866368) },
+    { argument := 56197704635642660199625392128, coefficient := (56197704635642660199625392128) }, { argument := 1761274336356215153710071808, coefficient := (1761274336356215153710071808) },
+    { argument := 1761271049477773561251758080, coefficient := (1761271049477773561251758080) }, { argument := 18380933703309326321702196477952, coefficient := (-18380933703309326321702196477952) },
+    { argument := 1676605484179092844912312320, coefficient := (1676605484179092844912312320) }, { argument := 77554763517117953271941562368, coefficient := (77554763517117953271941562368) },
+    { argument := 77537852721734835180830457856, coefficient := (77537852721734835180830457856) }, { argument := 1687112750229759628693995520, coefficient := (1687112750229759628693995520) },
+    { argument := 1551769859740384849874124800, coefficient := (1551769859740384849874124800) }, { argument := 48351479714201329891989782528, coefficient := (48351479714201329891989782528) },
+    { argument := 945236999849031150424031232, coefficient := (945236999849031150424031232) }, { argument := 571549931062030760423047823360, coefficient := (571549931062030760423047823360) },
+    { argument := 824052769099155361908129792, coefficient := (824052769099155361908129792) }, { argument := 124646637342729382473498624, coefficient := (124646637342729382473498624) },
+    { argument := 938312186663323962508836864, coefficient := (938312186663323962508836864) }, { argument := 938312186663323962508836864, coefficient := (938312186663323962508836864) },
+    { argument := 824052769099155361908129792, coefficient := (824052769099155361908129792) }, { argument := 16813446414897052258091925504, coefficient := (16813446414897052258091925504) },
+    { argument := 824052769099155361908129792, coefficient := (824052769099155361908129792) }, { argument := 48351905509496072231333134336, coefficient := (48351905509496072231333134336) },
+    { argument := 938312186663323962508836864, coefficient := (938312186663323962508836864) }, { argument := 124646637342729382473498624, coefficient := (124646637342729382473498624) }] }
+
+/-- Raw term shards carry no independent rational constant. -/
+@[simp] theorem rawForm_constant : rawForm.constantNumerator = 0 := rfl
+
+/-- Exact source-order form after bounded power-of-two normalization. -/
+def form : Form := Form.normalizePowersOfTwo rawForm
+
+theorem form_eval_rawForm : Form.eval bits form = Form.eval bits rawForm := by
+  unfold form
+  exact Form.eval_normalizePowersOfTwo bits rawForm
+
+theorem signedForm_constant : signedForm.constantNumerator = form.constantNumerator := by rfl
+
+theorem signedForm_terms_perm : signedForm.terms.Perm form.terms := by decide +kernel
+
+noncomputable def lower : ℝ :=
+  (constantNumerator : ℝ) / (2 : ℝ) ^ bits + positiveFloor - negativeCeiling
+
+noncomputable def signedCertificate : LowerBound bits :=
+  LowerBound.ofSignedFamilies bits constantNumerator positiveArgument positiveCoefficient
+    negativeArgument negativeCoefficient positiveFloor negativeCeiling
+      positiveFloor_le_exact negativeExact_le_ceiling
+
+noncomputable def certificate : LowerBound bits :=
+  LowerBound.reorder signedCertificate form signedForm_constant signedForm_terms_perm
+
+@[simp] theorem certificate_form : certificate.form = form := rfl
+
+@[simp] theorem certificate_lower : certificate.lower = lower := by
+  simp [certificate, LowerBound.reorder, signedCertificate, LowerBound.ofSignedFamilies, lower,
+    constantNumerator, bits]
+
+end TermShard9
+
+end MatrixMultiplication.Generated.TotalQuotientOuterFloorRoot.Region4.Branch1

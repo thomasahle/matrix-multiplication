@@ -1,0 +1,14 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradTightQuotientClassification
+
+/-! Focused trust audit for the ten depth-one CW tight-quotient kinds. -/
+
+open AlgebraicComplexity.Examples
+
+#assert_axioms cwFinpartitionQuotient_eq_iff
+#assert_axioms cwFinpartitionQuotient_surjective
+#assert_axioms cwLinearFinpartition_part_eq_part
+#assert_axioms cwSamePartitionQuotientSupport_isTight_iff_eq_linear
+#assert_axioms cwSplitLinearForm_discrete_injective
+#assert_axioms cwLinearFinpartition_eq_kind
+#assert_axioms cwSamePartitionQuotientSupport_isTight_iff_kind

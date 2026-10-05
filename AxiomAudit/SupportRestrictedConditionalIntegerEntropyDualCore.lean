@@ -1,0 +1,48 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import MatrixMultiplication.SupportRestrictedConditionalIntegerEntropyDualCore
+import AxiomAudit.Command
+
+set_option autoImplicit false
+
+/-!
+# Axiom audit for the support-restricted conditional integer dual core
+
+## References
+
+- [alman2025more] Josh Alman et al., *More Asymmetry Yields Faster Matrix Multiplication*.
+- [dupont2026improving] Emilien Dupont et al., *Improving the Matrix Multiplication Exponent with
+  Modern Optimization and AlphaEvolve*.
+-/
+
+open MatrixMultiplication.SupportRestrictedConditionalIntegerEntropyDual
+
+#assert_axioms PredicateFiber
+#assert_axioms sum_predicateFiber_eq
+#assert_axioms restrictToPredicate
+#assert_axioms restrictToPredicate_weight
+#assert_axioms restrictToPredicate_entropy
+#assert_axioms restrictToPredicate_expectation
+#assert_axioms restrictedIntegerFiberPartition
+#assert_axioms sum_predicateFiber_weight_eq_restrictedIntegerFiberPartition
+#assert_axioms restrictedIntegerFiberPartition_pos
+#assert_axioms partition_log_integerWeight_restricted
+#assert_axioms entropy_le_restrictedIntegerPartition_sub_expectation
+#assert_axioms restrictedIntegerPartitionLogNats
+#assert_axioms supportRestrictedConditionalIntegerDualNats
+#assert_axioms supportRestrictedConditionalIntegerDualNats_eq
+#assert_axioms supportRestrictedConditionalIntegerDualBits
+#assert_axioms RowsSupportedOnPositiveParent
+#assert_axioms conditionalEntropy_le_supportRestrictedConditionalIntegerDualNats
+#assert_axioms conditionalEntropy_le_supportRestrictedConditionalIntegerDualNats_of_rowsSupported
+#assert_axioms conditionalEntropyBits_le_supportRestrictedConditionalIntegerDualBits
+#assert_axioms mass_mul_conditionalEntropyBits_le_supportRestrictedConditionalIntegerDualBits
+#assert_axioms conditionalEntropyBits_le_restrictedIntegerPartitionLog_sub_fixedMoment
+#assert_axioms sourceEntropyBits_sub_supportRestrictedDual_le_retained
+#assert_axioms mass_mul_sourceEntropyBits_sub_supportRestrictedDual_le_retained
+#assert_axioms fixedCoordinateIntegerFiberPartition
+#assert_axioms fixedCoordinateIntegerFiberPartition_eq

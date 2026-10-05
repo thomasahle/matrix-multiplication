@@ -1,0 +1,22 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Combinatorics.MarkedCompatibilityHashingIsolation
+
+open AlgebraicComplexity
+
+/-! Focused trust audit for `AlgebraicComplexity.Combinatorics.MarkedCompatibilityHashingIsolation`:
+the marked form of compatibility isolation by affine hashing -- antitonicity of the isolated
+targets in the alternative set, the union bound on alternative indices, the three containments
+of the marked compatibility-hash isolated family, and the two seed-existence theorems (generic
+and for legal triples via the standard collision proxy). -/
+
+#assert_axioms ProgressionHash.Seed.isolatedTargets_anti_alternatives
+#assert_axioms ProgressionHash.Seed.compatibilityAlternativeIndices_or_subset_union
+#assert_axioms ProgressionHash.Seed.card_compatibilityAlternativeIndices_or_le_add
+#assert_axioms ProgressionHash.Seed.markedCompatibilityHashIsolatedTargets_subset_marked
+#assert_axioms ProgressionHash.Seed.markedCompatibilityHashIsolatedTargets_subset_commonBucketFilteredTargets
+#assert_axioms ProgressionHash.Seed.markedCompatibilityHashIsolatedTargets_subset_compatibilityIsolatedTargets
+#assert_axioms ProgressionHash.Seed.exists_seed_many_markedCompatibilityHashIsolatedTargets
+#assert_axioms ProgressionHash.LegalTriple.commonBucketFilteredTargets_eq_filteredTargets
+#assert_axioms ProgressionHash.LegalTriple.compatibilityAlternativeIndices_sharesXY_eq_xyCompetitorYIndices
+#assert_axioms ProgressionHash.LegalTriple.yHash_collisionProxy_eq_of_commonBuckets_of_sharesLeg
+#assert_axioms ProgressionHash.LegalTriple.exists_seed_many_markedCompatibilityHashIsolatedLegalTargets

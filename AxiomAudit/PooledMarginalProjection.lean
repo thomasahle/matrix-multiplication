@@ -1,0 +1,28 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Probability.ComplementaryProductProjection
+import AlgebraicComplexity.Probability.KullbackLeiblerElementarySparse
+
+/-! Focused trust audit for pooled-occurrence information projection and its cell quotient. -/
+
+#assert_axioms
+  AlgebraicComplexity.ProbabilityVector.expectation_comp_add_eq_of_pushforward_weight_add_eq
+#assert_axioms
+  AlgebraicComplexity.PooledMarginalProjectionModel.conditionalEntropy_add_parentKl_le
+#assert_axioms
+  AlgebraicComplexity.SparsePooledMarginalProjectionModel.conditionalEntropy_add_parentKl_le
+#assert_axioms
+  AlgebraicComplexity.ProbabilityVector.quarter_sq_sub_weight_le_klDiv_of_absoluteContinuity_elementary
+#assert_axioms
+  AlgebraicComplexity.ComplementaryProductProjectionModel.reference_pooledFeature_weight
+#assert_axioms
+  AlgebraicComplexity.ComplementaryProductProjectionModel.isAbsolutelyContinuous_of_coarse_eq_of_pooledFeature_eq
+#assert_axioms
+  AlgebraicComplexity.ComplementaryProductProjectionModel.pooledOccurrenceParentProjection
+#assert_axioms
+  AlgebraicComplexity.ComplementaryProductProjectionModel.conditionalEntropyBits_add_parentQuadratic_le

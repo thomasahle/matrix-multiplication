@@ -1,0 +1,9 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.LaserVolumeMonotone
+
+/-! Focused trust audit for source transport and base weakening of laser-volume sequences. -/
+
+#assert_axioms AlgebraicComplexity.SubexponentialLaserVolumeSequence.of_restricts
+#assert_axioms AlgebraicComplexity.SubexponentialLaserVolumeSequence.mono_copyBase
+#assert_axioms AlgebraicComplexity.SubexponentialLaserVolumeSequence.mono_volumeBase
+#assert_axioms AlgebraicComplexity.SubexponentialLaserVolumeSequence.mono

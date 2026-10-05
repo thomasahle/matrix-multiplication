@@ -1,0 +1,255 @@
+{
+ "meta": {
+  "description": "Progression of upper bounds on the matrix multiplication exponent omega, plus this repository's formalized ladder and conditional certificate tracks. The committed frontier record itself is NOT stored here: it is extracted from Frontier.lean into site/frontier.json at build time.",
+  "status_values": {
+   "literature": "Published result; NOT formalized in this repository. Number taken from the published literature.",
+   "formalized": "FORMALIZED IN THIS REPO: machine-checked Lean theorem, axiom-audited to {propext, Classical.choice, Quot.sound}, over any field unless noted.",
+   "conditional_pending": "IN THIS REPO but CONDITIONAL: the Lean implication is proved, but its hypotheses are named unproved Prop obligations. Not a valid record entry and not claimed as one."
+  },
+  "current_literature_record": 2.371339,
+  "sharpest_formalized_in_tree": 2.375477,
+  "frontier_source_of_truth": "Frontier.lean (repository root); the site reads it via site/frontier.json",
+  "repo": "https://github.com/thomasahle/matrix-multiplication",
+  "generated": "2026-08-28"
+ },
+ "records": [
+  {
+   "year": 1969,
+   "bound": 2.8074,
+   "bound_display": "2.8074 (log2 7)",
+   "authors": "Strassen",
+   "citation": "V. Strassen, Gaussian elimination is not optimal, Numer. Math. 13 (1969)",
+   "status": "formalized",
+   "lean_declaration": "strassen_omega_le_log",
+   "lean_module": "AlgebraicComplexity/Examples/Strassen.lean",
+   "notes": "R(2,2,2) <= 7 kernel-checked over any CommRing; omega <= log 7 / log 2 unconditional."
+  },
+  {
+   "year": 1978,
+   "bound": 2.796,
+   "authors": "Pan",
+   "citation": "V. Pan, Strassen's algorithm is not optimal, FOCS 1978",
+   "status": "literature",
+   "notes": "Trilinear aggregation. Not formalized here (Pan-style aggregation is on the open backlog)."
+  },
+  {
+   "year": 1979,
+   "bound": 2.7799,
+   "authors": "Bini, Capovani, Romani, Lotti",
+   "citation": "Bini-Capovani-Romani-Lotti 1979 (border rank / approximate algorithms)",
+   "status": "literature",
+   "notes": "First border-rank record. This repo formalizes Bini's five-term approximate certificate and derives omega < 2.695 from it via Schoenhage's partial tau-theorem (bini_omega_lt, Examples/Bini.lean, any infinite field) — a related formalized bound, not the 2.7799 record itself."
+  },
+  {
+   "year": 1981,
+   "bound": 2.522,
+   "authors": "Schoenhage",
+   "citation": "A. Schoenhage, Partial and total matrix multiplication, SIAM J. Comput. 1981",
+   "status": "literature",
+   "notes": "Asymptotic sum inequality. The repo formalizes the inequality itself (asymptoticSumInequality) and Schoenhage's omega < 2.6 instance (schonhage_omega_lt_two_point_six, any field) plus the second-design omega < 2.695; the full 2.522 record is not claimed."
+  },
+  {
+   "year": 1986,
+   "bound": 2.479,
+   "authors": "Strassen",
+   "citation": "V. Strassen, The asymptotic spectrum / laser method, FOCS 1986",
+   "status": "literature",
+   "notes": "The laser method. The repo's laser machinery (hashing, zeroing, extraction) is formalized in reusable form, but this specific record value is not."
+  },
+  {
+   "year": 1990,
+   "bound": 2.375477,
+   "bound_display": "2.375477 (commonly quoted as 2.376)",
+   "authors": "Coppersmith, Winograd",
+   "citation": "D. Coppersmith, S. Winograd, Matrix multiplication via arithmetic progressions, J. Symbolic Comput. 1990",
+   "status": "formalized",
+   "lean_declaration": "coppersmithWinograd_square_omega_lt_2375477",
+   "lean_module": "AlgebraicComplexity/Examples/CoppersmithWinograd2375477.lean",
+   "notes": "The full CW tensor-square analysis, formalized end to end in this repo: unconditional over any field, exact integral reconstruction of the paper's rounded optimizer, ten-digit directed rational atanh arithmetic. This is the sharpest formalized bound in the tree. Weaker CW stages also formalized: easy variant omega < 2.41 (coppersmithWinograd_easy_omega_lt), first power omega < 2.3872 (coppersmithWinograd_firstPower_omega_lt). FRONTIER UPGRADE PENDING: at the time this data file was written the 2375477 modules were present in the working tree but not yet committed, and Frontier.lean deliberately cites the committed first-power bound 2.3872 until they land (see the 'Provenance of the inaugural record' section of Frontier.lean).",
+   "date_landed": "pending commit"
+  },
+  {
+   "year": 2010,
+   "bound": 2.3737,
+   "authors": "Stothers",
+   "citation": "A. Stothers, PhD thesis, Edinburgh 2010 (CW fourth power)",
+   "status": "literature",
+   "notes": "Not formalized here."
+  },
+  {
+   "year": 2012,
+   "bound": 2.3729,
+   "authors": "Vassilevska Williams",
+   "citation": "V. Vassilevska Williams, Multiplying matrices faster than Coppersmith-Winograd, STOC 2012",
+   "status": "literature",
+   "notes": "Not formalized here."
+  },
+  {
+   "year": 2014,
+   "bound": 2.3728639,
+   "authors": "Le Gall",
+   "citation": "F. Le Gall, Powers of tensors and fast matrix multiplication, ISSAC 2014",
+   "status": "literature",
+   "notes": "Not formalized here."
+  },
+  {
+   "year": 2021,
+   "bound": 2.3728596,
+   "authors": "Alman, Vassilevska Williams",
+   "citation": "J. Alman, V. Vassilevska Williams, A refined laser method and faster matrix multiplication, SODA 2021",
+   "status": "literature",
+   "notes": "Not formalized here."
+  },
+  {
+   "year": 2022,
+   "bound": 2.371866,
+   "authors": "Duan, Wu, Zhou",
+   "citation": "R. Duan, H. Wu, R. Zhou, Faster matrix multiplication via asymmetric hashing, FOCS 2023 (arXiv:2210.10173)",
+   "status": "literature",
+   "notes": "Start of the asymmetric-hashing line. Not formalized here; its machinery is an active formalization campaign."
+  },
+  {
+   "year": 2024,
+   "bound": 2.371552,
+   "authors": "Vassilevska Williams, Xu, Xu, Zhou",
+   "citation": "New bounds for matrix multiplication: from alpha to omega, SODA 2024",
+   "status": "literature",
+   "notes": "Not formalized here."
+  },
+  {
+   "year": 2024,
+   "bound": 2.371339,
+   "authors": "Alman, Duan, Vassilevska Williams, Xu, Xu, Zhou",
+   "citation": "More asymmetry yields faster matrix multiplication (refined asymmetric hashing)",
+   "status": "literature",
+   "notes": "The current published world record. Not formalized here."
+  },
+  {
+   "year": 2026,
+   "bound": 2.36999,
+   "authors": "this project (pending)",
+   "citation": "this repository, simplified-volume certificate eab2c7aee9904dac6a716369cfa3460fde34d2c36f2fd21a952601f8c3cb8082",
+   "status": "conditional_pending",
+   "lean_declaration": "omega_lt_236999_of_subexponentialVolumeSequence_acceptance",
+   "lean_module": "MatrixMultiplication/TotalWeightAcceptanceFloors.lean",
+   "certificate": "eab2c7aee9904dac6a716369cfa3460fde34d2c36f2fd21a952601f8c3cb8082",
+   "notes": "CONDITIONAL. The implication is a proved Lean theorem, but it takes the named proof obligations of README's obligation table as explicit hypotheses (constituent type counting, compatibility zeroing and hole repair, exact level-four reconstruction). Conservative floors E >= 8.2, M_vol >= 6.0165; the stronger generated coarse floors give omega < 2.36985. If unconditional, this would beat the published record; it is not unconditional and is not claimed as a bound."
+  },
+  {
+   "year": 2026,
+   "bound": 2.36588731,
+   "bound_display": "2.36588731 (the '2.3659' target)",
+   "authors": "this project (pending)",
+   "citation": "this repository, total-weight quotient certificate e7987d7fa66008d497e31c976c68f025d57664a145336d358328375cc5738ca3",
+   "status": "conditional_pending",
+   "lean_declaration": null,
+   "lean_module": "MatrixMultiplication/CurrentProofObligations.lean",
+   "certificate": "e7987d7fa66008d497e31c976c68f025d57664a145336d358328375cc5738ca3",
+   "notes": "CONDITIONAL, and strictly further from closure than 2.36999: additionally needs the uniform quotient-feature count and a depth-four copywise fine-family composition. Floors E >= 8.2419803, M_vol >= 6.0091024. A sorted-pair diagnostic value 2.363141676 exists but is currently NOT admissible (quotient support not tight) and must not be displayed as a target."
+  }
+ ],
+ "formalized_ladder": [
+  {
+   "decimal": "2.8074",
+   "display": "ω ≤ log₂ 7 ≈ 2.8074",
+   "exact": null,
+   "strict": false,
+   "published_year": 1969,
+   "source": "Strassen 1969",
+   "generality": "any CommRing",
+   "unconditional": true,
+   "lean_declaration": "strassen_omega_le_log",
+   "lean_module": "AlgebraicComplexity/Examples/Strassen.lean",
+   "date_landed": "2026-08-25",
+   "formalized_by": "T. D. Ahle",
+   "note_slug": null,
+   "certificate": null,
+   "notes": "Closed integer-coefficient certificate R⟨2,2,2⟩ ≤ 7; the bound is the irrational log₂ 7, shown here rounded up."
+  },
+  {
+   "decimal": "2.695",
+   "display": "ω < 2.695",
+   "exact": null,
+   "strict": true,
+   "published_year": 1979,
+   "source": "Bini–Capovani–Romani–Lotti 1979, via Schönhage's partial τ-theorem",
+   "generality": "any infinite field",
+   "unconditional": true,
+   "lean_declaration": "bini_omega_lt",
+   "lean_module": "AlgebraicComplexity/Examples/Bini.lean",
+   "date_landed": "2026-08-25",
+   "formalized_by": "T. D. Ahle",
+   "note_slug": null,
+   "certificate": null,
+   "notes": "Bini's five-term approximate 2×2 partial product certificate, formalized; the derived exponent bound, not the paper's 2.7799 record."
+  },
+  {
+   "decimal": "2.6",
+   "display": "ω < 2.6",
+   "exact": null,
+   "strict": true,
+   "published_year": 1981,
+   "source": "Schönhage 1981, asymptotic sum inequality on ⟨3,1,3⟩ ⊕ ⟨1,4,1⟩",
+   "generality": "any field",
+   "unconditional": true,
+   "lean_declaration": "schonhage_omega_lt_two_point_six",
+   "lean_module": "AlgebraicComplexity/Examples/Schonhage.lean",
+   "date_landed": "2026-08-25",
+   "formalized_by": "T. D. Ahle",
+   "note_slug": null,
+   "certificate": null,
+   "notes": "9^(ω/3) + 4^(ω/3) ≤ 10 from the ten-term degeneration; asymptotic sum inequality proved with no rank-additivity conjecture assumed."
+  },
+  {
+   "decimal": "2.41",
+   "display": "ω < 2.41",
+   "exact": null,
+   "strict": true,
+   "published_year": 1990,
+   "source": "Coppersmith–Winograd 1990 §6 (easy CW, q = 8)",
+   "generality": "any field",
+   "unconditional": true,
+   "lean_declaration": "coppersmithWinograd_easy_omega_lt",
+   "lean_module": "AlgebraicComplexity/Examples/CoppersmithWinogradEasyHashing.lean",
+   "date_landed": "2026-08-25",
+   "formalized_by": "T. D. Ahle",
+   "note_slug": null,
+   "certificate": null,
+   "notes": "One exact-rational atanh certificate, no floating point."
+  },
+  {
+   "decimal": "2.3872",
+   "display": "ω < 2.3872",
+   "exact": "1492/625",
+   "strict": true,
+   "published_year": 1990,
+   "source": "Coppersmith–Winograd 1990 §7 (first power of CW₆)",
+   "generality": "any field",
+   "unconditional": true,
+   "lean_declaration": "coppersmithWinograd_firstPower_omega_lt",
+   "lean_module": "AlgebraicComplexity/Examples/CoppersmithWinogradFirstPower.lean",
+   "date_landed": "2026-08-25",
+   "formalized_by": "T. D. Ahle",
+   "note_slug": null,
+   "certificate": null,
+   "notes": "Twenty exact rational atanh terms."
+  },
+  {
+   "decimal": "2.375477",
+   "display": "ω < 2.375477",
+   "exact": "2375477/1000000",
+   "strict": true,
+   "published_year": 1990,
+   "source": "Coppersmith–Winograd 1990, pp. 267–272 (tensor square)",
+   "generality": "any field",
+   "unconditional": true,
+   "lean_declaration": "coppersmithWinograd_square_omega_lt_2375477",
+   "lean_module": "AlgebraicComplexity/Examples/CoppersmithWinograd2375477.lean",
+   "date_landed": "pending commit",
+   "formalized_by": "T. D. Ahle",
+   "note_slug": null,
+   "certificate": null,
+   "notes": "Fully formalized in the working tree: exact integral reconstruction of the paper's rounded optimizer, ten-digit directed rational atanh arithmetic. Not yet committed, so Frontier.lean does not cite it yet — the frontier upgrade is a documented three-line record PR."
+  }
+ ]
+}

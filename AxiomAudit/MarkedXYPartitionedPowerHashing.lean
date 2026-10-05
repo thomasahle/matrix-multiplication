@@ -1,0 +1,28 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.MarkedXYPartitionedPowerHashing
+
+/-! Focused trust audit for marked asymmetric (two-leg) hashing in the partitioned-power block-word
+representation: the retained marked modeled family and its marked-side cardinality, recovery of a
+genuinely marked source word, derived X/Y injectivity, the unique-X-fiber zeroing certificate that
+keeps repeated Z blocks, the semantic restriction endpoints, and the regression against the
+unmarked XY transport. -/
+
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.markedXYIsolatedPowerAddresses
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.card_markedXYIsolatedPowerAddresses
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.card_markedXYIsolatedPowerAddresses_le_card_markedWords
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.exists_markedSourceWord_of_mem_markedXYIsolatedPowerAddresses
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.markedXYIsolatedPowerAddresses_subset_filteredPowerAddresses
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.x_injectiveOn_markedXYIsolatedPowerAddresses
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.y_injectiveOn_markedXYIsolatedPowerAddresses
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.markedXYIsolatedPowerAddresses_hasUniqueXFibers
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.exists_seed_many_markedXYIsolatedPowerAddresses
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.exists_seed_many_markedXYIsolatedPowerAddresses_of_modulus
+#assert_axioms AlgebraicComplexity.PartitionHashEncoding.markedXYIsolatedPowerAddresses_self
+#assert_axioms AlgebraicComplexity.Tensor.Restricts.hashFilteredPower_to_markedXYIsolated
+#assert_axioms AlgebraicComplexity.Tensor.Restricts.modeledTargets_to_markedXYIsolated

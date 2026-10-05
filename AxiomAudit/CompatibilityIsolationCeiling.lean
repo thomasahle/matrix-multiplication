@@ -1,0 +1,11 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Tensor.CompatibilityIsolationCeiling
+
+/-! Axiom audit for the compatibility zero-out ceiling: an isolation pass retains only ambient
+addresses whose pivot label is theirs alone, uniformly in the compatibility relation. -/
+
+#assert_axioms AlgebraicComplexity.Tensor.mem_uniqueLegFiberSupport
+#assert_axioms AlgebraicComplexity.Tensor.uniqueLegFiberSupport_subset
+#assert_axioms AlgebraicComplexity.Tensor.compatibilityIsolatedSupport_subset_uniqueLegFiberSupport
+#assert_axioms AlgebraicComplexity.Tensor.card_compatibilityIsolatedSupport_le_card_uniqueLegFiberSupport
+#assert_axioms AlgebraicComplexity.Tensor.notMem_compatibilityIsolatedSupport_of_leg_eq

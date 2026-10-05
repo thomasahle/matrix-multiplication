@@ -1,0 +1,59 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import MatrixMultiplication.Generated.LegalHybridQ20PrimaryData
+
+set_option autoImplicit false
+
+/-!
+# Trust audit for the legal-hybrid q20 top aggregate
+
+This companion audits the export provenance constants and the small exact top aggregate for the
+candidate described in `better_bound/paper.tex:148-159` (draft status). The provenance strings
+record the original export; they do not validate current source-file hashes. No semantic,
+logarithmic, or endpoint theorem is asserted.
+The surrounding recursive framework is described in [duan2023faster] and [alman2025more].
+-/
+
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.schema
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.candidateSHA256
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.legacyCandidateSHA256
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.archiveSHA256
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.staticTableSHA256
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.exporterSHA256
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.baseRendererSHA256
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.archiveLoaderSHA256
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.arrayCoreSHA256
+#assert_axioms
+  MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.existingPrimarySourceSetSHA256
+#assert_axioms
+  MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.existingSparseFactorsSHA256
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.orderedTopSupportSHA256
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.coarseningSpecification
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.topProbabilityBits
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.activeTopValues
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.activePrimaryValues
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.dataBlockLimit
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.dataBlockCount
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.decisionsPerDataBlock
+#assert_axioms
+  MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.appendBoundaryDecisionCount
+#assert_axioms
+  MatrixMultiplication.Generated.LegalHybridQ20Primary.Manifest.expectedKernelDecisionCount
+
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.topChunks
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.topChunkRanges
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.topChunkRanges_pairwise
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.topSupportAtomIndices
+#assert_axioms
+  MatrixMultiplication.Generated.LegalHybridQ20Primary.topSupportAtomIndices_strictlyIncreasing
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.topValueCount
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.topValueCount_eq
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.topSupportAtomIndices_length
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.topNumeratorTotal
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.topNumeratorTotal_eq
+#assert_axioms MatrixMultiplication.Generated.LegalHybridQ20Primary.manifest_top_count

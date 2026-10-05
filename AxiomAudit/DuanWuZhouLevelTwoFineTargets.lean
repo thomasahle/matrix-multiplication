@@ -1,0 +1,25 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoFineTargets
+import AxiomAudit.Command
+
+/-! # Axiom audit for the DWZ level-two fine compatibility targets -/
+
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineCoarseIndex
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineExactProfile
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineYPooledProfile
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineZPooledProfile
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineSplit_isFineLegal
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineSplit_y_eq_complement_x_of_z_eq_zero
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineSplit_z_eq_complement_x_of_y_eq_zero
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineSplit_z_eq_complement_y_of_x_eq_zero
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineCompatibilityTargets
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineExactProfile_dwz63CoarseIndex
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineCompatibilityTargets_xExact_dwz63CoarseIndex
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineCompatibilityTargets_yExact_dwz63CoarseIndex
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineCompatibilityTargets_zExact_dwz63CoarseIndex
+#assert_axioms AlgebraicComplexity.Examples.dwz63FineCompatibilityTargets_zExact_eq_dwz63ZExact

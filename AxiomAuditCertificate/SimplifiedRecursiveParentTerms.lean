@@ -1,0 +1,17 @@
+import AxiomAudit.Command
+import MatrixMultiplication.SimplifiedRecursiveParentTerms
+
+/-!
+# Axiom audit for simplified recursive parent terms
+
+These checks cover the guarded evaluator rows and the exact parent term used by the recursive
+level-three profile construction.  They ensure that the row support, multiplicity, index, and
+scaled ordered-child type are kernel-derived.
+-/
+
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveParentTerms.levelThreeParentWordCount_supported
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveParentTerms.levelThreeParentWordCountFor_supported
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveParentTerms.levelThreeParentTermFor_multiplicity
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveParentTerms.levelThreeParentTermFor_index
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveParentTerms.levelThreeParentTerm_multiplicity
+#assert_axioms MatrixMultiplication.SimplifiedRecursiveParentTerms.levelThreeParentTerm_index

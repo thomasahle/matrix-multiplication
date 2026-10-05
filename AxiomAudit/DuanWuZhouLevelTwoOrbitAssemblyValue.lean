@@ -1,0 +1,39 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.DuanWuZhouLevelTwoOrbitAssemblyValue
+
+set_option autoImplicit false
+
+/-! # Axiom audit for the target-coordinate value arithmetic -/
+
+#assert_axioms AlgebraicComplexity.Examples.dwz63AlphaAddress_apply
+#assert_axioms AlgebraicComplexity.Examples.dwz63AlphaAddress_cellAddress
+#assert_axioms AlgebraicComplexity.Examples.dwz63AlphaAddress_112
+#assert_axioms AlgebraicComplexity.Examples.dwz63AlphaAddress_121
+#assert_axioms AlgebraicComplexity.Examples.dwz63AlphaAddress_211
+#assert_axioms AlgebraicComplexity.Examples.dwz63_mult_symSixWord0
+#assert_axioms AlgebraicComplexity.Examples.dwz63_mult_symSixWord1
+#assert_axioms AlgebraicComplexity.Examples.dwz63_mult_symSixWord2
+#assert_axioms AlgebraicComplexity.Examples.dwz63_mult_symSixWord3
+#assert_axioms AlgebraicComplexity.Examples.dwz63_mult_symSixWord4
+#assert_axioms AlgebraicComplexity.Examples.dwz63_mult_symSixWord5
+#assert_axioms AlgebraicComplexity.Examples.dwz63HalfCell_mem_orbit
+#assert_axioms AlgebraicComplexity.Examples.dwz63HalfCell_mem_support
+#assert_axioms AlgebraicComplexity.Examples.dwz63HalfCell_injective
+#assert_axioms AlgebraicComplexity.Examples.dwz63_rawTag_halfCell
+#assert_axioms AlgebraicComplexity.Examples.dwz63_halfCell_target_const
+#assert_axioms AlgebraicComplexity.Examples.dwz63_halfCell_target_zero
+#assert_axioms AlgebraicComplexity.Examples.dwz63_halfCell_target_mem_orbit
+#assert_axioms AlgebraicComplexity.Examples.dwz63HalfSlotCountOf_const
+#assert_axioms AlgebraicComplexity.Examples.dwz63HalfSlotCountOf_alpha
+#assert_axioms AlgebraicComplexity.Examples.dwz63Alpha112_ne_dwz63Alpha121
+#assert_axioms AlgebraicComplexity.Examples.dwz63_target_halfSlotCount_ne
+#assert_axioms AlgebraicComplexity.Examples.dwz63SymCount_orbit_const
+#assert_axioms AlgebraicComplexity.Examples.dwz63SymCount_off_orbit
+#assert_axioms AlgebraicComplexity.Examples.dwz63SymCount_orbit_mass
+#assert_axioms AlgebraicComplexity.Examples.dwz63AlphaAddress_orbit_mass

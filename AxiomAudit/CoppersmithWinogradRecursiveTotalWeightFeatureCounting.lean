@@ -1,0 +1,17 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradRecursiveTotalWeightFeatureCounting
+
+/-!
+# Axiom audit for relaxed recursive total-weight feature counting
+
+This module checks tagged-word recovery, its injection, and the finite collision-proxy bound.
+-/
+
+open AlgebraicComplexity AlgebraicComplexity.Examples
+
+#assert_axioms cwTotalWeightTaggedAtomCoarseIndex_recursiveTaggedAtomWord
+#assert_axioms cwRecursiveTotalWeightTaggedAtomWord_injective
+#assert_axioms cwRecursiveTotalWeightTaggedAtomWord_mem_ZCompetitorFeatureClass
+#assert_axioms card_cwRecursiveTotalWeightZCompatibleTargets_le_featureClass
+#assert_axioms card_cwRecursiveTotalWeightZAlternativeIndices_le_featureClass
+#assert_axioms card_cwRecursiveTotalWeightHashRelation_alternatives_le

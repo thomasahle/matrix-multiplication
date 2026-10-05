@@ -1,0 +1,44 @@
+# Measured peak memory of a single Lean module, in megabytes of peak resident set size.
+#
+# DESIGN.md:966 -- "no single reduction command should be allowed to become the memory boundary for
+# an entire paper" -- is enforced by scripts/check_decide_budget.py against this file.  Where a
+# module has a row here the number is AUTHORITATIVE and the checker's static payload proxy is not
+# consulted for it; measuring a module is therefore the way to retire a proxy complaint honestly.
+#
+# APPEND-ONLY, so a janitor's remote run can add a row mechanically and never rewrite history:
+#
+#   printf 'module\t%s\t%d\t%s\t%s\t%s\t%s\n' \
+#     "$module" "$peak_mb" "$(date -u +%F)" "$host" "$tool" "$note" \
+#     >> scripts/decide_memory_budget.tsv
+#
+# Tab-separated.  Lines starting with '#' and blank lines are ignored.  Columns:
+#
+#   1 kind     'module' for one module; 'family' for a trailing-'*' glob over module names.
+#              A 'module' row always wins over a 'family' row for the same module, however old,
+#              because it is the more specific statement.
+#   2 key      module name (dotted), or module-name glob ending in '*'.
+#   3 peak_mb  integer peak RSS in MB.
+#   4 date     ISO-8601 YYYY-MM-DD.  The NEWEST row for a key wins, so a module whose reduction was
+#              made cheaper is retired by APPENDING its new lower number, never by editing a line.
+#   5 host     provenance of the measurement.
+#   6 tool     how it was measured.
+#   7 note     free-form.
+#
+# HOW TO MEASURE.  On macOS:   /usr/bin/time -l lake env lean <File>.lean   (peak is bytes)
+#                  On Linux:   /usr/bin/time -v lake env lean <File>.lean   (Maximum resident set)
+# Divide macOS bytes by 1048576.  Measure ONE module with an otherwise warm .lake, single worker
+# (`LEAN_NUM_THREADS=1`), so the number is the module's own peak and not the build's.
+#
+# UNATTRIBUTED FIGURES FROM 2026-08-28, recorded here as prose because they were never resolved to
+# a per-module key and this file must not invent one:
+#   * The Edge family measured 7.3-19.6 GB per module, median 15.2 GB.  The family row below
+#     records the measured MAXIMUM, which is the only figure that is true of the family as a whole.
+#   * "A4 closure" peaked at 3319 MB.  No module or glob in this repository was identified as that
+#     closure, so it gets no row; it is under the 6000 MB budget either way.
+#   * Modules outside these families were typically under 3000 MB.
+#
+# kind	key	peak_mb	date	host	tool	note
+module	MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceZeroFour1	133662	2026-08-28	mac-16gb	/usr/bin/time -l	single decide +kernel; 8x the machine's RAM
+module	MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge1	12231	2026-08-28	mac-16gb	/usr/bin/time -l	cached_normalizes decide +kernel
+family	MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceEdge*	19600	2026-08-28	mac-16gb	/usr/bin/time -l	family measured 7.3-19.6 GB, median 15.2 GB; row records the maximum
+family	MatrixMultiplication.Generated.SimplifiedVolumeRecurrenceTopScatterChunk*	4172	2026-08-28	mac-16gb	/usr/bin/time -l	family measured 2467-4172 MB; row records the maximum

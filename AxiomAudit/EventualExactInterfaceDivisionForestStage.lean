@@ -1,0 +1,29 @@
+/-
+Copyright (c) 2026 Thomas Dybdahl Ahle. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Dybdahl Ahle
+-/
+
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.EventualExactInterfaceDivisionForestStage
+
+/-!
+# Axiom audit for eventual exact-interface division forests
+-/
+
+#assert_axioms AlgebraicComplexity.WholeConstituentLaserVolumeStage.Packed.powerAdd
+#assert_axioms AlgebraicComplexity.ExactInterfaceTermDivisionTree.Staged.toPowerPacked
+#assert_axioms AlgebraicComplexity.ExactInterfaceTermDivisionTree.Staged.positiveNatProduct
+#assert_axioms AlgebraicComplexity.ExactInterfaceTermDivisionTree.Staged.positiveProduct
+#assert_axioms AlgebraicComplexity.ExactInterfaceTermDivisionTree.Staged.positiveProduct_copies
+#assert_axioms AlgebraicComplexity.ExactInterfaceTermDivisionTree.Staged.positiveProduct_xSize
+#assert_axioms AlgebraicComplexity.ExactInterfaceTermDivisionTree.Staged.positiveProduct_ySize
+#assert_axioms AlgebraicComplexity.ExactInterfaceTermDivisionTree.Staged.positiveProduct_zSize
+#assert_axioms AlgebraicComplexity.ExactInterfaceTermDivisionTree.Staged.positiveProductToBlockedPowerPacked
+#assert_axioms AlgebraicComplexity.EventualExactInterfaceDivisionForestStageData.packed
+#assert_axioms AlgebraicComplexity.EventualExactInterfaceDivisionForestStageData.count_eq_packed
+#assert_axioms AlgebraicComplexity.EventualExactInterfaceDivisionForestStageData.xSize_eq_packed
+#assert_axioms AlgebraicComplexity.EventualExactInterfaceDivisionForestStageData.ySize_eq_packed
+#assert_axioms AlgebraicComplexity.EventualExactInterfaceDivisionForestStageData.zSize_eq_packed
+#assert_axioms AlgebraicComplexity.EventualExactInterfaceDivisionForestStageData.toEventualWholeConstituentLaserVolumeLossData
+#assert_axioms AlgebraicComplexity.EventualExactInterfaceDivisionStageData.toForest

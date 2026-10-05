@@ -1,0 +1,29 @@
+# `#assert_axioms` targets that name a declaration this checker cannot find (DARK).
+#
+# A DARK assertion names a declaration rooted in one of this package's own libraries, under a
+# namespace that does exist, which nevertheless resolves to nothing.  Two shapes are failed on:
+#
+#   absent  the final component appears in NO committed `.lean` file at all.  This is
+#           AxiomAuditCertificate/TotalQuotientExponentLevelFourValidity.lean before commit
+#           95347e18: six `Region{i}.coverageChecked` assertions whose target had been
+#           regenerated out of existence in favour of `normalizationChecked`/`childRowsValid`.
+#   moved   the final component IS declared, but only under a different fully qualified name.
+#           This is AxiomAudit.lean:1398, left behind when
+#           `asymptoticRank_power_le_pow_of_lt` was promoted out of `AlgebraicComplexity` into
+#           `AlgebraicComplexity.Tensor` (the correct assertion was added at line 1458 and the
+#           stale one never removed).
+#
+# `realizeGlobalConstWithInfos` throws on the unknown constant before any axiom is collected,
+# so such an assertion is not merely wrong: it takes every other assertion in its module down
+# with it, silently, inside a globbed build target.
+#
+# Every line here is `path/to/file.lean:Fully.Qualified.Name` and is pre-existing debt.
+#
+# The list is APPEND-BLOCKED and may only shrink.  A new dark assertion that is not listed
+# here fails the gate; an entry here that has stopped being dark, or whose file is gone, is
+# reported as a stale-entry notice rather than a failure, so repairing an assertion can never
+# fail on the commit that repairs it.
+#
+# To retire an entry: point the assertion at a declaration that exists (or delete it), then
+# delete its line.  Regenerate the whole file with:
+#     python3 scripts/check_assert_axioms_targets.py --update

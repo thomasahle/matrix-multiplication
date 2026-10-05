@@ -1,0 +1,12 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.RationalTypedLeafHashing
+import AlgebraicComplexity.MatrixMultiplication.RationalTypedLeaf
+
+/-! Focused trust audit for marked hashing extraction of rational typed leaves. -/
+
+#assert_axioms
+  AlgebraicComplexity.RationalTypedLeaf.localizedAmbient_restricts_markedLeafDirectSum
+#assert_axioms
+  AlgebraicComplexity.RationalTypedLeaf.exists_seed_many_localizedMarkedLeafDirectSum
+#assert_axioms
+  AlgebraicComplexity.sum_weighted_minimumLegValue_le_minimumLegValue_weightedLegTotal

@@ -1,0 +1,13 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.Examples.CoppersmithWinogradCompatibilityTargetOutputGrowth
+
+/-! Focused trust audit for
+`AlgebraicComplexity.Examples.CoppersmithWinogradCompatibilityTargetOutputGrowth`:
+subexponentiality of the fixed-type repair denominator, the finite cutoff past which an
+exponentially growing pre-type family dominates it, and the eventual output-count inequality
+that keeps the original exponential base. -/
+
+#assert_axioms AlgebraicComplexity.Examples.natCast_cwFixedTypeTargetOutputDenominatorNat
+#assert_axioms AlgebraicComplexity.Examples.cwFixedTypeTargetOutputDenominatorNat_subexponential
+#assert_axioms AlgebraicComplexity.Examples.exists_cutoff_cwFixedTypeTargetOutputDenominatorNat_le_familyCard
+#assert_axioms AlgebraicComplexity.Examples.exists_cutoff_pow_le_ambientLoss_mul_cwFixedTypeTargetOutputQuotientLoss_mul_count

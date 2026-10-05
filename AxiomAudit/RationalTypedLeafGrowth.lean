@@ -1,0 +1,22 @@
+import AxiomAudit.Command
+import AlgebraicComplexity.MatrixMultiplication.RationalTypedLeafGrowth
+
+/-! Focused trust audit for rational typed-leaf marginal type growth. -/
+
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.profileMass_marginalProfile
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.profileMass_marginalProfile_pos
+#assert_axioms
+  AlgebraicComplexity.RationalTypedLeaf.marginal_eq_normalizedProfileProbability
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.profileEntropyNats_marginalProfile
+#assert_axioms
+  AlgebraicComplexity.RationalTypedLeaf.distribution_eq_normalizedProfileProbability
+#assert_axioms
+  AlgebraicComplexity.RationalTypedLeaf.IsMaximumEntropyBits.isMaximumEntropyInMappedFiber
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.marginalEntropyBase_pos
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.marginalEntropyBase_eq_exp
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.marginalTypeLoss_pos
+#assert_axioms AlgebraicComplexity.RationalTypedLeaf.marginalTypeLoss_subexponential
+#assert_axioms
+  AlgebraicComplexity.RationalTypedLeaf.marginalEntropyBase_pow_le_loss_mul_card_typeClass
+#assert_axioms
+  AlgebraicComplexity.RationalTypedLeaf.card_words_le_maximumEntropyLoss_mul_jointTypeClass
