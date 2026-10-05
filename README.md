@@ -1,5 +1,31 @@
 # Matrix-multiplication tensor formalization
 
+[![CI](https://github.com/thomasahle/matrix-multiplication/actions/workflows/ci.yml/badge.svg)](https://github.com/thomasahle/matrix-multiplication/actions/workflows/ci.yml)
+
+A Lean 4 / Mathlib formalization of the theory of fast matrix multiplication, from Strassen to the
+Coppersmith–Winograd method and its modern refinements, together with the lower bounds and
+barrier results that limit those methods. Highlights, each a kernel-checked theorem:
+
+- **`ω < 2.374631`** — Duan–Wu–Zhou's second-power bound on `CW_6^{⊗2}` (arXiv:2210.10173,
+  §6.3), proved unconditionally over any field following the paper's argument
+  (`omega_lt_2374631`). The paper's headline `2.371866`, from higher powers, is not formalized.
+- **The classical upper-bound line** — Strassen's `R⟨2,2,2⟩ ≤ 7`, Laderman, Bini's `ω < 2.695`,
+  Schönhage's asymptotic sum inequality and `ω < 2.6`, and the Coppersmith–Winograd bounds
+  `ω < 2.3872` and `ω < 2.375477`.
+- **Lower bounds** — `rank ⟨2,2,2⟩ = 7`, the substitution method, Koszul flattenings, slice rank
+  and subrank.
+- **Barriers** — Alman–Vassilevska Williams' Theorem 7.1 (a universal `c > 2` with
+  `ω_g^coord(CW_q^σ) ≥ c` for every generalized CW tensor) and Alman's universal-method barrier
+  `ω_u(CW_q^σ) ≥ 13/6`.
+
+No `sorry`, no project axioms: CI runs an enforcing `#assert_axioms` audit over the results, which
+allows only `propext`, `Classical.choice` and `Quot.sound` (the few results without an assertion say
+so in the tables). No new bound on `ω` is claimed. The repository is substantially AI-built —
+written largely by AI agents working under human direction, with the author reviewing and taking
+responsibility; see [`CONTRIBUTING.md`](CONTRIBUTING.md) §5 for what that means and how the trust
+checks account for it. The `## Results` section below indexes everything proved, with sources and
+hypotheses.
+
 This repository is developing a reusable Lean 4 library for algebraic-complexity tensors, with two
 downstream applications: the Duan–Wu–Zhou second-power (level-two) development (the published
 `ω < 2.374631` endpoint) and the conditional Total-Weight framework, whose manuscript is in

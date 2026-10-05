@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite it as below."
+title: "Matrix-multiplication tensor formalization: a Lean 4 library for bounds on the matrix multiplication exponent"
+authors:
+  - family-names: Ahle
+    given-names: Thomas Dybdahl
+repository-code: "https://github.com/thomasahle/matrix-multiplication"
+license: Apache-2.0
+type: software
+keywords:
+  - Lean 4
+  - Mathlib
+  - formal verification
+  - matrix multiplication
+  - algebraic complexity
