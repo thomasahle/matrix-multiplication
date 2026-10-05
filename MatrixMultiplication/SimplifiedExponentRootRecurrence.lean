@@ -1,6 +1,7 @@
 import AlgebraicComplexity.Analysis.RegionalExponent
 import AlgebraicComplexity.MatrixMultiplication.LevelFourReconstruction
 import MatrixMultiplication.CompatibilityRowsForm
+import MatrixMultiplication.DyadicEntropyFormZeros
 import MatrixMultiplication.HomogeneousIntegerEntropyDualForm
 import MatrixMultiplication.SignedDyadicLogCanonical
 import Mathlib.Tactic.FinCases

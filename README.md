@@ -350,8 +350,8 @@ walk over what the kernel accepted.
 
 A third job builds the generated certificate targets (`MatrixMultiplicationCertificate`,
 `AxiomAuditCertificate`, including `AxiomAuditCertificate.Census`). It always reports a status so
-it can be a required check, and rebuilds only when it should: on every push to `main`, on a pull
-request touching `MatrixMultiplication/Generated/**` or either certificate root, and on any pull
+it can be a required check, and rebuilds only when it should: on a manual run (Actions → CI → Run workflow), which takes
+several hours on a hosted runner and is how `main` is checked, on a pull request touching `MatrixMultiplication/Generated/**` or either certificate root, and on any pull
 request labelled `record-claim` — a pull request that claims a bound must rebuild the certificate
 behind it whatever files it happens to touch. Branch protection, required checks, and the
 automated-review settings that cannot be configured from inside the repository are listed in

@@ -30,6 +30,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -125,16 +126,17 @@ jobs:
         run: bash scripts/check_frontier_improvement.sh "$(git merge-base "$BASE_SHA" HEAD)"
 
   certificate:
-    # The five-minute generated certificate targets.  This job always reports a status so it can be
-    # a required check, and decides internally whether the heavy build is warranted:
-    #   * every push to main (drift is caught even when the path filter would have missed it);
+    # The generated certificate targets: several hours on a hosted runner, so they are not rebuilt on
+    # every push.  This job always reports a status so it can be a required check, and decides
+    # internally whether the heavy build is warranted:
+    #   * a manual run (Actions -> CI -> Run workflow), which is how `main` is checked;
     #   * a pull request touching MatrixMultiplication/Generated/**, AxiomAuditCertificate*, or
     #     MatrixMultiplicationCertificate*;
     #   * any pull request carrying the `record-claim` label — a PR that claims a new bound must
     #     rebuild the certificate it claims, whatever files it happens to touch.
     needs: build
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 350
     env:
       LEAN_NUM_THREADS: 2
     steps:
@@ -154,8 +156,8 @@ jobs:
           add_reason() {
             if [ -n "$reasons" ]; then reasons="$reasons; $1"; else reasons="$1"; fi
           }
-          if [ "$EVENT_NAME" = 'push' ]; then
-            add_reason 'push to main'
+          if [ "$EVENT_NAME" = 'workflow_dispatch' ]; then
+            add_reason 'manual run'
           fi
           if [ "$HAS_RECORD_CLAIM_LABEL" = 'true' ]; then
             add_reason 'record-claim label'

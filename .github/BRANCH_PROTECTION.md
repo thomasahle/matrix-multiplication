@@ -38,14 +38,15 @@ keys; it is the one item on this list with real friction, so it is optional.
 One sequencing note: add `certificate` to the required list *after* watching it go green once on
 `main`. Its `AxiomAuditCertificate.Census` step has been validated at fixture scale and over the
 ordinary library, but not over the generated certificate cone, which no local worktree here has
-built; the first push to `main` is the cheapest place to find out.
+built; a manual run of the CI workflow on `main` (Actions → CI → Run workflow) is the place to
+find out.
 
 ### Why `certificate` is safe to require
 
 The `certificate` job always reports a status. When a pull request touches nothing under
 `MatrixMultiplication/Generated/`, `AxiomAuditCertificate*`, or `MatrixMultiplicationCertificate*`
 and carries no `record-claim` label, it succeeds in seconds without building anything. That is why
-it can be a required check without making every documentation typo wait for a five-minute
+it can be a required check without making every documentation typo wait for a multi-hour
 certificate rebuild — and why a path-filtered *workflow* was deliberately not used: a required
 check that never reports blocks the pull request forever.
 
