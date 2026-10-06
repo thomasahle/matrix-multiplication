@@ -12,8 +12,9 @@ name: CI
 # `Frontier.frontierConstant` must have Lean confirm the improvement is at least
 # `Frontier.recordDelta` (`scripts/check_frontier_improvement.sh`).
 # The opt-in certificate targets (`MatrixMultiplicationCertificate`, `AxiomAuditCertificate`,
-# including `AxiomAuditCertificate.Census`) run in the `certificate` job below, which is gated so
-# that ordinary pull requests do not reconstruct multi-thousand-entry numeral tables.
+# including `AxiomAuditCertificate.Census`) are checked by two jobs below: `certificate-smoke` builds
+# a slice of them on every push and pull request, and `certificate` builds the full tier (about 14
+# hours on a hosted runner) only on a manual run or a `record-claim` pull request.
 # Several static gates carry a may-only-shrink grandfather list under `scripts/`:
 # `source_coverage_grandfathered.txt`, `heavy_audit_grandfathered.txt`,
 # `copyright_headers_grandfathered.txt`, `assert_axioms_dark_grandfathered.txt`,
@@ -126,13 +127,33 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: bash scripts/check_frontier_improvement.sh "$(git merge-base "$BASE_SHA" HEAD)"
 
+  certificate-smoke:
+    # A slice of the generated certificate tier, on every push and pull request: every
+    # AxiomAuditCertificate audit except the six that reach the level-four analytic tables, plus two
+    # modules of those tables (scripts/certificate_smoke_targets.sh explains the choice).  About 330
+    # certificate-only modules on top of the build job's cache; the full tier is the manual job below.
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      LEAN_NUM_THREADS: 2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Choose the smoke targets
+        id: targets
+        run: echo "targets=$(bash scripts/certificate_smoke_targets.sh)" >> "$GITHUB_OUTPUT"
+      - uses: leanprover/lean-action@v1
+        with:
+          build-args: ${{ steps.targets.outputs.targets }}
+          use-mathlib-cache: "true"
+          use-github-cache: "true"
+
   certificate:
-    # The generated certificate targets: several hours on a hosted runner, so they are not rebuilt on
-    # every push.  This job always reports a status so it can be a required check, and decides
-    # internally whether the heavy build is warranted:
-    #   * a manual run (Actions -> CI -> Run workflow), which is how `main` is checked;
-    #   * a pull request touching MatrixMultiplication/Generated/**, AxiomAuditCertificate*, or
-    #     MatrixMultiplicationCertificate*;
+    # The full generated certificate tier, about 11,000 modules.  On a 2-core hosted runner that is
+    # about 14 hours, more than one job may run, so a hosted run is a partial check that ends at the
+    # time limit; a complete build needs a larger runner or a local machine.  This job always reports
+    # a status, and rebuilds only when asked:
+    #   * a manual run (Actions -> CI -> Run workflow);
     #   * any pull request carrying the `record-claim` label — a PR that claims a new bound must
     #     rebuild the certificate it claims, whatever files it happens to touch.
     needs: build
@@ -142,15 +163,11 @@ jobs:
       LEAN_NUM_THREADS: 2
     steps:
       - uses: actions/checkout@v4
-        with:
-          # `git merge-base` below needs the base branch's history.
-          fetch-depth: 0
       - name: Decide whether the generated certificate must be rebuilt
         id: gate
         env:
           EVENT_NAME: ${{ github.event_name }}
           HAS_RECORD_CLAIM_LABEL: ${{ contains(github.event.pull_request.labels.*.name, 'record-claim') }}
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           set -eu
           reasons=''
@@ -163,20 +180,12 @@ jobs:
           if [ "$HAS_RECORD_CLAIM_LABEL" = 'true' ]; then
             add_reason 'record-claim label'
           fi
-          if [ "$EVENT_NAME" = 'pull_request' ]; then
-            merge_base="$(git merge-base "$BASE_SHA" HEAD)"
-            changed="$(git diff --name-only "$merge_base" HEAD)"
-            if printf '%s\n' "$changed" |
-                grep -qE '^(MatrixMultiplication/Generated/|AxiomAuditCertificate|MatrixMultiplicationCertificate)'; then
-              add_reason 'generated certificate paths changed'
-            fi
-          fi
           if [ -n "$reasons" ]; then
             echo 'run=true' >> "$GITHUB_OUTPUT"
             echo "Rebuilding the certificate targets: $reasons."
           else
             echo 'run=false' >> "$GITHUB_OUTPUT"
-            echo 'No generated-certificate path changed and no record-claim label: nothing to rebuild.'
+            echo 'Not a manual run and no record-claim label: the certificate-smoke job covers this change.'
             echo 'Add the `record-claim` label to force this job on a pull request that claims a bound.'
           fi
       - uses: leanprover/lean-action@v1

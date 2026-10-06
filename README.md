@@ -284,8 +284,8 @@ Lake targets:
 - `AlgebraicComplexity.DuanWuZhouLevelTwo`: the Duan--Wu--Zhou level-two tier, its own target so
   that core edits do not rebuild it;
 - `MatrixMultiplication`: the paper-specific development and its proof-obligation boundary;
-- `MatrixMultiplicationCertificate`: the opt-in generated exact certificate checker, with a cold
-  build of roughly five minutes;
+- `MatrixMultiplicationCertificate`: the opt-in generated exact certificate checker; its cold build
+  compiles about 10,500 generated modules and takes many hours;
 - `AxiomAudit`: the enforcing axiom audit over the ordinary libraries;
 - `AxiomAuditCertificate`: the same audit for the declarations inside the generated certificate;
 - `Frontier`: the leaderboard's statement anchor, a leaf no library depends on.
@@ -348,20 +348,22 @@ trust policy and `scripts/trust_scan.sh` is a fast pre-filter, because Lean's co
 whitespace-insensitive: a mid-line `axiom` compiles while evading a line-anchored regex, but not a
 walk over what the kernel accepted.
 
-A third job builds the generated certificate targets (`MatrixMultiplicationCertificate`,
-`AxiomAuditCertificate`, including `AxiomAuditCertificate.Census`). It always reports a status so
-it can be a required check, and rebuilds only when it should: on a manual run (Actions → CI → Run workflow), which takes
-several hours on a hosted runner and is how `main` is checked, on a pull request touching `MatrixMultiplication/Generated/**` or either certificate root, and on any pull
-request labelled `record-claim` — a pull request that claims a bound must rebuild the certificate
-behind it whatever files it happens to touch. Branch protection, required checks, and the
-automated-review settings that cannot be configured from inside the repository are listed in
-`.github/BRANCH_PROTECTION.md`; `.github/CODEOWNERS` marks the files that decide what CI checks at
-all. The `Frontier` statement anchor is built on every run and sits inside the census closure, and
-after the build a pull request that moves `Frontier.frontierConstant` must have Lean itself confirm
-`new + Frontier.recordDelta ≤ old` in exact rationals, with `recordDelta = 1/100000`
-(`scripts/check_frontier_improvement.sh`). The focused audits that still reach generated chunks
-transitively are listed in `scripts/heavy_audit_grandfathered.txt`, which is the authority for that
-set; their move into the opt-in audit target is still pending.
+Two more jobs cover the generated certificate targets (`MatrixMultiplicationCertificate`,
+`AxiomAuditCertificate`, including `AxiomAuditCertificate.Census`). `certificate-smoke` builds a
+slice of them on every push and pull request: every `AxiomAuditCertificate` audit except the six
+that reach the level-four analytic tables, plus two modules of those tables
+(`scripts/certificate_smoke_targets.sh`). `certificate` builds the full tier, about 11,000 modules
+and roughly 14 hours on a 2-core hosted runner, so a hosted run ends at the six-hour job limit; it
+runs only on a manual run (Actions → CI → Run workflow) and on a pull request labelled
+`record-claim`, and a complete build needs a larger runner or a local machine. Branch protection,
+required checks, and the automated-review settings that cannot be configured from inside the
+repository are listed in `.github/BRANCH_PROTECTION.md`; `.github/CODEOWNERS` marks the files that
+decide what CI checks at all. The `Frontier` statement anchor is built on every run and sits inside
+the census closure, and after the build a pull request that moves `Frontier.frontierConstant` must
+have Lean itself confirm `new + Frontier.recordDelta ≤ old` in exact rationals, with `recordDelta =
+1/100000` (`scripts/check_frontier_improvement.sh`). The focused audits that still reach generated
+chunks transitively are listed in `scripts/heavy_audit_grandfathered.txt`, which is the authority
+for that set; their move into the opt-in audit target is still pending.
 
 On a shared or memory-constrained machine, run public builds through
 `scripts/lake_build_serial.sh ...`. It adds a worktree lock, refuses to overlap a raw Lake writer,

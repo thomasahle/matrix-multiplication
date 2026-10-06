@@ -24,7 +24,7 @@ This file is the checklist. It is deliberately short and in click order.
       `.github/workflows/ci.yml`):
       - `trust-scan`
       - `build`
-      - `certificate`
+      - `certificate-smoke`
 - [ ] **Require conversation resolution before merging.**
 - [ ] **Block force pushes.** The published record is the commit history; a rewritten history is a
       rewritten claim.
@@ -35,20 +35,12 @@ This file is the checklist. It is deliberately short and in click order.
 Signed commits (**Require signed commits**) are worth turning on if every contributor can manage
 keys; it is the one item on this list with real friction, so it is optional.
 
-One sequencing note: add `certificate` to the required list *after* watching it go green once on
-`main`. Its `AxiomAuditCertificate.Census` step has been validated at fixture scale and over the
-ordinary library, but not over the generated certificate cone, which no local worktree here has
-built; a manual run of the CI workflow on `main` (Actions → CI → Run workflow) is the place to
-find out.
-
-### Why `certificate` is safe to require
-
-The `certificate` job always reports a status. When a pull request touches nothing under
-`MatrixMultiplication/Generated/`, `AxiomAuditCertificate*`, or `MatrixMultiplicationCertificate*`
-and carries no `record-claim` label, it succeeds in seconds without building anything. That is why
-it can be a required check without making every documentation typo wait for a multi-hour
-certificate rebuild — and why a path-filtered *workflow* was deliberately not used: a required
-check that never reports blocks the pull request forever.
+Do **not** require the full `certificate` job. The certificate tier is about 11,000 generated
+modules, roughly 14 hours on a 2-core hosted runner, so a hosted run of it ends at the six-hour job
+limit. It runs only on a manual run (Actions → CI → Run workflow) or a `record-claim` pull request,
+and a complete build needs a larger runner or a local machine. `certificate-smoke` is its required
+stand-in: it builds a slice of the tier on every push and pull request
+(`scripts/certificate_smoke_targets.sh` explains the choice).
 
 ## 2. Create the `record-claim` label
 
@@ -58,9 +50,10 @@ check that never reports blocks the pull request forever.
 
 Any pull request that claims a new bound — a new `omega_lt_*` theorem, a changed numerical
 endpoint, an updated frontier statement — gets this label. The label forces the full
-`MatrixMultiplicationCertificate AxiomAuditCertificate` build even when the diff touches no
-generated file, because a claim is exactly the situation in which "the filter probably would have
-caught it" is not good enough.
+`MatrixMultiplicationCertificate AxiomAuditCertificate` build, because a claim is exactly the
+situation in which a sampled check is not good enough. On a hosted runner that build ends at the
+six-hour job limit, so a claim that rests on the generated tables also needs a complete build on a
+larger runner or a local machine, reported in the pull request.
 
 Reviewer rule of thumb: **no `record-claim` label, no bound claim in the PR description.** If the
 description claims a bound, add the label and re-run.

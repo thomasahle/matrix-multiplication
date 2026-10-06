@@ -561,8 +561,10 @@ current `AlgebraicComplexity` tree needs neither `grind` nor `native_decide`.
 
 Large generated paper certificates belong in a separate opt-in umbrella.  The current
 `MatrixMultiplicationCertificate` checker uses synchronous elaboration and row-local `norm_num`
-proofs to keep peak memory bounded and to avoid the native-decide soundness axiom.  Its roughly
-five-minute cold build is not part of the default or ordinary paper-library targets.
+proofs to keep peak memory bounded and to avoid the native-decide soundness axiom.  The target
+imports the level-four analytic tables, about 10,500 generated modules, so its cold build takes many
+hours; it is not part of the default or ordinary paper-library targets, and CI builds only a slice of
+the certificate tier on each push (`scripts/certificate_smoke_targets.sh`).
 
 Avoid asking definitional equality to normalize a `Finset.filter` whose predicate computes over a
 symbolic word length. In dependent APIs, expose membership lemmas such as `mem_select_support` and
@@ -765,7 +767,7 @@ Mathlib axioms are different from an unproved project postulate; reports should 
 The standing audit is enforcing: `AxiomAudit.lean` uses the `#assert_axioms` command (defined in
 `AxiomAudit/Command.lean`), which fails elaboration whenever an audited declaration depends on an
 axiom outside `propext`, `Classical.choice`, and `Quot.sound`. Run it with `lake build
-AxiomAudit`; the declarations living inside the five-minute generated certificate are covered by
+AxiomAudit`; the declarations living inside the generated certificate are covered by
 the separate opt-in `lake build AxiomAuditCertificate`.
 
 **Every declaration of a new module gets an `#assert_axioms` line in its `AxiomAudit/` companion —
