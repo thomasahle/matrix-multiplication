@@ -128,9 +128,10 @@ jobs:
         run: bash scripts/check_frontier_improvement.sh "$(git merge-base "$BASE_SHA" HEAD)"
 
   vendored-nine-quarters:
-    # The vendored all-fields proof of `omega <= 9/4` (ThirdParty/OAI, 126 modules, plus the five
-    # Brouwer modules of ThirdParty/FixedPointTheorems) and its bridge to this repository's
-    # `omega`.  `OpenAIBridge` contains `OpenAIBridge/Audit.lean`, whose `#assert_axioms` lines are
+    # The vendored all-fields proof of `omega <= 9/4` and OpenAI's two rectangular bounds over the
+    # complex numbers (ThirdParty/OAI, 256 modules, plus the five Brouwer modules of
+    # ThirdParty/FixedPointTheorems) and their bridges to this repository's `omega`,
+    # `rectangularOmega` and `rectangularAlpha`.  `OpenAIBridge` contains `OpenAIBridge/Audit.lean`, whose `#assert_axioms` lines are
     # the enforcing audit of the bridged theorem, and its root `OpenAIBridge.lean` runs
     # `#axiom_census_roots` over every declaration of the vendored modules and the bridge.  The
     # `OAI` and `FixedPointTheorems` globs are named so that every vendored file is a build root.

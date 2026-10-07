@@ -6,6 +6,8 @@ Authors: Thomas Dybdahl Ahle
 
 import AlgebraicComplexity.MatrixMultiplication.BilinearAlgorithm
 import AlgebraicComplexity.MatrixMultiplication.Exponent
+import AlgebraicComplexity.MatrixMultiplication.RectangularBini
+import AlgebraicComplexity.MatrixMultiplication.RectangularExponent
 import Mathlib.Algebra.Algebra.ZMod
 import Mathlib.Algebra.Field.ZMod
 import Mathlib.Algebra.Order.Archimedean.Basic
@@ -440,5 +442,165 @@ theorem omega_complex : omega ℂ = omega ℚ :=
   omega_eq_omega_rat ℂ
 
 end Characteristic
+
+/-! ### Rectangular exponents -/
+
+section Rectangular
+
+open Growth
+
+/-- The rectangular rank sequence over the target of a ring homomorphism is bounded by the one
+over its source. -/
+theorem rectangularMatrixRankSequence_le_of_ringHom {K : Type u} {L : Type u'} [CommSemiring K]
+    [CommSemiring L] (φ : K →+* L) (κ : ℝ) (n : ℕ) :
+    rectangularMatrixRankSequence L κ n ≤ rectangularMatrixRankSequence K κ n :=
+  rank_le_iff.mpr (rankLE_matrixMultiplication_of_ringHom φ (rank_spec _))
+
+/-- **Base change for the rectangular exponent**: `ω_L(κ) ≤ ω_K(κ)` whenever there is a ring
+homomorphism `K →+* L`. -/
+theorem rectangularOmega_le_of_ringHom {K : Type u} {L : Type u'} [CommSemiring K]
+    [CommSemiring L] (φ : K →+* L) (κ : ℝ) : rectangularOmega L κ ≤ rectangularOmega K κ :=
+  polynomialExponent_mono (fun n _ ↦ rectangularMatrixRankSequence_le_of_ringHom φ κ n)
+    (rectangularMatrixExponentLE_exists K κ)
+
+/-- Every real exponent strictly above `ω(κ)` is an admissible polynomial rank bound. -/
+theorem rectangularMatrixExponentLE_of_rectangularOmega_lt {K : Type u} [CommSemiring K]
+    {κ τ : ℝ} (hτ : rectangularOmega K κ < τ) : RectangularMatrixExponentLE K κ τ := by
+  have hnonempty : Set.Nonempty {σ : ℝ | PolynomialBound (rectangularMatrixRankSequence K κ) σ} :=
+    rectangularMatrixExponentLE_exists K κ
+  obtain ⟨σ, hσ, hστ⟩ := exists_lt_of_csInf_lt hnonempty hτ
+  exact hσ.mono_exponent hστ.le
+
+/-- Iterating a rank certificate of a rectangular matrix-multiplication tensor. -/
+theorem rankLE_matrixMultiplication_pow_general {K : Type u} [CommSemiring K] {m n p r : ℕ}
+    (h : RankLE r (matrixMultiplication (K := K) m n p)) (k : ℕ) :
+    RankLE (r ^ k) (matrixMultiplication (K := K) (m ^ k) (n ^ k) (p ^ k)) := by
+  induction k with
+  | zero =>
+    change RankLE 1 (matrixMultiplication (K := K) 1 1 1)
+    simpa using matrixMultiplication_rankLE (K := K) 1 1 1
+  | succ k ih =>
+    rw [pow_succ]
+    exact ih.matrixMultiplication_mul h
+
+variable {F : Type u} {E : Type u'} [Field F] [Field E] [Algebra F E]
+
+/-- Powers of a decomposition of a rectangular matrix-multiplication tensor over a field
+extension descend with a bounded overhead: the rectangular form of
+`rankLE_matrixMultiplication_pow_of_fieldExtension`. -/
+theorem rankLE_matrixMultiplication_pow_general_of_fieldExtension {m n p r : ℕ}
+    (h : RankLE r (matrixMultiplication (K := E) m n p)) :
+    ∃ d : ℕ, 0 < d ∧ ∀ k : ℕ,
+      RankLE (r ^ k * d * d) (matrixMultiplication (K := F) (m ^ k) (n ^ k) (p ^ k)) := by
+  obtain ⟨A, hA⟩ := (matrixMultiplication_rankLE_iff_exists_algorithm (K := E) m n p r).mp h
+  rw [matrixProductMap_eq_bilinearMapOfCoeff, ← map_mmCoeff (algebraMap F E)] at hA
+  obtain ⟨L, _, _, hfin, A', hA'⟩ :=
+    BilinearAlgorithm.exists_finiteDimensional_computes (mmCoeff (K := F) m n p) A hA
+  have hL : RankLE r (matrixMultiplication (K := L) m n p) := by
+    refine (matrixMultiplication_rankLE_iff_exists_algorithm (K := L) m n p r).mpr ⟨A', ?_⟩
+    rw [matrixProductMap_eq_bilinearMapOfCoeff, ← map_mmCoeff (algebraMap F L)]
+    exact hA'
+  refine ⟨finrank F L, Module.finrank_pos, fun k ↦ ?_⟩
+  obtain ⟨B, hB⟩ := (matrixMultiplication_rankLE_iff_exists_algorithm (K := L)
+    (m ^ k) (n ^ k) (p ^ k) (r ^ k)).mp (rankLE_matrixMultiplication_pow_general hL k)
+  rw [matrixProductMap_eq_bilinearMapOfCoeff, ← map_mmCoeff (algebraMap F L)] at hB
+  obtain ⟨B', hB'⟩ := BilinearAlgorithm.exists_computes_of_finiteDimensional
+    (mmCoeff (K := F) (m ^ k) (n ^ k) (p ^ k)) B hB
+  refine (matrixMultiplication_rankLE_iff_exists_algorithm (K := F)
+    (m ^ k) (n ^ k) (p ^ k) _).mpr ⟨B', ?_⟩
+  rw [matrixProductMap_eq_bilinearMapOfCoeff]
+  exact hB'
+
+/-- A rank certificate for `⟨A, C, A⟩` with `A^κ ≤ C` over a field extension of `F` bounds the
+rectangular exponent of `F`. -/
+theorem rectangularOmega_le_log_of_rankLE_of_fieldExtension {A C r : ℕ} {κ : ℝ}
+    (hA : 1 < A) (hr : 1 ≤ r) (hκ : 0 ≤ κ) (hmid : (A : ℝ) ^ κ ≤ (C : ℝ))
+    (h : RankLE r (matrixMultiplication (K := E) A C A)) :
+    rectangularOmega F κ ≤ Real.log r / Real.log A := by
+  obtain ⟨d, hd, hpow⟩ := rankLE_matrixMultiplication_pow_general_of_fieldExtension (F := F) h
+  have hr1 : (1 : ℝ) ≤ r := by exact_mod_cast hr
+  have hbound : ExponentialBound (fun k ↦ r ^ k * d * d) (r : ℝ) := by
+    refine ⟨by linarith, (d : ℝ) * d, by positivity, fun k ↦ ?_⟩
+    push_cast
+    exact le_of_eq (by ring)
+  exact rectangularOmega_le F (rectangularMatrixExponentLE_of_power_rank_exponentialBound
+    (K := F) hA hκ hmid hr1 hbound fun k ↦ (hpow k).matrixMultiplication_cycle)
+
+/-- **Descent for the rectangular exponent**: `ω_F(κ) ≤ ω_E(κ)` for every field extension
+`E / F` and every `κ ≥ 0`. -/
+theorem rectangularOmega_le_of_fieldExtension (F : Type u) (E : Type u') [Field F] [Field E]
+    [Algebra F E] {κ : ℝ} (hκ : 0 ≤ κ) : rectangularOmega F κ ≤ rectangularOmega E κ := by
+  refine le_of_forall_pos_le_add fun ε hε ↦ ?_
+  obtain ⟨-, C, hC, hb⟩ := rectangularMatrixExponentLE_of_rectangularOmega_lt
+    (lt_add_of_pos_right (rectangularOmega E κ) (half_pos hε))
+  obtain ⟨n, hn2, hnC⟩ : ∃ n : ℕ, 2 ≤ n ∧ C ≤ (n : ℝ) ^ (ε / 2) := by
+    have htend := (tendsto_rpow_atTop (half_pos hε)).comp tendsto_natCast_atTop_atTop
+    obtain ⟨N, hN⟩ := Filter.eventually_atTop.mp (htend.eventually_ge_atTop C)
+    exact ⟨max N 2, le_max_right _ _, hN _ (le_max_left _ _)⟩
+  have hn1 : 1 < n := by omega
+  have hnR : (1 : ℝ) < n := by exact_mod_cast hn1
+  have hn0 : (0 : ℝ) < n := zero_lt_one.trans hnR
+  have hlogn : 0 < Real.log (n : ℝ) := Real.log_pos hnR
+  have hr1 : 1 ≤ rectangularMatrixRankSequence E κ n :=
+    (Nat.one_le_pow 2 n (by omega)).trans (sq_le_rectangularMatrixRankSequence E κ n)
+  have hr0 : (0 : ℝ) < rectangularMatrixRankSequence E κ n := by exact_mod_cast hr1
+  have h1 : rectangularOmega F κ ≤
+      Real.log (rectangularMatrixRankSequence E κ n) / Real.log n :=
+    rectangularOmega_le_log_of_rankLE_of_fieldExtension hn1 hr1 hκ (Nat.le_ceil _)
+      (rank_spec (matrixMultiplication (K := E) n (rectangularMiddleDimension κ n) n))
+  have h2 : (rectangularMatrixRankSequence E κ n : ℝ) ≤ (n : ℝ) ^ (rectangularOmega E κ + ε) := by
+    calc (rectangularMatrixRankSequence E κ n : ℝ)
+        ≤ C * (n : ℝ) ^ (rectangularOmega E κ + ε / 2) := hb n (by omega)
+      _ ≤ (n : ℝ) ^ (ε / 2) * (n : ℝ) ^ (rectangularOmega E κ + ε / 2) :=
+        mul_le_mul_of_nonneg_right hnC (Real.rpow_nonneg hn0.le _)
+      _ = (n : ℝ) ^ (rectangularOmega E κ + ε) := by
+        rw [← Real.rpow_add hn0]
+        congr 1
+        ring
+  refine h1.trans ((div_le_iff₀ hlogn).mpr ?_)
+  have h3 := Real.log_le_log hr0 h2
+  rwa [Real.log_rpow hn0] at h3
+
+/-- **The rectangular exponent is invariant under field extensions**, for every `κ ≥ 0`. -/
+theorem rectangularOmega_eq_of_fieldExtension (F : Type u) (E : Type u') [Field F] [Field E]
+    [Algebra F E] {κ : ℝ} (hκ : 0 ≤ κ) : rectangularOmega E κ = rectangularOmega F κ :=
+  le_antisymm (rectangularOmega_le_of_ringHom (algebraMap F E) κ)
+    (rectangularOmega_le_of_fieldExtension F E hκ)
+
+/-- **The dual exponent is invariant under field extensions.** -/
+theorem rectangularAlpha_eq_of_fieldExtension (F : Type u) (E : Type u') [Field F] [Field E]
+    [Algebra F E] : rectangularAlpha E = rectangularAlpha F := by
+  unfold rectangularAlpha
+  refine congrArg sSup (Set.ext fun κ ↦ ?_)
+  simp only [Set.mem_setOf_eq]
+  constructor
+  · rintro ⟨hκ, h⟩
+    exact ⟨hκ, (rectangularOmega_eq_of_fieldExtension F E hκ).symm.trans h⟩
+  · rintro ⟨hκ, h⟩
+    exact ⟨hκ, (rectangularOmega_eq_of_fieldExtension F E hκ).trans h⟩
+
+/-- In characteristic zero the rectangular exponents are those of `ℚ`. -/
+theorem rectangularOmega_eq_rectangularOmega_rat (K : Type u) [Field K] [CharZero K] {κ : ℝ}
+    (hκ : 0 ≤ κ) : rectangularOmega K κ = rectangularOmega ℚ κ :=
+  rectangularOmega_eq_of_fieldExtension ℚ K hκ
+
+/-- In characteristic zero the dual exponent is that of `ℚ`. -/
+theorem rectangularAlpha_eq_rectangularAlpha_rat (K : Type u) [Field K] [CharZero K] :
+    rectangularAlpha K = rectangularAlpha ℚ :=
+  rectangularAlpha_eq_of_fieldExtension ℚ K
+
+/-- In characteristic `p` the rectangular exponents are those of `ZMod p`. -/
+theorem rectangularOmega_eq_rectangularOmega_zmod (p : ℕ) [Fact p.Prime] (K : Type u) [Field K]
+    [CharP K p] {κ : ℝ} (hκ : 0 ≤ κ) : rectangularOmega K κ = rectangularOmega (ZMod p) κ := by
+  letI : Algebra (ZMod p) K := ZMod.algebra K p
+  exact rectangularOmega_eq_of_fieldExtension (ZMod p) K hκ
+
+/-- In characteristic `p` the dual exponent is that of `ZMod p`. -/
+theorem rectangularAlpha_eq_rectangularAlpha_zmod (p : ℕ) [Fact p.Prime] (K : Type u) [Field K]
+    [CharP K p] : rectangularAlpha K = rectangularAlpha (ZMod p) := by
+  letI : Algebra (ZMod p) K := ZMod.algebra K p
+  exact rectangularAlpha_eq_of_fieldExtension (ZMod p) K
+
+end Rectangular
 
 end AlgebraicComplexity

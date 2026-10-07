@@ -15,7 +15,8 @@ set_option autoImplicit false
 Focused trust audit for `MatrixMultiplication/FieldExtension.lean`: base change of
 matrix-multiplication rank and of `omega` along a ring homomorphism, specialization of a bilinear
 algorithm over a field extension to a finite one, descent along a finite extension, and the
-theorem that `omega` depends only on the characteristic.
+theorem that `omega` — and likewise the rectangular exponents `rectangularOmega κ` and the dual
+exponent `rectangularAlpha` — depends only on the characteristic.
 -/
 
 namespace AlgebraicComplexity
@@ -37,5 +38,15 @@ namespace AlgebraicComplexity
 #assert_axioms omega_eq_omega_zmod
 #assert_axioms omega_eq_of_charP
 #assert_axioms omega_complex
+#assert_axioms rectangularOmega_le_of_ringHom
+#assert_axioms rankLE_matrixMultiplication_pow_general_of_fieldExtension
+#assert_axioms rectangularOmega_le_log_of_rankLE_of_fieldExtension
+#assert_axioms rectangularOmega_le_of_fieldExtension
+#assert_axioms rectangularOmega_eq_of_fieldExtension
+#assert_axioms rectangularAlpha_eq_of_fieldExtension
+#assert_axioms rectangularOmega_eq_rectangularOmega_rat
+#assert_axioms rectangularAlpha_eq_rectangularAlpha_rat
+#assert_axioms rectangularOmega_eq_rectangularOmega_zmod
+#assert_axioms rectangularAlpha_eq_rectangularAlpha_zmod
 
 end AlgebraicComplexity

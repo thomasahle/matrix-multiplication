@@ -13,8 +13,14 @@ barrier results that limit those methods. Highlights, each a kernel-checked theo
   2026 bound, in the all-fields form of `selanavot/matrix-multiplication-all-fields`, is vendored
   under `ThirdParty/OAI/`, re-checked with this repository's toolchain, and bridged to this
   repository's own exponent: `OpenAIBridge.omega_le_nine_quarters : omega K ≤ 9 / 4` for every
-  field `K`. It is a separate opt-in build target and nothing else in the tree depends on it;
-  see "Vendored: `ω ≤ 9/4`" below.
+  field `K`. From the same OpenAI release, two rectangular bounds are vendored and bridged too,
+  and extended here from `ℂ` to every field of characteristic zero: **the dual exponent
+  `α > 0.465`** (`OpenAIBridge.rectangularAlpha_gt_of_charZero`) and **`ω(1, 0.709, 1) < 2.092`**
+  (`OpenAIBridge.rectangularOmega_lt_of_charZero`). All of it is a separate opt-in build target and
+  nothing else in the tree depends on it; see "Vendored: `ω ≤ 9/4`" below.
+- **`ω` depends only on the characteristic** — `omega K = omega ℚ` in characteristic zero and
+  `omega K = omega (ZMod p)` in characteristic `p` (`omega_eq_of_charP`), and the same for the
+  rectangular exponents and the dual exponent; proved here, for arbitrary field extensions.
 - **The classical upper-bound line** — Strassen's `R⟨2,2,2⟩ ≤ 7`, Laderman, Bini's `ω < 2.695`,
   Schönhage's asymptotic sum inequality and `ω < 2.6`, and the Coppersmith–Winograd bounds
   `ω < 2.3872` and `ω < 2.375477`.
@@ -67,7 +73,7 @@ except where a row marks one *(repository root)*, which is the top-level paper l
 named-obligation and conditional-endpoint tables' `MatrixMultiplication/` paths are all of that
 second kind. Each of these results is
 also covered by the enforcing axiom audit, which the `AxiomAudit` target runs over its whole
-`AxiomAudit.*` glob: **1483 `#assert_axioms` checks** in `AxiomAudit.lean` itself and 5247 more
+`AxiomAudit.*` glob: **1483 `#assert_axioms` checks** in `AxiomAudit.lean` itself and 5257 more
 across the 778 focused modules under `AxiomAudit/`, with a further 12 in
 `AxiomAuditCertificate.lean` and 5445 across `AxiomAuditCertificate/`; a passing
 audit means the only axioms used are `propext`, `Classical.choice`, and `Quot.sound`. A
@@ -112,7 +118,7 @@ separately in "Conditional endpoints (not results)" at the end of this section.
 | Conciseness: `max` leg dimension bounds tensor rank | notes Lemma 2.6 | `RankLE.max_finrank_le` | `Tensor/Concise.lean` | any field; basis-free, via dual contractions |
 | Recursive block compilation of a rank certificate into straight-line programs with exact operation counts | notes Proposition 2.7, forward direction | `omega_le_and_exists_straightline_of_rankLE`, `exists_straightline_matrixProduct_of_omega_lt` | `MatrixMultiplication/RankComplexityRecursion.lean` | any `CommSemiring` for the certificate form, which needs `q > 1` and `q² < r`; the exponent-level form is over a field and produces an existential constant; forward direction; the converse is the next row |
 | **Strassen's converse: a straight-line program with `M` multiplication gates computing a bilinear map gives a bilinear algorithm of length at most `2M`**; hence `R(⟨m,n,p⟩) ≤ 2 · mulOps` for every program computing the matrix product, programs with `O(n^τ)` multiplications force `ω ≤ τ`, and **`ω ≤ τ` iff the `n × n` product has straight-line programs of size `O(n^(τ+ε))` for every `ε > 0`** | notes Proposition 2.7, converse direction and the full equivalence (Strassen 1973) | `exists_bilinearAlgorithm_of_straightline`, `rankLE_matrixMultiplication_of_straightline`, `omega_le_of_straightline`, `omega_le_iff_exists_straightline`, `Straightline.exists_bilSpan`, `Trunc.bil_mul`, `Straightline.eval_mapCoeff` | `MatrixMultiplication/RankComplexityConverse.lean` | any **infinite** field (the program is only assumed correct on points of the field, so polynomial identity needs infinitely many of them); `τ ≥ 0` for the exponent forms. The proof truncates every register to degree `≤ 1` in each input block inside the iterated trivial square-zero extension `Trunc K ι κ`, where each multiplication gate adds two rank-one matrices to the span of the bilinear parts and no other gate adds any. Scalar multiplications by constants are free, as in the source. Asserted in `AxiomAudit/RankComplexityConverse.lean` |
-| **`ω` depends only on the characteristic.** Base change: rank of `⟨m,n,p⟩` does not increase along a ring homomorphism, so `omega L ≤ omega K` whenever `K →+* L`; in particular `omega K ≤ omega ℤ` for every commutative ring. Descent: **`omega F ≤ omega E` for every field extension `E / F`, hence `omega E = omega F`**. Therefore `omega K = omega ℚ` for every field of characteristic zero (`omega ℂ = omega ℚ`), `omega K = omega (ZMod p)` in characteristic `p`, two fields of the same characteristic have the same exponent, `omega (AlgebraicClosure F) = omega F`, and a bound over algebraically closed fields is a bound over all fields | Schönhage 1981 (usually cited as Theorem 2.8; numbering not checked here); Bürgisser–Clausen–Shokrollahi 1997, §15.3, p. 383. The finite-descent step is the one of `selanavot/matrix-multiplication-all-fields` (`Arithmetic/FieldDescent.lean`), restated for this repository's definitions | `omega_eq_of_charP`, `omega_eq_omega_rat`, `omega_eq_omega_zmod`, `omega_complex`, `omega_le_of_fieldExtension`, `omega_eq_of_fieldExtension`, `omega_algebraicClosure`, `omega_le_of_forall_isAlgClosed`, `omega_le_of_ringHom`, `omega_le_omega_int`, `omega_le_omega_nat`, `rankLE_matrixMultiplication_of_ringHom`, `BilinearAlgorithm.exists_finiteDimensional_computes`, `BilinearAlgorithm.exists_computes_of_finiteDimensional`, `rankLE_matrixMultiplication_pow_of_fieldExtension` | `MatrixMultiplication/FieldExtension.lean` | base change: any two commutative semirings; descent: any field extension, no algebraicity, separability or characteristic hypothesis. Three steps: the coefficients of a decomposition over `E` generate a finitely generated `F`-algebra, and reducing modulo a maximal ideal moves the decomposition to a field that is finite over `F` (Zariski's lemma) — this is what handles transcendental extensions; a decomposition over a degree-`d` extension descends at the cost of a factor `d²` independent of the tensor (coordinates in an `F`-basis and one `F`-linear functional with `φ 1 = 1`); tensor powers remove the constant. Does not import the vendored development. Asserted in `AxiomAudit/FieldExtension.lean` |
+| **`ω` depends only on the characteristic.** Base change: rank of `⟨m,n,p⟩` does not increase along a ring homomorphism, so `omega L ≤ omega K` whenever `K →+* L`; in particular `omega K ≤ omega ℤ` for every commutative ring. Descent: **`omega F ≤ omega E` for every field extension `E / F`, hence `omega E = omega F`**. Therefore `omega K = omega ℚ` for every field of characteristic zero (`omega ℂ = omega ℚ`), `omega K = omega (ZMod p)` in characteristic `p`, two fields of the same characteristic have the same exponent, `omega (AlgebraicClosure F) = omega F`, and a bound over algebraically closed fields is a bound over all fields. **The same for rectangular matrix multiplication**: `rectangularOmega E κ = rectangularOmega F κ` for every field extension and `κ ≥ 0`, and `rectangularAlpha E = rectangularAlpha F` | Schönhage 1981 (usually cited as Theorem 2.8; numbering not checked here); Bürgisser–Clausen–Shokrollahi 1997, §15.3, p. 383. The finite-descent step is the one of `selanavot/matrix-multiplication-all-fields` (`Arithmetic/FieldDescent.lean`), restated for this repository's definitions | `omega_eq_of_charP`, `omega_eq_omega_rat`, `omega_eq_omega_zmod`, `omega_complex`, `omega_le_of_fieldExtension`, `omega_eq_of_fieldExtension`, `omega_algebraicClosure`, `omega_le_of_forall_isAlgClosed`, `omega_le_of_ringHom`, `omega_le_omega_int`, `omega_le_omega_nat`, `rankLE_matrixMultiplication_of_ringHom`, `BilinearAlgorithm.exists_finiteDimensional_computes`, `BilinearAlgorithm.exists_computes_of_finiteDimensional`, `rankLE_matrixMultiplication_pow_of_fieldExtension`, `rectangularOmega_eq_of_fieldExtension`, `rectangularAlpha_eq_of_fieldExtension`, `rectangularOmega_eq_rectangularOmega_rat`, `rectangularAlpha_eq_rectangularAlpha_rat`, `rectangularOmega_le_of_ringHom` | `MatrixMultiplication/FieldExtension.lean` | base change: any two commutative semirings; descent: any field extension, no algebraicity, separability or characteristic hypothesis. Three steps: the coefficients of a decomposition over `E` generate a finitely generated `F`-algebra, and reducing modulo a maximal ideal moves the decomposition to a field that is finite over `F` (Zariski's lemma) — this is what handles transcendental extensions; a decomposition over a degree-`d` extension descends at the cost of a factor `d²` independent of the tensor (coordinates in an `F`-basis and one `F`-linear functional with `φ 1 = 1`); tensor powers remove the constant. Does not import the vendored development. Asserted in `AxiomAudit/FieldExtension.lean` |
 | Rectangular exponent `ω(κ)`: monotone, convex, `ω(1) = ω`, `ω(0) = 2`, interpolation `ω(κ) ≤ κω + 2(1−κ)` | Coppersmith / Lotti–Romani lineage | `rectangularOmega_one`, `rectangularOmega_zero`, `rectangularOmega_convexOn`, `rectangularOmega_le_interpolation` | `MatrixMultiplication/RectangularExponent.lean`, `RectangularInterpolation.lean` | any `CommSemiring` for monotonicity, `ω(1) = ω`, convexity and interpolation (the last for `0 ≤ κ ≤ 1`); `ω(0) = 2` needs a field |
 | The dual exponent `α`, with `α = 1 ↔ ω = 2` | Coppersmith 1997 | `rectangularAlpha`, `rectangularAlpha_eq_one_iff_omega_eq_two` | `MatrixMultiplication/RectangularExponent.lean`, `RectangularInterpolation.lean` | any field |
 | The three-parameter exponent `ω(a,b,c)`: symmetry, homogeneity, the information bound `max(a+b,b+c,c+a) ≤ ω(a,b,c)`, the subadditive product law `ω(a₁+a₂,b₁+b₂,c₁+c₂) ≤ ω(a₁,b₁,c₁) + ω(a₂,b₂,c₂)` with no rounding loss, Theorem 8.1, and the exact value `ω(α,1,r) = r+1` for `r ≥ 1` | Huang–Pan 1998, §2 p. 262 and Theorem 8.1 p. 281 | `generalRectangularOmega`, `generalRectangularOmega_smul`, `max_le_generalRectangularOmega`, `generalRectangularOmega_add_le`, `rectangularOmegaThree_le_huangPan_low/_high`, `rectangularOmegaThree_rectangularAlpha` | `MatrixMultiplication/RectangularExponentThree.lean` | fields — both Theorem 8.1 branches go through `rectangularOmega_rectangularAlpha`, and the second also needs `α < 1`, `α ≤ t ≤ 1`, `r ≥ 1`; the bound `≤ r+1` is shown to fail for `r < t` (`lt_rectangularOmegaThree_of_lt`), so their standing lower bound on `r` cannot simply be dropped |
@@ -280,7 +286,7 @@ which are under `AlgebraicComplexity/`.
 | `ω < 2.369837225` | `omega_lt_2369837225_of_subexponentialVolumeSequence` | `MatrixMultiplication/SimplifiedSharpEndpoint.lean` | the sequence datum plus `Reconstruction`: the generated `retainedExponentLowerWitness` and `volume ≥ 6.016717904289` | superseded — the sharp form of the refuted `eab2c7ae…` track |
 | `ω < 2.369837225` | `omega_lt_2369837225_of_compressionSeam` | `MatrixMultiplication/SimplifiedRetainedCompressionSeam.lean` | the sequence datum, `RetainedCompressionSeam`, and `volume ≥ SimplifiedSharpEndpoint.volumeFloor` | superseded; audited only in `AxiomAuditCertificate/` |
 
-## Vendored: `ω ≤ 9/4` over every field
+## Vendored: `ω ≤ 9/4` over every field, `α > 0.465`, `ω(1, 0.709, 1) < 2.092`
 
 OpenAI's preprint *An Upper Bound of 9/4 for the Matrix Multiplication Exponent* (dated October 2,
 2026) comes with a Lean proof over `ℂ` (<https://github.com/openai/math>, `lean/OAI`). A source fork,
@@ -290,30 +296,43 @@ unchanged in substance, check it with its own toolchain and its own enforcing ax
 prove that the bound holds for *this repository's* exponent `omega`, so that it can be used with
 everything else here.
 
+The same OpenAI development proves two bounds on rectangular matrix multiplication over `ℂ`: the
+dual exponent satisfies `α > 0.465`, and `n × n^0.709` by `n^0.709 × n` multiplication has
+exponent below `2.092`. The modules they need are vendored from `openai/math` itself (the fork
+does not carry them) and bridged the same way; they are stated upstream for arithmetic programs,
+so the bridge compares that model with tensor rank. For scale: the best dual-exponent bound
+*proved in this repository* is Coppersmith's `α > 0.294`.
+
 | Result | Lean declaration | Module *(repository root)* | Status |
 | --- | --- | --- | --- |
 | **`omega K ≤ 9/4` for every field `K`**, where `omega` is this repository's rank-growth exponent | `OpenAIBridge.omega_le_nine_quarters` | `OpenAIBridge/NineQuarters.lean` | unconditional; the proof is the vendored one, the statement is ours |
 | An exact decomposition of the vendored coordinate tensor `⟨n,n,n⟩` is a `RankLE` certificate of `matrixMultiplication n n n`; hence `omega K` is at most the vendored exact-rank exponent | `OpenAIBridge.rankLE_matrixMultiplication_of_rankAtMost`, `OpenAIBridge.omega_le_exactRankExponent` | `OpenAIBridge/NineQuarters.lean` | any field; this is the whole bridge — the two developments use the same index convention, so no reindexing is involved |
 | `omega K < c` for every `c > 9/4`; `ω(κ) ≤ 2 + κ/4` for `0 ≤ κ ≤ 1`; `R̃(⟨n,n,n⟩) ≤ n^(9/4)`; straight-line programs of size `O(n^τ)` for the `n × n` product in this repository's own program model, for every `τ > 9/4` | `OpenAIBridge.omega_lt`, `OpenAIBridge.rectangularOmega_le`, `OpenAIBridge.asymptoticRank_matrixMultiplication_le`, `OpenAIBridge.exists_straightline_matrixProduct` | `OpenAIBridge/Consequences.lean` | any field; no new mathematics, only the bound pushed through `RectangularInterpolation`, `AsymptoticRank` and `RankComplexityRecursion` |
-| The upstream statements, re-checked here: `Arithmetic.omega F ≤ 9/4` in the vendored arithmetic-program model for every field, the `ℂ` case, and the exact-rank forms | `OAI.MatrixMultiplication.omega_le_nine_quarters`, `OAI.MatrixMultiplication.complex_omega_le_nine_quarters`, `OAI.MatrixMultiplication.AuxiliarySeparation.exactRankExponent_le_nine_quarters`, `…exactRankExponent_le_algebraicClosure` | `ThirdParty/OAI/LinearAlgebra/MatrixMultiplication/AllFields.lean` and its imports | vendored, 126 modules; depends on Brouwer's fixed-point theorem, vendored from `harfe/fixed-point-theorems-lean4` (5 modules) |
+| **The dual exponent: `93/200 < rectangularAlpha K` for every field `K` of characteristic zero**, and `rectangularOmega K κ = 2` for every `κ ≤ 0.4651` — multiplying `n × n^0.4651` by `n^0.4651 × n` matrices costs `n^(2+o(1))` | `OpenAIBridge.rectangularAlpha_gt_of_charZero`, `OpenAIBridge.rectangularOmega_eq_two_of_charZero`, `OpenAIBridge.rectangularAlpha_complex_gt`, `OpenAIBridge.rectangularOmega_complex_eq_two` | `OpenAIBridge/Rectangular.lean` | unconditional. Upstream proves it over `ℂ`, for arithmetic programs (`DualExponentBound.alpha_gt`, `fixedAspect_omega_eq_two`); the statement about `rectangularAlpha`, and the passage from `ℂ` to every field of characteristic zero (`rectangularAlpha_eq_of_fieldExtension`), are this repository's. Nothing is claimed in positive characteristic |
+| **`rectangularOmega K (709/1000) < 523/250` for every field `K` of characteristic zero**: `ω(1, 0.709, 1) < 2.092` | `OpenAIBridge.rectangularOmega_lt_of_charZero`, `OpenAIBridge.rectangularOmega_complex_lt` | `OpenAIBridge/Rectangular.lean` | unconditional; upstream `CW75ReorderedRectangular.rectangularOmega_lt_target` over `ℂ`, extended as in the previous row |
+| The vendored arithmetic-program exponents dominate the rank-based ones: a correct `MatrixAlgorithm F a b c` of cost `c₀` gives `RankLE (2·c₀) ⟨a,b,c⟩`, hence `omega F ≤ Arithmetic.omega F` and `rectangularOmega F k ≤ Arithmetic.rectangularOmega F k` | `OpenAIBridge.rankLE_matrixMultiplication_of_matrixAlgorithm`, `OpenAIBridge.omega_le_arithmeticOmega`, `OpenAIBridge.rectangularOmega_le_arithmeticRectangularOmega`, `OpenAIBridge.toStraightline_eval`, `OpenAIBridge.mulOps_toStraightline` | `OpenAIBridge/ArithmeticPrograms.lean` | any **infinite** field. A statement about the two models, independent of the vendored proofs: the vendored `Program` is translated gate by gate into this repository's `Straightline` (same values, same multiplication count, subtraction as a free scalar multiplication), and `rankLE_matrixMultiplication_of_straightline` — the converse of Proposition 2.7 proved here — does the rest |
+| The upstream statements, re-checked here: `Arithmetic.omega F ≤ 9/4` in the vendored arithmetic-program model for every field, the `ℂ` case, the exact-rank forms, and the two rectangular theorems over `ℂ` (`CW75ReorderedRectangular.rectangularOmega_lt_target`, `DualExponentBound.alpha_gt`) | `OAI.MatrixMultiplication.omega_le_nine_quarters`, `OAI.MatrixMultiplication.complex_omega_le_nine_quarters`, `OAI.MatrixMultiplication.AuxiliarySeparation.exactRankExponent_le_nine_quarters`, `…exactRankExponent_le_algebraicClosure` | `ThirdParty/OAI/LinearAlgebra/MatrixMultiplication/AllFields.lean`, `ComplexBounds/CW75ReorderedRectangular.lean`, `Duality/ExponentBound.lean` and their imports | vendored, 256 modules (126 from the all-fields fork, 130 from `openai/math`); the `9/4` proof depends on Brouwer's fixed-point theorem, vendored from `harfe/fixed-point-theorems-lean4` (5 modules) |
 
 How much to trust it, precisely:
 
-- **Checked:** all 131 vendored modules compile with this repository's Lean `v4.33.0-rc1` and
+- **Checked:** all 261 vendored modules compile with this repository's Lean `v4.33.0-rc1` and
   pinned Mathlib. `OpenAIBridge/Audit.lean` asserts with `#assert_axioms` that the bridged
   headline, the consequences, and the upstream theorems depend only on `propext`,
   `Classical.choice` and `Quot.sound`, and the target's root `OpenAIBridge.lean` runs the
   environment-wide census (`#axiom_census_roots OAI FixedPointTheorems OpenAIBridge`) over all
-  roughly 3,700 declarations of the vendored developments and the bridge: none is an axiom, and none —
+  roughly 8,200 declarations of the vendored developments and the bridge: none is an axiom, and none —
   reached by the headline or not — uses anything outside those three.
 - **Changed:** the upstream code targets Lean `v4.34.1` and a Mathlib ten weeks newer, so names
-  had to be translated back in 25 of the 126 `OAI` files (about fifty lines, all in `import` lines
+  had to be translated back in 59 of the 256 `OAI` files (about 180 lines, all in `import` lines
   or inside proofs) and in two of the five Brouwer files. No definition and no theorem statement
   was touched; every edit is listed in `ThirdParty/OAI/CHANGES.md`, and `ThirdParty/README.md`
   records sources, commits and licences (Apache-2.0 and MIT).
-- **Not done:** the vendored proof has not been read or reviewed here as mathematics. The reason to
-  believe it is the kernel, and the reason to believe it says what it should is the short bridge
-  above, which ends in a statement about `AlgebraicComplexity.omega`.
+- **Not done:** the vendored proofs have not been read or reviewed here as mathematics. The reason
+  to believe them is the kernel, and the reason to believe they say what they should is the
+  bridge above, which ends in statements about `AlgebraicComplexity.omega`, `rectangularOmega`
+  and `rectangularAlpha`. The claims are new and large (the dual-exponent bound in the literature
+  is near `0.32`), so the usual caution about a result that has only been machine-checked, and
+  only recently, applies to them in full.
 - **Ported:** the one general-purpose piece of the all-fields development that this repository
   had no counterpart of — the descent of rank along a finite field extension — is restated
   natively in `AlgebraicComplexity/MatrixMultiplication/FieldExtension.lean`, for this
@@ -323,7 +342,9 @@ How much to trust it, precisely:
   over `ℂ` alone is already a bound over every field of characteristic zero.
   `OpenAIBridge.omega_le_nine_quarters_via_fieldExtension` re-proves the all-fields bound along
   that route: it takes only the algebraically closed case from the vendored development and
-  descends with this repository's `omega_le_of_forall_isAlgClosed`.
+  descends with this repository's `omega_le_of_forall_isAlgClosed`. The rectangular form of the
+  same theorem (`rectangularOmega_eq_of_fieldExtension`, `rectangularAlpha_eq_of_fieldExtension`)
+  is what carries the two rectangular bounds from `ℂ` to every field of characteristic zero.
 - **Kept apart:** the three targets `FixedPointTheorems`, `OAI` and `OpenAIBridge` are opt-in. No
   module of `AlgebraicComplexity`, `MatrixMultiplication`, `AxiomAudit` or `Frontier` imports them,
   the vendored files are outside the module-documentation and copyright-header gates (they are
@@ -331,7 +352,7 @@ How much to trust it, precisely:
   proof was written in this repository.
 
 ```bash
-lake build OpenAIBridge              # the bridge, its consequences, the audit and the census
+lake build OpenAIBridge              # the bridges, the consequences, the audit and the census
 lake build FixedPointTheorems OAI    # every vendored module, including the upstream audit file
 ```
 
@@ -775,7 +796,8 @@ umbrella `AlgebraicComplexity.lean`, which imports one `Examples/` module.
 - **Audit and umbrellas** — `AlgebraicComplexity.lean`, `AlgebraicComplexityClients.lean`,
   `MatrixMultiplication.lean`, `MatrixMultiplicationCertificate.lean`, `AxiomAudit.lean`,
   `AxiomAuditCertificate.lean`, and the `#assert_axioms` command in `AxiomAudit/Command.lean`.
-- **Vendored, opt-in** — `ThirdParty/OAI/` (126 modules) and `ThirdParty/FixedPointTheorems/`
-  (5): the all-fields proof of `ω ≤ 9/4` and the Brouwer fixed-point theorem it uses, written
-  elsewhere and checked here; `OpenAIBridge/` (3 modules and the root `OpenAIBridge.lean`)
-  connects them to `omega`. Outside the layering: no layer imports them.
+- **Vendored, opt-in** — `ThirdParty/OAI/` (256 modules) and `ThirdParty/FixedPointTheorems/`
+  (5): the all-fields proof of `ω ≤ 9/4`, OpenAI's two rectangular bounds over `ℂ`, and the
+  Brouwer fixed-point theorem the first uses, written elsewhere and checked here; `OpenAIBridge/`
+  (5 modules and the root `OpenAIBridge.lean`) connects them to `omega`, `rectangularOmega` and
+  `rectangularAlpha`. Outside the layering: no layer imports them.
