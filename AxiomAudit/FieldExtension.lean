@@ -13,9 +13,9 @@ set_option autoImplicit false
 # Axiom audit for change of scalars in the exponent
 
 Focused trust audit for `MatrixMultiplication/FieldExtension.lean`: base change of
-matrix-multiplication rank and of `omega` along a ring homomorphism, descent of a bilinear
-algorithm along a finite field extension, and the invariance of `omega` under algebraic field
-extensions.
+matrix-multiplication rank and of `omega` along a ring homomorphism, specialization of a bilinear
+algorithm over a field extension to a finite one, descent along a finite extension, and the
+theorem that `omega` depends only on the characteristic.
 -/
 
 namespace AlgebraicComplexity
@@ -26,13 +26,16 @@ namespace AlgebraicComplexity
 #assert_axioms omega_le_omega_nat
 #assert_axioms omega_le_omega_int
 #assert_axioms BilinearAlgorithm.exists_computes_of_finiteDimensional
-#assert_axioms BilinearAlgorithm.exists_intermediateField_computes
-#assert_axioms rankLE_matrixMultiplication_pow_of_isAlgebraic
-#assert_axioms rpow_omega_le_of_rankLE_of_isAlgebraic
-#assert_axioms omega_le_of_isAlgebraic
-#assert_axioms omega_eq_of_isAlgebraic
+#assert_axioms BilinearAlgorithm.exists_finiteDimensional_computes
+#assert_axioms rankLE_matrixMultiplication_pow_of_fieldExtension
+#assert_axioms rpow_omega_le_of_rankLE_of_fieldExtension
+#assert_axioms omega_le_of_fieldExtension
+#assert_axioms omega_eq_of_fieldExtension
 #assert_axioms omega_algebraicClosure
 #assert_axioms omega_le_of_forall_isAlgClosed
-#assert_axioms omega_eq_omega_zmod_of_finite
+#assert_axioms omega_eq_omega_rat
+#assert_axioms omega_eq_omega_zmod
+#assert_axioms omega_eq_of_charP
+#assert_axioms omega_complex
 
 end AlgebraicComplexity
