@@ -70,3 +70,4 @@ build does not compile the vendored development.
 #assert_axioms AlgebraicComplexity.OpenAIBridge.rectangularOmega_lt_of_charZero
 #assert_axioms AlgebraicComplexity.OpenAIBridge.rectangularOmega_eq_two_of_charZero
 #assert_axioms AlgebraicComplexity.OpenAIBridge.rectangularAlpha_gt_of_charZero
+#assert_axioms AlgebraicComplexity.OpenAIBridge.rectangularOmega_le_chord_of_charZero

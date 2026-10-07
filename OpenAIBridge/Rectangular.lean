@@ -7,7 +7,9 @@ Authors: Thomas Dybdahl Ahle
 import OAI.LinearAlgebra.MatrixMultiplication.ComplexBounds.CW75ReorderedRectangular
 import OAI.LinearAlgebra.MatrixMultiplication.Duality.ExponentBound
 import AlgebraicComplexity.MatrixMultiplication.FieldExtension
+import AlgebraicComplexity.MatrixMultiplication.RectangularInterpolation
 import OpenAIBridge.ArithmeticPrograms
+import OpenAIBridge.NineQuarters
 
 /-!
 # The vendored rectangular bounds, for this repository's exponents
@@ -35,6 +37,8 @@ in `OpenAIBridge/ArithmeticPrograms.lean`.
   `rectangularAlpha_gt_of_charZero`: the same three statements over every field of
   characteristic zero, by this repository's invariance of the rectangular exponents under field
   extensions.
+* `rectangularOmega_le_chord_of_charZero`: `ω(1, κ, 1) ≤ 2 + (κ − 0.4651) / (4 · 0.5349)` for
+  `0.4651 ≤ κ ≤ 1`, the dual-exponent bound and `ω ≤ 9/4` joined by convexity.
 
 For comparison, the best dual-exponent bound proved in this repository itself is Coppersmith's
 `α > 0.294` (`coppersmith1997_alpha_gt`).
@@ -106,5 +110,29 @@ theorem rectangularAlpha_gt_of_charZero (K : Type u) [Field K] [CharZero K] :
     (93 : ℝ) / 200 < rectangularAlpha K := by
   rw [rectangularAlpha_eq_rectangularAlpha_rat K, ← rectangularAlpha_eq_rectangularAlpha_rat ℂ]
   exact rectangularAlpha_complex_gt
+
+/-- **An upper envelope for the rectangular exponent in characteristic zero**: for
+`0.4651 ≤ κ ≤ 1`,
+
+```text
+ω(1, κ, 1)  ≤  2 + (κ − 0.4651) / (4 · (1 − 0.4651)).
+```
+
+This is the chord of the convex function `κ ↦ ω(κ)` between `ω(0.4651) = 2` and
+`ω(1) = ω ≤ 9/4`: the dual-exponent bound and the square bound combined by this repository's
+convexity theorem (`rectangularOmega_le_interpolation_of_eq_two`). -/
+theorem rectangularOmega_le_chord_of_charZero (K : Type u) [Field K] [CharZero K] {κ : ℝ}
+    (h₀ : 4651 / 10000 ≤ κ) (h₁ : κ ≤ 1) :
+    rectangularOmega K κ ≤ 2 + (κ - 4651 / 10000) / (4 * (1 - 4651 / 10000)) := by
+  have h := rectangularOmega_le_interpolation_of_eq_two K (κ₀ := 4651 / 10000) (by norm_num)
+    (by norm_num) (rectangularOmega_eq_two_of_charZero K le_rfl) h₀ h₁
+  have h9 := omega_le_nine_quarters K
+  have ht : 0 ≤ (κ - 4651 / 10000) / (1 - 4651 / 10000 : ℝ) :=
+    div_nonneg (by linarith) (by norm_num)
+  calc rectangularOmega K κ
+      ≤ 2 + (omega K - 2) * (κ - 4651 / 10000) / (1 - 4651 / 10000) := h
+    _ = 2 + (omega K - 2) * ((κ - 4651 / 10000) / (1 - 4651 / 10000)) := by ring
+    _ ≤ 2 + (1 / 4) * ((κ - 4651 / 10000) / (1 - 4651 / 10000)) := by nlinarith
+    _ = 2 + (κ - 4651 / 10000) / (4 * (1 - 4651 / 10000)) := by ring
 
 end AlgebraicComplexity.OpenAIBridge

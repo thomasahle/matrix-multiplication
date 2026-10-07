@@ -8,6 +8,7 @@ import AlgebraicComplexity.MatrixMultiplication.BilinearAlgorithm
 import AlgebraicComplexity.MatrixMultiplication.Exponent
 import AlgebraicComplexity.MatrixMultiplication.RectangularBini
 import AlgebraicComplexity.MatrixMultiplication.RectangularExponent
+import AlgebraicComplexity.MatrixMultiplication.RectangularInterpolation
 import Mathlib.Algebra.Algebra.ZMod
 import Mathlib.Algebra.Field.ZMod
 import Mathlib.Algebra.Order.Archimedean.Basic
@@ -463,14 +464,6 @@ theorem rectangularOmega_le_of_ringHom {K : Type u} {L : Type u'} [CommSemiring 
   polynomialExponent_mono (fun n _ ↦ rectangularMatrixRankSequence_le_of_ringHom φ κ n)
     (rectangularMatrixExponentLE_exists K κ)
 
-/-- Every real exponent strictly above `ω(κ)` is an admissible polynomial rank bound. -/
-theorem rectangularMatrixExponentLE_of_rectangularOmega_lt {K : Type u} [CommSemiring K]
-    {κ τ : ℝ} (hτ : rectangularOmega K κ < τ) : RectangularMatrixExponentLE K κ τ := by
-  have hnonempty : Set.Nonempty {σ : ℝ | PolynomialBound (rectangularMatrixRankSequence K κ) σ} :=
-    rectangularMatrixExponentLE_exists K κ
-  obtain ⟨σ, hσ, hστ⟩ := exists_lt_of_csInf_lt hnonempty hτ
-  exact hσ.mono_exponent hστ.le
-
 /-- Iterating a rank certificate of a rectangular matrix-multiplication tensor. -/
 theorem rankLE_matrixMultiplication_pow_general {K : Type u} [CommSemiring K] {m n p r : ℕ}
     (h : RankLE r (matrixMultiplication (K := K) m n p)) (k : ℕ) :
@@ -531,7 +524,7 @@ theorem rectangularOmega_le_log_of_rankLE_of_fieldExtension {A C r : ℕ} {κ : 
 theorem rectangularOmega_le_of_fieldExtension (F : Type u) (E : Type u') [Field F] [Field E]
     [Algebra F E] {κ : ℝ} (hκ : 0 ≤ κ) : rectangularOmega F κ ≤ rectangularOmega E κ := by
   refine le_of_forall_pos_le_add fun ε hε ↦ ?_
-  obtain ⟨-, C, hC, hb⟩ := rectangularMatrixExponentLE_of_rectangularOmega_lt
+  obtain ⟨-, C, hC, hb⟩ := rectangularMatrixExponentLE_of_rectangularOmega_lt (K := E)
     (lt_add_of_pos_right (rectangularOmega E κ) (half_pos hε))
   obtain ⟨n, hn2, hnC⟩ : ∃ n : ℕ, 2 ≤ n ∧ C ≤ (n : ℝ) ^ (ε / 2) := by
     have htend := (tendsto_rpow_atTop (half_pos hε)).comp tendsto_natCast_atTop_atTop
