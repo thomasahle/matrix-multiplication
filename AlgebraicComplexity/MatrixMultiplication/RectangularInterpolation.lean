@@ -458,6 +458,41 @@ theorem rectangularOmega_convexOn :
   simpa only [smul_eq_mul] using
     rectangularOmega_split_le K hx hy ha (by linarith)
 
+/-- **Chord bound.**  Upper bounds `A` at `a` and `B` at `b` on the rectangular exponent bound
+it on the whole segment `[a, b]` by the chord through `(a, A)` and `(b, B)`:
+
+```text
+ω(κ)  ≤  ((b − κ)·A + (κ − a)·B) / (b − a)        for 0 ≤ a ≤ κ ≤ b, a < b.
+```
+
+This is convexity (`rectangularOmega_split_le`) with the weights `(b − κ)/(b − a)` and
+`(κ − a)/(b − a)`; it is the form in which two numerical bounds on `ω(·)` are interpolated. -/
+theorem rectangularOmega_le_chord {a b κ A B : ℝ} (ha : 0 ≤ a) (hab : a < b)
+    (haκ : a ≤ κ) (hκb : κ ≤ b) (hA : rectangularOmega K a ≤ A) (hB : rectangularOmega K b ≤ B) :
+    rectangularOmega K κ ≤ ((b - κ) * A + (κ - a) * B) / (b - a) := by
+  have hden : 0 < b - a := by linarith
+  set θ : ℝ := (b - κ) / (b - a) with hθ
+  have hθ0 : 0 ≤ θ := div_nonneg (by linarith) hden.le
+  have hθ1 : θ ≤ 1 := (div_le_one hden).mpr (by linarith)
+  have h1θ : 1 - θ = (κ - a) / (b - a) := by
+    rw [hθ]
+    field_simp
+    ring
+  have hκ : θ * a + (1 - θ) * b = κ := by
+    rw [h1θ, hθ]
+    field_simp
+    ring
+  have h := rectangularOmega_split_le K ha (ha.trans hab.le) hθ0 hθ1
+  rw [hκ] at h
+  calc rectangularOmega K κ
+      ≤ θ * rectangularOmega K a + (1 - θ) * rectangularOmega K b := h
+    _ ≤ θ * A + (1 - θ) * B :=
+      add_le_add (mul_le_mul_of_nonneg_left hA hθ0)
+        (mul_le_mul_of_nonneg_left hB (by linarith))
+    _ = ((b - κ) * A + (κ - a) * B) / (b - a) := by
+      rw [h1θ, hθ]
+      field_simp
+
 /-- Midpoint form of convexity, stated separately because it is the shape used in the limiting
 argument for `α = 1 → ω = 2`. -/
 theorem rectangularOmega_midpoint_le {κ₁ κ₂ : ℝ} (hκ₁ : 0 ≤ κ₁) (hκ₂ : 0 ≤ κ₂) :

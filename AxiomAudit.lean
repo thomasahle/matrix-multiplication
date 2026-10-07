@@ -1095,6 +1095,7 @@ Deliberate omissions:
 -- Rectangular interpolation and convexity; alpha = 1 iff omega = 2.
 #assert_axioms AlgebraicComplexity.rectangularOmega_split_le
 #assert_axioms AlgebraicComplexity.rectangularOmega_convexOn
+#assert_axioms AlgebraicComplexity.rectangularOmega_le_chord
 #assert_axioms AlgebraicComplexity.rectangularOmega_le_interpolation
 #assert_axioms AlgebraicComplexity.rectangularOmega_le_omega_add_sub_one
 #assert_axioms AlgebraicComplexity.rectangularOmega_le_interpolation_of_eq_two
