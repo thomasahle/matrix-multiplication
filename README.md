@@ -60,8 +60,8 @@ except where a row marks one *(repository root)*, which is the top-level paper l
 named-obligation and conditional-endpoint tables' `MatrixMultiplication/` paths are all of that
 second kind. Each of these results is
 also covered by the enforcing axiom audit, which the `AxiomAudit` target runs over its whole
-`AxiomAudit.*` glob: **1483 `#assert_axioms` checks** in `AxiomAudit.lean` itself and 5195 more
-across the 774 focused modules under `AxiomAudit/`, with a further 12 in
+`AxiomAudit.*` glob: **1483 `#assert_axioms` checks** in `AxiomAudit.lean` itself and 5205 more
+across the 775 focused modules under `AxiomAudit/`, with a further 12 in
 `AxiomAuditCertificate.lean` and 5445 across `AxiomAuditCertificate/`; a passing
 audit means the only axioms used are `propext`, `Classical.choice`, and `Quot.sound`. A
 theorem below that carries no `#assert_axioms` line anywhere says so in its own status cell, and
@@ -103,7 +103,8 @@ separately in "Conditional endpoints (not results)" at the end of this section.
 | `2 ≤ ω ≤ 3` | folklore sanity bound | `two_le_omega`, `omega_le_three` | `MatrixMultiplication/Exponent.lean` | `2 ≤ ω` needs a field |
 | Bilinear algorithms of length `r` ⟺ rank-`r` tensor decompositions, specialized to matrix multiplication | notes Definitions 2.2–2.4, Fact 2.9 | `rankLE_coeffTensor_iff_exists_computes`, `matrixMultiplication_rankLE_iff_exists_algorithm` | `MatrixMultiplication/BilinearAlgorithm.lean` | any `CommSemiring`, both directions |
 | Conciseness: `max` leg dimension bounds tensor rank | notes Lemma 2.6 | `RankLE.max_finrank_le` | `Tensor/Concise.lean` | any field; basis-free, via dual contractions |
-| Recursive block compilation of a rank certificate into straight-line programs with exact operation counts | notes Proposition 2.7, forward direction | `omega_le_and_exists_straightline_of_rankLE`, `exists_straightline_matrixProduct_of_omega_lt` | `MatrixMultiplication/RankComplexityRecursion.lean` | any `CommSemiring` for the certificate form, which needs `q > 1` and `q² < r`; the exponent-level form is over a field and produces an existential constant; forward direction only, and the converse is explicitly out of scope |
+| Recursive block compilation of a rank certificate into straight-line programs with exact operation counts | notes Proposition 2.7, forward direction | `omega_le_and_exists_straightline_of_rankLE`, `exists_straightline_matrixProduct_of_omega_lt` | `MatrixMultiplication/RankComplexityRecursion.lean` | any `CommSemiring` for the certificate form, which needs `q > 1` and `q² < r`; the exponent-level form is over a field and produces an existential constant; forward direction; the converse is the next row |
+| **Strassen's converse: a straight-line program with `M` multiplication gates computing a bilinear map gives a bilinear algorithm of length at most `2M`**; hence `R(⟨m,n,p⟩) ≤ 2 · mulOps` for every program computing the matrix product, programs with `O(n^τ)` multiplications force `ω ≤ τ`, and **`ω ≤ τ` iff the `n × n` product has straight-line programs of size `O(n^(τ+ε))` for every `ε > 0`** | notes Proposition 2.7, converse direction and the full equivalence (Strassen 1973) | `exists_bilinearAlgorithm_of_straightline`, `rankLE_matrixMultiplication_of_straightline`, `omega_le_of_straightline`, `omega_le_iff_exists_straightline`, `Straightline.exists_bilSpan`, `Trunc.bil_mul`, `Straightline.eval_mapCoeff` | `MatrixMultiplication/RankComplexityConverse.lean` | any **infinite** field (the program is only assumed correct on points of the field, so polynomial identity needs infinitely many of them); `τ ≥ 0` for the exponent forms. The proof truncates every register to degree `≤ 1` in each input block inside the iterated trivial square-zero extension `Trunc K ι κ`, where each multiplication gate adds two rank-one matrices to the span of the bilinear parts and no other gate adds any. Scalar multiplications by constants are free, as in the source. Asserted in `AxiomAudit/RankComplexityConverse.lean` |
 | Rectangular exponent `ω(κ)`: monotone, convex, `ω(1) = ω`, `ω(0) = 2`, interpolation `ω(κ) ≤ κω + 2(1−κ)` | Coppersmith / Lotti–Romani lineage | `rectangularOmega_one`, `rectangularOmega_zero`, `rectangularOmega_convexOn`, `rectangularOmega_le_interpolation` | `MatrixMultiplication/RectangularExponent.lean`, `RectangularInterpolation.lean` | any `CommSemiring` for monotonicity, `ω(1) = ω`, convexity and interpolation (the last for `0 ≤ κ ≤ 1`); `ω(0) = 2` needs a field |
 | The dual exponent `α`, with `α = 1 ↔ ω = 2` | Coppersmith 1997 | `rectangularAlpha`, `rectangularAlpha_eq_one_iff_omega_eq_two` | `MatrixMultiplication/RectangularExponent.lean`, `RectangularInterpolation.lean` | any field |
 | The three-parameter exponent `ω(a,b,c)`: symmetry, homogeneity, the information bound `max(a+b,b+c,c+a) ≤ ω(a,b,c)`, the subadditive product law `ω(a₁+a₂,b₁+b₂,c₁+c₂) ≤ ω(a₁,b₁,c₁) + ω(a₂,b₂,c₂)` with no rounding loss, Theorem 8.1, and the exact value `ω(α,1,r) = r+1` for `r ≥ 1` | Huang–Pan 1998, §2 p. 262 and Theorem 8.1 p. 281 | `generalRectangularOmega`, `generalRectangularOmega_smul`, `max_le_generalRectangularOmega`, `generalRectangularOmega_add_le`, `rectangularOmegaThree_le_huangPan_low/_high`, `rectangularOmegaThree_rectangularAlpha` | `MatrixMultiplication/RectangularExponentThree.lean` | fields — both Theorem 8.1 branches go through `rectangularOmega_rectangularAlpha`, and the second also needs `α < 1`, `α ≤ t ≤ 1`, `r ≥ 1`; the bound `≤ r+1` is shown to fail for `r < t` (`lt_rectangularOmegaThree_of_lt`), so their standing lower bound on `r` cannot simply be dropped |
@@ -633,8 +634,9 @@ sequence for it; the tree contains neither.
 ## Next library milestones
 
 On the upper-bound side, the remaining classical backlog is the 21-term border `⟨3,3,3⟩` APA
-client, Pan-style trilinear aggregation, and the converse direction of Proposition 2.7 (circuits
-imply rank bounds). These are the tail of the theorem sequence in He and Williams's
+client and Pan-style trilinear aggregation (the converse direction of Proposition 2.7, circuits
+imply rank bounds, is now proved in `MatrixMultiplication/RankComplexityConverse.lean`). These are
+the tail of the theorem sequence in He and Williams's
 [Cornell CS 6810 matrix-multiplication notes](https://www.cs.cornell.edu/courses/cs6810/2023fa/Matrix.pdf);
 `DESIGN.md` records the complete crosswalk and current proof status. The notes guide coverage,
 while primary papers determine exact statements and hypotheses.
