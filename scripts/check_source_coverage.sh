@@ -63,7 +63,11 @@ tracked_sources() {
   # A tracked path may be missing from the worktree (a deletion not yet
   # committed); such a file cannot be built, and its grandfather entry is
   # reported as stale.
+  # `ThirdParty/` is skipped: its libraries set `srcDir = "ThirdParty"`, so a path there is not
+  # a module name, and their `X.+` globs make every file below `ThirdParty/X/` a build root, so
+  # there is no reachability to check.
   git ls-files -- '*.lean' | while IFS= read -r source; do
+    [[ "$source" == ThirdParty/* ]] && continue
     [[ -f "$source" ]] && printf '%s\n' "$source"
   done
 }
@@ -789,6 +793,12 @@ census_gaps="$(printf '%s\n' "$graph" | awk '
     censused["AxiomAudit.CensusAll"] = 1
     censused["AxiomAuditCertificate.Census"] = 1
     censused["AxiomAuditCertificate.CensusQ20"] = 1
+    # The root of the opt-in `OpenAIBridge` target is its own census client: it runs
+    # `#axiom_census_roots` over the bridge and the vendored developments it imports.  The
+    # ordinary census must not import vendored code, so it cannot be the one to cover that target.
+    if ("OpenAIBridge" in module) {
+      censused["OpenAIBridge"] = 1
+    }
     closeReach(censused)
     for (m in module) {
       if ((m in built) && isLibrary(m) && !(m in censused)) {
@@ -826,7 +836,7 @@ else
   if [[ -n "$census_failures" ]]; then
     echo 'FAIL: library-target modules are built but not covered by any #axiom_census closure:' >&2
     printf '%s\n' "$census_failures" >&2
-    echo 'Import them (directly or transitively) from AxiomAudit/CensusAll.lean, AxiomAuditCertificate/Census.lean or AxiomAuditCertificate/CensusQ20.lean.' >&2
+    echo 'Import them (directly or transitively) from AxiomAudit/CensusAll.lean, AxiomAuditCertificate/Census.lean or AxiomAuditCertificate/CensusQ20.lean (or, for the OpenAIBridge target, its root OpenAIBridge.lean).' >&2
     status=1
   fi
   if [[ -n "$census_notices" ]]; then

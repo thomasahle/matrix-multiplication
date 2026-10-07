@@ -2,7 +2,8 @@
 # Hard trust scan from DESIGN.md "Trust and verification policy".
 #
 # Fails when any committed Lean source in the reusable library, the client
-# umbrella, or the paper library contains sorry, admit, or a declared axiom.
+# umbrella, the paper library, the vendored developments under `ThirdParty/`, or
+# their bridge in `OpenAIBridge/` contains sorry, admit, or a declared axiom.
 # `axiom` is matched only in declaration position so that docstrings discussing named
 # obligations ("never an axiom") do not trip the scan.
 # Prose mentions are expected to stay out of these trees; if a legitimate
@@ -28,25 +29,53 @@ cd "$(dirname "$0")/.."
 fail=0
 if command -v rg >/dev/null 2>&1; then
   if rg -n '(\b(sorry|admit)\b|^\s*(@\[[^]]*\]\s*)?((private|protected|noncomputable|unsafe)\s+)*axiom\s)' \
-      AlgebraicComplexity AlgebraicComplexityClients.lean MatrixMultiplication -g '*.lean'; then
+      AlgebraicComplexity AlgebraicComplexityClients.lean MatrixMultiplication \
+      OpenAIBridge -g '*.lean'; then
     echo 'FAIL: found sorry/admit/axiom in committed Lean sources.' >&2
     fail=1
   fi
   if rg -n '^\s*opaque\b' \
       AlgebraicComplexity AlgebraicComplexityClients.lean MatrixMultiplication \
+      OpenAIBridge ThirdParty \
       -g '*.lean' -g '!MatrixMultiplication/Generated/**'; then
     echo 'FAIL: opaque declarations outside MatrixMultiplication/Generated require explicit policy review.' >&2
     fail=1
   fi
 else
   if grep -rnE '(\b(sorry|admit)\b|^[[:space:]]*(@\[[^]]*\][[:space:]]*)?((private|protected|noncomputable|unsafe)[[:space:]]+)*axiom[[:space:]])' --include='*.lean' \
-      AlgebraicComplexity AlgebraicComplexityClients.lean MatrixMultiplication; then
+      AlgebraicComplexity AlgebraicComplexityClients.lean MatrixMultiplication \
+      OpenAIBridge; then
     echo 'FAIL: found sorry/admit/axiom in committed Lean sources.' >&2
     fail=1
   fi
   if grep -rnE '^[[:space:]]*opaque\b' --include='*.lean' \
-      --exclude-dir=Generated AlgebraicComplexity MatrixMultiplication; then
+      --exclude-dir=Generated AlgebraicComplexity MatrixMultiplication \
+      OpenAIBridge ThirdParty; then
     echo 'FAIL: opaque declarations outside MatrixMultiplication/Generated require explicit policy review.' >&2
+    fail=1
+  fi
+fi
+
+# The vendored developments under `ThirdParty/` get the same pattern with one narrowing, because
+# their prose is not ours to reword: a line that is nothing but a one-line doc comment
+# (`/-- ... -/`) is dropped before judging, so "labels admit no additional solutions" in a
+# docstring is not a finding.  A declaration on the same line as a doc comment does not end in
+# `-/` and is still reported.  As above, this is a pre-filter; the authority for the vendored tree
+# is the `#assert_axioms` audit in `OpenAIBridge/Audit.lean`.
+vendored_pattern='(\b(sorry|admit)\b|^\s*(@\[[^]]*\]\s*)?((private|protected|noncomputable|unsafe)\s+)*axiom\s)'
+vendored_hits=''
+if [ -d ThirdParty ]; then
+  if command -v rg >/dev/null 2>&1; then
+    vendored_hits="$(rg -n "$vendored_pattern" ThirdParty -g '*.lean' |
+      awk '!/^[^:]*:[0-9]+:[[:space:]]*\/--.*-\/[[:space:]]*$/' || true)"
+  else
+    vendored_hits="$(grep -rnE '(\b(sorry|admit)\b|^[[:space:]]*(@\[[^]]*\][[:space:]]*)?((private|protected|noncomputable|unsafe)[[:space:]]+)*axiom[[:space:]])' \
+        --include='*.lean' ThirdParty |
+      awk '!/^[^:]*:[0-9]+:[[:space:]]*\/--.*-\/[[:space:]]*$/' || true)"
+  fi
+  if [ -n "$vendored_hits" ]; then
+    printf '%s\n' "$vendored_hits"
+    echo 'FAIL: found sorry/admit/axiom in vendored Lean sources under ThirdParty/.' >&2
     fail=1
   fi
 fi

@@ -49,3 +49,22 @@ globs = ["AxiomAuditCertificate.*"]
 # on every record PR and because it must stay a leaf that no library depends on.
 [[lean_lib]]
 name = "Frontier"
+
+# Vendored third-party developments (see `ThirdParty/README.md` for sources, commits and licences).
+# They keep their upstream module names, so they live under their own source directory and are
+# separate targets: nothing in the reusable library imports them.  `OpenAIBridge` below is the only
+# place where they meet this repository's definitions.
+[[lean_lib]]
+name = "FixedPointTheorems"
+srcDir = "ThirdParty"
+globs = ["FixedPointTheorems.+"]
+
+[[lean_lib]]
+name = "OAI"
+srcDir = "ThirdParty"
+globs = ["OAI.+"]
+
+# The bridge from the vendored `OAI` development to this repository's `omega`
+# (`OpenAIBridge/NineQuarters.lean`), with its own enforcing axiom audit.
+[[lean_lib]]
+name = "OpenAIBridge"

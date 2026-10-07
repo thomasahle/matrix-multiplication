@@ -9,6 +9,12 @@ barrier results that limit those methods. Highlights, each a kernel-checked theo
 - **`ω < 2.374631`** — Duan–Wu–Zhou's second-power bound on `CW_6^{⊗2}` (arXiv:2210.10173,
   §6.3), proved unconditionally over any field following the paper's argument
   (`omega_lt_2374631`). The paper's headline `2.371866`, from higher powers, is not formalized.
+- **`ω ≤ 9/4` over every field, machine-checked here but not proved here** — OpenAI's October
+  2026 bound, in the all-fields form of `selanavot/matrix-multiplication-all-fields`, is vendored
+  under `ThirdParty/OAI/`, re-checked with this repository's toolchain, and bridged to this
+  repository's own exponent: `OpenAIBridge.omega_le_nine_quarters : omega K ≤ 9 / 4` for every
+  field `K`. It is a separate opt-in build target and nothing else in the tree depends on it;
+  see "Vendored: `ω ≤ 9/4`" below.
 - **The classical upper-bound line** — Strassen's `R⟨2,2,2⟩ ≤ 7`, Laderman, Bini's `ω < 2.695`,
   Schönhage's asymptotic sum inequality and `ω < 2.6`, and the Coppersmith–Winograd bounds
   `ω < 2.3872` and `ω < 2.375477`.
@@ -20,7 +26,8 @@ barrier results that limit those methods. Highlights, each a kernel-checked theo
 
 No `sorry`, no project axioms: CI runs an enforcing `#assert_axioms` audit over the results, which
 allows only `propext`, `Classical.choice` and `Quot.sound` (the few results without an assertion say
-so in the tables). No new bound on `ω` is claimed. The repository is substantially AI-built —
+so in the tables). No new bound on `ω` is claimed: the `9/4` bound is OpenAI's, and its proof is
+vendored, not ours. The repository is substantially AI-built —
 written largely by AI agents working under human direction, with the author reviewing and taking
 responsibility; see [`CONTRIBUTING.md`](CONTRIBUTING.md) §5 for what that means and how the trust
 checks account for it. The `## Results` section below indexes everything proved, with sources and
@@ -271,6 +278,51 @@ which are under `AlgebraicComplexity/`.
 | `ω < 2.369837225` | `omega_lt_2369837225_of_subexponentialVolumeSequence` | `MatrixMultiplication/SimplifiedSharpEndpoint.lean` | the sequence datum plus `Reconstruction`: the generated `retainedExponentLowerWitness` and `volume ≥ 6.016717904289` | superseded — the sharp form of the refuted `eab2c7ae…` track |
 | `ω < 2.369837225` | `omega_lt_2369837225_of_compressionSeam` | `MatrixMultiplication/SimplifiedRetainedCompressionSeam.lean` | the sequence datum, `RetainedCompressionSeam`, and `volume ≥ SimplifiedSharpEndpoint.volumeFloor` | superseded; audited only in `AxiomAuditCertificate/` |
 
+## Vendored: `ω ≤ 9/4` over every field
+
+On October 2, 2026 OpenAI published *An Upper Bound of 9/4 for the Matrix Multiplication Exponent*
+together with a Lean proof over `ℂ` (<https://github.com/openai/math>, `lean/OAI`). A source fork,
+<https://github.com/selanavot/matrix-multiplication-all-fields>, extends that proof to every
+field. **Neither proof is ours.** What this repository does is vendor the all-fields development
+unchanged in substance, check it with its own toolchain and its own enforcing axiom audit, and
+prove that the bound holds for *this repository's* exponent `omega`, so that it can be used with
+everything else here.
+
+| Result | Lean declaration | Module *(repository root)* | Status |
+| --- | --- | --- | --- |
+| **`omega K ≤ 9/4` for every field `K`**, where `omega` is this repository's rank-growth exponent | `OpenAIBridge.omega_le_nine_quarters` | `OpenAIBridge/NineQuarters.lean` | unconditional; the proof is the vendored one, the statement is ours |
+| An exact decomposition of the vendored coordinate tensor `⟨n,n,n⟩` is a `RankLE` certificate of `matrixMultiplication n n n`; hence `omega K` is at most the vendored exact-rank exponent | `OpenAIBridge.rankLE_matrixMultiplication_of_rankAtMost`, `OpenAIBridge.omega_le_exactRankExponent` | `OpenAIBridge/NineQuarters.lean` | any field; this is the whole bridge — the two developments use the same index convention, so no reindexing is involved |
+| `omega K < c` for every `c > 9/4`; `ω(κ) ≤ 2 + κ/4` for `0 ≤ κ ≤ 1`; `R̃(⟨n,n,n⟩) ≤ n^(9/4)`; straight-line programs of size `O(n^τ)` for the `n × n` product in this repository's own program model, for every `τ > 9/4` | `OpenAIBridge.omega_lt`, `OpenAIBridge.rectangularOmega_le`, `OpenAIBridge.asymptoticRank_matrixMultiplication_le`, `OpenAIBridge.exists_straightline_matrixProduct` | `OpenAIBridge/Consequences.lean` | any field; no new mathematics, only the bound pushed through `RectangularInterpolation`, `AsymptoticRank` and `RankComplexityRecursion` |
+| The upstream statements, re-checked here: `Arithmetic.omega F ≤ 9/4` in the vendored arithmetic-program model for every field, the `ℂ` case, and the exact-rank forms | `OAI.MatrixMultiplication.omega_le_nine_quarters`, `OAI.MatrixMultiplication.complex_omega_le_nine_quarters`, `OAI.MatrixMultiplication.AuxiliarySeparation.exactRankExponent_le_nine_quarters`, `…exactRankExponent_le_algebraicClosure` | `ThirdParty/OAI/LinearAlgebra/MatrixMultiplication/AllFields.lean` and its imports | vendored, 126 modules; depends on Brouwer's fixed-point theorem, vendored from `harfe/fixed-point-theorems-lean4` (5 modules) |
+
+How much to trust it, precisely:
+
+- **Checked:** all 131 vendored modules compile with this repository's Lean `v4.33.0-rc1` and
+  pinned Mathlib. `OpenAIBridge/Audit.lean` asserts with `#assert_axioms` that the bridged
+  headline, the consequences, and the upstream theorems depend only on `propext`,
+  `Classical.choice` and `Quot.sound`, and the target's root `OpenAIBridge.lean` runs the
+  environment-wide census (`#axiom_census_roots OAI FixedPointTheorems OpenAIBridge`) over all
+  3,728 declarations of the vendored developments and the bridge: none is an axiom, and none —
+  reached by the headline or not — uses anything outside those three.
+- **Changed:** the upstream code targets Lean `v4.34.1` and a Mathlib ten weeks newer, so names
+  had to be translated back in 25 of the 126 `OAI` files (about fifty lines, all in `import` lines
+  or inside proofs) and in two of the five Brouwer files. No definition and no theorem statement
+  was touched; every edit is listed in `ThirdParty/OAI/CHANGES.md`, and `ThirdParty/README.md`
+  records sources, commits and licences (Apache-2.0 and MIT).
+- **Not done:** the vendored proof has not been read or reviewed here as mathematics. The reason to
+  believe it is the kernel, and the reason to believe it says what it should is the short bridge
+  above, which ends in a statement about `AlgebraicComplexity.omega`.
+- **Kept apart:** the three targets `FixedPointTheorems`, `OAI` and `OpenAIBridge` are opt-in. No
+  module of `AlgebraicComplexity`, `MatrixMultiplication`, `AxiomAudit` or `Frontier` imports them,
+  the vendored files are outside the module-documentation and copyright-header gates (they are
+  inside the trust scan and have their own census), and `Frontier.lean` still records `ω < 2.374631`, the best bound whose
+  proof was written in this repository.
+
+```bash
+lake build OpenAIBridge              # the bridge, its consequences, the audit and the census
+lake build FixedPointTheorems OAI    # every vendored module, including the upstream audit file
+```
+
 ## Build
 
 ```bash
@@ -291,6 +343,9 @@ Lake targets:
 - `AxiomAudit`: the enforcing axiom audit over the ordinary libraries;
 - `AxiomAuditCertificate`: the same audit for the declarations inside the generated certificate;
 - `Frontier`: the leaderboard's statement anchor, a leaf no library depends on.
+
+Three further opt-in targets hold the vendored `ω ≤ 9/4` proof and its bridge, described in the
+section above: `FixedPointTheorems` and `OAI` (sources under `ThirdParty/`) and `OpenAIBridge`.
 
 Regression clients and the paper-specific development are separate targets so that ordinary core
 edits do not rebuild every large certificate. To check everything except the opt-in generated

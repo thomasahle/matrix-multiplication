@@ -127,6 +127,28 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: bash scripts/check_frontier_improvement.sh "$(git merge-base "$BASE_SHA" HEAD)"
 
+  vendored-nine-quarters:
+    # The vendored all-fields proof of `omega <= 9/4` (ThirdParty/OAI, 126 modules, plus the five
+    # Brouwer modules of ThirdParty/FixedPointTheorems) and its bridge to this repository's
+    # `omega`.  `OpenAIBridge` contains `OpenAIBridge/Audit.lean`, whose `#assert_axioms` lines are
+    # the enforcing audit of the bridged theorem, and its root `OpenAIBridge.lean` runs
+    # `#axiom_census_roots` over every declaration of the vendored modules and the bridge.  The
+    # `OAI` and `FixedPointTheorems` globs are named so that every vendored file is a build root.
+    # A separate job because nothing in the main build may depend on vendored code, and so that a
+    # failure here is attributed to it.
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      LEAN_NUM_THREADS: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          build-args: FixedPointTheorems OAI OpenAIBridge
+          use-mathlib-cache: "true"
+          use-github-cache: "true"
+
   certificate-smoke:
     # A slice of the generated certificate tier, on every push and pull request: every
     # AxiomAuditCertificate audit except the six that reach the level-four analytic tables, plus two

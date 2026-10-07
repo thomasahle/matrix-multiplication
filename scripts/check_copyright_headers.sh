@@ -32,6 +32,11 @@
 #   * MatrixMultiplication/Generated/ — the exported certificate tables;
 #   * better_bound/                   — producer staging output.
 #
+# A third is out of scope because its files are not this project's to relicense:
+#
+#   * ThirdParty/                     — vendored developments, which keep their upstream headers
+#                                       and ship their own LICENSE files (ThirdParty/README.md).
+#
 # NO `grep` IS INVOLVED anywhere in this scan.  `grep` on the maintainer's machine is ugrep 7.8.4,
 # where `grep -r PAT dir/*.lean` returns zero matches silently instead of erroring, and a check
 # that silently matches nothing is worse than no check.  The scan is one `awk` program that is
@@ -98,6 +103,7 @@ in_scope() {
   git ls-files -- '*.lean' | awk '
     /^better_bound\// { next }
     /^MatrixMultiplication\/Generated\// { next }
+    /^ThirdParty\// { next }
     { print }
   '
 }

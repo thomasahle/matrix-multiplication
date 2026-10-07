@@ -43,6 +43,10 @@ therefore import the public umbrellas: `AxiomAudit/CensusAll.lean` for the ordin
 `AxiomAuditCertificate/Census.lean` for the opt-in generated-certificate target.  Both are built
 by CI.
 
+`#axiom_census_roots` is the same walk over module roots named at the call site.
+The root `OpenAIBridge.lean` uses it for the vendored developments under `ThirdParty/` and their
+bridge, which are built here but are deliberately not in `projectModuleRoots`.
+
 ## Cost
 
 Since Lean 4.23 the axiom dependencies of an *imported* declaration are precomputed when its
@@ -77,16 +81,14 @@ private def formatCulprits (culprits : Array MessageData) : MessageData :=
   if culprits.size ≤ reportLimit then body
   else body ++ m!"\n… and {culprits.size - reportLimit} more."
 
-/--
-`#axiom_census` fails elaboration if any module of this repository in the current import closure
-declares an axiom, or if any of its declarations depends on an axiom outside `propext`,
-`Classical.choice`, and `Quot.sound`.  On success it reports the audited scope and the axioms
-actually used, so a build log records what was checked rather than only that something passed.
--/
-elab "#axiom_census" : command => do
+/-- The census itself, for an arbitrary notion of "our module": walk every constant whose home
+module satisfies `inScope`, fail if one of them is a declared axiom or depends on an axiom outside
+the allowlist, and otherwise report what was scanned.  `#axiom_census` instantiates it with this
+repository's own roots and `#axiom_census_roots` with roots named at the call site. -/
+def runAxiomCensus (inScope : Name → Bool) : CommandElabM Unit := do
   let env ← getEnv
   let moduleNames := env.header.moduleNames
-  let projectModule : Array Bool := moduleNames.map isProjectModule
+  let projectModule : Array Bool := moduleNames.map inScope
   let projectModuleCount : Nat :=
     projectModule.foldl (fun (count : Nat) (isProject : Bool) =>
       if isProject then count + 1 else count) 0
@@ -99,7 +101,7 @@ elab "#axiom_census" : command => do
     let idx := modIdx.toNat
     if idx < moduleNames.size && projectModule[idx]! then
       targets := targets.push (declName, moduleNames[idx]!)
-  if isProjectModule env.mainModule then
+  if inScope env.mainModule then
     targets := env.constants.foldStage2 (fun acc declName _ =>
       acc.push (declName, env.mainModule)) targets
   let mut scanned : Nat := 0
@@ -129,5 +131,25 @@ elab "#axiom_census" : command => do
   logInfo m!"axiom census clean: {scanned} declarations in {projectModuleCount} project modules \
     (of {moduleNames.size} imported modules); no project axiom is declared, and the only axioms \
     reached are {usedAxioms.toList}."
+
+/--
+`#axiom_census` fails elaboration if any module of this repository in the current import closure
+declares an axiom, or if any of its declarations depends on an axiom outside `propext`,
+`Classical.choice`, and `Quot.sound`.  On success it reports the audited scope and the axioms
+actually used, so a build log records what was checked rather than only that something passed.
+-/
+elab "#axiom_census" : command => runAxiomCensus isProjectModule
+
+/--
+`#axiom_census_roots R₁ R₂ …` is `#axiom_census` for the module roots named at the call site
+instead of `projectModuleRoots`: every constant whose home module is one of the `Rᵢ` or lies below
+one is checked.  It exists for code that is built here but is not this repository's — the vendored
+developments under `ThirdParty/` and their bridge, censused by `OpenAIBridge.lean` — so
+that such code gets the same environment walk without being counted as a project module by the
+ordinary census.
+-/
+elab "#axiom_census_roots" roots:(ppSpace colGt ident)+ : command => do
+  let rootNames : List Name := roots.toList.map (·.getId)
+  runAxiomCensus fun mod => rootNames.any fun root => root == mod || root.isPrefixOf mod
 
 end AxiomAudit
