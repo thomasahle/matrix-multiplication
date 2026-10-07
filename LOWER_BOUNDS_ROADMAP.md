@@ -409,8 +409,13 @@ Remaining, in dependency order:
    `indexedFoldMap` does it), the grouping is `i ↦ ⌊i / 3n⌋` with the leftover terms ungrouped,
    and `n = 0`, where `finrank = 0` gives no basis, goes through the span form of the core with
    every term ungrouped. It does not need Proposition 5.7.
-4. **Theorem 7.3** (`DirectSumIdentity`, p. 29) — independent; needs only the restriction form
-   already proved plus explicit coordinate maps. No new theory.
+4. **Theorem 7.3** (p. 29) — **DONE 2026-10-07** (`MatrixMultiplication/DirectSumIdentity.lean`,
+   `AlmanLi.directSumIdentity`). One application of the restriction form of the free-lunch theorem,
+   as predicted; the second family carries Schönhage's correction terms block by block. The core is
+   stated for block sizes `n α + 1`, `m β + 1` so that "the first element of a block" needs no
+   subtraction. `MatrixMultiplication/DirectSumIdentityBound.lean` adds what it is for: the target
+   has border rank at most `NM + pq`, hence `(NM)^(ω/3) + ∑ (n_α m_β)^(ω/3) ≤ NM + pq`; at
+   `p = q = 1` this is Schönhage's inequality for **all** sizes, and `n = m = 3` gives `ω < 2.55`.
 5. Out of scope, unchanged: Theorem 6.2, Corollary 6.1, and all of §7.1/§7.2 — they need
    Proposition 4.5 and Strassen duality.
 

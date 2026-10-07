@@ -5,6 +5,7 @@ Authors: Thomas Dybdahl Ahle
 -/
 
 import AlgebraicComplexity.MatrixMultiplication.DirectSum
+import AlgebraicComplexity.MatrixMultiplication.DirectSumIdentity
 import AlgebraicComplexity.MatrixMultiplication.GroupedBorderRankSpeedup
 import AlgebraicComplexity.MatrixMultiplication.NonminimalBorderRankSpeedup
 import AlgebraicComplexity.MatrixMultiplication.NonminimalRankSpeedup
@@ -36,7 +37,7 @@ proof obligation.  None of them is an `axiom`, an unproved declaration, or an in
 | Theorem 6.1 | 19 | …for nonminimal *border* rank | **Proved**, `nonminimalBorderRankSpeedup` below, from `MatrixMultiplication/NonminimalBorderRankSpeedup.lean` |
 | Theorem 6.2 | 20 | Iterated version | Out of scope (needs Prop. 5.1/5.2/5.5/5.6) |
 | Theorem 6.3 | 21 | Grouped (multi-slice) speedup | **Proved**, `groupedOneSliceSpeedup` below, from `MatrixMultiplication/GroupedBorderRankSpeedup.lean` |
-| Theorem 7.3 | 29 | Direct-sum identity generalizing `[Sch81, Lemma 6.1]` | `DirectSumIdentity` |
+| Theorem 7.3 | 29 | Direct-sum identity generalizing `[Sch81, Lemma 6.1]` | **Proved**, `directSumIdentity` below, from `MatrixMultiplication/DirectSumIdentity.lean` |
 
 The numerical headlines of Sections 6 and 7 (`R̃(cw₂) < 3.931`, `σ(d) < 2ω/3`, Corollary 6.1) all
 pass through Proposition 4.5 and Strassen duality, which `Examples/AlmanLiSpeedup.lean` records as
@@ -235,7 +236,8 @@ theorem groupedOneSliceSpeedup (K : Type u) [Field K] : GroupedOneSliceSpeedup K
   intro n r p V _ _ T hV hT hr
   exact polynomialDegenerates_grouped_oneSlice_of_borderRankLE n r p T hV hT hr
 
-/-- **Obligation: the Alman–Li direct-sum identity** ([AlmanLi2026], Theorem 7.3, p. 29).
+/-- **Statement: the Alman–Li direct-sum identity** ([AlmanLi2026], Theorem 7.3, p. 29).
+Proved: `directSumIdentity`.
 
 For positive integers `nα` (`α < p`) and `mβ` (`β < q`) with `n = ∑ nα` and `m = ∑ mβ`,
 
@@ -246,13 +248,15 @@ For positive integers `nα` (`α < p`) and `mβ` (`β < q`) with `n = ∑ nα` a
 At `p = q = 1` this is Schönhage's identity `⟨n,1,m⟩ ⊕ ⟨1,(n−1)(m−1),1⟩ ⊴ ⟨nm+1⟩`
 ([Schonhage1981], Lemma 6.1).
 
-The intended proof is a direct application of the *restriction* form of the free-lunch theorem
-(`Tensor.polynomialDegeneratesAt_two_directSum_of_mixed_map_eq_zero`) to the redundant restriction
-`⟨n,1,m⟩ ≤ ⟨nm⟩ ⊕ ⟨p,1,q⟩` given by `A : u_{ij} ↦ x_i, u'_α ↦ ∑_{i ∈ Iα} x_i`,
-`B : v_{ij} ↦ y_j, v'_β ↦ ∑_{j ∈ Jβ} y_j`, `C : w_{ij} ↦ z_{ij}, w'_{αβ} ↦ 0`, together with the
-explicit second family `g` obtained from the paper's `C' : w_{ij} ↦ w'_{α(i)β(j)}` and the
-projections `π_U`, `π_V` that delete one distinguished row and column from each block.  No
-degeneration parameter beyond the one supplied by Theorem 5.1 is required. -/
+The proof (`MatrixMultiplication/DirectSumIdentity.lean`) is one application of the *restriction*
+form of the free-lunch theorem to the redundant restriction `⟨n,1,m⟩ ≤ ⟨nm⟩ ⊕ ⟨p,1,q⟩` given by
+`u_{ij} ↦ x_i, u'_α ↦ ∑_{i ∈ Iα} x_i`, `v_{ij} ↦ y_j, v'_β ↦ ∑_{j ∈ Jβ} y_j`,
+`w_{ij} ↦ z_{ji}, w' ↦ 0`, together with a second family onto the slices that carries
+Schönhage's correction terms block by block: every column sum of the `X` vectors over a row block
+and every row sum of the `Y` vectors over a column block vanishes, and `w'_{βα} ↦ −c_{αβ}`.  No
+degeneration parameter beyond the one supplied by Theorem 5.1 is required.  The exponent
+inequality it implies, `(nm)^(ω/3) + ∑ ((nα−1)(mβ−1))^(ω/3) ≤ nm + pq`, is
+`directSumIdentity_asymptoticSum` in `MatrixMultiplication/DirectSumIdentityBound.lean`. -/
 def DirectSumIdentity (K : Type u) [Field K] : Prop :=
   ∀ (p q : ℕ) (n : Fin p → ℕ) (m : Fin q → ℕ),
     (∀ a, 0 < n a) → (∀ b, 0 < m b) →
@@ -262,5 +266,15 @@ def DirectSumIdentity (K : Type u) [Field K] : Prop :=
       (Tensor.directSum (matrixMultiplication (K := K) (∑ a, n a) 1 (∑ b, m b))
         (oneSliceDirectSum K (ι := Fin p × Fin q)
           fun ab ↦ (n ab.1 - 1) * (m ab.2 - 1)))
+
+/-- **Alman–Li Theorem 7.3** ([AlmanLi2026], p. 29): the direct-sum identity
+`⟨nm⟩ ⊕ ⟨p,1,q⟩ ⊵ ⟨n,1,m⟩ ⊕ ⊕_{α,β} ⟨1, (nα − 1)(mβ − 1), 1⟩`. -/
+theorem directSumIdentity (K : Type u) [Field K] : DirectSumIdentity K := by
+  intro p q n m hn hm
+  obtain ⟨n, rfl⟩ : ∃ n' : Fin p → ℕ, n = fun a ↦ n' a + 1 :=
+    ⟨fun a ↦ n a - 1, funext fun a ↦ (Nat.sub_add_cancel (hn a)).symm⟩
+  obtain ⟨m, rfl⟩ : ∃ m' : Fin q → ℕ, m = fun b ↦ m' b + 1 :=
+    ⟨fun b ↦ m b - 1, funext fun b ↦ (Nat.sub_add_cancel (hm b)).symm⟩
+  exact polynomialDegenerates_unit_directSum_matrixMultiplication K n m
 
 end AlgebraicComplexity.AlmanLi
