@@ -11,6 +11,7 @@ import OAI.LinearAlgebra.MatrixMultiplication.AllFieldsAudit
 import OpenAIBridge.ArithmeticPrograms
 import OpenAIBridge.Audit
 import OpenAIBridge.Consequences
+import OpenAIBridge.ExponentComparison
 import OpenAIBridge.NineQuarters
 import OpenAIBridge.Rectangular
 
@@ -28,6 +29,8 @@ modules imported here connect them to this repository's definitions:
 * `OpenAIBridge/Consequences.lean`: what that bound gives through machinery already here;
 * `OpenAIBridge/ArithmeticPrograms.lean`: the vendored arithmetic-program exponents dominate
   this repository's rank-based ones over infinite fields;
+* `OpenAIBridge/ExponentComparison.lean`: the vendored exact-rank exponent *is* `omega` over
+  every field, and the vendored arithmetic exponent is `omega` over every infinite field;
 * `OpenAIBridge/Rectangular.lean`: `ω(0.709) < 2.092` and `α > 0.465` for `rectangularOmega`
   and `rectangularAlpha`, over `ℂ` and over every field of characteristic zero;
 * `OpenAIBridge/Audit.lean`: the enforcing `#assert_axioms` audit of the named theorems.

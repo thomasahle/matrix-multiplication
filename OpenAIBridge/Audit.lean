@@ -6,6 +6,7 @@ Authors: Thomas Dybdahl Ahle
 
 import AxiomAudit.Command
 import OpenAIBridge.Consequences
+import OpenAIBridge.ExponentComparison
 import OpenAIBridge.NineQuarters
 import OpenAIBridge.Rectangular
 import OAI.LinearAlgebra.MatrixMultiplication.AllFields
@@ -72,3 +73,10 @@ build does not compile the vendored development.
 #assert_axioms AlgebraicComplexity.OpenAIBridge.rectangularAlpha_gt_of_charZero
 #assert_axioms AlgebraicComplexity.OpenAIBridge.rectangularOmega_le_lowChord_of_charZero
 #assert_axioms AlgebraicComplexity.OpenAIBridge.rectangularOmega_le_highChord_of_charZero
+
+#assert_axioms AlgebraicComplexity.OpenAIBridge.rankAtMost_of_rankLE_matrixMultiplication
+#assert_axioms AlgebraicComplexity.OpenAIBridge.exactMatrixRank_eq_squareMatrixRankSequence
+#assert_axioms AlgebraicComplexity.OpenAIBridge.exactRankExponent_le_omega
+#assert_axioms AlgebraicComplexity.OpenAIBridge.exactRankExponent_eq_omega
+#assert_axioms AlgebraicComplexity.OpenAIBridge.arithmeticOmega_le_omega
+#assert_axioms AlgebraicComplexity.OpenAIBridge.arithmeticOmega_eq_omega
