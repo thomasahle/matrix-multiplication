@@ -70,8 +70,9 @@ statement about polynomials.
 * `oneSliceFrameTensor`, `polynomialTransform_oneSliceFrameTensor`: the framed source and the
   effect of a basis-defined polynomial family on it;
 * `BorderRankLE.exists_fin_family`: a border-rank certificate as a family indexed by `Fin r`;
-* `polynomialDegenerates_oneSliceFrameTensor_directSum`: the grouped border-rank one-slice
-  speedup.
+* `polynomialDegenerates_oneSliceFrameTensor_directSum_of_span`: the grouped border-rank
+  one-slice speedup, for a certificate whose grouped terms lie in given finite spans;
+* `polynomialDegenerates_oneSliceFrameTensor_directSum`: the same for legs with given bases.
 
 ## References
 
@@ -217,14 +218,15 @@ section Core
 variable {K : Type u} [CommRing K]
 variable {N : Leg → Type w} [∀ c, AddCommGroup (N c)] [∀ c, Module K (N c)]
 
-/-- **Cancellation of the `Y`-expansion.**  If `η i = ∑_j B j i • v_j` over `K[X]`, then the
+/-- **Cancellation of the `Y`-expansion.**  If `η i = ∑_j B j i • v_j` over `K[X]` for every
+grouped index `i`, then the
 diagonal terms `ξ_i ⊗ η_i ⊗ ζ_{g i}` are cancelled by the slice terms
 `(−∑_{i ∈ a} B j i • ξ_i) ⊗ v_j ⊗ ζ_a`.  This is the vanishing of the mixed blocks `(F,F,G)` and
 `(G,F,G)` of the border-rank one-slice speedup. -/
 theorem sum_polynomialPure_cancel {r p n : ℕ} (g : Fin r → Option (Fin p))
     (ξ : Fin r → PolynomialVector (N .X)) (η : Fin r → PolynomialVector (N .Y))
     (v : Fin n → N .Y) (B : Fin n → Fin r → K[X])
-    (hη : ∀ i, ∑ j, polySMul (B j i) (constant (v j)) = η i)
+    (hη : ∀ i a, g i = some a → ∑ j, polySMul (B j i) (constant (v j)) = η i)
     (ζ : Fin p → PolynomialVector (N .Z)) :
     ∑ i, polynomialPure (K := K) (ofLegs (ξ i) (η i) ((g i).elim 0 ζ)) +
       ∑ a, ∑ j, polynomialPure (K := K)
@@ -237,7 +239,7 @@ theorem sum_polynomialPure_cancel {r p n : ℕ} (g : Fin r → Option (Fin p))
     refine sum_eq_sum_fiber_option g _ _ (fun i hi ↦ ?_) (fun i a hi ↦ ?_)
     · simp [hi]
     · simp only [hi, Option.elim_some]
-      rw [← hη i, polynomialPure_finset_sum_Y]
+      rw [← hη i a hi, polynomialPure_finset_sum_Y]
       refine Finset.sum_congr rfl fun j _ ↦ ?_
       rw [polynomialPure_polySMul_Y]
   have hsecond : ∀ a, ∑ j, polynomialPure (K := K)
@@ -261,13 +263,14 @@ theorem sum_polynomialPure_cancel {r p n : ℕ} (g : Fin r → Option (Fin p))
   refine Finset.sum_eq_zero fun j _ ↦ ?_
   rw [← add_polySMul, add_neg_cancel, zero_polySMul]
 
-/-- **The kernel relation kills the mixed block.**  If `ξ i = ∑_j P j i • u_j` over `K[X]` and
+/-- **The kernel relation kills the mixed block.**  If `ξ i = ∑_j P j i • u_j` over `K[X]` for
+every grouped index `i`, and
 `∑_{i ∈ a} P j i · δ a i k = 0` for every group `a`, then
 `∑_i ξ_i ⊗ (∑_k δ_{g i} i k • y_{g i,k}) ⊗ ζ_{g i} = 0`.  This is the vanishing of the mixed
 block `(F,G,G)`. -/
 theorem sum_polynomialPure_kernel {r p n m : ℕ} (g : Fin r → Option (Fin p))
     (ξ : Fin r → PolynomialVector (N .X)) (u : Fin n → N .X) (P : Fin n → Fin r → K[X])
-    (hξ : ∀ i, ∑ j, polySMul (P j i) (constant (u j)) = ξ i)
+    (hξ : ∀ i a, g i = some a → ∑ j, polySMul (P j i) (constant (u j)) = ξ i)
     (δ : Fin p → Fin r → Fin m → K[X])
     (hδ : ∀ a j k, ∑ i ∈ Finset.univ.filter (fun i ↦ g i = some a), P j i * δ a i k = 0)
     (y : Fin p → Fin m → PolynomialVector (N .Y)) (ζ : Fin p → PolynomialVector (N .Z)) :
@@ -282,7 +285,7 @@ theorem sum_polynomialPure_kernel {r p n m : ℕ} (g : Fin r → Option (Fin p))
     refine sum_eq_sum_fiber_option g _ _ (fun i hi ↦ ?_) (fun i a hi ↦ ?_)
     · simp [hi]
     · simp only [hi, Option.elim_some]
-      rw [← hξ i]
+      rw [← hξ i a hi]
       exact polynomialPure_sum_polySMul_XY _ _ _ _ _ _ _
   rw [hfirst]
   refine Finset.sum_eq_zero fun a _ ↦ ?_
@@ -348,35 +351,36 @@ variable [∀ c, AddCommGroup (S c)] [∀ c, Module K (S c)]
 variable [∀ c, AddCommGroup (V c)] [∀ c, Module K (V c)]
 variable [∀ c, AddCommGroup (W' c)] [∀ c, Module K (W' c)]
 
-/-- **The grouped one-slice speedup for a border-rank certificate**
+/-- **The grouped one-slice speedup for a border-rank certificate, span form**
 ([AlmanLi2026], Theorems 6.1 and 6.3, pp. 19–21).
 
-Let `x` be a border-rank certificate of `T` with `r` terms, let `bX`, `bY` be bases of the `X`
-and `Y` legs of `T` of sizes `nX` and `nY`, and let `g` assign some of the terms to `p` groups,
-each of size at least `m + nX` (stated with truncated subtraction, so that `m = 0` needs no
-hypothesis).  Then the framed source `⟨r⟩ ⊕ (p ⊙ ⟨1,nY,1⟩)` degenerates to
+Let `x` be a border-rank certificate of `T` with `r` terms and let `g` assign some of the terms to
+`p` groups, each of size at least `m + nX` (stated with truncated subtraction, so that `m = 0`
+needs no hypothesis).  Suppose the `X` and `Y` polynomial vectors of every *grouped* term are
+`K[X]`-combinations of `nX` fixed vectors `uX` and of `nY` fixed vectors `uY`, with coefficient
+matrices `P` and `B`.  Then the framed source `⟨r⟩ ⊕ (p ⊙ ⟨1,nY,1⟩)` degenerates to
 `T ⊕ ∑_a ∑_{k<m} x'_{a,k} ⊗ y'_{a,k} ⊗ z'_a`, i.e. to `T ⊕ (p ⊙ ⟨1,m,1⟩)`.
 
-Nothing is assumed about the vectors `x'`, `y'`, `z'`, and terms that `g` sends to `none` belong
-to no group. -/
-theorem polynomialDegenerates_oneSliceFrameTensor_directSum {r p nX nY m : ℕ}
+Nothing is assumed about the vectors `x'`, `y'`, `z'`.  Terms that `g` sends to `none` belong to
+no group and are not constrained at all; with every term ungrouped and `p` empty slices this is
+the statement that a border-rank certificate is a degeneration of `⟨r⟩`.  The basis form
+`polynomialDegenerates_oneSliceFrameTensor_directSum` is the usual instance. -/
+theorem polynomialDegenerates_oneSliceFrameTensor_directSum_of_span {r p nX nY m : ℕ}
     (βX : Basis (Fin r ⊕ Fin p × Fin nY) K (S .X))
     (βY : Basis (Fin r ⊕ Fin p × Fin nY) K (S .Y))
     (βZ : Basis (Fin r ⊕ Fin p) K (S .Z))
-    (bX : Basis (Fin nX) K (V .X)) (bY : Basis (Fin nY) K (V .Y))
     (x : Fin r → ∀ c, PolynomialVector (V c)) {d : ℕ} {T : Tensor3 K V}
     (hT : HasLeadingTerm (∑ i, polynomialPure (K := K) (x i)) d T)
     (g : Fin r → Option (Fin p))
+    (uX : Fin nX → V .X) (P : Fin nX → Fin r → K[X])
+    (hP : ∀ i a, g i = some a → ∑ j, polySMul (P j i) (constant (uX j)) = x i .X)
+    (uY : Fin nY → V .Y) (B : Fin nY → Fin r → K[X])
+    (hB : ∀ i a, g i = some a → ∑ j, polySMul (B j i) (constant (uY j)) = x i .Y)
     (hg : ∀ a, m ≤ (Finset.univ.filter fun i ↦ g i = some a).card - nX)
     (x' : Fin p → Fin m → W' .X) (y' : Fin p → Fin m → W' .Y) (z' : Fin p → W' .Z) :
     PolynomialDegenerates (oneSliceFrameTensor βX βY βZ)
       (directSum T (∑ a, ∑ k, pure (K := K) (ofLegs (x' a k) (y' a k) (z' a)))) := by
   classical
-  -- Coordinate polynomials of the certificate in the two bases.
-  let P : Fin nX → Fin r → K[X] :=
-    fun j i ↦ toPolynomial (mapLinear (K := K) (bX.coord j) (x i .X))
-  let B : Fin nY → Fin r → K[X] :=
-    fun j i ↦ toPolynomial (mapLinear (K := K) (bY.coord j) (x i .Y))
   -- One kernel frame per group, brought to a common leading degree `D`.
   have hframe := fun a ↦ exists_polynomial_kernel_frame_finset
     (Finset.univ.filter fun i ↦ g i = some a) nX m P (hg a)
@@ -402,7 +406,7 @@ theorem polynomialDegenerates_oneSliceFrameTensor_directSum {r p nX nY m : ℕ}
     Sum.elim aX fun aj ↦
       ∑ i ∈ Finset.univ.filter (fun i ↦ g i = some aj.1), polySMul (-B aj.2 i) (aX i)
   let FvY : Fin r ⊕ Fin p × Fin nY → PolynomialVector (V .Y × W' .Y) :=
-    Sum.elim aY fun aj ↦ constant (il .Y (bY aj.2))
+    Sum.elim aY fun aj ↦ constant (il .Y (uY aj.2))
   let FvZ : Fin r ⊕ Fin p → PolynomialVector (V .Z × W' .Z) :=
     Sum.elim (fun i ↦ mapLinear (K := K) (il .Z) (x i .Z)) fun _ ↦ 0
   let GvX : Fin r ⊕ Fin p × Fin nY → PolynomialVector (V .X × W' .X) :=
@@ -421,10 +425,12 @@ theorem polynomialDegenerates_oneSliceFrameTensor_directSum {r p nX nY m : ℕ}
       (PolynomialLinearMap.ofBasis βX GvX) (PolynomialLinearMap.ofBasis βY GvY)
       (PolynomialLinearMap.ofBasis βZ GvZ)
   -- The two coordinate expansions, pushed into the block sum.
-  have haY : ∀ i, ∑ j, polySMul (B j i) (constant (il .Y (bY j))) = aY i :=
-    fun i ↦ sum_polySMul_basis_mapLinear bY (il .Y) (x i .Y)
-  have haX : ∀ i, ∑ j, polySMul (P j i) (constant (il .X (bX j))) = aX i :=
-    fun i ↦ sum_polySMul_basis_mapLinear bX (il .X) (x i .X)
+  have haY : ∀ i a, g i = some a →
+      ∑ j, polySMul (B j i) (constant (il .Y (uY j))) = aY i := fun i a hi ↦ by
+    rw [← mapLinear_sum_polySMul_constant, hB i a hi]
+  have haX : ∀ i a, g i = some a →
+      ∑ j, polySMul (P j i) (constant (il .X (uX j))) = aX i := fun i a hi ↦ by
+    rw [← mapLinear_sum_polySMul_constant, hP i a hi]
   -- The pure block `(F,F,F)` is the certificate.
   have hF : HasLeadingTerm (polynomialTransform F (oneSliceFrameTensor βX βY βZ)) d
       (map (includeLeft (K := K) (V := V) (W := W')) T) := by
@@ -487,7 +493,7 @@ theorem polynomialDegenerates_oneSliceFrameTensor_directSum {r p nX nY m : ℕ}
     rw [polynomialTransform_oneSliceFrameTensor]
     simp only [FvX, FvY, GvZ, Sum.elim_inl, Sum.elim_inr]
     exact sum_polynomialPure_cancel (N := fun c ↦ V c × W' c) g aX aY
-      (fun j ↦ il .Y (bY j)) B haY ζ
+      (fun j ↦ il .Y (uY j)) B haY ζ
   have h₂ : polynomialTransform
       (ofLegs (V := fun c ↦ PolynomialLinearMap K (S c) (V c × W' c)) (G .X) (F .Y) (G .Z))
       (oneSliceFrameTensor βX βY βZ) = 0 := by
@@ -498,7 +504,7 @@ theorem polynomialDegenerates_oneSliceFrameTensor_directSum {r p nX nY m : ℕ}
     rw [polynomialTransform_oneSliceFrameTensor]
     simp only [GvX, FvY, GvZ, Sum.elim_inl, Sum.elim_inr]
     exact sum_polynomialPure_cancel (N := fun c ↦ V c × W' c) g gX aY
-      (fun j ↦ il .Y (bY j)) B haY ζ
+      (fun j ↦ il .Y (uY j)) B haY ζ
   have h₃ : polynomialTransform
       (ofLegs (V := fun c ↦ PolynomialLinearMap K (S c) (V c × W' c)) (F .X) (G .Y) (G .Z))
       (oneSliceFrameTensor βX βY βZ) = 0 := by
@@ -509,9 +515,34 @@ theorem polynomialDegenerates_oneSliceFrameTensor_directSum {r p nX nY m : ℕ}
     rw [polynomialTransform_oneSliceFrameTensor]
     simp only [FvX, GvY, GvZ, gY, Sum.elim_inl, Sum.elim_inr, polynomialPure_zero_Y,
       Finset.sum_const_zero, add_zero]
-    exact sum_polynomialPure_kernel (N := fun c ↦ V c × W' c) g aX (fun j ↦ il .X (bX j)) P haX
+    exact sum_polynomialPure_kernel (N := fun c ↦ V c × W' c) g aX (fun j ↦ il .X (uX j)) P haX
       δ hδ (fun a k ↦ constant (ir .Y (y' a k))) ζ
   exact (polynomialDegeneratesAt_add_of_mixed_eq_zero F G hF hG h₁ h₂ h₃).toPolynomialDegenerates
+
+/-- **The grouped one-slice speedup for a border-rank certificate**
+([AlmanLi2026], Theorems 6.1 and 6.3, pp. 19–21), for legs with given bases.
+
+Let `x` be a border-rank certificate of `T` with `r` terms, let `bX`, `bY` be bases of the `X`
+and `Y` legs of `T` of sizes `nX` and `nY`, and let `g` assign some of the terms to `p` groups,
+each of size at least `m + nX`.  Then the framed source `⟨r⟩ ⊕ (p ⊙ ⟨1,nY,1⟩)` degenerates to
+`T ⊕ (p ⊙ ⟨1,m,1⟩)`. -/
+theorem polynomialDegenerates_oneSliceFrameTensor_directSum {r p nX nY m : ℕ}
+    (βX : Basis (Fin r ⊕ Fin p × Fin nY) K (S .X))
+    (βY : Basis (Fin r ⊕ Fin p × Fin nY) K (S .Y))
+    (βZ : Basis (Fin r ⊕ Fin p) K (S .Z))
+    (bX : Basis (Fin nX) K (V .X)) (bY : Basis (Fin nY) K (V .Y))
+    (x : Fin r → ∀ c, PolynomialVector (V c)) {d : ℕ} {T : Tensor3 K V}
+    (hT : HasLeadingTerm (∑ i, polynomialPure (K := K) (x i)) d T)
+    (g : Fin r → Option (Fin p))
+    (hg : ∀ a, m ≤ (Finset.univ.filter fun i ↦ g i = some a).card - nX)
+    (x' : Fin p → Fin m → W' .X) (y' : Fin p → Fin m → W' .Y) (z' : Fin p → W' .Z) :
+    PolynomialDegenerates (oneSliceFrameTensor βX βY βZ)
+      (directSum T (∑ a, ∑ k, pure (K := K) (ofLegs (x' a k) (y' a k) (z' a)))) :=
+  polynomialDegenerates_oneSliceFrameTensor_directSum_of_span βX βY βZ x hT g
+    (fun j ↦ bX j) (fun j i ↦ toPolynomial (mapLinear (K := K) (bX.coord j) (x i .X)))
+    (fun i _ _ ↦ sum_polySMul_basis bX (x i .X))
+    (fun j ↦ bY j) (fun j i ↦ toPolynomial (mapLinear (K := K) (bY.coord j) (x i .Y)))
+    (fun i _ _ ↦ sum_polySMul_basis bY (x i .Y)) hg x' y' z'
 
 end Main
 

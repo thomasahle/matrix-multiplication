@@ -5,6 +5,7 @@ Authors: Thomas Dybdahl Ahle
 -/
 
 import AlgebraicComplexity.MatrixMultiplication.DirectSum
+import AlgebraicComplexity.MatrixMultiplication.GroupedBorderRankSpeedup
 import AlgebraicComplexity.MatrixMultiplication.NonminimalBorderRankSpeedup
 import AlgebraicComplexity.MatrixMultiplication.NonminimalRankSpeedup
 import Mathlib.LinearAlgebra.Dimension.Constructions
@@ -34,7 +35,7 @@ proof obligation.  None of them is an `axiom`, an unproved declaration, or an in
 | Theorem 6.1 | 19 | One-slice speedup for nonminimal rank | **Proved**, `MatrixMultiplication/NonminimalRankSpeedup.lean` |
 | Theorem 6.1 | 19 | …for nonminimal *border* rank | **Proved**, `nonminimalBorderRankSpeedup` below, from `MatrixMultiplication/NonminimalBorderRankSpeedup.lean` |
 | Theorem 6.2 | 20 | Iterated version | Out of scope (needs Prop. 5.1/5.2/5.5/5.6) |
-| Theorem 6.3 | 21 | Grouped (multi-slice) speedup | `GroupedOneSliceSpeedup` |
+| Theorem 6.3 | 21 | Grouped (multi-slice) speedup | **Proved**, `groupedOneSliceSpeedup` below, from `MatrixMultiplication/GroupedBorderRankSpeedup.lean` |
 | Theorem 7.3 | 29 | Direct-sum identity generalizing `[Sch81, Lemma 6.1]` | `DirectSumIdentity` |
 
 The numerical headlines of Sections 6 and 7 (`R̃(cw₂) < 3.931`, `σ(d) < 2ω/3`, Corollary 6.1) all
@@ -116,8 +117,14 @@ Its structure theorem `map_ofLegs_eq_sum_pure_of_flatten` supplies both directio
   rank hypothesis in this form either: an `n × n` polynomial matrix factors through its `n`
   columns.
 
-Theorem 6.3 follows either by summing Theorem 6.1 over a partition of `[r]` (the paper's first
-proof, p. 21) or through `OneSliceCompression` (its second proof, p. 21–22).
+**Theorem 6.3** (p. 21) is `polynomialDegenerates_grouped_oneSlice_of_borderRankLE` in
+`MatrixMultiplication/GroupedBorderRankSpeedup.lean`, and discharges `GroupedOneSliceSpeedup`
+below.  The paper derives it either by summing Theorem 6.1 over a partition of `[r]` (its first
+proof, p. 21) or through `OneSliceCompression` (its second proof, pp. 21–22).  For a border-rank
+certificate the first proof cannot be run group by group — the terms of one group sum to a
+polynomial tensor with no leading term of its own — so the core theorem of
+`Tensor/OneSliceBorderSpeedup.lean` is grouped from the start, and Theorem 6.1 is its one-group
+instance.
 
 ## References
 
@@ -200,8 +207,8 @@ theorem nonminimalBorderRankSpeedup (K : Type u) [Field K] : NonminimalBorderRan
   intro n r V _ _ _ _ T hX hY hT
   exact polynomialDegenerates_diagonalTensor_oneSlice_of_borderRankLE n n r T hX hY hT
 
-/-- **Obligation: grouped one-slice speedup** ([AlmanLi2026], Theorem 6.3, p. 21, in the
-quantitative form displayed on p. 22).
+/-- **Statement: grouped one-slice speedup** ([AlmanLi2026], Theorem 6.3, p. 21, in the
+quantitative form displayed on p. 22).  Proved: `groupedOneSliceSpeedup`.
 
 Partitioning a border-rank-`r` certificate of an `n × n × n` tensor into `p` groups of size at
 least `3n` and applying Theorem 6.1 groupwise gives
@@ -221,6 +228,12 @@ def GroupedOneSliceSpeedup (K : Type u) [Field K] : Prop :=
         (Tensor.directSum (unitTensor K r)
           (oneSliceDirectSum K (fun _ : Fin p ↦ n)))
         (Tensor.directSum T (oneSliceDirectSum K (fun _ : Fin p ↦ 2 * n)))
+
+/-- **Alman–Li Theorem 6.3** ([AlmanLi2026], pp. 21–22): an `n × n × n` tensor of border rank at
+most `r`, with `3np ≤ r`, satisfies `⟨r⟩ ⊕ (p ⊙ ⟨1,n,1⟩) ⊵ T ⊕ (p ⊙ ⟨1,2n,1⟩)`. -/
+theorem groupedOneSliceSpeedup (K : Type u) [Field K] : GroupedOneSliceSpeedup K := by
+  intro n r p V _ _ T hV hT hr
+  exact polynomialDegenerates_grouped_oneSlice_of_borderRankLE n r p T hV hT hr
 
 /-- **Obligation: the Alman–Li direct-sum identity** ([AlmanLi2026], Theorem 7.3, p. 29).
 

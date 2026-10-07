@@ -194,6 +194,16 @@ theorem sum_polySMul_basis_mapLinear {ι : Type*} [Fintype ι] (b : Basis ι K M
   refine Finset.sum_congr rfl fun j _ ↦ ?_
   rw [mapLinear_polySMul, mapLinear_constant]
 
+/-- A linear map carries a `K[X]`-combination of constant vectors to the same combination of the
+images. -/
+theorem mapLinear_sum_polySMul_constant {ι : Type*} (s : Finset ι) (f : M →ₗ[K] N)
+    (p : ι → K[X]) (u : ι → M) :
+    mapLinear (K := K) f (∑ j ∈ s, polySMul (p j) (constant (u j))) =
+      ∑ j ∈ s, polySMul (p j) (constant (f (u j))) := by
+  rw [map_sum]
+  refine Finset.sum_congr rfl fun j _ ↦ ?_
+  rw [mapLinear_polySMul, mapLinear_constant]
+
 end PolynomialVector
 
 open PolynomialVector

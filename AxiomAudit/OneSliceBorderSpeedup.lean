@@ -12,12 +12,15 @@ set_option autoImplicit false
 /-!
 # Axiom audit for the border-rank one-slice speedup
 
-Focused trust audit for the border-rank form of [AlmanLi2026, Theorem 6.1, p. 19] and the layers
-it is built from: the polynomial-scalar calculus of `Tensor/PolynomialScalar.lean`, the kernel
-frames of `Tensor/PolynomialKernelFrame.lean`, the presentation-independent core of
-`Tensor/OneSliceBorderSpeedup.lean`, its matrix-multiplication instance in
-`MatrixMultiplication/NonminimalBorderRankSpeedup.lean`, and the discharged statement
-`AlmanLi.NonminimalBorderRankSpeedup` of `Examples/AlmanLiOneSliceSpeedup.lean`.
+Focused trust audit for the border-rank forms of [AlmanLi2026, Theorem 6.1, p. 19] and
+[AlmanLi2026, Theorem 6.3, p. 21] and the layers they are built from: the polynomial-scalar
+calculus of `Tensor/PolynomialScalar.lean`, the kernel frames of
+`Tensor/PolynomialKernelFrame.lean`, the presentation-independent core of
+`Tensor/OneSliceBorderSpeedup.lean`, its matrix-multiplication instances in
+`MatrixMultiplication/NonminimalBorderRankSpeedup.lean` and
+`MatrixMultiplication/GroupedBorderRankSpeedup.lean`, and the discharged statements
+`AlmanLi.NonminimalBorderRankSpeedup` and `AlmanLi.GroupedOneSliceSpeedup` of
+`Examples/AlmanLiOneSliceSpeedup.lean`.
 -/
 
 namespace AlgebraicComplexity
@@ -42,5 +45,11 @@ namespace AlgebraicComplexity
 #assert_axioms oneSliceFrameTensor_eq_directSum_diagonalTensor
 #assert_axioms polynomialDegenerates_diagonalTensor_oneSlice_of_borderRankLE
 #assert_axioms AlmanLi.nonminimalBorderRankSpeedup
+#assert_axioms Tensor.PolynomialVector.mapLinear_sum_polySMul_constant
+#assert_axioms Tensor.polynomialDegenerates_oneSliceFrameTensor_directSum_of_span
+#assert_axioms restricts_directSum_standardOneSliceFrame
+#assert_axioms le_card_filter_groupOfTerm
+#assert_axioms polynomialDegenerates_grouped_oneSlice_of_borderRankLE
+#assert_axioms AlmanLi.groupedOneSliceSpeedup
 
 end AlgebraicComplexity

@@ -400,13 +400,15 @@ Remaining, in dependency order:
    enumeration of the chosen subset, and a left inverse over a field. Unblocks the second proof of
    Theorem 6.3. Largest index-bookkeeping cost is `IndexedDirectSumSpace` coordinates; still the
    largest single item in this section.
-3. **Theorem 6.3** (p. 21) — the mathematics is done, in border-rank form, by the grouped core of
-   item 1 (groupwise application of Theorem 6.1 does *not* work for a border certificate: the
-   group sums are polynomial tensors with no leading term of their own, which is why the core is
-   grouped from the start). What remains is to exhibit `unitTensor K r ⊕ oneSliceDirectSum …` as
-   an `oneSliceFrameTensor`, i.e. bases of the `MMDirectSumSpace` legs indexed by
-   `Fin r ⊕ Fin p × Fin n`, and the grouping `i ↦ ⌊i / 3n⌋` with the leftover terms ungrouped.
-   It does not need Proposition 5.7.
+3. **Theorem 6.3** (p. 21) — **DONE 2026-10-07**, in border-rank form
+   (`MatrixMultiplication/GroupedBorderRankSpeedup.lean`, `AlmanLi.groupedOneSliceSpeedup`).
+   Groupwise application of Theorem 6.1 does *not* work for a border certificate: the group sums
+   are polynomial tensors with no leading term of their own, which is why the core of item 1 is
+   grouped from the start. The file adds only bookkeeping: the indexed-direct-sum source
+   restricts onto the framed source in standard coordinates (no `DFinsupp` basis is needed —
+   `indexedFoldMap` does it), the grouping is `i ↦ ⌊i / 3n⌋` with the leftover terms ungrouped,
+   and `n = 0`, where `finrank = 0` gives no basis, goes through the span form of the core with
+   every term ungrouped. It does not need Proposition 5.7.
 4. **Theorem 7.3** (`DirectSumIdentity`, p. 29) — independent; needs only the restriction form
    already proved plus explicit coordinate maps. No new theory.
 5. Out of scope, unchanged: Theorem 6.2, Corollary 6.1, and all of §7.1/§7.2 — they need
