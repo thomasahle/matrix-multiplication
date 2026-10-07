@@ -9,18 +9,19 @@ import AlgebraicComplexity.MatrixMultiplication.DirectSumIdentity
 import AlgebraicComplexity.MatrixMultiplication.GroupedBorderRankSpeedup
 import AlgebraicComplexity.MatrixMultiplication.NonminimalBorderRankSpeedup
 import AlgebraicComplexity.MatrixMultiplication.NonminimalRankSpeedup
+import AlgebraicComplexity.MatrixMultiplication.OneSliceCompression
 import Mathlib.LinearAlgebra.Dimension.Constructions
 
 /-!
-# Alman–Li §§5–7: the one-slice speedup layer, and what is still open
+# Alman–Li §§5–7: the one-slice speedup layer
 
 `Tensor/FreeLunchSpeedup.lean` proves the *free-lunch speedup theorem*
 ([AlmanLi2026], Theorem 5.1, p. 14) and its degeneration bootstrap (Corollary 5.1, p. 15).
 Everything else in Sections 5–7 of that paper is built on top of it.  This file states the
-remaining results as `Prop` definitions with the exact hypothesis shape, so that downstream
-interfaces can be designed against them, and discharges the ones that are proved: a statement
-`P K` below is **proved** exactly when a theorem `… : P K` follows it, and is otherwise a named
-proof obligation.  None of them is an `axiom`, an unproved declaration, or an instance.
+remaining constructive results as `Prop` definitions with the exact hypothesis shape, so that
+downstream interfaces can be designed against them, and discharges them: a statement `P K` below
+is **proved** exactly when a theorem `… : P K` follows it, and **every statement in this file now
+is**.  None of them is an `axiom`, an unproved declaration, or an instance.
 
 ## Inventory of the constructive layer
 
@@ -32,7 +33,7 @@ proof obligation.  None of them is an `axiom`, an unproved declaration, or an in
 | Prop. 5.3 | 17 | The extracted summand is `⟨1,t,1⟩` with `t ≥ r − n − m` | **Proved**, `MatrixMultiplication/OneSliceSpeedup.lean` |
 | Prop. 5.4 | 17 | One-slice speedup, `[Str88, Lemma 3.12]` | **Proved**, `MatrixMultiplication/OneSliceAppend.lean` |
 | Prop. 5.5, 5.6 | 18 | Fullness index and its multiplicativity | Bookkeeping for Theorem 6.2 only; not recorded |
-| Prop. 5.7 | 18 | One-slice compression, `[Str88, Prop. 6.4]` | `OneSliceCompression` |
+| Prop. 5.7 | 18 | One-slice compression, `[Str88, Prop. 6.4]` | **Proved**, `oneSliceCompression` below, from `MatrixMultiplication/OneSliceCompression.lean` |
 | Theorem 6.1 | 19 | One-slice speedup for nonminimal rank | **Proved**, `MatrixMultiplication/NonminimalRankSpeedup.lean` |
 | Theorem 6.1 | 19 | …for nonminimal *border* rank | **Proved**, `nonminimalBorderRankSpeedup` below, from `MatrixMultiplication/NonminimalBorderRankSpeedup.lean` |
 | Theorem 6.2 | 20 | Iterated version | Out of scope (needs Prop. 5.1/5.2/5.5/5.6) |
@@ -154,16 +155,17 @@ noncomputable abbrev oneSliceDirectSum (K : Type u) [CommSemiring K]
     Tensor3 K (MMDirectSumSpace K (fun _ : ι ↦ 1) n (fun _ ↦ 1)) :=
   matrixMultiplicationDirectSum K (fun _ : ι ↦ 1) n (fun _ ↦ 1)
 
-/-- **Obligation: one-slice compression** ([AlmanLi2026], Proposition 5.7, p. 18; Strassen
-[Strassen1988], Proposition 6.4).
+/-- **Statement: one-slice compression** ([AlmanLi2026], Proposition 5.7, p. 18; Strassen
+[Strassen1988], Proposition 6.4).  Proved: `oneSliceCompression`.
 
 Let `T = ⊕_{i<k} ⟨1, n i, 1⟩` and let `A` act on the `X` leg alone, with image of codimension `p`.
 Then `(A ⊗ id ⊗ id) T` still restricts onto a direct sum of one-slice tensors, and the total loss
 is exactly `p`, distributed as `q i ≤ n i` with `∑ q i = p`.
 
-The intended proof is the paper's: choose a subset `D` of the `X`-basis of `T` of size
-`dim U − p` on which `A` is injective, zero out every basis vector outside `D` on the `X` and `Y`
-legs, and compose with a left inverse of `A|_{span D}`. -/
+The proof (`MatrixMultiplication/OneSliceCompression.lean`) is the paper's: choose a subset `D`
+of the `X`-basis of `T` of size `dim U − p` whose images under `A` are linearly independent, send
+those images to the basis vectors of the target slices, and kill every basis vector outside `D`
+on the `Y` leg. -/
 def OneSliceCompression (K : Type u) [Field K] : Prop :=
   ∀ (k p : ℕ) (n : Fin k → ℕ)
     (A : MMDirectSumSpace K (fun _ : Fin k ↦ 1) n (fun _ ↦ 1) .X →ₗ[K]
@@ -177,6 +179,12 @@ def OneSliceCompression (K : Type u) [Field K] : Prop :=
             A LinearMap.id LinearMap.id)
           (oneSliceDirectSum K n))
         (oneSliceDirectSum K fun i ↦ n i - q i)
+
+/-- **Alman–Li Proposition 5.7** ([AlmanLi2026], p. 18; [Strassen1988], Proposition 6.4): a
+linear map applied to the `X` leg of `⊕ ⟨1, n i, 1⟩` loses at most its corank. -/
+theorem oneSliceCompression (K : Type u) [Field K] : OneSliceCompression K := by
+  intro k p n A hA
+  exact restricts_map_oneSliceDirectSum n p A hA
 
 /-- **Statement: one-slice speedup for nonminimal border rank** ([AlmanLi2026], Theorem 6.1,
 p. 19, the displayed `s = n` specialization).  Proved: `nonminimalBorderRankSpeedup`.

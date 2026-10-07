@@ -395,11 +395,13 @@ Remaining, in dependency order:
    The core (`Tensor.polynomialDegenerates_oneSliceFrameTensor_directSum`) is already **grouped**:
    `p` groups of at least `m + n` certificate terms give `p ⊙ ⟨1,m,1⟩`, with ungrouped terms
    allowed, so Theorem 6.3 in its border-rank form needs only the presentation bookkeeping below.
-2. **Proposition 5.7** (`OneSliceCompression`, p. 18) — independent of everything else; needs
-   `exists_linearIndependent'` on the `X`-basis family of `⊕_i ⟨1,n_i,1⟩`, a per-block increasing
-   enumeration of the chosen subset, and a left inverse over a field. Unblocks the second proof of
-   Theorem 6.3. Largest index-bookkeeping cost is `IndexedDirectSumSpace` coordinates; still the
-   largest single item in this section.
+2. **Proposition 5.7** (p. 18) — **DONE 2026-10-07** (`MatrixMultiplication/OneSliceCompression.lean`,
+   `AlmanLi.oneSliceCompression`). `exists_linearIndependent'` picks the subfamily of images, the
+   per-block increasing enumeration is `Finset.orderEmbOfFin`, and the left inverse is a linear map
+   prescribed on a linearly independent family (`LinearMap.exists_extend`). No `DFinsupp` basis was
+   needed: the `X` vectors span by `DirectSum.induction_on`, and the `Y`/`Z` maps are
+   `indexedFoldMap`s of coordinate functionals. With this, every statement recorded in
+   `Examples/AlmanLiOneSliceSpeedup.lean` is proved.
 3. **Theorem 6.3** (p. 21) — **DONE 2026-10-07**, in border-rank form
    (`MatrixMultiplication/GroupedBorderRankSpeedup.lean`, `AlmanLi.groupedOneSliceSpeedup`).
    Groupwise application of Theorem 6.1 does *not* work for a border certificate: the group sums
