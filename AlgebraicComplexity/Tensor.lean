@@ -29,6 +29,9 @@ import AlgebraicComplexity.Tensor.Coordinates
 import AlgebraicComplexity.Tensor.Polynomial
 import AlgebraicComplexity.Tensor.Degeneration
 import AlgebraicComplexity.Tensor.FreeLunchSpeedup
+import AlgebraicComplexity.Tensor.PolynomialScalar
+import AlgebraicComplexity.Tensor.PolynomialKernelFrame
+import AlgebraicComplexity.Tensor.OneSliceBorderSpeedup
 import AlgebraicComplexity.Tensor.BorderRank
 import AlgebraicComplexity.Tensor.BorderRankTransport
 import AlgebraicComplexity.Tensor.BorderConcise

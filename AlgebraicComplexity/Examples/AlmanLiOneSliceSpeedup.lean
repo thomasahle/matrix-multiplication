@@ -5,6 +5,7 @@ Authors: Thomas Dybdahl Ahle
 -/
 
 import AlgebraicComplexity.MatrixMultiplication.DirectSum
+import AlgebraicComplexity.MatrixMultiplication.NonminimalBorderRankSpeedup
 import AlgebraicComplexity.MatrixMultiplication.NonminimalRankSpeedup
 import Mathlib.LinearAlgebra.Dimension.Constructions
 
@@ -13,10 +14,11 @@ import Mathlib.LinearAlgebra.Dimension.Constructions
 
 `Tensor/FreeLunchSpeedup.lean` proves the *free-lunch speedup theorem*
 ([AlmanLi2026], Theorem 5.1, p. 14) and its degeneration bootstrap (Corollary 5.1, p. 15).
-Everything else in Sections 5–7 of that paper is built on top of it.  This file records the
-remaining results as **named proof obligations**: `Prop` definitions with the exact hypothesis
-shape, so that downstream interfaces can be designed against them.  None of them is an `axiom`,
-an unproved declaration, or an instance; they are inert statements.
+Everything else in Sections 5–7 of that paper is built on top of it.  This file states the
+remaining results as `Prop` definitions with the exact hypothesis shape, so that downstream
+interfaces can be designed against them, and discharges the ones that are proved: a statement
+`P K` below is **proved** exactly when a theorem `… : P K` follows it, and is otherwise a named
+proof obligation.  None of them is an `axiom`, an unproved declaration, or an instance.
 
 ## Inventory of the constructive layer
 
@@ -30,7 +32,7 @@ an unproved declaration, or an instance; they are inert statements.
 | Prop. 5.5, 5.6 | 18 | Fullness index and its multiplicativity | Bookkeeping for Theorem 6.2 only; not recorded |
 | Prop. 5.7 | 18 | One-slice compression, `[Str88, Prop. 6.4]` | `OneSliceCompression` |
 | Theorem 6.1 | 19 | One-slice speedup for nonminimal rank | **Proved**, `MatrixMultiplication/NonminimalRankSpeedup.lean` |
-| Theorem 6.1 | 19 | …for nonminimal *border* rank | `NonminimalBorderRankSpeedup` |
+| Theorem 6.1 | 19 | …for nonminimal *border* rank | **Proved**, `nonminimalBorderRankSpeedup` below, from `MatrixMultiplication/NonminimalBorderRankSpeedup.lean` |
 | Theorem 6.2 | 20 | Iterated version | Out of scope (needs Prop. 5.1/5.2/5.5/5.6) |
 | Theorem 6.3 | 21 | Grouped (multi-slice) speedup | `GroupedOneSliceSpeedup` |
 | Theorem 7.3 | 29 | Direct-sum identity generalizing `[Sch81, Lemma 6.1]` | `DirectSumIdentity` |
@@ -52,7 +54,7 @@ explicit data (`HasLeadingTerm … d …`), so the required exponents can simply
 junk block strictly above.  Consequently the whole in-scope layer is provable inside the existing
 single-parameter `PolynomialDegenerates` calculus.
 
-## The two-legged rank interface, and what still blocks Theorem 6.1
+## The two-legged rank interface, and the two routes to Theorem 6.1
 
 Propositions 5.3 and 5.4 quantify over the **rank of a contracted slice**: for a functional
 `f : W → K` on the third leg, `M = (id ⊗ id ⊗ f) S` is an element of `U ⊗ V` and the statements
@@ -89,7 +91,7 @@ Its structure theorem `map_ofLegs_eq_sum_pure_of_flatten` supplies both directio
     the range of `M` and reflexivity of the finite-dimensional `Y` leg.  The remaining
     bookkeeping is `Tensor.matrixRank_directSum` (`Tensor/MatrixFlatteningDirectSum.lean`).
 
-**Theorem 6.1** (p. 19) splits at the field, and only one half is proved.
+**Theorem 6.1** (p. 19) is proved in both forms, by two different routes.
 
 * The **restriction form** is `polynomialDegenerates_diagonalTensor_directSum_oneSlice` in
   `MatrixMultiplication/NonminimalRankSpeedup.lean`: from a restriction `T ≤ ⟨r⟩` of an
@@ -98,17 +100,21 @@ Its structure theorem `map_ofLegs_eq_sum_pure_of_flatten` supplies both directio
   a bare `RankLE r T`.  The `s = n` clause is unconditional, as claimed: `M = Σ aᵢbᵢc'ᵢ` lives in
   `U' ⊗ V'` with `dim U' = dim V' = n`, so `Submodule.finrank_le` bounds its rank by `n`.
   Fixing the all-ones contraction loses no generality: rescaling `aᵢ ↦ c'ᵢaᵢ`, `cᵢ ↦ c'ᵢ⁻¹cᵢ`
-  turns any nonzero `(c'ᵢ)` into it while preserving both `T` and `M`.
-* The **border-rank form** stays the obligation `NonminimalBorderRankSpeedup` below.  It is *not*
-  restated at `RankLE`: the headline application of Theorem 6.1 is precisely that a nonminimal
-  *border*-rank bound is never tight, and a `RankLE` hypothesis would lose it.  What it needs is
-  a scalar extension of the rank layer, not a stronger free-lunch theorem: Propositions 5.3 and
-  5.4 are dimension counts, and over a border-rank certificate they are dimension counts over
-  `F(λ)`.  Formalizing them there means base-changing `Tensor3` to `RatFunc K` (a `matrixFlatten`
-  for `PolynomialLinearMap` families is not enough — `K[ε]` is not a field) and then descending
-  the resulting degeneration, which is a foundational layer of its own; it was scoped and
-  deliberately not built.  The gap between the two forms is exactly `RankLE → BorderRankLE` in
-  the hypothesis, and the obligation is stated so that this is visible.
+  turns any nonzero `(c'ᵢ)` into it while preserving both `T` and `M`.  This route follows the
+  paper through Propositions 5.3 and 5.4, which are dimension counts over the base field.
+* The **border-rank form** — the one the paper states, and the one that says a nonminimal
+  *border*-rank bound is never tight — is
+  `polynomialDegenerates_diagonalTensor_oneSlice_of_borderRankLE` in
+  `MatrixMultiplication/NonminimalBorderRankSpeedup.lean`, and discharges
+  `NonminimalBorderRankSpeedup` below.  It does **not** run Propositions 5.3 and 5.4 over
+  `F(λ)`, and needs no scalar extension of the tensor layer to `RatFunc K`.  Instead
+  `Tensor/OneSliceBorderSpeedup.lean` applies the polynomial free-lunch theorem to two explicit
+  polynomial families of leg maps on `⟨r⟩ ⊕ ⟨1,n,1⟩`; the dimension count survives as a
+  *kernel frame* of the polynomial coordinate matrix of the certificate
+  (`Tensor/PolynomialKernelFrame.lean`), which is found over the fraction field of `K[X]` and
+  returned, denominators cleared, as a statement about polynomials.  The `s = n` clause needs no
+  rank hypothesis in this form either: an `n × n` polynomial matrix factors through its `n`
+  columns.
 
 Theorem 6.3 follows either by summing Theorem 6.1 over a partition of `[r]` (the paper's first
 proof, p. 21) or through `OneSliceCompression` (its second proof, p. 21–22).
@@ -164,8 +170,8 @@ def OneSliceCompression (K : Type u) [Field K] : Prop :=
           (oneSliceDirectSum K n))
         (oneSliceDirectSum K fun i ↦ n i - q i)
 
-/-- **Obligation: one-slice speedup for nonminimal border rank** ([AlmanLi2026], Theorem 6.1,
-p. 19, the displayed `s = n` specialization).
+/-- **Statement: one-slice speedup for nonminimal border rank** ([AlmanLi2026], Theorem 6.1,
+p. 19, the displayed `s = n` specialization).  Proved: `nonminimalBorderRankSpeedup`.
 
 If `T` is an `n × n × n` tensor with a border-rank-`r` certificate, then
 
@@ -173,12 +179,8 @@ If `T` is an `n × n × n` tensor with a border-rank-`r` certificate, then
 T ⊕ ⟨1, r − n, 1⟩ ⊴ ⟨r⟩ ⊕ ⟨1, n, 1⟩.
 ```
 
-This is *literally* the statement of
-`polynomialDegenerates_diagonalTensor_oneSlice_of_rankLE`
-(`MatrixMultiplication/NonminimalRankSpeedup.lean`) with `RankLE` weakened to `BorderRankLE`, and
-that is the only remaining gap: the proved version already covers the exact-rank case and the
-general `s` (with `⟨1, r + s − 2n, 1⟩`).  Closing it needs the rank layer over `F(λ)` described in
-the module documentation, not a stronger degeneration theorem.
+This is the statement of `polynomialDegenerates_diagonalTensor_oneSlice_of_rankLE`
+(`MatrixMultiplication/NonminimalRankSpeedup.lean`) with `RankLE` weakened to `BorderRankLE`.
 
 The hypothesis `n ≤ r` of the earlier draft is unnecessary — natural-number subtraction truncates
 the conclusion correctly — and finite-dimensionality of the legs is now demanded explicitly, since
@@ -191,6 +193,12 @@ def NonminimalBorderRankSpeedup (K : Type u) [Field K] : Prop :=
       PolynomialDegenerates
         (Tensor.directSum (diagonalTensor K (Fin r)) (matrixMultiplication (K := K) 1 n 1))
         (Tensor.directSum T (matrixMultiplication (K := K) 1 (r - n) 1))
+
+/-- **Alman–Li Theorem 6.1, border-rank form** ([AlmanLi2026], p. 19): a tensor with `n`-dimensional
+`X` and `Y` legs and border rank at most `r` satisfies `⟨r⟩ ⊕ ⟨1,n,1⟩ ⊵ T ⊕ ⟨1, r − n, 1⟩`. -/
+theorem nonminimalBorderRankSpeedup (K : Type u) [Field K] : NonminimalBorderRankSpeedup K := by
+  intro n r V _ _ _ _ T hX hY hT
+  exact polynomialDegenerates_diagonalTensor_oneSlice_of_borderRankLE n n r T hX hY hT
 
 /-- **Obligation: grouped one-slice speedup** ([AlmanLi2026], Theorem 6.3, p. 21, in the
 quantitative form displayed on p. 22).

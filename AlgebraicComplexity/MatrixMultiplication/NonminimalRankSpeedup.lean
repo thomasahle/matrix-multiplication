@@ -27,17 +27,21 @@ for every `s` bounding the rank of the contracted matrix `M = ∑ᵢ aᵢbᵢ`, 
 The source `⟨r⟩` is the library's diagonal tensor `Tensor.diagonalTensor K (Fin r)`
 (`Tensor/SliceRank.lean`), i.e. `∑_{i<r} e_i ⊗ e_i ⊗ e_i` in coordinates.
 
-## Why the hypothesis is `RankLE`, not `BorderRankLE`
+## The border-rank form is proved separately
 
 The paper's Theorem 6.1 starts from a *border*-rank decomposition `∑ᵢ aᵢbᵢcᵢ = T + O(λ)` and runs
 the whole of Propositions 5.3 and 5.4 over the function field `F(λ)`, descending at the end by
-[AlmanLi2026, Corollary 5.1].  Propositions 5.3 and 5.4 are rank statements, so that argument
-needs `matrixRank` for `F(λ)`-valued leg maps: a scalar extension of the tensor calculus to
-`RatFunc K` together with a descent of the resulting degeneration.  No such layer exists here,
-and none is built speculatively; the border-rank form therefore remains the recorded obligation
-`AlmanLi.NonminimalBorderRankSpeedup` (`Examples/AlmanLiOneSliceSpeedup.lean`).  Everything below
-the field is unchanged, so the `RankLE` version proved here is the exact statement the paper's
-argument specializes to when the certificate is exact.
+[AlmanLi2026, Corollary 5.1].  That route would need `matrixRank` for `F(λ)`-valued leg maps, a
+scalar extension of the tensor calculus to `RatFunc K`; this file does not take it, and proves
+the statement the paper's argument specializes to when the certificate is exact.
+
+The border-rank form itself is `polynomialDegenerates_diagonalTensor_oneSlice_of_borderRankLE` in
+`MatrixMultiplication/NonminimalBorderRankSpeedup.lean`.  It is proved by a different route that
+needs no function-field layer: explicit polynomial families of leg maps and a kernel frame of the
+certificate's polynomial coordinate matrix (`Tensor/OneSliceBorderSpeedup.lean`).  The two files
+overlap only in the `s = n` clause; the general-`s` statement
+`polynomialDegenerates_diagonalTensor_directSum_oneSlice` below is available in the exact-rank
+form only.
 
 ## Why the all-ones contraction loses no generality
 

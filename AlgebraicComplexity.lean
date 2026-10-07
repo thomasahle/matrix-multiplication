@@ -34,6 +34,9 @@ import AlgebraicComplexity.Tensor.Coordinates
 import AlgebraicComplexity.Tensor.Polynomial
 import AlgebraicComplexity.Tensor.Degeneration
 import AlgebraicComplexity.Tensor.FreeLunchSpeedup
+import AlgebraicComplexity.Tensor.PolynomialScalar
+import AlgebraicComplexity.Tensor.PolynomialKernelFrame
+import AlgebraicComplexity.Tensor.OneSliceBorderSpeedup
 import AlgebraicComplexity.Tensor.BorderRank
 import AlgebraicComplexity.Tensor.BorderRankTransport
 import AlgebraicComplexity.Tensor.BorderConcise
@@ -149,6 +152,7 @@ import AlgebraicComplexity.MatrixMultiplication.OneSliceNormalForm
 import AlgebraicComplexity.MatrixMultiplication.OneSliceSpeedup
 import AlgebraicComplexity.MatrixMultiplication.OneSliceAppend
 import AlgebraicComplexity.MatrixMultiplication.NonminimalRankSpeedup
+import AlgebraicComplexity.MatrixMultiplication.NonminimalBorderRankSpeedup
 import AlgebraicComplexity.MatrixMultiplication.BorderRank
 import AlgebraicComplexity.MatrixMultiplication.Transpose
 import AlgebraicComplexity.MatrixMultiplication.CoordinateCertificate

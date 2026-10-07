@@ -377,22 +377,36 @@ diagonal blocks at degree `2d+d'+2` and every junk block strictly above.
   was dropped as unnecessary.
 
 Remaining, in dependency order:
-1. **Theorem 6.1 for border rank** (`NonminimalBorderRankSpeedup`) — **decided: do not restate at
-   `RankLE`**. The whole point of Theorem 6.1 is that a nonminimal *border*-rank bound is not
-   tight, so weakening the hypothesis would discard the result. It is also **not** unlocked by a
-   `matrixFlatten` for `PolynomialLinearMap` families, as the earlier note guessed: Propositions
-   5.3/5.4 are dimension counts, and `K[ε]` is not a field. What is needed is a scalar extension
-   of the tensor layer to `RatFunc K` plus a descent of the resulting degeneration — a
-   foundational layer of its own. Scoped and deliberately not built.
+1. **Theorem 6.1 for border rank** (`NonminimalBorderRankSpeedup`) — **DONE 2026-10-07**
+   (`MatrixMultiplication/NonminimalBorderRankSpeedup.lean`,
+   `AlmanLi.nonminimalBorderRankSpeedup`). The earlier verdict here — "needs a scalar extension
+   of the tensor layer to `RatFunc K` plus a descent; scoped and deliberately not built" — was
+   wrong about what is needed, and must not be re-proposed. No base change is involved. The
+   polynomial free-lunch theorem is applied to two explicit polynomial families on
+   `⟨r⟩ ⊕ ⟨1,n,1⟩`: `F` carries the certificate and sends the slice to `−∑ᵢ B_{ji} aᵢ`, `v_j`, `0`;
+   `G` sends `eᵢ` to `(αᵢ, δᵢ, z')`. The mixed blocks vanish because the slice cancels the
+   `Y`-expansion and because `P·δ = 0`, and the pure `G` block is `q·⟨1,r−n,1⟩` because
+   `αᵀ·δ = q·1`. The pair `(δ, α)` is a *kernel frame* of the polynomial coordinate matrix `P` of
+   the certificate (`Tensor/PolynomialKernelFrame.lean`): rank–nullity over the fraction field of
+   `K[X]`, a left inverse, and cleared denominators. The `s = n` clause needs no rank hypothesis
+   because an `n × n` polynomial matrix factors through its columns; the general-`s` border form
+   (`s ≥` the rank of `M` over `F(λ)`) is not proved and would need a rank factorization of a
+   polynomial matrix, i.e. a second kernel frame.
+   The core (`Tensor.polynomialDegenerates_oneSliceFrameTensor_directSum`) is already **grouped**:
+   `p` groups of at least `m + n` certificate terms give `p ⊙ ⟨1,m,1⟩`, with ungrouped terms
+   allowed, so Theorem 6.3 in its border-rank form needs only the presentation bookkeeping below.
 2. **Proposition 5.7** (`OneSliceCompression`, p. 18) — independent of everything else; needs
    `exists_linearIndependent'` on the `X`-basis family of `⊕_i ⟨1,n_i,1⟩`, a per-block increasing
    enumeration of the chosen subset, and a left inverse over a field. Unblocks the second proof of
    Theorem 6.3. Largest index-bookkeeping cost is `IndexedDirectSumSpace` coordinates; still the
    largest single item in this section.
-3. **Theorem 6.3, first proof** (p. 21) — now cheap in the restriction case: it is Theorem 6.1
-   applied groupwise and summed, so it needs a partition of `Fin r` into `p` blocks, the
-   corresponding splitting `⟨r⟩ ⤳ ⊕_α ⟨rα⟩`, and additivity of the direct sum under
-   `PolynomialDegenerates`. It does not need Proposition 5.7.
+3. **Theorem 6.3** (p. 21) — the mathematics is done, in border-rank form, by the grouped core of
+   item 1 (groupwise application of Theorem 6.1 does *not* work for a border certificate: the
+   group sums are polynomial tensors with no leading term of their own, which is why the core is
+   grouped from the start). What remains is to exhibit `unitTensor K r ⊕ oneSliceDirectSum …` as
+   an `oneSliceFrameTensor`, i.e. bases of the `MMDirectSumSpace` legs indexed by
+   `Fin r ⊕ Fin p × Fin n`, and the grouping `i ↦ ⌊i / 3n⌋` with the leftover terms ungrouped.
+   It does not need Proposition 5.7.
 4. **Theorem 7.3** (`DirectSumIdentity`, p. 29) — independent; needs only the restriction form
    already proved plus explicit coordinate maps. No new theory.
 5. Out of scope, unchanged: Theorem 6.2, Corollary 6.1, and all of §7.1/§7.2 — they need
