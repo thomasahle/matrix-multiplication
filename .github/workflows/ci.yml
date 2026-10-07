@@ -127,7 +127,7 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: bash scripts/check_frontier_improvement.sh "$(git merge-base "$BASE_SHA" HEAD)"
 
-  vendored-nine-quarters:
+  vendored:
     # The vendored all-fields proof of `omega <= 9/4` and OpenAI's two rectangular bounds over the
     # complex numbers (ThirdParty/OAI, 256 modules, plus the five Brouwer modules of
     # ThirdParty/FixedPointTheorems) and their bridges to this repository's `omega`,

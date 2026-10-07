@@ -1,3 +1,4 @@
+-- Modified from the upstream file for Lean v4.33.0-rc1; see ThirdParty/OAI/CHANGES.md.
 import OAI.LinearAlgebra.MatrixMultiplication.Duality.FiniteRealization
 import OAI.LinearAlgebra.MatrixMultiplication.Duality.FiniteRates
 import OAI.LinearAlgebra.MatrixMultiplication.Duality.WitnessProgram

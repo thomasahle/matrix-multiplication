@@ -1,3 +1,4 @@
+-- Modified from the upstream file for Lean v4.33.0-rc1; see ThirdParty/OAI/CHANGES.md.
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import Mathlib.Algebra.Order.BigOperators.Group.Finset

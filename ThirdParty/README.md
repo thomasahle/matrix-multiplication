@@ -37,7 +37,8 @@ declaration of every vendored module and fails if any of them declares an axiom.
 * Changes made here are listed in `OAI/CHANGES.md`. They are limited to what this repository's
   older toolchain (Lean `v4.33.0-rc1` and the Mathlib pinned in `lake-manifest.json`) requires:
   59 of the 256 files, about 180 lines, all inside proofs or `import` lines; no statement was
-  changed.
+  changed. Each modified file says so in its first line; every other file is byte-identical to
+  its upstream source.
 
 ## `FixedPointTheorems/` — Brouwer's fixed-point theorem
 

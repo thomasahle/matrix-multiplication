@@ -1,3 +1,4 @@
+-- Modified from the upstream file for Lean v4.33.0-rc1; see ThirdParty/OAI/CHANGES.md.
 import Mathlib.Algebra.Order.Floor.Semiring
 import Mathlib.Analysis.Complex.Basic
 import Mathlib.Analysis.SpecialFunctions.Pow.Real

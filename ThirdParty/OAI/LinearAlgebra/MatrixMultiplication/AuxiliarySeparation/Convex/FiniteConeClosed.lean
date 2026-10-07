@@ -1,3 +1,4 @@
+-- Modified from the upstream file for Lean v4.33.0-rc1; see ThirdParty/OAI/CHANGES.md.
 import OAI.LinearAlgebra.MatrixMultiplication.AuxiliarySeparation.Convex.ConeSupport
 import Mathlib.Geometry.Convex.Cone.Pointed
 import Mathlib.Topology.Algebra.Module.FiniteDimension

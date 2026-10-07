@@ -1,3 +1,4 @@
+-- Modified from the upstream file for Lean v4.33.0-rc1; see ThirdParty/OAI/CHANGES.md.
 import OAI.LinearAlgebra.MatrixMultiplication.Separation.ComplexFiniteSeparation
 import OAI.LinearAlgebra.MatrixMultiplication.Separation.ComplexAuxiliarySeparation
 import OAI.LinearAlgebra.MatrixMultiplication.Separation.ComplexFiniteControl

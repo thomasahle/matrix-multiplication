@@ -1,5 +1,10 @@
 # Changes to the vendored `OAI` sources
 
+Every file that differs from its upstream source starts with the line
+`-- Modified from the upstream file for Lean v4.33.0-rc1; see ThirdParty/OAI/CHANGES.md.`
+(59 files under `OAI/`, 2 under `FixedPointTheorems/`); a file without that line is byte-identical
+to upstream. The edits themselves are the ones tabulated below.
+
 ## The all-fields `9/4` modules
 
 Source: `selanavot/matrix-multiplication-all-fields`, `lean/OAI`, commit

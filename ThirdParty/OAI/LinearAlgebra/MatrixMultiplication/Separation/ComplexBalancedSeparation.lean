@@ -1,3 +1,4 @@
+-- Modified from the upstream file for Lean v4.33.0-rc1; see ThirdParty/OAI/CHANGES.md.
 import OAI.LinearAlgebra.MatrixMultiplication.Tensor.ComplexPairingMatrixTensor
 import OAI.LinearAlgebra.MatrixMultiplication.Entropy.ComplexHierarchySeparationRates
 import OAI.LinearAlgebra.MatrixMultiplication.Entropy.ComplexOrientationRates

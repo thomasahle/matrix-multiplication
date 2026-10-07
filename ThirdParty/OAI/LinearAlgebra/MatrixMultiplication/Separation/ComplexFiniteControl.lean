@@ -1,3 +1,4 @@
+-- Modified from the upstream file for Lean v4.33.0-rc1; see ThirdParty/OAI/CHANGES.md.
 import Mathlib.Data.Fintype.EquivFin
 import Mathlib.Data.Fintype.BigOperators
 import Mathlib.Logic.Equiv.Sum

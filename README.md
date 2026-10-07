@@ -325,7 +325,8 @@ How much to trust it, precisely:
 - **Changed:** the upstream code targets Lean `v4.34.1` and a Mathlib ten weeks newer, so names
   had to be translated back in 59 of the 256 `OAI` files (about 180 lines, all in `import` lines
   or inside proofs) and in two of the five Brouwer files. No definition and no theorem statement
-  was touched; every edit is listed in `ThirdParty/OAI/CHANGES.md`, and `ThirdParty/README.md`
+  was touched; each modified file carries a notice in its first line, every edit is listed in
+  `ThirdParty/OAI/CHANGES.md`, and `ThirdParty/README.md`
   records sources, commits and licences (Apache-2.0 and MIT).
 - **Not done:** the vendored proofs have not been read or reviewed here as mathematics. The reason
   to believe them is the kernel, and the reason to believe they say what they should is the
