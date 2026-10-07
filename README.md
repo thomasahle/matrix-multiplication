@@ -282,8 +282,8 @@ which are under `AlgebraicComplexity/`.
 
 ## Vendored: `ω ≤ 9/4` over every field
 
-On October 2, 2026 OpenAI published *An Upper Bound of 9/4 for the Matrix Multiplication Exponent*
-together with a Lean proof over `ℂ` (<https://github.com/openai/math>, `lean/OAI`). A source fork,
+OpenAI's preprint *An Upper Bound of 9/4 for the Matrix Multiplication Exponent* (dated October 2,
+2026) comes with a Lean proof over `ℂ` (<https://github.com/openai/math>, `lean/OAI`). A source fork,
 <https://github.com/selanavot/matrix-multiplication-all-fields>, extends that proof to every
 field. **Neither proof is ours.** What this repository does is vendor the all-fields development
 unchanged in substance, check it with its own toolchain and its own enforcing axiom audit, and
@@ -304,7 +304,7 @@ How much to trust it, precisely:
   headline, the consequences, and the upstream theorems depend only on `propext`,
   `Classical.choice` and `Quot.sound`, and the target's root `OpenAIBridge.lean` runs the
   environment-wide census (`#axiom_census_roots OAI FixedPointTheorems OpenAIBridge`) over all
-  3,728 declarations of the vendored developments and the bridge: none is an axiom, and none —
+  roughly 3,700 declarations of the vendored developments and the bridge: none is an axiom, and none —
   reached by the headline or not — uses anything outside those three.
 - **Changed:** the upstream code targets Lean `v4.34.1` and a Mathlib ten weeks newer, so names
   had to be translated back in 25 of the 126 `OAI` files (about fifty lines, all in `import` lines
@@ -321,6 +321,9 @@ How much to trust it, precisely:
   Extended there by a specialization step for transcendental extensions, it gives the classical
   theorem that `ω` depends only on the characteristic (see the machinery table above), so a bound
   over `ℂ` alone is already a bound over every field of characteristic zero.
+  `OpenAIBridge.omega_le_nine_quarters_via_fieldExtension` re-proves the all-fields bound along
+  that route: it takes only the algebraically closed case from the vendored development and
+  descends with this repository's `omega_le_of_forall_isAlgClosed`.
 - **Kept apart:** the three targets `FixedPointTheorems`, `OAI` and `OpenAIBridge` are opt-in. No
   module of `AlgebraicComplexity`, `MatrixMultiplication`, `AxiomAudit` or `Frontier` imports them,
   the vendored files are outside the module-documentation and copyright-header gates (they are
@@ -731,7 +734,7 @@ umbrella `AlgebraicComplexity.lean`, which imports one `Examples/` module.
 
 - **Layer 0** — `AlgebraicComplexity/Asymptotics.lean`: growth rates, exponential-rate calculus,
   and the multiplicative Fekete engine. Mathlib only.
-- **Layer 1** — `AlgebraicComplexity/Tensor/` (120 modules): three-legged tensors,
+- **Layer 1** — `AlgebraicComplexity/Tensor/` (123 modules): three-legged tensors,
   restriction and isomorphism, products, direct sums, indexed families and powers; rank,
   conciseness, polynomial degeneration, border rank, asymptotic rank; coordinates and monomial
   certificates; partitioned tensors, extraction, compatibility zeroing, hole repair; and the
@@ -745,13 +748,15 @@ umbrella `AlgebraicComplexity.lean`, which imports one `Examples/` module.
   rules, Kullback--Leibler bounds, parent consistency, two-letter couplings; subexponential-loss
   calculus, proportional multinomial entropy bounds, and certified rational logarithm enclosures.
   `Adapters/CSLib/` holds the one adapter to CSLib's probability API.
-- **Layer 3** — `AlgebraicComplexity/MatrixMultiplication/` (282): the rectangular
+- **Layer 3** — `AlgebraicComplexity/MatrixMultiplication/` (289): the rectangular
   matrix-multiplication tensor and its symmetry and product laws, the bilinear-algorithm bridge,
-  the exponent, Bini interpolation, Schönhage's asymptotic sum inequality and its partial
-  τ-theorem, compression and type extraction, the C-tensor, the generic laser and interface
-  machinery, the rectangular exponent, and the barrier layer (Galactic method, the universal
-  method and its slice-rank barrier, independent diagonal, independence barrier, mass
-  distribution, coordinate block certificates, Koszul border rank).
+  the exponent and its independence of the field within a characteristic, the equivalence with
+  straight-line program size, Bini interpolation, Schönhage's asymptotic sum inequality and its
+  partial τ-theorem, compression and type extraction, the C-tensor, the generic laser and
+  interface machinery, the one-slice speedup and direct-sum identities, the rectangular exponent,
+  and the barrier layer (Galactic method, the universal method and its slice-rank barrier,
+  independent diagonal, independence barrier, mass distribution, coordinate block certificates,
+  Koszul border rank).
 - **Layer 4 — regression clients** — `AlgebraicComplexity/Examples/` (544 modules), reached
   through `AlgebraicComplexity/Examples.lean` (the `AlgebraicComplexityClients` target), the
   `AlgebraicComplexity/DuanWuZhouLevelTwo.lean` umbrella, the `MatrixMultiplication` targets, and —
@@ -770,3 +775,7 @@ umbrella `AlgebraicComplexity.lean`, which imports one `Examples/` module.
 - **Audit and umbrellas** — `AlgebraicComplexity.lean`, `AlgebraicComplexityClients.lean`,
   `MatrixMultiplication.lean`, `MatrixMultiplicationCertificate.lean`, `AxiomAudit.lean`,
   `AxiomAuditCertificate.lean`, and the `#assert_axioms` command in `AxiomAudit/Command.lean`.
+- **Vendored, opt-in** — `ThirdParty/OAI/` (126 modules) and `ThirdParty/FixedPointTheorems/`
+  (5): the all-fields proof of `ω ≤ 9/4` and the Brouwer fixed-point theorem it uses, written
+  elsewhere and checked here; `OpenAIBridge/` (3 modules and the root `OpenAIBridge.lean`)
+  connects them to `omega`. Outside the layering: no layer imports them.

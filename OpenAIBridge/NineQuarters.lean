@@ -6,6 +6,7 @@ Authors: Thomas Dybdahl Ahle
 
 import AlgebraicComplexity.MatrixMultiplication
 import AlgebraicComplexity.MatrixMultiplication.Exponent
+import AlgebraicComplexity.MatrixMultiplication.FieldExtension
 import OAI.LinearAlgebra.MatrixMultiplication.AuxiliarySeparation.Arithmetic.FieldExtension
 import OAI.LinearAlgebra.MatrixMultiplication.AuxiliarySeparation.Arithmetic.RankBound
 
@@ -33,6 +34,9 @@ a statement about `AlgebraicComplexity.omega`, the polynomial growth exponent of
 * `exactRankExponent_le_nine_quarters`: their bound over an arbitrary field, assembled from the
   algebraically closed case and the descent along `K → AlgebraicClosure K`.
 * `omega_le_nine_quarters`: **`omega K ≤ 9/4` for every field `K`**.
+* `omega_le_nine_quarters_via_fieldExtension`: the same bound, with the passage from
+  algebraically closed fields to all fields supplied by this repository's
+  `omega_le_of_forall_isAlgClosed` instead of the vendored descent.
 
 ## Trust
 
@@ -113,5 +117,23 @@ exponent `omega` of this repository.  The mathematical content is the vendored d
 `ThirdParty/OAI/`. -/
 theorem omega_le_nine_quarters (K : Type u) [Field K] : omega K ≤ 9 / 4 :=
   (omega_le_exactRankExponent K).trans (exactRankExponent_le_nine_quarters K)
+
+/-- The bound over an algebraically closed field: the vendored theorem for that case and the
+bridge, with no descent at all. -/
+theorem omega_le_nine_quarters_of_isAlgClosed (K : Type u) [Field K] [IsAlgClosed K] :
+    omega K ≤ 9 / 4 :=
+  (omega_le_exactRankExponent K).trans
+    (OAI.MatrixMultiplication.AuxiliarySeparation.exactRankExponent_le_nine_quarters (K := K))
+
+/-- **`omega K ≤ 9/4` over every field, with this repository's own descent.**
+
+The same statement as `omega_le_nine_quarters`, proved along a second route for the step from
+algebraically closed fields to all fields: instead of the vendored
+`exactRankExponent_le_algebraicClosure`, it uses `omega_le_of_forall_isAlgClosed` from
+`AlgebraicComplexity/MatrixMultiplication/FieldExtension.lean`, which is proved in this
+repository for its own `omega`.  What is taken from the vendored development is then only the
+algebraically closed case. -/
+theorem omega_le_nine_quarters_via_fieldExtension (K : Type u) [Field K] : omega K ≤ 9 / 4 :=
+  omega_le_of_forall_isAlgClosed (fun E _ _ ↦ omega_le_nine_quarters_of_isAlgClosed E) K
 
 end AlgebraicComplexity.OpenAIBridge
