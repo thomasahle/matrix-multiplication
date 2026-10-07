@@ -73,7 +73,7 @@ except where a row marks one *(repository root)*, which is the top-level paper l
 named-obligation and conditional-endpoint tables' `MatrixMultiplication/` paths are all of that
 second kind. Each of these results is
 also covered by the enforcing axiom audit, which the `AxiomAudit` target runs over its whole
-`AxiomAudit.*` glob: **1483 `#assert_axioms` checks** in `AxiomAudit.lean` itself and 5257 more
+`AxiomAudit.*` glob: **1483 `#assert_axioms` checks** in `AxiomAudit.lean` itself and 5369 more
 across the 778 focused modules under `AxiomAudit/`, with a further 12 in
 `AxiomAuditCertificate.lean` and 5445 across `AxiomAuditCertificate/`; a passing
 audit means the only axioms used are `propext`, `Classical.choice`, and `Quot.sound`. A

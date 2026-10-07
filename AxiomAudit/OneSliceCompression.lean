@@ -20,10 +20,13 @@ the proof in `MatrixMultiplication/OneSliceCompression.lean` and the discharged 
 
 namespace AlgebraicComplexity
 
-#assert_axioms oneSliceDirectSum_eq_sum
-#assert_axioms span_range_indexedSliceX
 #assert_axioms LinearIndependent.exists_linearMap_apply_eq
+#assert_axioms indexedSliceX
+#assert_axioms indexedSliceY
+#assert_axioms indexedSliceZ
+#assert_axioms oneSliceDirectSum_eq_sum
 #assert_axioms restricts_map_oneSliceDirectSum
+#assert_axioms span_range_indexedSliceX
 #assert_axioms AlmanLi.oneSliceCompression
 
 end AlgebraicComplexity

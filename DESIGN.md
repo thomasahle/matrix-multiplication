@@ -760,6 +760,17 @@ regenerate its roots with `scripts/regen_census_roots.sh`. For scale, the tree t
 `.lean` files, about 11,350 of them under `MatrixMultiplication/Generated/`. The only axioms reached
 are the three allowlisted ones.
 
+Vendored code is held to the same standard by its own instances of the same three mechanisms, kept
+apart from the ordinary ones so that no project target depends on it. The developments under
+`ThirdParty/` (see `ThirdParty/README.md`) and their bridge `OpenAIBridge/` are inside
+`scripts/trust_scan.sh`; `OpenAIBridge/Audit.lean` carries the `#assert_axioms` lines; and the
+target root `OpenAIBridge.lean` runs `#axiom_census_roots OAI FixedPointTheorems OpenAIBridge`, the
+same environment walk as `#axiom_census` for module roots named at the call site. Those roots are
+deliberately absent from `AxiomAudit.projectModuleRoots`, and `scripts/check_source_coverage.sh`
+accepts `OpenAIBridge.lean` as the census client of that target only. Vendored files are exempt
+from the module-documentation and copyright-header gates, which describe this project's own
+sources, and from nothing else.
+
 For important imported theorems, use `#print axioms` in an audit file or scratch file and record
 the result when it affects the trusted base. `Classical.choice`, quotient soundness, and standard
 Mathlib axioms are different from an unproved project postulate; reports should distinguish them.

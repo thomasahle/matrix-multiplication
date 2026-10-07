@@ -245,7 +245,9 @@ is measured against today.
 
 The Total-Weight framework in the tree is conditional: `README.md` §"The Total-Weight framework
 (conditional)" records what the tree proves and what it still assumes, and its manuscript is in
-preparation and not public. **No new bound on ω is claimed anywhere in this repository.** Closing the named
+preparation and not public. **No new bound on ω is claimed by this repository.** (The `9/4` bound and the
+rectangular bounds under `ThirdParty/` are OpenAI's, vendored and re-checked here; see `README.md`
+§"Vendored".) Closing the named
 obligations in `README.md` §Results is worth more than any new numerical constant.
 
 ---
